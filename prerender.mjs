@@ -21,6 +21,9 @@ const ROUTES = [
   '/',
   '/research',
   '/research/anchoring-compliance-bitcoin',
+  '/research/agentic-recordkeeping',
+  '/research/convergence-stack',
+  '/research/government-records',
 ];
 
 async function prerender() {

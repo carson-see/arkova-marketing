@@ -9,7 +9,8 @@
 import { useParams, Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, Clock, Tag, Linkedin, Twitter, LinkIcon, CheckCircle2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { getArticleBySlug, ARTICLES, type Article } from '../data/articles';
+import { getArticleBySlug, ARTICLES, type Article, type ContentBlock } from '../data/articles';
+import { DIAGRAM_COMPONENTS } from '../components/diagrams';
 
 const CATEGORY_COLORS: Record<string, string> = {
   Compliance: 'bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400',
@@ -36,7 +37,12 @@ function ArticleJsonLd({ article }: { article: Article }) {
     dateModified: article.date,
     articleSection: article.category,
     wordCount: article.sections.reduce(
-      (sum, s) => sum + s.paragraphs.reduce((pSum, p) => pSum + p.split(/\s+/).length, 0),
+      (sum, s) => {
+        if (s.blocks) {
+          return sum + s.blocks.reduce((bSum, b) => bSum + ('value' in b ? b.value.split(/\s+/).length : 'quote' in b ? b.quote.split(/\s+/).length : 0), 0);
+        }
+        return sum + (s.paragraphs?.reduce((pSum, p) => pSum + p.split(/\s+/).length, 0) ?? 0);
+      },
       0
     ),
     author: {
@@ -78,6 +84,8 @@ function ShareButtons({ article }: { article: Article }) {
     navigator.clipboard.writeText(url).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
+    }).catch(() => {
+      // Fallback: clipboard API unavailable (HTTP or denied permission)
     });
   };
 
@@ -116,6 +124,112 @@ function ShareButtons({ article }: { article: Article }) {
       </button>
     </div>
   );
+}
+
+/* ─── Rich content block renderer ─── */
+const STAT_VARIANTS: Record<string, string> = {
+  blue: 'border-l-arkova-steel',
+  green: 'border-l-emerald-500',
+  amber: 'border-l-amber-500',
+};
+
+function RichBlock({ block }: { block: ContentBlock }) {
+  switch (block.type) {
+    case 'text':
+      return (
+        <p className="mb-4 text-base leading-[1.8] text-arkova-slate dark:text-arkova-steel-light/70">
+          {block.value}
+        </p>
+      );
+
+    case 'stat':
+      return (
+        <div className={`my-8 rounded-xl border-l-[3px] ${STAT_VARIANTS[block.variant ?? 'blue']} bg-white/70 dark:bg-white/[0.03] backdrop-blur-xl border border-arkova-ice/60 dark:border-white/5 p-6`}>
+          <div className="text-3xl font-bold text-arkova-charcoal dark:text-white">{block.value}</div>
+          <div className="mt-1 text-sm text-arkova-slate dark:text-arkova-steel-light/60">{block.label}</div>
+          {block.sourceUrl ? (
+            <a href={block.sourceUrl} target="_blank" rel="noopener noreferrer" className="mt-2 block text-xs italic text-arkova-slate/60 dark:text-arkova-steel-light/40 hover:text-arkova-steel">
+              — {block.source}
+            </a>
+          ) : (
+            <div className="mt-2 text-xs italic text-arkova-slate/60 dark:text-arkova-steel-light/40">— {block.source}</div>
+          )}
+        </div>
+      );
+
+    case 'quote':
+      return (
+        <blockquote className="my-8 border-l-4 border-arkova-steel pl-6">
+          <p className="text-xl italic text-arkova-charcoal dark:text-white leading-relaxed">
+            &ldquo;{block.quote}&rdquo;
+          </p>
+          {block.attribution && (
+            <footer className="mt-3">
+              <span className="text-sm font-medium text-arkova-charcoal dark:text-white">{block.attribution}</span>
+              {block.role && <span className="ml-1 text-xs text-arkova-slate dark:text-arkova-steel-light/50">{block.role}</span>}
+            </footer>
+          )}
+        </blockquote>
+      );
+
+    case 'table':
+      return (
+        <div className="my-8 overflow-hidden rounded-xl border border-arkova-ice/60 dark:border-white/5 bg-white/70 dark:bg-white/[0.03] backdrop-blur-xl">
+          {block.title && (
+            <div className="border-b border-arkova-ice/60 dark:border-white/5 px-6 py-3">
+              <h3 className="text-sm font-bold text-arkova-charcoal dark:text-white">{block.title}</h3>
+            </div>
+          )}
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-arkova-frost/50 dark:bg-white/[0.03]">
+                  {block.headers.map((h, i) => (
+                    <th key={i} className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-arkova-slate dark:text-arkova-steel-light/60">
+                      {h}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {block.rows.map((row, i) => (
+                  <tr key={i} className={`border-t border-arkova-ice/40 dark:border-white/5 ${row.highlight ? 'bg-arkova-steel/5 dark:bg-arkova-steel/10' : ''}`}>
+                    {row.cells.map((cell, j) => (
+                      <td key={j} className={`px-4 py-3 text-arkova-slate dark:text-arkova-steel-light/70 ${j === 0 ? 'font-medium text-arkova-charcoal dark:text-white' : ''}`}>
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          {block.footnote && (
+            <div className="border-t border-arkova-ice/40 dark:border-white/5 px-6 py-2">
+              <p className="text-xs italic text-arkova-slate/60 dark:text-arkova-steel-light/40">{block.footnote}</p>
+            </div>
+          )}
+        </div>
+      );
+
+    case 'diagram': {
+      const DiagramComponent = DIAGRAM_COMPONENTS[block.id];
+      if (!DiagramComponent) return null;
+      return (
+        <figure className="my-10">
+          <div className="overflow-hidden rounded-xl border border-arkova-ice/60 dark:border-white/5 shadow-card-rest" role="img" aria-label={block.alt}>
+            <DiagramComponent className="w-full" />
+          </div>
+          <figcaption className="mt-3 text-center text-sm italic text-arkova-slate/80 dark:text-arkova-steel-light/50">
+            {block.caption}
+          </figcaption>
+        </figure>
+      );
+    }
+
+    default:
+      return null;
+  }
 }
 
 export default function ArticlePage() {
@@ -222,14 +336,18 @@ export default function ArticlePage() {
                     {section.heading}
                   </h2>
                 )}
-                {section.paragraphs.map((p, j) => (
-                  <p
-                    key={j}
-                    className="mb-4 text-base leading-[1.8] text-arkova-slate dark:text-arkova-steel-light/70"
-                  >
-                    {p}
-                  </p>
-                ))}
+                {section.blocks
+                  ? section.blocks.map((block, j) => (
+                      <RichBlock key={j} block={block} />
+                    ))
+                  : (section.paragraphs ?? []).map((p, j) => (
+                      <p
+                        key={j}
+                        className="mb-4 text-base leading-[1.8] text-arkova-slate dark:text-arkova-steel-light/70"
+                      >
+                        {p}
+                      </p>
+                    ))}
               </div>
             ))}
           </div>

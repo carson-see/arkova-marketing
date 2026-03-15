@@ -26,9 +26,20 @@ export interface Article {
   sections: ArticleSection[];
 }
 
+/** A content block can be a plain paragraph or a rich element */
+export type ContentBlock =
+  | { type: 'text'; value: string }
+  | { type: 'stat'; value: string; label: string; source: string; sourceUrl?: string; variant?: 'blue' | 'green' | 'amber' }
+  | { type: 'quote'; quote: string; attribution?: string; role?: string }
+  | { type: 'table'; title?: string; headers: string[]; rows: { cells: string[]; highlight?: boolean }[]; footnote?: string }
+  | { type: 'diagram'; id: string; alt: string; caption: string };
+
 export interface ArticleSection {
   heading?: string;
-  paragraphs: string[];
+  /** Legacy plain paragraphs — used when `blocks` is absent */
+  paragraphs?: string[];
+  /** Rich content blocks — when present, `paragraphs` is ignored */
+  blocks?: ContentBlock[];
 }
 
 export const ARTICLES: Article[] = [
@@ -41,7 +52,7 @@ export const ARTICLES: Article[] = [
       name: 'Carson Seeger',
       title: 'CEO & Co-Founder',
       avatar: '/team-carson.png',
-      linkedin: 'https://www.linkedin.com/in/carsonseeger/',
+      linkedin: 'https://www.linkedin.com/in/carson-s-8b41061a/',
     },
     category: 'Compliance',
     readTime: '8 min read',
@@ -113,6 +124,285 @@ export const ARTICLES: Article[] = [
           'For legal and IP use cases, timestamped proofs of document existence create evidence that is admissible, independently verifiable, and resistant to challenges of authenticity.',
           'The common thread: shifting trust from institutions to mathematics. Not because institutions are unnecessary, but because critical records deserve a foundation that does not depend on any single point of failure.',
           'The infrastructure for this shift exists today. The question is not whether organizations will adopt verifiable records, but when — and whether they will lead the transition or be compelled by regulators, markets, and competitors who moved first.',
+        ],
+      },
+    ],
+  },
+
+  /* ═══════════════════════════════════════════════════════════════════
+   * ARTICLE 2 — Agentic Recordkeeping
+   * ═══════════════════════════════════════════════════════════════════ */
+  {
+    slug: 'agentic-recordkeeping',
+    title: 'Agentic Recordkeeping: Why Autonomous AI Needs Verifiable Audit Trails',
+    subtitle: 'As AI agents begin acting autonomously — signing contracts, transferring funds, issuing credentials — every action needs a tamper-proof receipt.',
+    date: '2026-01-15',
+    author: {
+      name: 'Carson Seeger',
+      title: 'CEO & Co-Founder',
+      avatar: '/team-carson.png',
+      linkedin: 'https://www.linkedin.com/in/carson-s-8b41061a/',
+    },
+    category: 'Technology',
+    readTime: '14 min read',
+    excerpt:
+      'Traditional audit logs were built for humans clicking buttons. AI agents operate at machine speed, across organizational boundaries, without human review. The verification infrastructure needs to catch up.',
+    sections: [
+      {
+        heading: 'The Agentic Shift',
+        blocks: [
+          { type: 'text', value: 'Picture this: it\'s 2:47 AM. Your company\'s AI procurement agent has just autonomously approved a $50,000 vendor contract. It analyzed the proposal, compared pricing against historical benchmarks, verified the vendor\'s compliance certifications, and executed the agreement — all without a human in the loop.' },
+          { type: 'text', value: 'This isn\'t science fiction. Gartner projects that by 2028, 33% of enterprise software will include agentic AI capabilities, up from less than 1% in 2024. The shift from "AI as assistant" to "AI as autonomous actor" is happening faster than most organizations are prepared for.' },
+          { type: 'stat', value: '33%', label: 'of enterprise software will include agentic AI by 2028, up from <1% in 2024', source: 'Gartner, 2025', variant: 'blue' },
+          { type: 'text', value: 'The question isn\'t whether agents will act autonomously. They already are. The question is whether we can prove what they did — independently, after the fact, without relying on the agent\'s own logs. Because an agent that logs its own actions is marking its own homework.' },
+        ],
+      },
+      {
+        heading: 'Why Traditional Audit Logs Fail',
+        blocks: [
+          { type: 'text', value: 'Every enterprise system has an audit log. It\'s table stakes. But audit logs were designed for a world where humans initiated actions, reviewed outcomes, and manually verified results. They have three fundamental weaknesses that become critical in an agentic context.' },
+          { type: 'text', value: 'First, they\'re mutable. A database administrator can ALTER TABLE and rewrite history. This isn\'t a theoretical risk — it\'s an operational reality that compliance auditors increasingly refuse to ignore.' },
+          { type: 'text', value: 'Second, timestamps are self-reported. The system recording the event is also the system asserting when it happened. There\'s no independent verification of the timeline.' },
+          { type: 'text', value: 'Third, there\'s no cryptographic binding between entries. Log entry #4,571 has no mathematical relationship to entry #4,570. Delete or modify an entry, and there\'s no way to detect the tampering.' },
+          { type: 'table', title: 'Traditional vs. Cryptographic Audit Trails', headers: ['Dimension', 'Traditional Audit Log', 'Cryptographic Audit Trail'], rows: [
+            { cells: ['Mutability', 'Admin can modify or delete entries', 'Immutable once anchored'], highlight: false },
+            { cells: ['Timestamp authority', 'Self-reported by application', 'Network-observed (block time)'], highlight: false },
+            { cells: ['Integrity proof', 'None — "trust the database"', 'SHA-256 fingerprint + Merkle proof'], highlight: true },
+            { cells: ['Third-party verifiability', 'Requires database access', 'Anyone can verify with public ID'], highlight: true },
+            { cells: ['Regulatory standing', 'Increasingly questioned', 'Mathematically provable'], highlight: false },
+            { cells: ['Agent compatibility', 'Designed for human review', 'Machine-readable + human-readable'], highlight: false },
+          ] },
+        ],
+      },
+      {
+        heading: 'The Agentic Verification Loop',
+        blocks: [
+          { type: 'text', value: 'The solution is a verification loop that treats every autonomous action as an event that needs a tamper-proof receipt — not a log entry that might be correct.' },
+          { type: 'diagram', id: 'agentic-verification-loop', alt: 'Circular diagram showing the Agentic Verification Loop: AI Agent Acts, Action Fingerprinted, Anchored to Network, Proof Generated, Anyone Can Verify', caption: 'The Agentic Verification Loop — every autonomous action gets a tamper-proof receipt without exposing the underlying data.' },
+          { type: 'text', value: 'The loop is simple: an agent acts, the action data is fingerprinted (SHA-256), the fingerprint is anchored to a public network (via OP_RETURN), a proof package is generated with the Merkle path, and anyone — human or machine — can verify the proof without needing access to the original system.' },
+          { type: 'text', value: 'The critical insight: the verification is zero-knowledge with respect to the action\'s content. You can prove that an action happened, when it happened, and that the record hasn\'t been altered — without revealing what the action was. The fingerprint is a one-way hash. The action data stays in the originating system.' },
+        ],
+      },
+      {
+        heading: 'What "Verifiable" Actually Means',
+        blocks: [
+          { type: 'text', value: 'There\'s a crucial distinction between "logged" and "verifiable." A logged action is recorded somewhere — in a database, a file, a vendor\'s system. A verifiable action is independently provable — anyone can confirm it happened, when it happened, and that the record is intact.' },
+          { type: 'text', value: 'SHA-256 fingerprinting means the document or action data never leaves your system. Only a mathematical fingerprint — a 64-character string derived from the data — gets anchored. You can\'t reverse-engineer the data from the fingerprint. But if someone gives you the data and the fingerprint, you can verify they match in milliseconds.' },
+          { type: 'text', value: 'Bitcoin\'s network serves as a trust anchor — not because of cryptocurrency speculation, but because it\'s a globally distributed, append-only timestamp ledger that no single entity controls. When a fingerprint is embedded in a block, the entire network\'s hash rate secures it. Altering it would require rewriting the chain, which is physically impractical at 900+ exahashes per second.' },
+          { type: 'quote', quote: 'The goal isn\'t to put records on a blockchain. The goal is to make records independently verifiable without trusting any single institution — including us.', attribution: 'Carson Seeger', role: 'CEO, Arkova Technologies' },
+        ],
+      },
+      {
+        heading: 'Agentic Use Cases',
+        blocks: [
+          { type: 'text', value: 'The verification loop applies wherever agents act autonomously. Four scenarios illustrate the breadth.' },
+          { type: 'text', value: 'Autonomous Contract Execution — An AI agent negotiates and signs a supplier agreement. Every version, approval, and signature gets a timestamped fingerprint. Disputes are resolved by checking the anchored proof, not by arguing about email timestamps or whose version of the document is "the real one."' },
+          { type: 'text', value: 'Credential Issuance at Scale — A university registrar\'s AI issues 10,000 digital diplomas overnight. Each credential is individually anchored. Employers verify in seconds by scanning a QR code or hitting an API — no phone call to the registrar required. The credential is verifiable even if the university\'s systems are down.' },
+          { type: 'text', value: 'Regulatory Reporting — A financial AI agent generates quarterly compliance reports. Each report\'s fingerprint is anchored before submission. Regulators can verify the report hasn\'t been altered post-filing. The proof stands regardless of what happens to the company\'s internal systems.' },
+          { type: 'text', value: 'Multi-Agent Coordination — A supply chain involves 7 different AI agents: procurement, logistics, quality, compliance, billing, customs, and delivery. Each handoff gets a verifiable receipt. The end-to-end audit trail spans organizational boundaries — no single company needs to be trusted for the full chain of custody.' },
+        ],
+      },
+      {
+        heading: 'The Privacy Guarantee',
+        blocks: [
+          { type: 'text', value: 'Privacy isn\'t a feature bolted onto this architecture — it\'s foundational. Documents never leave the user\'s device. Only fingerprints (mathematical hashes) get anchored. This is critical for agentic systems handling sensitive data: healthcare records, legal contracts, financial instruments, student credentials.' },
+          { type: 'text', value: 'You can prove a document existed at a specific time, that it hasn\'t been modified, and that a specific party issued it — all without revealing a single byte of the document\'s content. The verification is mathematical, not institutional. You don\'t need to trust Arkova, the issuing organization, or any intermediary. You verify the math.' },
+          { type: 'stat', value: '0 bytes', label: 'of document content sent to any server — ever. Only SHA-256 fingerprints leave the device.', source: 'Arkova Architecture', variant: 'green' },
+        ],
+      },
+      {
+        heading: 'Looking Forward',
+        blocks: [
+          { type: 'text', value: 'Model Context Protocol (MCP) will enable agents to natively verify records as part of their decision-making. Instead of a human opening a verification page and reading a result, an agent will make a tool call and receive a cryptographic proof it can independently validate. Verification becomes a machine operation, not a human workflow.' },
+          { type: 'text', value: 'But the trust layer needs to be in place before agentic AI scales — not after. Building verification infrastructure after billions of autonomous actions have already occurred is like adding seatbelts after the highway is built. The time to instrument is now, while the agentic transition is still in its early stages.' },
+          { type: 'text', value: 'The organizations that build verifiable audit trails into their agentic systems today will have an unfair advantage: they can prove what their agents did. Everyone else will be left arguing about log files.' },
+        ],
+      },
+    ],
+  },
+
+  /* ═══════════════════════════════════════════════════════════════════
+   * ARTICLE 3 — The Convergence Stack
+   * ═══════════════════════════════════════════════════════════════════ */
+  {
+    slug: 'convergence-stack',
+    title: 'The Convergence Stack: Why Blockchain + AI Is Infrastructure, Not Hype',
+    subtitle: 'Strip away the speculation, and what remains is the only technology that provides mathematical proof of data integrity across untrusted boundaries.',
+    date: '2026-02-12',
+    author: {
+      name: 'Carson Seeger',
+      title: 'CEO & Co-Founder',
+      avatar: '/team-carson.png',
+      linkedin: 'https://www.linkedin.com/in/carson-s-8b41061a/',
+    },
+    category: 'Technology',
+    readTime: '12 min read',
+    excerpt:
+      'The 2021 crypto bubble gave blockchain a credibility problem. But the underlying technology — append-only distributed ledgers, cryptographic hashing, consensus mechanisms — is mathematically sound. The problem was application, not technology.',
+    sections: [
+      {
+        heading: 'The Credibility Problem',
+        blocks: [
+          { type: 'text', value: '"Blockchain" became a punchline somewhere between the third NFT ape collection and the collapse of FTX. The skepticism is earned. An entire industry spent three years building speculative instruments on top of technology that was supposed to be about trust and transparency.' },
+          { type: 'text', value: 'But the underlying technology — append-only distributed ledgers, cryptographic hashing, proof-of-work consensus — is mathematically sound. It didn\'t stop working because someone built a bad exchange on top of it. TCP/IP didn\'t become less useful because Pets.com failed.' },
+          { type: 'quote', quote: 'Dismissing cryptographic anchoring because of crypto speculation is like dismissing the internet because Pets.com failed.', attribution: 'Carson Seeger', role: 'CEO, Arkova Technologies' },
+          { type: 'text', value: 'The question isn\'t whether the technology works. The question is what it\'s for. And the answer is becoming clear: it\'s infrastructure for proving data integrity in a world where AI makes everything easy to fabricate.' },
+        ],
+      },
+      {
+        heading: 'What AI Actually Needs from a Trust Layer',
+        blocks: [
+          { type: 'text', value: 'AI generates content at unprecedented speed and quality. LLMs write contracts. Image models create photorealistic evidence. Voice synthesis replicates anyone. The creation side is solved — or at least, rapidly being solved. What\'s not solved is the verification side.' },
+          { type: 'text', value: 'When anyone can generate a convincing document, diploma, legal filing, or financial statement in seconds, the value shifts from creation to proof. Can you prove this document is real? Can you prove it existed before a certain date? Can you prove it hasn\'t been modified? Can a third party verify your proof without trusting you?' },
+          { type: 'text', value: 'A trust layer for the AI era needs four properties. Immutability: once recorded, it cannot be altered. Independence: verification doesn\'t require trusting the issuer. Universality: it works across organizations, jurisdictions, and platforms. Privacy: it proves integrity without exposing content.' },
+          { type: 'text', value: 'No single vendor, database, or proprietary platform can credibly provide all four. The trust layer needs to be decentralized — not as an ideology, but as an engineering requirement. A centralized trust authority is a single point of failure, and a single point of failure in a trust layer defeats the purpose.' },
+        ],
+      },
+      {
+        heading: 'The Trust Inversion',
+        blocks: [
+          { type: 'text', value: 'We\'re living through a trust inversion. For decades, verification meant asking an authority: call the university, check the government database, contact the vendor. The institution was the trust anchor.' },
+          { type: 'diagram', id: 'trust-inversion-timeline', alt: 'Timeline showing the evolution from institutional trust to platform trust to mathematical proof to automated verification', caption: 'The Trust Inversion — verification authority is shifting from institutions to mathematics.' },
+          { type: 'text', value: 'Then platforms became the trust anchor: DocuSign says it\'s signed, Salesforce says it\'s the latest version, the cloud provider says the log is authentic. This was an improvement in convenience but not in fundamental trust — you\'re still relying on a third party to tell the truth about your data.' },
+          { type: 'text', value: 'Mathematical proof is the next step: the data itself contains the evidence of its own integrity. A SHA-256 fingerprint anchored to a public network is verifiable by anyone, anywhere, with open-source tools. No phone call. No API key. No vendor relationship required.' },
+        ],
+      },
+      {
+        heading: 'The Convergence Stack Architecture',
+        blocks: [
+          { type: 'text', value: 'The convergence of AI and cryptographic infrastructure creates a layered architecture where each layer adds capability while inheriting the trust guarantees of the layers below.' },
+          { type: 'diagram', id: 'convergence-stack', alt: 'Five-layer architecture: Global Timestamp Network, Cryptographic Anchoring, Privacy-Preserving Processing, AI Intelligence, Application Layer', caption: 'The Convergence Stack — each layer adds capability while inheriting the trust guarantees of the layers below.' },
+          { type: 'text', value: 'At the base: a global timestamp network with 900+ exahashes per second of computational security, no single point of failure, and 16+ years of continuous uptime. On top of that: cryptographic anchoring via OP_RETURN embedding, creating tamper-evident records with Merkle proofs.' },
+          { type: 'text', value: 'The privacy layer ensures that document bytes never leave the user\'s device — only fingerprints flow through the system. The AI intelligence layer processes PII-stripped metadata for document classification, anomaly detection, and metadata extraction. And the application layer provides the interfaces: credential management, verification APIs, embeddable widgets.' },
+          { type: 'text', value: 'The critical insight: trust flows upward. Every layer inherits the immutability and independence of the layers below. An AI classification is only as trustworthy as the fingerprint it references, and that fingerprint is secured by the full weight of the network.' },
+        ],
+      },
+      {
+        heading: 'Why Bitcoin — Not Ethereum, Not Private Chains',
+        blocks: [
+          { type: 'text', value: 'This is a technical decision, not a tribal one. We evaluated every viable option and chose Bitcoin for specific, measurable reasons.' },
+          { type: 'table', title: 'Network Comparison for Document Anchoring', headers: ['Property', 'Bitcoin', 'Ethereum', 'Private Chains'], rows: [
+            { cells: ['Security model', '900+ EH/s proof-of-work', 'Proof of Stake', 'Operator-controlled'], highlight: false },
+            { cells: ['Immutability guarantee', 'Thermodynamic', 'Economic', 'Administrative'], highlight: true },
+            { cells: ['OP_RETURN support', 'Native (80 bytes)', 'Requires smart contract', 'Varies'], highlight: false },
+            { cells: ['Regulatory clarity', 'Commodity (CFTC)', 'Security debate ongoing', 'N/A'], highlight: false },
+            { cells: ['Cost per anchor', '~$0.10–0.50', '$1–50+ (gas dependent)', '"Free" (+ infra cost)'], highlight: false },
+            { cells: ['Track record', '16+ years, zero downtime', '9+ years, multiple forks', 'Vendor-dependent'], highlight: true },
+          ], footnote: 'Comparison as of March 2026. Ethereum costs vary significantly with network congestion.' },
+          { type: 'text', value: 'We use Bitcoin the way GPS uses satellites — as invisible infrastructure. We don\'t hold Bitcoin, trade Bitcoin, or require users to understand Bitcoin. We embed a fingerprint in a block and move on. The network does what it does: provides a globally distributed, thermodynamically secured, append-only timestamp.' },
+          { type: 'stat', value: '16+ years', label: 'of continuous network uptime — the longest-running append-only ledger in history', source: 'Bitcoin Network', variant: 'blue' },
+        ],
+      },
+      {
+        heading: 'What the Convergence Enables',
+        blocks: [
+          { type: 'text', value: 'The convergence of AI and cryptographic infrastructure enables capabilities that neither technology provides alone.' },
+          { type: 'text', value: 'Verifiable AI outputs: AI generates a document, the fingerprint is anchored, and anyone can verify the document hasn\'t been modified since generation. This is the foundation for trustworthy AI in regulated industries — not "we promise the AI is accurate," but "here\'s a cryptographic proof that this specific output was produced at this specific time."' },
+          { type: 'text', value: 'Cross-border credential portability: a diploma issued in the United States is verifiable in Germany, by an AI agent in Singapore, without any institution vouching for it. The proof travels with the credential. No bilateral agreements, no API integrations, no phone calls across time zones.' },
+          { type: 'text', value: 'Privacy-first verification: you can prove a document is authentic without revealing its contents. Prove a medical license is valid without exposing the physician\'s personal information. Prove a contract was signed without revealing the terms. The zero-knowledge property isn\'t a feature — it\'s the architecture.' },
+        ],
+      },
+      {
+        heading: 'Building for the Next Decade',
+        blocks: [
+          { type: 'text', value: 'The convergence of AI and cryptographic infrastructure is still in its early stages. Most organizations are grappling with each technology independently — AI strategy here, "blockchain exploration" there. The companies that recognize these as complementary layers of a single trust stack will have structural advantages in compliance, verification, and cross-organizational trust.' },
+          { type: 'text', value: 'This isn\'t about "blockchain" or "AI" as buzzwords. It\'s about building infrastructure that makes digital records as trustworthy as physical ones were assumed to be — and doing it in a way that scales with machine-speed decision-making, works across organizational boundaries, and doesn\'t require anyone to trust a single vendor, institution, or intermediary.' },
+          { type: 'text', value: 'The stack exists today. The infrastructure is production-ready. The question is whether your organization will build on it now or scramble to retrofit it later, when the cost of unverifiable records has already been paid.' },
+        ],
+      },
+    ],
+  },
+
+  /* ═══════════════════════════════════════════════════════════════════
+   * ARTICLE 4 — Government Records
+   * ═══════════════════════════════════════════════════════════════════ */
+  {
+    slug: 'government-records',
+    title: 'Modernizing Government Records: Cryptographic Verification for Public Trust',
+    subtitle: 'Government agencies process billions of records annually. Most still rely on phone calls, wet signatures, and institutional trust for verification.',
+    date: '2026-03-10',
+    author: {
+      name: 'Carson Seeger',
+      title: 'CEO & Co-Founder',
+      avatar: '/team-carson.png',
+      linkedin: 'https://www.linkedin.com/in/carson-s-8b41061a/',
+    },
+    category: 'Industry',
+    readTime: '11 min read',
+    excerpt:
+      'Birth certificates, professional licenses, court filings, property deeds — government records touch every citizen. The verification infrastructure for these records hasn\'t fundamentally changed in decades.',
+    sections: [
+      {
+        heading: 'The Verification Bottleneck',
+        blocks: [
+          { type: 'text', value: 'You need a copy of your birth certificate. You fill out a form, pay $25, and wait 6 to 8 weeks. When it arrives, you hand it to whatever institution requested it. That institution — an employer, a bank, a licensing board — may then call the issuing county to verify it\'s real. If they can reach the right department. If that department has staff available. If their records system is online.' },
+          { type: 'text', value: 'This is the verification infrastructure for the most fundamental government records in the world\'s largest economy. It hasn\'t fundamentally changed since the fax machine was considered cutting-edge technology.' },
+          { type: 'text', value: 'Scale the problem: US government agencies process an estimated 12 billion records annually across federal, state, and local levels. Each record potentially needs to be verified multiple times throughout its lifecycle. The current system was designed for a world where verification was rare. In a digital economy, verification is continuous.' },
+          { type: 'stat', value: '$600B+', label: 'estimated annual cost of credential fraud globally across public and private sectors', source: 'World Economic Forum, 2024', variant: 'amber' },
+        ],
+      },
+      {
+        heading: 'What Government Records Need',
+        blocks: [
+          { type: 'text', value: 'Government records have unique requirements that distinguish them from corporate documents. Any modernization effort must satisfy four non-negotiable constraints.' },
+          { type: 'text', value: 'Sovereignty — the issuing agency retains full control over its records. No vendor lock-in. No third-party dependency for basic operations. If the technology provider goes out of business, the agency\'s records and verification capability must continue to function. This rules out any solution where the vendor is a required intermediary.' },
+          { type: 'text', value: 'Privacy — citizen data stays protected. FERPA for education records. HIPAA for healthcare credentials. State privacy laws for vital records. The verification mechanism cannot expose citizen data during the verification process. This means documents cannot be uploaded to external servers, and personal information cannot appear in public verification records.' },
+          { type: 'text', value: 'Interoperability — a record issued in Michigan must be verifiable in California, in Germany, by an AI agent, by a human with a phone. The verification cannot require a specific app, a specific platform, or a bilateral agreement between jurisdictions. Open standards and public infrastructure are essential.' },
+          { type: 'text', value: 'Auditability — every issuance, verification, and revocation must have a tamper-proof audit trail. Government agencies answer to the public. Their record-keeping systems must be demonstrably trustworthy, not just trusted by default because they\'re government systems.' },
+        ],
+      },
+      {
+        heading: 'Before and After',
+        blocks: [
+          { type: 'text', value: 'The contrast between current government verification and cryptographic verification is stark. The same process that takes weeks and multiple phone calls can be reduced to seconds with mathematical proof.' },
+          { type: 'diagram', id: 'government-before-after', alt: 'Side-by-side comparison of current paper verification process versus cryptographic verification', caption: 'The verification gap — government records still rely on phone calls and institutional trust. Cryptographic anchoring reduces verification from weeks to seconds.' },
+          { type: 'text', value: 'The improvement isn\'t incremental. It\'s structural. The current process requires trust in institutions at every step — trust that the mail wasn\'t tampered with, trust that the person on the phone is authorized, trust that the records system is accurate. Cryptographic verification replaces each of these trust dependencies with mathematical proof.' },
+        ],
+      },
+      {
+        heading: 'How It Works for Government',
+        blocks: [
+          { type: 'text', value: 'Consider a state licensing board that issues professional licenses — medical, legal, engineering, teaching. Here\'s how cryptographic verification works in practice.' },
+          { type: 'text', value: 'Step 1: The agency creates a digital credential in their existing system. Nothing changes about their internal workflow.' },
+          { type: 'text', value: 'Step 2: The credential is fingerprinted on the agency\'s own infrastructure. A SHA-256 hash of the credential data is computed locally — the document never leaves the agency\'s system. Only the fingerprint (a 64-character hexadecimal string) leaves the agency\'s network.' },
+          { type: 'text', value: 'Step 3: The fingerprint is anchored to the Bitcoin network via OP_RETURN. This creates a publicly verifiable timestamp — proof that this specific credential existed at this specific time, secured by 900+ exahashes of computational work.' },
+          { type: 'text', value: 'Step 4: A public verification link is generated. Anyone — a hospital checking a nursing license, a client verifying an attorney\'s bar status, an AI agent conducting automated compliance checks — can verify the credential by entering the public ID or scanning a QR code. Verification takes less than 2 seconds.' },
+          { type: 'text', value: 'The agency\'s database remains the source of truth. Arkova adds a tamper-proof timestamp layer — not a replacement for the agency\'s systems, but an independent verification mechanism that works even if the agency\'s website is down.' },
+        ],
+      },
+      {
+        heading: 'Verification Infrastructure',
+        blocks: [
+          { type: 'text', value: 'The architecture positions Arkova as middleware — connecting issuing agencies with verifiers without requiring either to change their existing systems.' },
+          { type: 'diagram', id: 'government-middleware', alt: 'Hub-and-spoke diagram showing Arkova connecting licensing boards, universities, courts, vital records, professional certs, and employers', caption: 'Arkova as middleware — agencies retain sovereignty over their records while gaining instant, universal verification.' },
+          { type: 'text', value: 'State licensing boards, universities, courts, vital records offices, and professional certification bodies all connect to the same verification infrastructure. Each agency retains full control over its records. The verification is bidirectional — agencies can issue and revoke, verifiers can check status in real time.' },
+          { type: 'text', value: 'The middleware model means no agency depends on any other agency. There\'s no central database of "all government records" — each agency maintains its own records in its own systems. The shared layer is verification, not storage.' },
+        ],
+      },
+      {
+        heading: 'Compliance and Privacy',
+        blocks: [
+          { type: 'text', value: 'Privacy compliance isn\'t a feature added after the architecture was designed — it\'s the architecture. The strongest privacy architecture is one where sensitive data never enters the system in the first place.' },
+          { type: 'text', value: 'FERPA compliance for education records: no student education records are processed on any external server. Fingerprinting happens on the institution\'s own infrastructure. Only a mathematical hash — which cannot be reversed to recover the original data — ever leaves the institution\'s network.' },
+          { type: 'text', value: 'HIPAA compliance for healthcare credentials: the same architecture applies. A nursing license can be verified without exposing the nurse\'s personal information, education history, or disciplinary record. The verification confirms the license is valid — nothing more.' },
+          { type: 'quote', quote: 'The strongest privacy architecture is one where sensitive data never enters the system in the first place. We don\'t protect your documents by encrypting them on our servers — we protect them by never having them.', attribution: 'Carson Seeger', role: 'CEO, Arkova Technologies' },
+          { type: 'text', value: 'The FedRAMP path is straightforward precisely because the architecture is inherently privacy-preserving. There\'s no sensitive data to protect on Arkova\'s infrastructure — because it was never there.' },
+        ],
+      },
+      {
+        heading: 'The Public Trust Imperative',
+        blocks: [
+          { type: 'stat', value: '22%', label: 'of Americans say they trust the federal government to do the right thing most of the time — the lowest sustained level in 60+ years', source: 'Pew Research Center, 2024', variant: 'amber' },
+          { type: 'text', value: 'Public trust in government institutions is at historic lows. The causes are complex and outside the scope of this article. But one contributor is the opacity of government record-keeping — citizens are asked to trust that records are accurate, that processes were followed, that the system is working as intended.' },
+          { type: 'text', value: 'Cryptographic verification offers a concrete, measurable step toward transparency. When a professional license is anchored with a publicly verifiable proof, citizens don\'t need to trust that the licensing board\'s database is accurate. They can verify it themselves. When a court filing is timestamped with mathematical proof, there\'s no question about when it was submitted or whether it was altered.' },
+          { type: 'text', value: 'This isn\'t about technology adoption for its own sake. It\'s about rebuilding public trust through mathematical proof. Governments that adopt verifiable, transparent record-keeping signal a commitment to accountability that goes beyond policy statements. The math is the proof.' },
+        ],
+      },
+      {
+        heading: 'Getting Started',
+        blocks: [
+          { type: 'text', value: 'Implementation doesn\'t require infrastructure overhaul. Arkova runs as a SaaS layer alongside existing systems. Agencies retain all data sovereignty — we never see documents, only fingerprints. The pilot timeline is weeks, not years.' },
+          { type: 'text', value: 'The technology is production-ready. The question for government agencies isn\'t whether to adopt verifiable records — the question is whether they\'ll lead the transition or be compelled by citizens, courts, and peer agencies who moved first.' },
         ],
       },
     ],
