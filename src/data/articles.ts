@@ -52,7 +52,7 @@ export const ARTICLES: Article[] = [
       name: 'Carson Seeger',
       title: 'CEO & Co-Founder',
       avatar: '/team-carson.png',
-      linkedin: 'https://www.linkedin.com/in/carsonseeger/',
+      linkedin: 'https://www.linkedin.com/in/carson-s-8b41061a/',
     },
     category: 'Compliance',
     readTime: '8 min read',

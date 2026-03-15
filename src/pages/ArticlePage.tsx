@@ -84,6 +84,8 @@ function ShareButtons({ article }: { article: Article }) {
     navigator.clipboard.writeText(url).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
+    }).catch(() => {
+      // Fallback: clipboard API unavailable (HTTP or denied permission)
     });
   };
 
