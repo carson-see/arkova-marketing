@@ -33,16 +33,24 @@ async function prerender() {
 
   // Import the server entry and render
   const { render } = await import(serverEntryPath);
-  const appHtml = render();
+  let appHtml;
+  try {
+    appHtml = render();
+  } catch (err) {
+    console.error(`ERROR: renderToString failed (entry: ${serverEntryPath}):`, err);
+    process.exit(1);
+  }
 
   // Read the client-built HTML template
   const template = fs.readFileSync(templatePath, 'utf-8');
 
-  // Inject the prerendered HTML into the root div
-  const html = template.replace(
-    '<div id="root"></div>',
-    `<div id="root">${appHtml}</div>`
-  );
+  // Inject the prerendered HTML into the root div (regex handles potential extra attributes)
+  const rootDivPattern = /(<div\s+id="root"[^>]*>)(<\/div>)/;
+  if (!rootDivPattern.test(template)) {
+    console.error('ERROR: Could not find root div in dist/index.html');
+    process.exit(1);
+  }
+  const html = template.replace(rootDivPattern, `$1${appHtml}$2`);
 
   // Write back
   fs.writeFileSync(templatePath, html);
