@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Shield,
   FileCheck,
@@ -21,102 +21,26 @@ import {
   ChevronDown,
   Linkedin,
   Twitter,
+  Moon,
+  Sun,
+  Code2,
+  Layers,
+  Key,
+  BarChart3,
+  Webhook,
+  Sparkles,
+  Brain,
+  ScanSearch,
 } from 'lucide-react';
 import { Section } from './components/Section';
-
-/* ─── Logo SVG ─── */
-function ArkovaLogo({ size = 32 }: { size?: number }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 32 32"
-      fill="none"
-      width={size}
-      height={size}
-    >
-      <rect width="32" height="32" rx="8" fill="#82b8d0" />
-      <path
-        d="M16 6L7 11v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12v-6L16 6z"
-        fill="#ffffff"
-        fillOpacity="0.25"
-      />
-      <path
-        d="M16 8L9 12.2v5.3c0 4.63 3.2 8.95 7 10 3.8-1.05 7-5.37 7-10v-5.3L16 8z"
-        fill="#ffffff"
-        fillOpacity="0.15"
-      />
-      <path
-        d="M16 10l-5 3v4c0 3.7 2.56 7.16 5 8 2.44-.84 5-4.3 5-8v-4l-5-3z"
-        stroke="#ffffff"
-        strokeWidth="1.5"
-        fill="none"
-      />
-      <path
-        d="M13.5 16.5l2 2 3.5-4"
-        stroke="#ffffff"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
+import arkovaLogo from '/arkova-logo.png';
 
 /* ─── Data ─── */
-const PLANS = [
-  {
-    name: 'Starter',
-    price: 'Free',
-    period: '',
-    description: 'For individuals exploring document verification.',
-    features: [
-      '50 records per month',
-      'Document fingerprinting',
-      'Public verification links',
-      'PDF proof certificates',
-    ],
-    cta: 'Request Early Access',
-    highlighted: false,
-  },
-  {
-    name: 'Professional',
-    price: '$29',
-    period: '/month',
-    description: 'For professionals who need reliable document anchoring.',
-    features: [
-      '500 records per month',
-      'Priority anchoring',
-      'Credential metadata',
-      'Bulk CSV upload',
-      'Webhook notifications',
-      'API access',
-    ],
-    cta: 'Request Early Access',
-    highlighted: true,
-  },
-  {
-    name: 'Enterprise',
-    price: 'Custom',
-    period: '',
-    description: 'For organizations with high-volume credentialing needs.',
-    features: [
-      'Unlimited records',
-      'Dedicated support',
-      'Custom integrations',
-      'Organization management',
-      'Audit reporting',
-      'SLA guarantee',
-    ],
-    cta: 'Contact Sales',
-    highlighted: false,
-  },
-];
-
 const FEATURES = [
   {
     icon: Shield,
     title: 'Privacy-First',
-    description: 'Documents are fingerprinted in your browser. We never see, store, or transmit your files.',
+    description: 'Your files never leave your device. We fingerprint locally and anchor the proof — not the document.',
   },
   {
     icon: Eye,
@@ -156,7 +80,7 @@ const USE_CASES = [
     icon: Building2,
     title: 'Organizations',
     description: 'Professional licenses, compliance certificates, and institutional credentials.',
-    examples: ['HR Departments', 'Compliance Teams', 'Registrars'],
+    examples: ['HR Departments', 'Compliance Teams', 'Registrars', 'Recruiters'],
   },
   {
     icon: FileText,
@@ -193,6 +117,34 @@ const STEPS = [
   },
 ];
 
+const API_FEATURES = [
+  {
+    icon: Code2,
+    title: 'Verification API',
+    description: 'Single-call verification lookup by public ID. Returns status, issuer, credential type, timestamps, and network receipt — all in one response.',
+  },
+  {
+    icon: Layers,
+    title: 'Batch Verification',
+    description: 'Verify up to 100 credentials in a single API call. Ideal for background checks, compliance audits, and portfolio validation at scale.',
+  },
+  {
+    icon: Key,
+    title: 'API Key Management',
+    description: 'Create, rotate, and revoke API keys with granular scopes. HMAC-SHA256 hashed storage. Full audit trail on every key lifecycle event.',
+  },
+  {
+    icon: BarChart3,
+    title: 'Usage Analytics',
+    description: 'Real-time dashboards for API consumption, rate limit status, and verification volume. Track usage across keys and endpoints.',
+  },
+  {
+    icon: Webhook,
+    title: 'Webhooks & Events',
+    description: 'Real-time notifications when credentials are anchored, verified, or revoked. HMAC-signed payloads with exponential retry backoff.',
+  },
+];
+
 const FAQ = [
   {
     q: 'How does Arkova verify documents without seeing them?',
@@ -211,37 +163,60 @@ const FAQ = [
     a: "E-signature tools prove who signed a document. Arkova proves that a specific document existed at a specific time and has not been altered since. These are complementary — you can anchor a signed document to prove it hasn't changed after signing.",
   },
   {
+    q: 'Can I integrate Arkova into my existing systems?',
+    a: 'Absolutely. Our Verification API lets you verify credentials programmatically with a single API call. Batch endpoints support up to 100 verifications per request. We provide SDKs for Python, Node.js, and Go, plus webhook notifications for real-time events.',
+  },
+  {
     q: 'Is my data safe?',
     a: "Your documents never leave your device — that's our foundational privacy guarantee, not just a feature. Fingerprints are anchored to a public, independently verifiable network. Even if our servers were compromised, your documents remain private because we never had them.",
   },
 ];
 
+/* ─── Dark mode hook ─── */
+function useDarkMode() {
+  const [dark, setDark] = useState(() => {
+    if (typeof window === 'undefined') return true;
+    const stored = localStorage.getItem('arkova-theme');
+    if (stored) return stored === 'dark';
+    return true; // default dark
+  });
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', dark);
+    localStorage.setItem('arkova-theme', dark ? 'dark' : 'light');
+  }, [dark]);
+
+  return { dark, toggle: () => setDark(!dark) };
+}
+
 /* ─── App ─── */
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const { dark, toggle: toggleDark } = useDarkMode();
 
   const scrollTo = (id: string) => {
     setMobileMenuOpen(false);
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const NAV_LINKS = ['How It Works', 'Features', 'API', 'Use Cases', 'FAQ'];
+
   return (
-    <div className="min-h-screen bg-white font-sans">
+    <div className="min-h-screen bg-white dark:bg-arkova-charcoal font-sans transition-colors duration-300">
       {/* ═══ NAV ═══ */}
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-arkova-ice/60 bg-white/80 backdrop-blur-xl">
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-arkova-ice/60 dark:border-white/5 bg-white/80 dark:bg-arkova-charcoal/80 backdrop-blur-xl">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
           <button onClick={() => scrollTo('hero')} className="flex items-center gap-2.5">
-            <ArkovaLogo size={28} />
-            <span className="text-lg font-bold tracking-tight text-arkova-charcoal">Arkova</span>
+            <img src={arkovaLogo} alt="Arkova" className="h-10 w-auto dark:brightness-150 dark:contrast-90" />
           </button>
 
           <div className="hidden items-center gap-8 md:flex">
-            {['How It Works', 'Features', 'Use Cases', 'Pricing', 'FAQ'].map((label) => (
+            {NAV_LINKS.map((label) => (
               <button
                 key={label}
                 onClick={() => scrollTo(label.toLowerCase().replace(/\s+/g, '-'))}
-                className="text-sm font-medium text-arkova-slate transition-colors hover:text-arkova-charcoal"
+                className="text-sm font-medium text-arkova-slate dark:text-arkova-steel-light/70 transition-colors hover:text-arkova-charcoal dark:hover:text-white"
               >
                 {label}
               </button>
@@ -249,6 +224,13 @@ export default function App() {
           </div>
 
           <div className="hidden items-center gap-3 md:flex">
+            <button
+              onClick={toggleDark}
+              className="flex h-9 w-9 items-center justify-center rounded-lg text-arkova-slate dark:text-arkova-steel-light/60 transition-colors hover:bg-arkova-frost dark:hover:bg-white/5"
+              aria-label="Toggle dark mode"
+            >
+              {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            </button>
             <a
               href="#early-access"
               onClick={(e) => { e.preventDefault(); scrollTo('early-access'); }}
@@ -258,22 +240,31 @@ export default function App() {
             </a>
           </div>
 
-          <button
-            className="text-arkova-charcoal md:hidden"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="flex items-center gap-2 md:hidden">
+            <button
+              onClick={toggleDark}
+              className="flex h-9 w-9 items-center justify-center rounded-lg text-arkova-slate dark:text-arkova-steel-light/60"
+              aria-label="Toggle dark mode"
+            >
+              {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            </button>
+            <button
+              className="text-arkova-charcoal dark:text-white"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {mobileMenuOpen && (
-          <div className="border-t border-arkova-ice/60 bg-white px-6 py-4 md:hidden">
-            {['How It Works', 'Features', 'Use Cases', 'Pricing', 'FAQ'].map((label) => (
+          <div className="border-t border-arkova-ice/60 dark:border-white/5 bg-white dark:bg-arkova-charcoal px-6 py-4 md:hidden">
+            {NAV_LINKS.map((label) => (
               <button
                 key={label}
                 onClick={() => scrollTo(label.toLowerCase().replace(/\s+/g, '-'))}
-                className="block w-full py-3 text-left text-sm font-medium text-arkova-slate"
+                className="block w-full py-3 text-left text-sm font-medium text-arkova-slate dark:text-arkova-steel-light/70"
               >
                 {label}
               </button>
@@ -291,14 +282,14 @@ export default function App() {
 
       {/* ═══ HERO ═══ */}
       <section id="hero" className="relative overflow-hidden px-6 pb-24 pt-28 md:pt-36 lg:pt-40">
-        <div className="absolute inset-0 bg-mesh-gradient" />
-        <div className="absolute inset-0 bg-dot-pattern opacity-40" />
-        <div className="pointer-events-none absolute -top-20 -right-32 h-96 w-96 rounded-full bg-arkova-steel/5 blur-3xl animate-float" />
-        <div className="pointer-events-none absolute -bottom-20 -left-32 h-80 w-80 rounded-full bg-arkova-ice/30 blur-3xl animate-float-delayed" />
+        <div className="absolute inset-0 bg-mesh-gradient dark:bg-mesh-dark" />
+        <div className="absolute inset-0 bg-dot-pattern opacity-40 dark:opacity-20" />
+        <div className="pointer-events-none absolute -top-20 -right-32 h-96 w-96 rounded-full bg-arkova-steel/5 dark:bg-arkova-steel/3 blur-3xl animate-float" />
+        <div className="pointer-events-none absolute -bottom-20 -left-32 h-80 w-80 rounded-full bg-arkova-ice/30 dark:bg-arkova-ocean/10 blur-3xl animate-float-delayed" />
 
         <div className="relative mx-auto max-w-4xl text-center">
           <div
-            className="mb-8 inline-flex items-center gap-2 rounded-full border border-arkova-steel/20 bg-arkova-frost px-4 py-1.5 text-sm font-medium text-arkova-ocean opacity-0 animate-fade-up"
+            className="mb-8 inline-flex items-center gap-2 rounded-full border border-arkova-steel/20 dark:border-arkova-steel/10 bg-arkova-frost dark:bg-white/5 px-4 py-1.5 text-sm font-medium text-arkova-ocean dark:text-arkova-steel opacity-0 animate-fade-up"
             style={{ animationDelay: '0.1s' }}
           >
             <Lock className="h-3.5 w-3.5" />
@@ -306,7 +297,7 @@ export default function App() {
           </div>
 
           <h1
-            className="mb-6 text-5xl font-bold tracking-tight text-arkova-charcoal opacity-0 animate-fade-up md:text-7xl"
+            className="mb-6 text-5xl font-bold tracking-tight text-arkova-charcoal dark:text-white opacity-0 animate-fade-up md:text-7xl"
             style={{ animationDelay: '0.2s' }}
           >
             Verify Once.
@@ -317,7 +308,7 @@ export default function App() {
           </h1>
 
           <p
-            className="mx-auto mb-10 max-w-2xl text-lg text-arkova-slate opacity-0 animate-fade-up md:text-xl"
+            className="mx-auto mb-10 max-w-2xl text-lg text-arkova-slate dark:text-arkova-steel-light/60 opacity-0 animate-fade-up md:text-xl"
             style={{ animationDelay: '0.35s' }}
           >
             Arkova creates tamper-proof records of your documents using cryptographic
@@ -339,7 +330,7 @@ export default function App() {
             </a>
             <button
               onClick={() => scrollTo('how-it-works')}
-              className="rounded-xl border border-arkova-ice px-8 py-3.5 text-base font-semibold text-arkova-charcoal transition-all hover:border-arkova-steel/30 hover:bg-arkova-frost"
+              className="rounded-xl border border-arkova-ice dark:border-white/10 px-8 py-3.5 text-base font-semibold text-arkova-charcoal dark:text-white transition-all hover:border-arkova-steel/30 hover:bg-arkova-frost dark:hover:bg-white/5"
             >
               See How It Works
             </button>
@@ -351,18 +342,18 @@ export default function App() {
           className="relative mx-auto mt-20 max-w-3xl opacity-0 animate-fade-up"
           style={{ animationDelay: '0.65s' }}
         >
-          <div className="gradient-border rounded-2xl bg-white/60 backdrop-blur-sm">
-            <div className="grid grid-cols-3 divide-x divide-arkova-ice/60 px-4 py-6 md:px-8 md:py-8">
+          <div className="gradient-border rounded-2xl bg-white/60 dark:bg-white/5 backdrop-blur-sm">
+            <div className="grid grid-cols-3 divide-x divide-arkova-ice/60 dark:divide-white/10 px-4 py-6 md:px-8 md:py-8">
               {[
-                { label: 'Verification Time', value: '<1s' },
                 { label: 'Document Exposure', value: 'Zero' },
                 { label: 'Independently Verifiable', value: '100%' },
+                { label: 'Account Required to Verify', value: 'Never' },
               ].map((metric) => (
                 <div key={metric.label} className="px-2 text-center md:px-4">
                   <div className="font-mono text-2xl font-bold text-arkova-steel md:text-3xl">
                     {metric.value}
                   </div>
-                  <div className="mt-1 text-xs font-medium uppercase tracking-wider text-arkova-slate md:text-sm">
+                  <div className="mt-1 text-xs font-medium uppercase tracking-wider text-arkova-slate dark:text-arkova-steel-light/50 md:text-sm">
                     {metric.label}
                   </div>
                 </div>
@@ -373,8 +364,8 @@ export default function App() {
       </section>
 
       {/* ═══ TRUST BAR ═══ */}
-      <section className="border-y border-arkova-ice/60 bg-arkova-frost px-6 py-6">
-        <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-center gap-x-10 gap-y-3 text-sm text-arkova-slate">
+      <section className="border-y border-arkova-ice/60 dark:border-white/5 bg-arkova-frost dark:bg-white/[0.02] px-6 py-6">
+        <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-center gap-x-10 gap-y-3 text-sm text-arkova-slate dark:text-arkova-steel-light/60">
           {[
             { icon: Shield, text: 'Client-side processing only' },
             { icon: Lock, text: 'SHA-256 fingerprinting' },
@@ -396,10 +387,10 @@ export default function App() {
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-arkova-steel">
               How It Works
             </p>
-            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal md:text-4xl">
+            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal dark:text-white md:text-4xl">
               Three steps to permanent proof
             </h2>
-            <p className="mx-auto max-w-xl text-arkova-slate">
+            <p className="mx-auto max-w-xl text-arkova-slate dark:text-arkova-steel-light/60">
               Create a permanent, independently verifiable record of any document in seconds.
             </p>
           </div>
@@ -408,7 +399,7 @@ export default function App() {
             {STEPS.map((item) => (
               <div
                 key={item.step}
-                className="group relative rounded-2xl border border-arkova-ice/60 bg-white p-8 shadow-card-rest transition-all hover:-translate-y-1 hover:shadow-card-hover"
+                className="group relative rounded-2xl border border-arkova-ice/60 dark:border-white/5 bg-white dark:bg-white/[0.03] p-8 shadow-card-rest dark:shadow-none transition-all hover:-translate-y-1 hover:shadow-card-hover dark:hover:bg-white/[0.05]"
               >
                 <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-arkova-steel/15 to-arkova-steel/5">
                   <item.icon className="h-7 w-7 text-arkova-steel" />
@@ -416,8 +407,8 @@ export default function App() {
                 <div className="mb-3 font-mono text-xs font-medium text-arkova-steel/60">
                   STEP {item.step}
                 </div>
-                <h3 className="mb-3 text-xl font-bold text-arkova-charcoal">{item.title}</h3>
-                <p className="text-sm leading-relaxed text-arkova-slate">{item.description}</p>
+                <h3 className="mb-3 text-xl font-bold text-arkova-charcoal dark:text-white">{item.title}</h3>
+                <p className="text-sm leading-relaxed text-arkova-slate dark:text-arkova-steel-light/60">{item.description}</p>
               </div>
             ))}
           </div>
@@ -425,16 +416,16 @@ export default function App() {
       </Section>
 
       {/* ═══ FEATURES ═══ */}
-      <Section id="features" className="bg-arkova-frost/50 px-6 py-24 md:py-32">
+      <Section id="features" className="bg-arkova-frost/50 dark:bg-white/[0.02] px-6 py-24 md:py-32">
         <div className="mx-auto max-w-5xl">
           <div className="mb-16 text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-arkova-steel">
               Features
             </p>
-            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal md:text-4xl">
+            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal dark:text-white md:text-4xl">
               Everything you need to prove authenticity
             </h2>
-            <p className="mx-auto max-w-xl text-arkova-slate">
+            <p className="mx-auto max-w-xl text-arkova-slate dark:text-arkova-steel-light/60">
               Built for individuals, professionals, and organizations who need verifiable proof.
             </p>
           </div>
@@ -443,27 +434,118 @@ export default function App() {
             {FEATURES.map((feature) => (
               <div
                 key={feature.title}
-                className="rounded-2xl border border-arkova-ice/60 bg-white p-6 shadow-card-rest transition-all hover:-translate-y-0.5 hover:shadow-card-hover"
+                className="rounded-2xl border border-arkova-ice/60 dark:border-white/5 bg-white dark:bg-white/[0.03] p-6 shadow-card-rest dark:shadow-none transition-all hover:-translate-y-0.5 hover:shadow-card-hover dark:hover:bg-white/[0.05]"
               >
                 <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-arkova-steel/15 to-arkova-steel/5">
                   <feature.icon className="h-5 w-5 text-arkova-steel" />
                 </div>
-                <h3 className="mb-2 text-base font-bold text-arkova-charcoal">{feature.title}</h3>
-                <p className="text-sm leading-relaxed text-arkova-slate">{feature.description}</p>
+                <h3 className="mb-2 text-base font-bold text-arkova-charcoal dark:text-white">{feature.title}</h3>
+                <p className="text-sm leading-relaxed text-arkova-slate dark:text-arkova-steel-light/60">{feature.description}</p>
               </div>
             ))}
           </div>
         </div>
       </Section>
 
+      {/* ═══ AI INTELLIGENCE ═══ */}
+      <Section className="px-6 py-24 md:py-32">
+        <div className="mx-auto max-w-5xl">
+          <div className="mb-16 text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-arkova-steel">
+              AI-Powered
+            </p>
+            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal dark:text-white md:text-4xl">
+              Intelligent credential processing
+            </h2>
+            <p className="mx-auto max-w-2xl text-arkova-slate dark:text-arkova-steel-light/60">
+              Arkova uses AI to automatically extract metadata, classify credential types, and
+              detect anomalies — all while keeping your documents private on your device.
+            </p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-3">
+            {[
+              {
+                icon: Sparkles,
+                title: 'AI Metadata Extraction',
+                description: 'Automatically identify credential types, issuers, dates, and key fields. No manual data entry — AI reads the document so you don\'t have to.',
+              },
+              {
+                icon: ScanSearch,
+                title: 'Anomaly Detection',
+                description: 'AI-powered analysis flags inconsistencies, expired credentials, and potential issues before they become problems.',
+              },
+              {
+                icon: Brain,
+                title: 'Smart Classification',
+                description: 'Automatically categorize credentials by type — degrees, licenses, certifications, contracts — and organize your records intelligently.',
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="group relative rounded-2xl border border-arkova-ice/60 dark:border-white/5 bg-white dark:bg-white/[0.03] p-8 shadow-card-rest dark:shadow-none transition-all hover:-translate-y-1 hover:shadow-card-hover dark:hover:bg-white/[0.05]"
+              >
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-arkova-ocean/20 to-arkova-steel/5">
+                  <item.icon className="h-7 w-7 text-arkova-ocean dark:text-arkova-steel" />
+                </div>
+                <h3 className="mb-3 text-xl font-bold text-arkova-charcoal dark:text-white">{item.title}</h3>
+                <p className="text-sm leading-relaxed text-arkova-slate dark:text-arkova-steel-light/60">{item.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 gradient-border rounded-2xl bg-white/60 dark:bg-white/[0.03] backdrop-blur-sm p-8 text-center md:p-10">
+            <p className="text-arkova-slate dark:text-arkova-steel-light/60">
+              <span className="font-semibold text-arkova-charcoal dark:text-white">Privacy preserved.</span>{' '}
+              AI processing uses only PII-stripped metadata extracted on your device. Your documents and personal
+              information never reach our servers.
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      {/* ═══ VERIFICATION API (Phase 1.5) ═══ */}
+      <Section id="api" className="px-6 py-24 md:py-32">
+        <div className="mx-auto max-w-5xl">
+          <div className="mb-16 text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-arkova-steel">
+              Verification API
+            </p>
+            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal dark:text-white md:text-4xl">
+              Integrate verification into anything
+            </h2>
+            <p className="mx-auto max-w-2xl text-arkova-slate dark:text-arkova-steel-light/60">
+              Verify credentials programmatically. Background checks, compliance audits,
+              hiring workflows — verify at scale with a single API call.
+            </p>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {API_FEATURES.map((feature) => (
+              <div
+                key={feature.title}
+                className="rounded-2xl border border-arkova-ice/60 dark:border-white/5 bg-white dark:bg-white/[0.03] p-6 shadow-card-rest dark:shadow-none transition-all hover:-translate-y-0.5 hover:shadow-card-hover dark:hover:bg-white/[0.05]"
+              >
+                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-arkova-ocean/20 to-arkova-steel/5">
+                  <feature.icon className="h-5 w-5 text-arkova-ocean dark:text-arkova-steel" />
+                </div>
+                <h3 className="mb-2 text-base font-bold text-arkova-charcoal dark:text-white">{feature.title}</h3>
+                <p className="text-sm leading-relaxed text-arkova-slate dark:text-arkova-steel-light/60">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </Section>
+
       {/* ═══ USE CASES ═══ */}
-      <Section id="use-cases" className="px-6 py-24 md:py-32">
+      <Section id="use-cases" className="bg-arkova-frost/50 dark:bg-white/[0.02] px-6 py-24 md:py-32">
         <div className="mx-auto max-w-5xl">
           <div className="mb-16 text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-arkova-steel">
               Use Cases
             </p>
-            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal md:text-4xl">
+            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal dark:text-white md:text-4xl">
               Built for every industry
             </h2>
           </div>
@@ -474,13 +556,13 @@ export default function App() {
                 <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-arkova-steel/15 to-arkova-steel/5 transition-all group-hover:shadow-glow-sm">
                   <uc.icon className="h-8 w-8 text-arkova-steel" />
                 </div>
-                <h3 className="mb-2 text-lg font-bold text-arkova-charcoal">{uc.title}</h3>
-                <p className="mb-4 text-sm text-arkova-slate">{uc.description}</p>
+                <h3 className="mb-2 text-lg font-bold text-arkova-charcoal dark:text-white">{uc.title}</h3>
+                <p className="mb-4 text-sm text-arkova-slate dark:text-arkova-steel-light/60">{uc.description}</p>
                 <div className="flex flex-wrap justify-center gap-2">
                   {uc.examples.map((ex) => (
                     <span
                       key={ex}
-                      className="rounded-full bg-arkova-frost px-3 py-1 text-xs font-medium text-arkova-ocean"
+                      className="rounded-full bg-arkova-frost dark:bg-white/5 px-3 py-1 text-xs font-medium text-arkova-ocean dark:text-arkova-steel"
                     >
                       {ex}
                     </span>
@@ -493,16 +575,16 @@ export default function App() {
       </Section>
 
       {/* ═══ SECURITY / PRIVACY ═══ */}
-      <Section className="bg-arkova-frost/50 px-6 py-24 md:py-32">
+      <Section className="px-6 py-24 md:py-32">
         <div className="mx-auto max-w-4xl">
-          <div className="gradient-border rounded-3xl bg-white p-10 text-center md:p-16">
+          <div className="gradient-border rounded-3xl bg-white dark:bg-white/[0.03] p-10 text-center md:p-16">
             <div className="mx-auto mb-8 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-arkova-steel/15 to-arkova-steel/5">
               <Shield className="h-8 w-8 text-arkova-steel" />
             </div>
-            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal md:text-4xl">
+            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal dark:text-white md:text-4xl">
               Your privacy is our architecture
             </h2>
-            <p className="mx-auto mb-10 max-w-2xl text-arkova-slate">
+            <p className="mx-auto mb-10 max-w-2xl text-arkova-slate dark:text-arkova-steel-light/60">
               Arkova is built from the ground up so that your documents never leave your
               device. Fingerprinting happens entirely in your browser using the Web Crypto
               API. We anchor the fingerprint — never the file. Even if our
@@ -515,10 +597,10 @@ export default function App() {
                 { label: 'SHA-256 Web Crypto API', value: 'Security', icon: Shield },
                 { label: 'Append-only audit trail', value: 'Integrity', icon: FileCheck },
               ].map(({ label, value, icon: Icon }) => (
-                <div key={value} className="rounded-xl bg-arkova-frost/60 p-6">
+                <div key={value} className="rounded-xl bg-arkova-frost/60 dark:bg-white/[0.03] p-6">
                   <Icon className="mx-auto mb-3 h-6 w-6 text-arkova-steel" />
                   <div className="text-xl font-bold text-arkova-steel">{value}</div>
-                  <div className="mt-1 text-sm text-arkova-slate">{label}</div>
+                  <div className="mt-1 text-sm text-arkova-slate dark:text-arkova-steel-light/50">{label}</div>
                 </div>
               ))}
             </div>
@@ -526,61 +608,50 @@ export default function App() {
         </div>
       </Section>
 
-      {/* ═══ PRICING ═══ */}
-      <Section id="pricing" className="px-6 py-24 md:py-32">
+      {/* ═══ AGENTIC RECORD KEEPING ═══ */}
+      <Section className="bg-arkova-frost/50 dark:bg-white/[0.02] px-6 py-24 md:py-32">
         <div className="mx-auto max-w-5xl">
-          <div className="mb-16 text-center">
+          <div className="mb-12 text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-arkova-steel">
-              Pricing
+              The Future
             </p>
-            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal md:text-4xl">
-              Simple, transparent pricing
+            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal dark:text-white md:text-4xl">
+              Infrastructure for Agentic Record Keeping
             </h2>
-            <p className="text-arkova-slate">Start free. Scale as you grow. No hidden fees.</p>
+            <p className="mx-auto max-w-2xl text-arkova-slate dark:text-arkova-steel-light/60">
+              As AI agents become participants in credentialing, hiring, and compliance workflows,
+              the records they rely on need to be machine-verifiable, tamper-proof, and independently auditable.
+              Arkova is building that layer.
+            </p>
           </div>
 
-          <div className="grid gap-8 lg:grid-cols-3">
-            {PLANS.map((plan) => (
+          <div className="grid gap-8 md:grid-cols-3">
+            {[
+              {
+                icon: Zap,
+                title: 'Agent-Readable Verification',
+                description: 'Our API is designed for autonomous systems. AI agents can verify credentials programmatically — no human in the loop required.',
+              },
+              {
+                icon: Globe,
+                title: 'Trust Without Intermediaries',
+                description: 'Agents don\'t call references. They need cryptographic proof. Arkova provides independently verifiable records that any system can validate.',
+              },
+              {
+                icon: Layers,
+                title: 'Credential Intelligence',
+                description: 'Structured metadata, classification, and anomaly detection — giving machines the context they need to make trust decisions at scale.',
+              },
+            ].map((item) => (
               <div
-                key={plan.name}
-                className={`relative rounded-2xl border p-8 transition-all hover:-translate-y-1 ${
-                  plan.highlighted
-                    ? 'border-arkova-steel bg-white shadow-glow-md ring-1 ring-arkova-steel/20'
-                    : 'border-arkova-ice/60 bg-white shadow-card-rest hover:shadow-card-hover'
-                }`}
+                key={item.title}
+                className="rounded-2xl border border-arkova-ice/60 dark:border-white/5 bg-white dark:bg-white/[0.03] p-8 shadow-card-rest dark:shadow-none transition-all hover:-translate-y-0.5 hover:shadow-card-hover dark:hover:bg-white/[0.05]"
               >
-                {plan.highlighted && (
-                  <div className="mb-4 inline-block rounded-full bg-arkova-frost px-3 py-1 text-xs font-semibold text-arkova-ocean">
-                    Most Popular
-                  </div>
-                )}
-                <h3 className="text-xl font-bold text-arkova-charcoal">{plan.name}</h3>
-                <div className="mt-4 flex items-baseline">
-                  <span className="text-4xl font-bold text-arkova-charcoal">{plan.price}</span>
-                  {plan.period && <span className="ml-1 text-arkova-slate">{plan.period}</span>}
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-arkova-ocean/20 to-arkova-steel/5">
+                  <item.icon className="h-6 w-6 text-arkova-ocean dark:text-arkova-steel" />
                 </div>
-                <p className="mt-3 text-sm text-arkova-slate">{plan.description}</p>
-
-                <a
-                  href="#early-access"
-                  onClick={(e) => { e.preventDefault(); scrollTo('early-access'); }}
-                  className={`mt-6 block w-full rounded-xl py-3 text-center text-sm font-semibold transition-all ${
-                    plan.highlighted
-                      ? 'bg-arkova-steel text-white shadow-glow-sm hover:bg-arkova-deep hover:shadow-glow-md'
-                      : 'border border-arkova-ice text-arkova-charcoal hover:border-arkova-steel/30 hover:bg-arkova-frost'
-                  }`}
-                >
-                  {plan.cta}
-                </a>
-
-                <ul className="mt-8 space-y-3">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2.5 text-sm text-arkova-slate">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
+                <h3 className="mb-3 text-lg font-bold text-arkova-charcoal dark:text-white">{item.title}</h3>
+                <p className="text-sm leading-relaxed text-arkova-slate dark:text-arkova-steel-light/60">{item.description}</p>
               </div>
             ))}
           </div>
@@ -588,25 +659,25 @@ export default function App() {
       </Section>
 
       {/* ═══ FAQ ═══ */}
-      <Section id="faq" className="bg-arkova-frost/50 px-6 py-24 md:py-32">
+      <Section id="faq" className="bg-arkova-frost/50 dark:bg-white/[0.02] px-6 py-24 md:py-32">
         <div className="mx-auto max-w-3xl">
           <div className="mb-16 text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-arkova-steel">
               FAQ
             </p>
-            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal md:text-4xl">
+            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal dark:text-white md:text-4xl">
               Common questions
             </h2>
           </div>
 
           <div className="space-y-3">
             {FAQ.map((item, i) => (
-              <div key={i} className="overflow-hidden rounded-xl border border-arkova-ice/60 bg-white">
+              <div key={i} className="overflow-hidden rounded-xl border border-arkova-ice/60 dark:border-white/5 bg-white dark:bg-white/[0.03]">
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="flex w-full items-center justify-between px-6 py-5 text-left"
                 >
-                  <span className="pr-4 font-semibold text-arkova-charcoal">{item.q}</span>
+                  <span className="pr-4 font-semibold text-arkova-charcoal dark:text-white">{item.q}</span>
                   <ChevronDown
                     className={`h-5 w-5 shrink-0 text-arkova-steel transition-transform ${
                       openFaq === i ? 'rotate-180' : ''
@@ -614,8 +685,8 @@ export default function App() {
                   />
                 </button>
                 {openFaq === i && (
-                  <div className="border-t border-arkova-ice/60 px-6 py-5">
-                    <p className="text-sm leading-relaxed text-arkova-slate">{item.a}</p>
+                  <div className="border-t border-arkova-ice/60 dark:border-white/5 px-6 py-5">
+                    <p className="text-sm leading-relaxed text-arkova-slate dark:text-arkova-steel-light/60">{item.a}</p>
                   </div>
                 )}
               </div>
@@ -627,7 +698,7 @@ export default function App() {
       {/* ═══ EARLY ACCESS CTA ═══ */}
       <section
         id="early-access"
-        className="relative overflow-hidden bg-arkova-charcoal px-6 py-24 md:py-32"
+        className="relative overflow-hidden bg-arkova-charcoal dark:bg-black/40 px-6 py-24 md:py-32"
       >
         <div className="absolute inset-0 bg-mesh-dark" />
         <div className="absolute inset-0 bg-dot-pattern opacity-20" />
@@ -665,15 +736,14 @@ export default function App() {
       </section>
 
       {/* ═══ FOOTER ═══ */}
-      <footer className="border-t border-arkova-ice/60 bg-white px-6 py-16">
+      <footer className="border-t border-arkova-ice/60 dark:border-white/5 bg-white dark:bg-arkova-charcoal px-6 py-16">
         <div className="mx-auto max-w-5xl">
           <div className="grid gap-12 md:grid-cols-4">
             <div className="md:col-span-1">
               <div className="mb-4 flex items-center gap-2.5">
-                <ArkovaLogo size={24} />
-                <span className="text-base font-bold text-arkova-charcoal">Arkova</span>
+                <img src={arkovaLogo} alt="Arkova" className="h-10 w-auto dark:brightness-150 dark:contrast-90" />
               </div>
-              <p className="text-sm text-arkova-slate">
+              <p className="text-sm text-arkova-slate dark:text-arkova-steel-light/50">
                 Tamper-proof document verification. Privacy-first. Independently verifiable.
               </p>
               <div className="mt-6 flex gap-3">
@@ -681,7 +751,7 @@ export default function App() {
                   href="https://www.linkedin.com/company/arkova"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-arkova-frost text-arkova-slate transition-colors hover:bg-arkova-ice hover:text-arkova-charcoal"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-arkova-frost dark:bg-white/5 text-arkova-slate dark:text-arkova-steel-light/60 transition-colors hover:bg-arkova-ice dark:hover:bg-white/10 hover:text-arkova-charcoal dark:hover:text-white"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="h-4 w-4" />
@@ -690,7 +760,7 @@ export default function App() {
                   href="https://x.com/arkaboratory"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-arkova-frost text-arkova-slate transition-colors hover:bg-arkova-ice hover:text-arkova-charcoal"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-arkova-frost dark:bg-white/5 text-arkova-slate dark:text-arkova-steel-light/60 transition-colors hover:bg-arkova-ice dark:hover:bg-white/10 hover:text-arkova-charcoal dark:hover:text-white"
                   aria-label="X / Twitter"
                 >
                   <Twitter className="h-4 w-4" />
@@ -699,15 +769,15 @@ export default function App() {
             </div>
 
             <div>
-              <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-arkova-charcoal">
+              <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-arkova-charcoal dark:text-white">
                 Product
               </h4>
               <ul className="space-y-2.5">
-                {['How It Works', 'Features', 'Pricing', 'Use Cases'].map((label) => (
+                {['How It Works', 'Features', 'API', 'Use Cases'].map((label) => (
                   <li key={label}>
                     <button
                       onClick={() => scrollTo(label.toLowerCase().replace(/\s+/g, '-'))}
-                      className="text-sm text-arkova-slate transition-colors hover:text-arkova-charcoal"
+                      className="text-sm text-arkova-slate dark:text-arkova-steel-light/50 transition-colors hover:text-arkova-charcoal dark:hover:text-white"
                     >
                       {label}
                     </button>
@@ -717,14 +787,14 @@ export default function App() {
             </div>
 
             <div>
-              <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-arkova-charcoal">
+              <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-arkova-charcoal dark:text-white">
                 Company
               </h4>
               <ul className="space-y-2.5">
                 <li>
                   <a
                     href="mailto:hello@arkova.ai"
-                    className="text-sm text-arkova-slate transition-colors hover:text-arkova-charcoal"
+                    className="text-sm text-arkova-slate dark:text-arkova-steel-light/50 transition-colors hover:text-arkova-charcoal dark:hover:text-white"
                   >
                     Contact
                   </a>
@@ -732,7 +802,7 @@ export default function App() {
                 <li>
                   <a
                     href="mailto:careers@arkova.ai"
-                    className="text-sm text-arkova-slate transition-colors hover:text-arkova-charcoal"
+                    className="text-sm text-arkova-slate dark:text-arkova-steel-light/50 transition-colors hover:text-arkova-charcoal dark:hover:text-white"
                   >
                     Careers
                   </a>
@@ -741,14 +811,14 @@ export default function App() {
             </div>
 
             <div>
-              <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-arkova-charcoal">
+              <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-arkova-charcoal dark:text-white">
                 Legal
               </h4>
               <ul className="space-y-2.5">
                 <li>
                   <a
                     href="/privacy"
-                    className="text-sm text-arkova-slate transition-colors hover:text-arkova-charcoal"
+                    className="text-sm text-arkova-slate dark:text-arkova-steel-light/50 transition-colors hover:text-arkova-charcoal dark:hover:text-white"
                   >
                     Privacy Policy
                   </a>
@@ -756,7 +826,7 @@ export default function App() {
                 <li>
                   <a
                     href="/terms"
-                    className="text-sm text-arkova-slate transition-colors hover:text-arkova-charcoal"
+                    className="text-sm text-arkova-slate dark:text-arkova-steel-light/50 transition-colors hover:text-arkova-charcoal dark:hover:text-white"
                   >
                     Terms of Service
                   </a>
@@ -765,7 +835,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="mt-12 border-t border-arkova-ice/60 pt-8 text-center text-xs text-arkova-slate/60">
+          <div className="mt-12 border-t border-arkova-ice/60 dark:border-white/5 pt-8 text-center text-xs text-arkova-slate/60 dark:text-arkova-steel-light/30">
             &copy; {new Date().getFullYear()} Arkova Technologies, Inc. All rights reserved.
           </div>
         </div>
