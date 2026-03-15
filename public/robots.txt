@@ -1,0 +1,41 @@
+# Arkova Marketing Site — arkova.ai
+# Allow all crawlers including AI search engines
+
+User-agent: *
+Allow: /
+
+# AI Crawlers — explicitly welcomed
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# LLMs.txt for AI discovery
+# See: https://arkova.ai/llms.txt
+
+Sitemap: https://arkova.ai/sitemap.xml

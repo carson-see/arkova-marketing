@@ -1,0 +1,50 @@
+# Arkova
+
+> Arkova creates tamper-proof, independently verifiable records of your documents using cryptographic fingerprinting. Your files never leave your device.
+
+## What Arkova Does
+
+Arkova is a document verification platform that anchors cryptographic fingerprints of documents to a permanent, tamper-proof network. This creates immutable timestamps proving a document existed at a specific moment — without ever uploading the document itself.
+
+## Key Capabilities
+
+- **Privacy-First Architecture**: Documents are fingerprinted entirely in the user's browser using the Web Crypto API (SHA-256). Files never leave the device.
+- **Public Verification**: Anyone can verify a credential via a shareable link or QR code — no account required.
+- **AI-Powered Intelligence**: Automatic metadata extraction, credential classification, and anomaly detection using AI — while preserving document privacy through PII-stripped processing.
+- **Verification API**: Programmatic credential verification via REST API. Single-call lookups, batch verification (up to 100 per call), API key management, usage analytics, and webhook notifications.
+- **Proof Certificates**: Downloadable PDF proof packages with complete audit trails for compliance and legal use.
+- **Bulk Processing**: CSV upload to anchor hundreds of credentials in a single batch operation.
+- **Organization Tools**: Team management, credential templates, and organization-wide record management.
+- **Agentic Record Keeping**: Infrastructure designed for AI agents to verify credentials programmatically — machine-verifiable, tamper-proof, and independently auditable records.
+
+## Use Cases
+
+- **Education**: Universities, trade schools, and bootcamps anchoring degrees, transcripts, and academic certifications.
+- **Organizations**: HR departments, compliance teams, registrars, and recruiters verifying professional licenses and institutional credentials.
+- **Legal & IP**: Law firms, patent offices, and notaries creating provable timestamps for contracts, patents, and intellectual property.
+- **Professionals**: Freelancers, consultants, and healthcare workers verifying certifications, training records, and portfolios.
+
+## Company Information
+
+- **Website**: https://arkova.ai
+- **Application**: https://app.arkova.ai (launching soon)
+- **Company**: Arkova Technologies, Inc.
+- **Contact**: hello@arkova.ai
+- **LinkedIn**: https://www.linkedin.com/company/arkova
+- **Twitter/X**: https://x.com/arkaboratory
+
+## How It Works
+
+1. **Upload & Fingerprint**: Select a document. Arkova generates a unique cryptographic fingerprint (SHA-256) in your browser. The file never leaves your device.
+2. **Anchor & Secure**: The fingerprint is permanently anchored to a public, tamper-proof network, creating an immutable timestamp.
+3. **Verify Anytime**: Share a verification link or QR code. Anyone can independently confirm authenticity and timestamp — no account required.
+
+## Technical Details
+
+- Client-side SHA-256 fingerprinting via Web Crypto API
+- Zero-knowledge architecture — documents never transmitted to servers
+- Immutable timestamps anchored to public networks
+- Append-only audit trail
+- Row-level security on all database tables
+- HMAC-SHA256 API key storage
+- Webhook notifications with HMAC-signed payloads
