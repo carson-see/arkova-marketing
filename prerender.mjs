@@ -1,10 +1,10 @@
 /**
- * Prerender script — runs after `vite build` to inject SSR HTML into dist/index.html.
+ * Prerender script — runs after `vite build` to inject SSR HTML into dist/.
  *
  * Build pipeline:
  *   1. `vite build`               → client bundle in dist/
  *   2. `vite build --ssr ...`     → server entry in dist/server/
- *   3. `node prerender.mjs`       → injects rendered HTML into dist/index.html
+ *   3. `node prerender.mjs`       → renders each route into its own HTML file
  *
  * Result: AI crawlers see full marketing content in the initial HTML response
  * instead of an empty <div id="root"></div>.
@@ -15,6 +15,13 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// Routes to prerender — add new pages here
+const ROUTES = [
+  '/',
+  '/research',
+  '/research/anchoring-compliance-bitcoin',
+];
 
 async function prerender() {
   const distPath = path.resolve(__dirname, 'dist');
@@ -31,38 +38,53 @@ async function prerender() {
     process.exit(1);
   }
 
-  // Import the server entry and render
+  // Import the server entry
   const { render } = await import(serverEntryPath);
-  let appHtml;
-  try {
-    appHtml = render();
-  } catch (err) {
-    console.error(`ERROR: renderToString failed (entry: ${serverEntryPath}):`, err);
-    process.exit(1);
-  }
-
-  // Read the client-built HTML template
   const template = fs.readFileSync(templatePath, 'utf-8');
-
-  // Inject the prerendered HTML into the root div (regex handles potential extra attributes)
   const rootDivPattern = /(<div\s+id="root"[^>]*>)(<\/div>)/;
+
   if (!rootDivPattern.test(template)) {
     console.error('ERROR: Could not find root div in dist/index.html');
     process.exit(1);
   }
-  const html = template.replace(rootDivPattern, `$1${appHtml}$2`);
 
-  // Write back
-  fs.writeFileSync(templatePath, html);
+  let totalH1 = 0;
+  let totalH2 = 0;
 
-  // Verify content was injected
-  const h1Count = (html.match(/<h1[\s>]/g) || []).length;
-  const h2Count = (html.match(/<h2[\s>]/g) || []).length;
-  const pCount = (html.match(/<p[\s>]/g) || []).length;
+  for (const route of ROUTES) {
+    let appHtml;
+    try {
+      appHtml = render(route);
+    } catch (err) {
+      console.error(`ERROR: renderToString failed for route "${route}":`, err);
+      process.exit(1);
+    }
 
-  console.log(`Prerender complete — ${h1Count} h1, ${h2Count} h2, ${pCount} p tags in output`);
+    const html = template.replace(rootDivPattern, `$1${appHtml}$2`);
 
-  if (h1Count === 0 && h2Count === 0) {
+    // Determine output path
+    let outFile;
+    if (route === '/') {
+      outFile = path.resolve(distPath, 'index.html');
+    } else {
+      const dir = path.resolve(distPath, route.slice(1));
+      fs.mkdirSync(dir, { recursive: true });
+      outFile = path.resolve(dir, 'index.html');
+    }
+
+    fs.writeFileSync(outFile, html);
+
+    const h1Count = (html.match(/<h1[\s>]/g) || []).length;
+    const h2Count = (html.match(/<h2[\s>]/g) || []).length;
+    totalH1 += h1Count;
+    totalH2 += h2Count;
+
+    console.log(`  ${route} → ${path.relative(distPath, outFile)} (${h1Count} h1, ${h2Count} h2)`);
+  }
+
+  console.log(`\nPrerender complete — ${ROUTES.length} routes, ${totalH1} h1, ${totalH2} h2 total`);
+
+  if (totalH1 === 0 && totalH2 === 0) {
     console.error('WARNING: No heading tags found in prerendered output. SSR may have failed.');
     process.exit(1);
   }
