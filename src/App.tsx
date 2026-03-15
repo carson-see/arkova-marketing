@@ -347,7 +347,7 @@ export default function App() {
               {[
                 { label: 'Document Exposure', value: 'Zero' },
                 { label: 'Independently Verifiable', value: '100%' },
-                { label: 'Account Required to Verify', value: 'Never' },
+                { label: 'Account Required', value: 'None' },
               ].map((metric) => (
                 <div key={metric.label} className="px-2 text-center md:px-4">
                   <div className="font-mono text-2xl font-bold text-arkova-steel md:text-3xl">
@@ -568,6 +568,56 @@ export default function App() {
                     </span>
                   ))}
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* ═══ TEAM ═══ */}
+      <Section className="px-6 py-24 md:py-32">
+        <div className="mx-auto max-w-4xl">
+          <div className="mb-16 text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-arkova-steel">
+              Our Team
+            </p>
+            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal dark:text-white md:text-4xl">
+              Built by people who understand trust
+            </h2>
+          </div>
+
+          <div className="grid gap-10 md:grid-cols-3">
+            {[
+              {
+                name: 'Carson',
+                title: 'Founder & CEO',
+                bio: 'Over a decade in technical product and project management, working with distressed teams under tight regulatory deadlines.',
+                photo: '/team-carson.png',
+              },
+              {
+                name: 'Sarah',
+                title: 'Founder & COO',
+                bio: '20 years experience as a Product / Program Manager in FMCG. Launched over 1,000 SKUs to market.',
+                photo: '/team-sarah.png',
+              },
+              {
+                name: 'Yaacov',
+                title: 'Founder & Advisor',
+                bio: '20 years Research & Data Science experience. Senior Member of the National Academy of Inventors.',
+                photo: '/team-yaacov.png',
+              },
+            ].map((member) => (
+              <div key={member.name} className="text-center">
+                <div className="mx-auto mb-5 h-32 w-32 overflow-hidden rounded-2xl border-2 border-arkova-ice/60 dark:border-white/10 shadow-card-rest">
+                  <img
+                    src={member.photo}
+                    alt={member.name}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <h3 className="text-lg font-bold text-arkova-charcoal dark:text-white">{member.name}</h3>
+                <p className="mb-2 text-sm font-medium text-arkova-steel">{member.title}</p>
+                <p className="text-sm leading-relaxed text-arkova-slate dark:text-arkova-steel-light/60">{member.bio}</p>
               </div>
             ))}
           </div>
