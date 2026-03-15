@@ -31,6 +31,13 @@ Arkova Technologies, Inc. builds infrastructure for verifiable credentials. Orga
 - Webhook notifications for real-time event delivery
 - Downloadable JSON proof packages
 
+## Research & Insights
+
+Arkova publishes analysis on document verification, compliance infrastructure, and digital trust.
+
+- Research Index: https://arkova.ai/research
+- [Anchoring Compliance to Bitcoin: Why Critical Records Need a Stronger Foundation](https://arkova.ai/research/anchoring-compliance-bitcoin) — Analysis of how proof-of-work networks can transform enterprise compliance from vendor promises to cryptographic proof. Covers SOX, ESIGN, UETA, eIDAS regulatory requirements, real-world fraud cases, and the case for independently verifiable records.
+
 ## Verification API (Coming Soon)
 
 > The Verification API is under development and not yet publicly available. The endpoints below document the planned interface.
@@ -126,4 +133,4 @@ Free tier available. Request early access at https://arkova.ai.
 
 ## Structured Data
 
-Arkova provides Organization, SoftwareApplication, and FAQPage schema markup at https://arkova.ai for search engine and AI system consumption.
+Arkova provides Organization, SoftwareApplication, FAQPage, and Article schema markup at https://arkova.ai for search engine and AI system consumption.
