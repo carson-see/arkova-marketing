@@ -150,9 +150,9 @@ export default function HomePage() {
             className="mx-auto mb-10 max-w-2xl text-lg text-arkova-slate dark:text-arkova-steel-light/60 opacity-0 animate-fade-up md:text-xl"
             style={{ animationDelay: '0.35s' }}
           >
-            Arkova creates tamper-proof records of your documents using cryptographic
-            fingerprinting. Verify credentials, protect intellectual property, and
-            establish provenance — without ever uploading your files.
+            Every record an agent touches needs to be independently verifiable. Arkova
+            is the verification layer — anchoring credentials, documents, and attestations
+            to permanent, tamper-proof proofs that anyone can check. Your files never leave your device.
           </p>
 
           <div
@@ -246,6 +246,32 @@ export default function HomePage() {
         </div>
       </Section>
 
+      {/* ═══ USE CASES ═══ */}
+      <Section id="use-cases" className="bg-arkova-frost/50 dark:bg-white/[0.02] px-6 py-24 md:py-32">
+        <div className="mx-auto max-w-5xl">
+          <div className="mb-16 text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-arkova-steel">Who It's For</p>
+            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal dark:text-white md:text-4xl">Built for every industry that needs proof</h2>
+          </div>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {USE_CASES.map((uc) => (
+              <div key={uc.title} className="group text-center">
+                <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-arkova-steel/15 to-arkova-steel/5 transition-all group-hover:shadow-glow-sm">
+                  <uc.icon className="h-8 w-8 text-arkova-steel" />
+                </div>
+                <h3 className="mb-2 text-lg font-bold text-arkova-charcoal dark:text-white">{uc.title}</h3>
+                <p className="mb-4 text-sm text-arkova-slate dark:text-arkova-steel-light/60">{uc.description}</p>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {uc.examples.map((ex) => (
+                    <span key={ex} className="rounded-full bg-arkova-frost dark:bg-white/5 px-3 py-1 text-xs font-medium text-arkova-ocean dark:text-arkova-steel">{ex}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
       {/* ═══ AGENTIC RECORD KEEPING ═══ */}
       <Section className="bg-arkova-frost/50 dark:bg-white/[0.02] px-6 py-24 md:py-32">
         <div className="mx-auto max-w-5xl">
@@ -324,7 +350,7 @@ export default function HomePage() {
           <div className="mt-12 gradient-border rounded-2xl bg-white/60 dark:bg-white/[0.03] backdrop-blur-sm p-8 text-center md:p-10">
             <p className="text-arkova-slate dark:text-arkova-steel-light/60">
               <span className="font-semibold text-arkova-charcoal dark:text-white">Privacy preserved.</span>{' '}
-              AI processing uses only PII-stripped metadata extracted on your device. Your documents and personal information never reach our servers.
+              Your documents are fingerprinted entirely in your browser using the Web Crypto API. The document bytes never leave your device. When AI-assisted features are used, only PII-stripped metadata — credential type, issuer, dates — flows to our servers. The original document, raw text, and personal information remain on your device at all times.
             </p>
           </div>
         </div>
@@ -348,32 +374,6 @@ export default function HomePage() {
                 </div>
                 <h3 className="mb-2 text-base font-bold text-arkova-charcoal dark:text-white">{feature.title}</h3>
                 <p className="text-sm leading-relaxed text-arkova-slate dark:text-arkova-steel-light/60">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* ═══ USE CASES ═══ */}
-      <Section id="use-cases" className="bg-arkova-frost/50 dark:bg-white/[0.02] px-6 py-24 md:py-32">
-        <div className="mx-auto max-w-5xl">
-          <div className="mb-16 text-center">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-arkova-steel">Use Cases</p>
-            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal dark:text-white md:text-4xl">Built for every industry</h2>
-          </div>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {USE_CASES.map((uc) => (
-              <div key={uc.title} className="group text-center">
-                <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-arkova-steel/15 to-arkova-steel/5 transition-all group-hover:shadow-glow-sm">
-                  <uc.icon className="h-8 w-8 text-arkova-steel" />
-                </div>
-                <h3 className="mb-2 text-lg font-bold text-arkova-charcoal dark:text-white">{uc.title}</h3>
-                <p className="mb-4 text-sm text-arkova-slate dark:text-arkova-steel-light/60">{uc.description}</p>
-                <div className="flex flex-wrap justify-center gap-2">
-                  {uc.examples.map((ex) => (
-                    <span key={ex} className="rounded-full bg-arkova-frost dark:bg-white/5 px-3 py-1 text-xs font-medium text-arkova-ocean dark:text-arkova-steel">{ex}</span>
-                  ))}
-                </div>
               </div>
             ))}
           </div>
