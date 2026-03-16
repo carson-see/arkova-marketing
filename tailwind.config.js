@@ -17,9 +17,9 @@ export default {
           charcoal: '#303433',
           'charcoal-light': '#3a3f3e',
           ice: '#dbeaf1',
-          frost: '#edf5f9',
+          frost: '#e2eaef',
           slate: '#4a4f4e',
-          mist: '#f4f8fa',
+          mist: '#e9eef2',
         },
       },
       fontFamily: {

@@ -191,7 +191,7 @@ export default function HomePage() {
               {[
                 { label: 'Document Exposure', value: 'Zero' },
                 { label: 'Independently Verifiable', value: '100%' },
-                { label: 'Account Required', value: 'No' },
+                { label: 'Account Required to Verify', value: 'No' },
               ].map((metric) => (
                 <div key={metric.label} className="px-2 text-center md:px-4">
                   <div className="font-mono text-2xl font-bold text-arkova-steel md:text-3xl">{metric.value}</div>
