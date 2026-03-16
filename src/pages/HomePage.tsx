@@ -36,7 +36,7 @@ const FEATURES = [
   { icon: Download, title: 'Proof Certificates', description: 'Download PDF proof packages with complete audit trails for compliance and legal use.' },
   { icon: Zap, title: 'Bulk Processing', description: 'Upload CSV files to anchor hundreds of credentials in a single batch operation.' },
   { icon: Users, title: 'Organization Tools', description: 'Manage team members, credential templates, and organization-wide records from one dashboard.' },
-  { icon: Clock, title: 'Immutable Timestamps', description: 'Every record is anchored with a cryptographic timestamp that cannot be altered or backdated.' },
+  { icon: Clock, title: 'Blockchain-Anchored Timestamps', description: 'Every record is anchored to a public blockchain with a cryptographic timestamp that cannot be altered or backdated.' },
 ];
 
 const USE_CASES = [
@@ -48,7 +48,7 @@ const USE_CASES = [
 
 const STEPS = [
   { step: '01', icon: Fingerprint, title: 'Upload & Fingerprint', description: 'Select your document. Arkova generates a unique cryptographic fingerprint in your browser. The file never leaves your device.' },
-  { step: '02', icon: Lock, title: 'Anchor & Secure', description: 'Your fingerprint is permanently anchored to a public, tamper-proof network. This creates an immutable timestamp proving the document existed at that moment.' },
+  { step: '02', icon: Lock, title: 'Anchor to Blockchain', description: 'Your fingerprint is permanently anchored to a public blockchain. This creates an immutable timestamp proving the document existed at that moment — verifiable by anyone, forever.' },
   { step: '03', icon: CheckCircle2, title: 'Verify Anytime', description: 'Share a verification link or QR code. Anyone can independently confirm the authenticity and timestamp of your document — no account required.' },
 ];
 
@@ -61,7 +61,7 @@ const API_FEATURES = [
 ];
 
 const FAQ = [
-  { q: 'How does Arkova verify documents without seeing them?', a: 'Arkova uses cryptographic fingerprinting (SHA-256) that runs entirely in your browser. We only store the fingerprint — a one-way mathematical proof — never the document itself. This fingerprint is then anchored to a permanent public record.' },
+  { q: 'How does Arkova verify documents without seeing them?', a: 'Arkova uses cryptographic fingerprinting (SHA-256) that runs entirely in your browser. We only store the fingerprint — a one-way mathematical proof — never the document itself. This fingerprint is then anchored to a public blockchain, creating a permanent, independently verifiable record.' },
   { q: 'Can anyone verify a credential?', a: "Yes. Verification is completely open. Anyone with a verification link or QR code can confirm a document's authenticity and timestamp independently. No account or software required." },
   { q: 'What types of documents can I anchor?', a: 'Any digital file — PDFs, images, spreadsheets, presentations, contracts, certificates, transcripts. If it has a file, it can be fingerprinted and anchored.' },
   { q: 'How is this different from DocuSign or other e-signature tools?', a: "E-signature tools prove who signed a document. Arkova proves that a specific document existed at a specific time and has not been altered since. These are complementary — you can anchor a signed document to prove it hasn't changed after signing." },
@@ -151,7 +151,7 @@ export default function HomePage() {
             style={{ animationDelay: '0.35s' }}
           >
             Every record an agent touches needs to be independently verifiable. Arkova
-            is the verification layer — anchoring credentials, documents, and attestations
+            is the verification layer — using AI and blockchain to anchor credentials, documents, and attestations
             to permanent, tamper-proof proofs that anyone can check. Your files never leave your device.
           </p>
 
@@ -213,7 +213,7 @@ export default function HomePage() {
             { icon: Shield, text: 'Client-side processing only' },
             { icon: Lock, text: 'SHA-256 fingerprinting' },
             { icon: Globe, text: 'Independently verifiable' },
-            { icon: FileCheck, text: 'Permanent proof records' },
+            { icon: FileCheck, text: 'Blockchain-anchored proof records' },
           ].map(({ icon: Icon, text }) => (
             <div key={text} className="flex items-center gap-2">
               <Icon className="h-4 w-4 text-emerald-500" />
