@@ -223,61 +223,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ HOW IT WORKS ═══ */}
-      <Section id="how-it-works" className="px-6 py-24 md:py-32">
-        <div className="mx-auto max-w-5xl">
-          <div className="mb-16 text-center">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-arkova-steel">How It Works</p>
-            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal dark:text-white md:text-4xl">Three steps to permanent proof</h2>
-            <p className="mx-auto max-w-xl text-arkova-slate dark:text-arkova-steel-light/60">Create a permanent, independently verifiable record of any document in seconds.</p>
-          </div>
-          <div className="grid gap-8 md:grid-cols-3 md:gap-12">
-            {STEPS.map((item, i) => (
-              <div key={item.step} className={`animate-in-view stagger-${i + 1} ${i < STEPS.length - 1 ? 'step-connector' : ''} group relative rounded-2xl border border-arkova-ice/60 dark:border-white/5 bg-white dark:bg-white/[0.03] p-8 shadow-card-rest dark:shadow-none transition-all hover:-translate-y-1 hover:shadow-card-hover dark:hover:bg-white/[0.05]`}>
-                <div className="step-icon-pulse mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-arkova-steel/15 to-arkova-steel/5">
-                  <item.icon className="h-7 w-7 text-arkova-steel" />
-                </div>
-                <div className="mb-3 font-mono text-xs font-medium text-arkova-steel/60">STEP {item.step}</div>
-                <h3 className="mb-3 text-xl font-bold text-arkova-charcoal dark:text-white">{item.title}</h3>
-                <p className="text-sm leading-relaxed text-arkova-slate dark:text-arkova-steel-light/60">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* ═══ USE CASES ═══ */}
-      <Section id="use-cases" className="bg-arkova-frost/50 dark:bg-white/[0.02] px-6 py-24 md:py-32">
-        <div className="mx-auto max-w-5xl">
-          <div className="mb-16 text-center">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-arkova-steel">Who It's For</p>
-            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal dark:text-white md:text-4xl">Built for every industry that needs proof</h2>
-          </div>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {USE_CASES.map((uc) => (
-              <div key={uc.title} className="group text-center">
-                <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-arkova-steel/15 to-arkova-steel/5 transition-all group-hover:shadow-glow-sm">
-                  <uc.icon className="h-8 w-8 text-arkova-steel" />
-                </div>
-                <h3 className="mb-2 text-lg font-bold text-arkova-charcoal dark:text-white">{uc.title}</h3>
-                <p className="mb-4 text-sm text-arkova-slate dark:text-arkova-steel-light/60">{uc.description}</p>
-                <div className="flex flex-wrap justify-center gap-2">
-                  {uc.examples.map((ex) => (
-                    <span key={ex} className="rounded-full bg-arkova-frost dark:bg-white/5 px-3 py-1 text-xs font-medium text-arkova-ocean dark:text-arkova-steel">{ex}</span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* ═══ AGENTIC RECORD KEEPING ═══ */}
+      {/* ═══ AGENTIC VERIFICATION ═══ */}
       <Section className="bg-arkova-frost/50 dark:bg-white/[0.02] px-6 py-24 md:py-32">
         <div className="mx-auto max-w-5xl">
           <div className="mb-12 text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-arkova-steel">The Future of Records</p>
-            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal dark:text-white md:text-4xl">Infrastructure for Agentic Record Keeping</h2>
+            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal dark:text-white md:text-4xl">Infrastructure for Agentic Verification</h2>
             <p className="mx-auto max-w-2xl text-arkova-slate dark:text-arkova-steel-light/60">
               As AI agents become participants in credentialing, hiring, and compliance workflows, the records they rely on need to be machine-verifiable, tamper-proof, and independently auditable. Arkova is building that layer.
             </p>
@@ -294,28 +245,6 @@ export default function HomePage() {
                 </div>
                 <h3 className="mb-3 text-lg font-bold text-arkova-charcoal dark:text-white">{item.title}</h3>
                 <p className="text-sm leading-relaxed text-arkova-slate dark:text-arkova-steel-light/60">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* ═══ FEATURES ═══ */}
-      <Section id="features" className="bg-arkova-frost/50 dark:bg-white/[0.02] px-6 py-24 md:py-32">
-        <div className="mx-auto max-w-5xl">
-          <div className="mb-16 text-center">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-arkova-steel">Features</p>
-            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal dark:text-white md:text-4xl">Everything you need to prove authenticity</h2>
-            <p className="mx-auto max-w-xl text-arkova-slate dark:text-arkova-steel-light/60">Built for individuals, professionals, and organizations who need verifiable proof.</p>
-          </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {FEATURES.map((feature, i) => (
-              <div key={feature.title} className={`animate-in-view stagger-${i + 1} rounded-2xl border border-arkova-ice/60 dark:border-white/5 bg-white dark:bg-white/[0.03] p-6 shadow-card-rest dark:shadow-none transition-all hover:-translate-y-0.5 hover:shadow-card-hover dark:hover:bg-white/[0.05]`}>
-                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-arkova-steel/15 to-arkova-steel/5">
-                  <feature.icon className="h-5 w-5 text-arkova-steel" />
-                </div>
-                <h3 className="mb-2 text-base font-bold text-arkova-charcoal dark:text-white">{feature.title}</h3>
-                <p className="text-sm leading-relaxed text-arkova-slate dark:text-arkova-steel-light/60">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -371,6 +300,77 @@ export default function HomePage() {
               <div key={feature.title} className="rounded-2xl border border-arkova-ice/60 dark:border-white/5 bg-white dark:bg-white/[0.03] p-6 shadow-card-rest dark:shadow-none transition-all hover:-translate-y-0.5 hover:shadow-card-hover dark:hover:bg-white/[0.05]">
                 <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-arkova-ocean/20 to-arkova-steel/5">
                   <feature.icon className="h-5 w-5 text-arkova-ocean dark:text-arkova-steel" />
+                </div>
+                <h3 className="mb-2 text-base font-bold text-arkova-charcoal dark:text-white">{feature.title}</h3>
+                <p className="text-sm leading-relaxed text-arkova-slate dark:text-arkova-steel-light/60">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* ═══ HOW IT WORKS ═══ */}
+      <Section id="how-it-works" className="px-6 py-24 md:py-32">
+        <div className="mx-auto max-w-5xl">
+          <div className="mb-16 text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-arkova-steel">How It Works</p>
+            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal dark:text-white md:text-4xl">Three steps to permanent proof</h2>
+            <p className="mx-auto max-w-xl text-arkova-slate dark:text-arkova-steel-light/60">Create a permanent, independently verifiable record of any document in seconds.</p>
+          </div>
+          <div className="grid gap-8 md:grid-cols-3 md:gap-12">
+            {STEPS.map((item, i) => (
+              <div key={item.step} className={`animate-in-view stagger-${i + 1} ${i < STEPS.length - 1 ? 'step-connector' : ''} group relative rounded-2xl border border-arkova-ice/60 dark:border-white/5 bg-white dark:bg-white/[0.03] p-8 shadow-card-rest dark:shadow-none transition-all hover:-translate-y-1 hover:shadow-card-hover dark:hover:bg-white/[0.05]`}>
+                <div className="step-icon-pulse mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-arkova-steel/15 to-arkova-steel/5">
+                  <item.icon className="h-7 w-7 text-arkova-steel" />
+                </div>
+                <div className="mb-3 font-mono text-xs font-medium text-arkova-steel/60">STEP {item.step}</div>
+                <h3 className="mb-3 text-xl font-bold text-arkova-charcoal dark:text-white">{item.title}</h3>
+                <p className="text-sm leading-relaxed text-arkova-slate dark:text-arkova-steel-light/60">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* ═══ USE CASES ═══ */}
+      <Section id="use-cases" className="bg-arkova-frost/50 dark:bg-white/[0.02] px-6 py-24 md:py-32">
+        <div className="mx-auto max-w-5xl">
+          <div className="mb-16 text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-arkova-steel">Who It's For</p>
+            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal dark:text-white md:text-4xl">Built for every industry that needs proof</h2>
+          </div>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {USE_CASES.map((uc) => (
+              <div key={uc.title} className="group text-center">
+                <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-arkova-steel/15 to-arkova-steel/5 transition-all group-hover:shadow-glow-sm">
+                  <uc.icon className="h-8 w-8 text-arkova-steel" />
+                </div>
+                <h3 className="mb-2 text-lg font-bold text-arkova-charcoal dark:text-white">{uc.title}</h3>
+                <p className="mb-4 text-sm text-arkova-slate dark:text-arkova-steel-light/60">{uc.description}</p>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {uc.examples.map((ex) => (
+                    <span key={ex} className="rounded-full bg-arkova-frost dark:bg-white/5 px-3 py-1 text-xs font-medium text-arkova-ocean dark:text-arkova-steel">{ex}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* ═══ FEATURES ═══ */}
+      <Section id="features" className="bg-arkova-frost/50 dark:bg-white/[0.02] px-6 py-24 md:py-32">
+        <div className="mx-auto max-w-5xl">
+          <div className="mb-16 text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-arkova-steel">Features</p>
+            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal dark:text-white md:text-4xl">Everything you need to prove authenticity</h2>
+            <p className="mx-auto max-w-xl text-arkova-slate dark:text-arkova-steel-light/60">Built for individuals, professionals, and organizations who need verifiable proof.</p>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {FEATURES.map((feature, i) => (
+              <div key={feature.title} className={`animate-in-view stagger-${i + 1} rounded-2xl border border-arkova-ice/60 dark:border-white/5 bg-white dark:bg-white/[0.03] p-6 shadow-card-rest dark:shadow-none transition-all hover:-translate-y-0.5 hover:shadow-card-hover dark:hover:bg-white/[0.05]`}>
+                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-arkova-steel/15 to-arkova-steel/5">
+                  <feature.icon className="h-5 w-5 text-arkova-steel" />
                 </div>
                 <h3 className="mb-2 text-base font-bold text-arkova-charcoal dark:text-white">{feature.title}</h3>
                 <p className="text-sm leading-relaxed text-arkova-slate dark:text-arkova-steel-light/60">{feature.description}</p>
