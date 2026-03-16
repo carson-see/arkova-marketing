@@ -139,10 +139,10 @@ export default function HomePage() {
             className="mb-6 text-5xl font-bold tracking-tight text-arkova-charcoal dark:text-white opacity-0 animate-fade-up md:text-7xl"
             style={{ animationDelay: '0.2s' }}
           >
-            Verify Once.
+            Issue Once.
             <br />
             <span className="bg-gradient-to-r from-arkova-steel to-arkova-ocean bg-clip-text text-transparent">
-              Trust Forever.
+              Verify Forever.
             </span>
           </h1>
 
@@ -239,6 +239,34 @@ export default function HomePage() {
                 </div>
                 <div className="mb-3 font-mono text-xs font-medium text-arkova-steel/60">STEP {item.step}</div>
                 <h3 className="mb-3 text-xl font-bold text-arkova-charcoal dark:text-white">{item.title}</h3>
+                <p className="text-sm leading-relaxed text-arkova-slate dark:text-arkova-steel-light/60">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* ═══ AGENTIC RECORD KEEPING ═══ */}
+      <Section className="bg-arkova-frost/50 dark:bg-white/[0.02] px-6 py-24 md:py-32">
+        <div className="mx-auto max-w-5xl">
+          <div className="mb-12 text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-arkova-steel">The Future of Records</p>
+            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal dark:text-white md:text-4xl">Infrastructure for Agentic Record Keeping</h2>
+            <p className="mx-auto max-w-2xl text-arkova-slate dark:text-arkova-steel-light/60">
+              As AI agents become participants in credentialing, hiring, and compliance workflows, the records they rely on need to be machine-verifiable, tamper-proof, and independently auditable. Arkova is building that layer.
+            </p>
+          </div>
+          <div className="grid gap-8 md:grid-cols-3">
+            {[
+              { icon: Zap, title: 'Agent-Readable Verification', description: 'Our API is designed for autonomous systems. AI agents can verify credentials programmatically — no human in the loop required.' },
+              { icon: Globe, title: 'Trust Without Intermediaries', description: "Agents don't call references. They need cryptographic proof. Arkova provides independently verifiable records that any system can validate." },
+              { icon: Layers, title: 'Credential Intelligence', description: 'Structured metadata, classification, and anomaly detection — giving machines the context they need to make trust decisions at scale.' },
+            ].map((item) => (
+              <div key={item.title} className="rounded-2xl border border-arkova-ice/60 dark:border-white/5 bg-white dark:bg-white/[0.03] p-8 shadow-card-rest dark:shadow-none transition-all hover:-translate-y-0.5 hover:shadow-card-hover dark:hover:bg-white/[0.05]">
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-arkova-ocean/20 to-arkova-steel/5">
+                  <item.icon className="h-6 w-6 text-arkova-ocean dark:text-arkova-steel" />
+                </div>
+                <h3 className="mb-3 text-lg font-bold text-arkova-charcoal dark:text-white">{item.title}</h3>
                 <p className="text-sm leading-relaxed text-arkova-slate dark:text-arkova-steel-light/60">{item.description}</p>
               </div>
             ))}
@@ -361,8 +389,8 @@ export default function HomePage() {
           </div>
           <div className="grid gap-10 md:grid-cols-3">
             {[
-              { name: 'Carson', title: 'Founder & CEO', bio: 'Over a decade in technical product and project management, working with distressed teams under tight regulatory deadlines.', photo: '/team-carson.png', profileUrl: 'https://www.linkedin.com/in/carson-s-8b41061a/', profileType: 'linkedin' as const },
-              { name: 'Sarah', title: 'Founder & COO', bio: '20 years experience as a Product / Program Manager in FMCG. Launched over 1,000 SKUs to market.', photo: '/team-sarah.png', profileUrl: 'https://www.linkedin.com/in/sljrushton/', profileType: 'linkedin' as const },
+              { name: 'Carson', title: 'Founder & CEO', bio: 'A decade of rescuing distressed technical programs under regulatory pressure showed Carson that organizations need proof infrastructure that doesn\'t depend on any single vendor — so he built it.', photo: '/team-carson.png', profileUrl: 'https://www.linkedin.com/in/carson-s-8b41061a/', profileType: 'linkedin' as const },
+              { name: 'Sarah', title: 'Founder & COO', bio: 'Over 20 years launching products through compliance-heavy supply chains taught Sarah one thing: documentation verification is broken at every level. She is building Arkova to change that.', photo: '/team-sarah.png', profileUrl: 'https://www.linkedin.com/in/sljrushton/', profileType: 'linkedin' as const },
               { name: 'Yaacov', title: 'Founder & Advisor', bio: '20 years Research & Data Science experience. Senior Member of the National Academy of Inventors.', photo: '/team-yaacov.png', profileUrl: 'https://scholar.google.com/citations?user=MUGWLDoAAAAJ&hl=en', profileType: 'scholar' as const },
             ].map((member) => (
               <div key={member.name} className="text-center">
@@ -416,34 +444,6 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* ═══ AGENTIC RECORD KEEPING ═══ */}
-      <Section className="bg-arkova-frost/50 dark:bg-white/[0.02] px-6 py-24 md:py-32">
-        <div className="mx-auto max-w-5xl">
-          <div className="mb-12 text-center">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-arkova-steel">The Future</p>
-            <h2 className="mb-4 text-3xl font-bold text-arkova-charcoal dark:text-white md:text-4xl">Infrastructure for Agentic Record Keeping</h2>
-            <p className="mx-auto max-w-2xl text-arkova-slate dark:text-arkova-steel-light/60">
-              As AI agents become participants in credentialing, hiring, and compliance workflows, the records they rely on need to be machine-verifiable, tamper-proof, and independently auditable. Arkova is building that layer.
-            </p>
-          </div>
-          <div className="grid gap-8 md:grid-cols-3">
-            {[
-              { icon: Zap, title: 'Agent-Readable Verification', description: 'Our API is designed for autonomous systems. AI agents can verify credentials programmatically — no human in the loop required.' },
-              { icon: Globe, title: 'Trust Without Intermediaries', description: "Agents don't call references. They need cryptographic proof. Arkova provides independently verifiable records that any system can validate." },
-              { icon: Layers, title: 'Credential Intelligence', description: 'Structured metadata, classification, and anomaly detection — giving machines the context they need to make trust decisions at scale.' },
-            ].map((item) => (
-              <div key={item.title} className="rounded-2xl border border-arkova-ice/60 dark:border-white/5 bg-white dark:bg-white/[0.03] p-8 shadow-card-rest dark:shadow-none transition-all hover:-translate-y-0.5 hover:shadow-card-hover dark:hover:bg-white/[0.05]">
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-arkova-ocean/20 to-arkova-steel/5">
-                  <item.icon className="h-6 w-6 text-arkova-ocean dark:text-arkova-steel" />
-                </div>
-                <h3 className="mb-3 text-lg font-bold text-arkova-charcoal dark:text-white">{item.title}</h3>
-                <p className="text-sm leading-relaxed text-arkova-slate dark:text-arkova-steel-light/60">{item.description}</p>
-              </div>
-            ))}
           </div>
         </div>
       </Section>

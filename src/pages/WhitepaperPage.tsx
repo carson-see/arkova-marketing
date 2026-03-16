@@ -427,7 +427,7 @@ export default function WhitepaperPage() {
 
             <div className="mt-12 border-t border-arkova-ice/60 dark:border-white/5 pt-8 text-center">
               <P>Website: <a href="https://arkova.ai" className="text-arkova-steel hover:text-arkova-ocean">arkova.ai</a> · Email: <a href="mailto:hello@arkova.ai" className="text-arkova-steel hover:text-arkova-ocean">hello@arkova.ai</a></P>
-              <p className="text-xs text-arkova-slate/60 dark:text-arkova-steel-light/30 italic mt-4">Arkova — Verify Once. Trust Forever.</p>
+              <p className="text-xs text-arkova-slate/60 dark:text-arkova-steel-light/30 italic mt-4">Arkova — Issue Once. Verify Forever.</p>
             </div>
           </article>
         </div>

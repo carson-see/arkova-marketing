@@ -58,7 +58,7 @@ export default function ResearchPage() {
       <Section className="px-6 pb-24 md:pb-32">
         <div className="mx-auto max-w-4xl">
           <div className="grid gap-8">
-            {ARTICLES.map((article) => (
+            {[...ARTICLES].sort((a, b) => b.date.localeCompare(a.date)).map((article) => (
               <Link
                 key={article.slug}
                 to={`/research/${article.slug}`}

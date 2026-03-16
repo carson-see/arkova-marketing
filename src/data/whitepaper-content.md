@@ -484,4 +484,4 @@ Security architecture review.
 
 ---
 
-*Arkova — Verify Once. Trust Forever.*
+*Arkova — Issue Once. Verify Forever.*

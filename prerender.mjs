@@ -24,6 +24,7 @@ const ROUTES = [
   '/research/agentic-recordkeeping',
   '/research/convergence-stack',
   '/research/government-records',
+  '/research/real-cost-of-audit-verification',
   '/whitepaper',
   '/roadmap',
   '/contact',
