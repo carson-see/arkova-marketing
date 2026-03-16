@@ -5,6 +5,7 @@ import ResearchPage from './pages/ResearchPage';
 import ArticlePage from './pages/ArticlePage';
 import WhitepaperPage from './pages/WhitepaperPage';
 import RoadmapPage from './pages/RoadmapPage';
+import ContactPage from './pages/ContactPage';
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="/research/:slug" element={<ArticlePage />} />
         <Route path="/whitepaper" element={<WhitepaperPage />} />
         <Route path="/roadmap" element={<RoadmapPage />} />
+        <Route path="/contact" element={<ContactPage />} />
       </Routes>
     </Layout>
   );

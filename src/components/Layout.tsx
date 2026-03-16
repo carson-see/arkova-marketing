@@ -256,12 +256,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   </Link>
                 </li>
                 <li>
-                  <a
-                    href="mailto:hello@arkova.ai"
+                  <Link
+                    to="/contact"
                     className="text-sm text-arkova-slate dark:text-arkova-steel-light/50 transition-colors hover:text-arkova-charcoal dark:hover:text-white"
                   >
                     Contact
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a

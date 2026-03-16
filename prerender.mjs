@@ -26,6 +26,7 @@ const ROUTES = [
   '/research/government-records',
   '/whitepaper',
   '/roadmap',
+  '/contact',
 ];
 
 async function prerender() {
