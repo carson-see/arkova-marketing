@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
   Shield,
   FileCheck,
@@ -68,24 +68,64 @@ const FAQ = [
   { q: 'Is my data safe?', a: "Your documents never leave your device — that's our foundational privacy guarantee, not just a feature. Fingerprints are anchored to a public, independently verifiable network. Even if our servers were compromised, your documents remain private because we never had them." },
 ];
 
+/* ─── Hero Visualization ─── */
+function HeroViz() {
+  return (
+    <div className="hero-viz mx-auto opacity-0 animate-fade-up" style={{ animationDelay: '0.7s' }}>
+      <div className="hero-viz-ring"><div className="hero-viz-ring-dot" /></div>
+      <div className="hero-viz-ring"><div className="hero-viz-ring-dot" /></div>
+      <div className="hero-viz-ring"><div className="hero-viz-ring-dot" /></div>
+      <div className="hero-viz-center">
+        <Shield className="h-12 w-12 text-arkova-steel/60" />
+      </div>
+    </div>
+  );
+}
+
+/* ─── Scroll Observer ─── */
+function useScrollReveal() {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+    const el = ref.current;
+    if (el) {
+      el.querySelectorAll('.animate-in-view').forEach((child) => observer.observe(child));
+    }
+    return () => observer.disconnect();
+  }, []);
+  return ref;
+}
+
 /* ─── Component ─── */
 export default function HomePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const pageRef = useScrollReveal();
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <>
+    <div ref={pageRef}>
       {/* ═══ HERO ═══ */}
       <section id="hero" className="relative overflow-hidden px-6 pb-24 pt-28 md:pt-36 lg:pt-40">
         <div className="absolute inset-0 bg-mesh-gradient dark:bg-mesh-dark" />
-        <div className="absolute inset-0 bg-dot-pattern opacity-40 dark:opacity-20" />
+        <div className="absolute inset-0 bg-subtle-dots" />
         <div className="pointer-events-none absolute -top-20 -right-32 h-96 w-96 rounded-full bg-arkova-steel/5 dark:bg-arkova-steel/3 blur-3xl animate-float" />
         <div className="pointer-events-none absolute -bottom-20 -left-32 h-80 w-80 rounded-full bg-arkova-ice/30 dark:bg-arkova-ocean/10 blur-3xl animate-float-delayed" />
 
-        <div className="relative mx-auto max-w-4xl text-center">
+        <div className="relative mx-auto max-w-5xl">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+          <div className="text-center lg:text-left">
           <div
             className="mb-8 inline-flex items-center gap-2 rounded-full border border-arkova-steel/20 dark:border-arkova-steel/10 bg-arkova-frost dark:bg-white/5 px-4 py-1.5 text-sm font-medium text-arkova-ocean dark:text-arkova-steel opacity-0 animate-fade-up"
             style={{ animationDelay: '0.1s' }}
@@ -132,6 +172,13 @@ export default function HomePage() {
               See How It Works
             </button>
           </div>
+          </div>
+
+          {/* Hero visualization — orbiting shield */}
+          <div className="hidden lg:flex items-center justify-center">
+            <HeroViz />
+          </div>
+          </div>
         </div>
 
         <div
@@ -155,8 +202,11 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ═══ SECTION DIVIDER ═══ */}
+      <div className="section-divider" />
+
       {/* ═══ TRUST BAR ═══ */}
-      <section className="border-y border-arkova-ice/60 dark:border-white/5 bg-arkova-frost dark:bg-white/[0.02] px-6 py-6">
+      <section className="bg-arkova-frost dark:bg-white/[0.02] px-6 py-6">
         <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-center gap-x-10 gap-y-3 text-sm text-arkova-slate dark:text-arkova-steel-light/60">
           {[
             { icon: Shield, text: 'Client-side processing only' },
@@ -181,9 +231,9 @@ export default function HomePage() {
             <p className="mx-auto max-w-xl text-arkova-slate dark:text-arkova-steel-light/60">Create a permanent, independently verifiable record of any document in seconds.</p>
           </div>
           <div className="grid gap-8 md:grid-cols-3 md:gap-12">
-            {STEPS.map((item) => (
-              <div key={item.step} className="group relative rounded-2xl border border-arkova-ice/60 dark:border-white/5 bg-white dark:bg-white/[0.03] p-8 shadow-card-rest dark:shadow-none transition-all hover:-translate-y-1 hover:shadow-card-hover dark:hover:bg-white/[0.05]">
-                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-arkova-steel/15 to-arkova-steel/5">
+            {STEPS.map((item, i) => (
+              <div key={item.step} className={`animate-in-view stagger-${i + 1} ${i < STEPS.length - 1 ? 'step-connector' : ''} group relative rounded-2xl border border-arkova-ice/60 dark:border-white/5 bg-white dark:bg-white/[0.03] p-8 shadow-card-rest dark:shadow-none transition-all hover:-translate-y-1 hover:shadow-card-hover dark:hover:bg-white/[0.05]`}>
+                <div className="step-icon-pulse mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-arkova-steel/15 to-arkova-steel/5">
                   <item.icon className="h-7 w-7 text-arkova-steel" />
                 </div>
                 <div className="mb-3 font-mono text-xs font-medium text-arkova-steel/60">STEP {item.step}</div>
@@ -204,8 +254,8 @@ export default function HomePage() {
             <p className="mx-auto max-w-xl text-arkova-slate dark:text-arkova-steel-light/60">Built for individuals, professionals, and organizations who need verifiable proof.</p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {FEATURES.map((feature) => (
-              <div key={feature.title} className="rounded-2xl border border-arkova-ice/60 dark:border-white/5 bg-white dark:bg-white/[0.03] p-6 shadow-card-rest dark:shadow-none transition-all hover:-translate-y-0.5 hover:shadow-card-hover dark:hover:bg-white/[0.05]">
+            {FEATURES.map((feature, i) => (
+              <div key={feature.title} className={`animate-in-view stagger-${i + 1} rounded-2xl border border-arkova-ice/60 dark:border-white/5 bg-white dark:bg-white/[0.03] p-6 shadow-card-rest dark:shadow-none transition-all hover:-translate-y-0.5 hover:shadow-card-hover dark:hover:bg-white/[0.05]`}>
                 <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-arkova-steel/15 to-arkova-steel/5">
                   <feature.icon className="h-5 w-5 text-arkova-steel" />
                 </div>
@@ -430,6 +480,6 @@ export default function HomePage() {
           <p className="mt-4 text-xs text-white/30">No spam. We'll only email you when we launch.</p>
         </div>
       </section>
-    </>
+    </div>
   );
 }
