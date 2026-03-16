@@ -24,6 +24,8 @@ const ROUTES = [
   '/research/agentic-recordkeeping',
   '/research/convergence-stack',
   '/research/government-records',
+  '/whitepaper',
+  '/roadmap',
 ];
 
 async function prerender() {

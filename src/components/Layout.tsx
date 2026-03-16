@@ -78,6 +78,26 @@ export function Layout({ children }: { children: React.ReactNode }) {
             >
               Research
             </Link>
+            <Link
+              to="/whitepaper"
+              className={`text-sm font-medium transition-colors hover:text-arkova-charcoal dark:hover:text-white ${
+                location.pathname === '/whitepaper'
+                  ? 'text-arkova-steel dark:text-white'
+                  : 'text-arkova-slate dark:text-arkova-steel-light/70'
+              }`}
+            >
+              Whitepaper
+            </Link>
+            <Link
+              to="/roadmap"
+              className={`text-sm font-medium transition-colors hover:text-arkova-charcoal dark:hover:text-white ${
+                location.pathname === '/roadmap'
+                  ? 'text-arkova-steel dark:text-white'
+                  : 'text-arkova-slate dark:text-arkova-steel-light/70'
+              }`}
+            >
+              Roadmap
+            </Link>
           </div>
 
           <div className="hidden items-center gap-3 md:flex">
@@ -217,6 +237,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     className="text-sm text-arkova-slate dark:text-arkova-steel-light/50 transition-colors hover:text-arkova-charcoal dark:hover:text-white"
                   >
                     Research
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/whitepaper"
+                    className="text-sm text-arkova-slate dark:text-arkova-steel-light/50 transition-colors hover:text-arkova-charcoal dark:hover:text-white"
+                  >
+                    Whitepaper
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/roadmap"
+                    className="text-sm text-arkova-slate dark:text-arkova-steel-light/50 transition-colors hover:text-arkova-charcoal dark:hover:text-white"
+                  >
+                    Roadmap
                   </Link>
                 </li>
                 <li>
