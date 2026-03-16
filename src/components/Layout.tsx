@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import {
   Linkedin,
   Twitter,
+  Youtube,
   Moon,
   Sun,
   Menu,
@@ -202,13 +203,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   <Linkedin className="h-4 w-4" />
                 </a>
                 <a
-                  href="https://x.com/arkaboratory"
+                  href="https://x.com/arkovatech"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex h-9 w-9 items-center justify-center rounded-lg bg-arkova-frost dark:bg-white/5 text-arkova-slate dark:text-arkova-steel-light/60 transition-colors hover:bg-arkova-ice dark:hover:bg-white/10 hover:text-arkova-charcoal dark:hover:text-white"
                   aria-label="X / Twitter"
                 >
                   <Twitter className="h-4 w-4" />
+                </a>
+                <a
+                  href="https://www.youtube.com/channel/UCTTDFFSLxl85omCeJ9DBvrg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-arkova-frost dark:bg-white/5 text-arkova-slate dark:text-arkova-steel-light/60 transition-colors hover:bg-arkova-ice dark:hover:bg-white/10 hover:text-arkova-charcoal dark:hover:text-white"
+                  aria-label="YouTube"
+                >
+                  <Youtube className="h-4 w-4" />
                 </a>
               </div>
             </div>
