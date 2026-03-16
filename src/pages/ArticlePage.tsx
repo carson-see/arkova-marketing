@@ -53,7 +53,7 @@ function ArticleJsonLd({ article }: { article: Article }) {
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Arkova Technologies, Inc.',
+      name: 'Arkova',
       url: 'https://arkova.ai',
       logo: {
         '@type': 'ImageObject',
@@ -316,8 +316,13 @@ export default function ArticlePage() {
                 />
               )}
               <div>
-                <div className="font-medium text-arkova-charcoal dark:text-white">
+                <div className="flex items-center gap-2 font-medium text-arkova-charcoal dark:text-white">
                   {article.author.name}
+                  {article.author.linkedin && (
+                    <a href={article.author.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${article.author.name} on LinkedIn`} className="text-arkova-steel hover:text-arkova-ocean transition-colors">
+                      <Linkedin className="h-3.5 w-3.5" />
+                    </a>
+                  )}
                 </div>
                 <div className="text-sm text-arkova-slate dark:text-arkova-steel-light/50">
                   {article.author.title}
@@ -364,8 +369,13 @@ export default function ArticlePage() {
                   />
                 )}
                 <div>
-                  <div className="text-sm font-medium text-arkova-charcoal dark:text-white">
+                  <div className="flex items-center gap-2 text-sm font-medium text-arkova-charcoal dark:text-white">
                     Written by {article.author.name}
+                    {article.author.linkedin && (
+                      <a href={article.author.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${article.author.name} on LinkedIn`} className="text-arkova-steel hover:text-arkova-ocean transition-colors">
+                        <Linkedin className="h-3.5 w-3.5" />
+                      </a>
+                    )}
                   </div>
                   <div className="text-xs text-arkova-slate dark:text-arkova-steel-light/50">
                     {article.author.title} at Arkova

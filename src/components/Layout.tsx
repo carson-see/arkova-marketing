@@ -264,7 +264,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </div>
 
           <div className="mt-12 border-t border-arkova-ice/60 dark:border-white/5 pt-8 text-center text-xs text-arkova-slate/60 dark:text-arkova-steel-light/30">
-            &copy; {new Date().getFullYear()} Arkova Technologies, Inc. All rights reserved.
+            &copy; {new Date().getFullYear()} Arkova All rights reserved.
           </div>
         </div>
       </footer>

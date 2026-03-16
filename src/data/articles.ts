@@ -189,7 +189,7 @@ export const ARTICLES: Article[] = [
           { type: 'text', value: 'There\'s a crucial distinction between "logged" and "verifiable." A logged action is recorded somewhere — in a database, a file, a vendor\'s system. A verifiable action is independently provable — anyone can confirm it happened, when it happened, and that the record is intact.' },
           { type: 'text', value: 'SHA-256 fingerprinting means the document or action data never leaves your system. Only a mathematical fingerprint — a 64-character string derived from the data — gets anchored. You can\'t reverse-engineer the data from the fingerprint. But if someone gives you the data and the fingerprint, you can verify they match in milliseconds.' },
           { type: 'text', value: 'Bitcoin\'s network serves as a trust anchor — not because of cryptocurrency speculation, but because it\'s a globally distributed, append-only timestamp ledger that no single entity controls. When a fingerprint is embedded in a block, the entire network\'s hash rate secures it. Altering it would require rewriting the chain, which is physically impractical at 900+ exahashes per second.' },
-          { type: 'quote', quote: 'The goal isn\'t to put records on a blockchain. The goal is to make records independently verifiable without trusting any single institution — including us.', attribution: 'Carson Seeger', role: 'CEO, Arkova Technologies' },
+          { type: 'quote', quote: 'The goal isn\'t to put records on a blockchain. The goal is to make records independently verifiable without trusting any single institution — including us.', attribution: 'Carson Seeger', role: 'CEO, Arkova' },
         ],
       },
       {
@@ -245,7 +245,7 @@ export const ARTICLES: Article[] = [
         blocks: [
           { type: 'text', value: '"Blockchain" became a punchline somewhere between the third NFT ape collection and the collapse of FTX. The skepticism is earned. An entire industry spent three years building speculative instruments on top of technology that was supposed to be about trust and transparency.' },
           { type: 'text', value: 'But the underlying technology — append-only distributed ledgers, cryptographic hashing, proof-of-work consensus — is mathematically sound. It didn\'t stop working because someone built a bad exchange on top of it. TCP/IP didn\'t become less useful because Pets.com failed.' },
-          { type: 'quote', quote: 'Dismissing cryptographic anchoring because of crypto speculation is like dismissing the internet because Pets.com failed.', attribution: 'Carson Seeger', role: 'CEO, Arkova Technologies' },
+          { type: 'quote', quote: 'Dismissing cryptographic anchoring because of crypto speculation is like dismissing the internet because Pets.com failed.', attribution: 'Carson Seeger', role: 'CEO, Arkova' },
           { type: 'text', value: 'The question isn\'t whether the technology works. The question is what it\'s for. And the answer is becoming clear: it\'s infrastructure for proving data integrity in a world where AI makes everything easy to fabricate.' },
         ],
       },
@@ -385,7 +385,7 @@ export const ARTICLES: Article[] = [
           { type: 'text', value: 'Privacy compliance isn\'t a feature added after the architecture was designed — it\'s the architecture. The strongest privacy architecture is one where sensitive data never enters the system in the first place.' },
           { type: 'text', value: 'FERPA compliance for education records: no student education records are processed on any external server. Fingerprinting happens on the institution\'s own infrastructure. Only a mathematical hash — which cannot be reversed to recover the original data — ever leaves the institution\'s network.' },
           { type: 'text', value: 'HIPAA compliance for healthcare credentials: the same architecture applies. A nursing license can be verified without exposing the nurse\'s personal information, education history, or disciplinary record. The verification confirms the license is valid — nothing more.' },
-          { type: 'quote', quote: 'The strongest privacy architecture is one where sensitive data never enters the system in the first place. We don\'t protect your documents by encrypting them on our servers — we protect them by never having them.', attribution: 'Carson Seeger', role: 'CEO, Arkova Technologies' },
+          { type: 'quote', quote: 'The strongest privacy architecture is one where sensitive data never enters the system in the first place. We don\'t protect your documents by encrypting them on our servers — we protect them by never having them.', attribution: 'Carson Seeger', role: 'CEO, Arkova' },
           { type: 'text', value: 'The FedRAMP path is straightforward precisely because the architecture is inherently privacy-preserving. There\'s no sensitive data to protect on Arkova\'s infrastructure — because it was never there.' },
         ],
       },

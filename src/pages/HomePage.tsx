@@ -25,6 +25,7 @@ import {
   Sparkles,
   Brain,
   ScanSearch,
+  Linkedin,
 } from 'lucide-react';
 import { Section } from '../components/Section';
 
@@ -360,9 +361,9 @@ export default function HomePage() {
           </div>
           <div className="grid gap-10 md:grid-cols-3">
             {[
-              { name: 'Carson', title: 'Founder & CEO', bio: 'Over a decade in technical product and project management, working with distressed teams under tight regulatory deadlines.', photo: '/team-carson.png' },
-              { name: 'Sarah', title: 'Founder & COO', bio: '20 years experience as a Product / Program Manager in FMCG. Launched over 1,000 SKUs to market.', photo: '/team-sarah.png' },
-              { name: 'Yaacov', title: 'Founder & Advisor', bio: '20 years Research & Data Science experience. Senior Member of the National Academy of Inventors.', photo: '/team-yaacov.png' },
+              { name: 'Carson', title: 'Founder & CEO', bio: 'Over a decade in technical product and project management, working with distressed teams under tight regulatory deadlines.', photo: '/team-carson.png', profileUrl: 'https://www.linkedin.com/in/carson-s-8b41061a/', profileType: 'linkedin' as const },
+              { name: 'Sarah', title: 'Founder & COO', bio: '20 years experience as a Product / Program Manager in FMCG. Launched over 1,000 SKUs to market.', photo: '/team-sarah.png', profileUrl: 'https://www.linkedin.com/in/sljrushton/', profileType: 'linkedin' as const },
+              { name: 'Yaacov', title: 'Founder & Advisor', bio: '20 years Research & Data Science experience. Senior Member of the National Academy of Inventors.', photo: '/team-yaacov.png', profileUrl: 'https://scholar.google.com/citations?user=MUGWLDoAAAAJ&hl=en', profileType: 'scholar' as const },
             ].map((member) => (
               <div key={member.name} className="text-center">
                 <div className="mx-auto mb-5 h-32 w-32 overflow-hidden rounded-2xl border-2 border-arkova-ice/60 dark:border-white/10 shadow-card-rest">
@@ -371,6 +372,20 @@ export default function HomePage() {
                 <h3 className="text-lg font-bold text-arkova-charcoal dark:text-white">{member.name}</h3>
                 <p className="mb-2 text-sm font-medium text-arkova-steel">{member.title}</p>
                 <p className="text-sm leading-relaxed text-arkova-slate dark:text-arkova-steel-light/60">{member.bio}</p>
+                <a
+                  href={member.profileUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-arkova-steel transition-colors hover:text-arkova-ocean"
+                  aria-label={`${member.name} on ${member.profileType === 'linkedin' ? 'LinkedIn' : 'Google Scholar'}`}
+                >
+                  {member.profileType === 'linkedin' ? (
+                    <Linkedin className="h-4 w-4" />
+                  ) : (
+                    <GraduationCap className="h-4 w-4" />
+                  )}
+                  {member.profileType === 'linkedin' ? 'LinkedIn' : 'Google Scholar'}
+                </a>
               </div>
             ))}
           </div>
