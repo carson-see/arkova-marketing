@@ -50,9 +50,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-arkova-charcoal font-sans transition-colors duration-300">
+    <div className="min-h-screen bg-arkova-mist dark:bg-arkova-charcoal font-sans transition-colors duration-300">
       {/* ═══ NAV ═══ */}
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-arkova-ice/60 dark:border-white/5 bg-white/80 dark:bg-arkova-charcoal/80 backdrop-blur-xl">
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-arkova-ice/60 dark:border-white/5 bg-arkova-mist/80 dark:bg-arkova-charcoal/80 backdrop-blur-xl">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
           <Link to="/" className="flex items-center gap-2.5">
             <img src={arkovaLogo} alt="Arkova" className="h-10 w-auto dark:brightness-150 dark:contrast-90" />
@@ -124,7 +124,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         </div>
 
         {mobileMenuOpen && (
-          <div className="border-t border-arkova-ice/60 dark:border-white/5 bg-white dark:bg-arkova-charcoal px-6 py-4 md:hidden">
+          <div className="border-t border-arkova-ice/60 dark:border-white/5 bg-arkova-mist dark:bg-arkova-charcoal px-6 py-4 md:hidden">
             {HOME_SECTIONS.map((label) => (
               <button
                 key={label}
@@ -156,7 +156,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       {children}
 
       {/* ═══ FOOTER ═══ */}
-      <footer className="border-t border-arkova-ice/60 dark:border-white/5 bg-white dark:bg-arkova-charcoal px-6 py-16">
+      <footer className="border-t border-arkova-ice/60 dark:border-white/5 bg-arkova-frost dark:bg-arkova-charcoal px-6 py-16">
         <div className="mx-auto max-w-5xl">
           <div className="grid gap-12 md:grid-cols-4">
             <div className="md:col-span-1">

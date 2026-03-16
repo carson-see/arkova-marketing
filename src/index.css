@@ -10,7 +10,7 @@
   }
 
   body {
-    @apply bg-white text-arkova-charcoal;
+    @apply bg-arkova-mist text-arkova-charcoal;
     font-feature-settings: 'ss01' on, 'ss02' on;
   }
 
