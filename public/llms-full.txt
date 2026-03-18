@@ -1,0 +1,192 @@
+# Arkova
+
+> Arkova is a privacy-first document verification platform. It creates tamper-proof cryptographic fingerprints of documents entirely in the user's browser (SHA-256 via Web Crypto API) and anchors them to a permanent public network. Documents never leave the user's device.
+
+## About
+
+Arkova Technologies, Inc. builds infrastructure for verifiable credentials. Organizations use Arkova to issue, anchor, and verify academic degrees, professional certifications, legal documents, and any digital file. The platform is designed for both human users and AI agents that need machine-verifiable, tamper-proof, independently auditable records.
+
+- Website: https://arkova.ai
+- App: https://app.arkova.ai
+- Contact: hello@arkova.ai
+- LinkedIn: https://www.linkedin.com/company/arkovatech
+
+## How It Works
+
+1. **Upload:** User selects a document in their browser.
+2. **Fingerprint:** A SHA-256 fingerprint is computed client-side (document bytes never leave the device).
+3. **Anchor:** The fingerprint is anchored to a permanent public network with an immutable timestamp.
+4. **Verify:** Anyone can verify the document by re-computing the fingerprint and checking it against the public record. No account required.
+
+## Capabilities
+
+- Client-side SHA-256 cryptographic fingerprinting (Web Crypto API)
+- Public verification via shareable links and QR codes (no login required)
+- AI-powered credential metadata extraction and classification
+- Verification API (REST) with batch processing (up to 100 per request)
+- PDF proof certificates with full audit trails
+- Bulk CSV credential anchoring for organizations
+- Organization management with role-based access
+- Credential templates for standardized issuance
+- Webhook notifications for real-time event delivery
+- Downloadable JSON proof packages
+
+## Research & Insights
+
+Arkova publishes analysis on document verification, compliance infrastructure, and digital trust.
+
+- Research Index: https://arkova.ai/research
+- [Anchoring Compliance to Bitcoin](https://arkova.ai/research/anchoring-compliance-bitcoin) — How proof-of-work networks transform enterprise compliance from vendor promises to cryptographic proof. Covers SOX, ESIGN, UETA, eIDAS, and real-world fraud cases.
+- [Agentic Recordkeeping](https://arkova.ai/research/agentic-recordkeeping) — Why autonomous AI agents need verifiable audit trails. Traditional logs were built for humans; AI agents need cryptographic proof.
+- [The Convergence Stack](https://arkova.ai/research/convergence-stack) — Why blockchain + AI is infrastructure, not hype. AI generates content at superhuman speed. Blockchain proves it existed.
+- [Modernizing Government Records](https://arkova.ai/research/government-records) — Government verification runs on phone calls and faxes. Cryptographic anchoring offers instant, independent, cross-jurisdiction proof.
+- [The Real Cost of Audit Verification](https://arkova.ai/research/real-cost-of-audit-verification) — Audit fees average $3M but internal costs are 2-3x that. How blockchain and AI reduce 1,000+ hours per year on evidence collection.
+
+## Verification API (Coming Soon)
+
+> The Verification API is under development and not yet publicly available. The endpoints below document the planned interface.
+
+Base URL: `https://app.arkova.ai/api/v1`
+
+### Verify a Credential
+
+```
+GET /verify/:publicId
+```
+
+Returns verification status and metadata for a credential by its public identifier.
+
+**Response fields:**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| verified | boolean | Whether the credential is verified on the network |
+| status | string | ACTIVE, REVOKED, SUPERSEDED, or EXPIRED |
+| issuer_name | string | Organization that issued the credential |
+| credential_type | string | DEGREE, CERTIFICATE, LICENSE, etc. |
+| issued_date | string or null | ISO 8601 issue date |
+| expiry_date | string or null | ISO 8601 expiry date |
+| anchor_timestamp | string | ISO 8601 timestamp when anchored |
+| record_uri | string | Canonical verification URL |
+
+### Verify by Fingerprint
+
+```
+POST /verify-anchor
+Content-Type: application/json
+
+{ "fingerprint": "<64-char hex SHA-256 fingerprint>" }
+```
+
+Accepts a document's SHA-256 fingerprint and returns whether it matches an anchored record.
+
+### Search Credentials
+
+```
+GET /verify/search?q=<query>&max_results=<n>
+```
+
+Semantic search across verified credentials using natural language.
+
+## Authentication
+
+- **API Key:** Pass via `X-API-Key` header. Obtain at https://app.arkova.ai/settings/api-keys
+- **OAuth 2.0:** Bearer token for enterprise integrations
+- **Public verification:** No authentication required for read-only verification lookups
+
+## Rate Limits
+
+| Tier | Limit |
+|------|-------|
+| Anonymous | 100 req/min per IP |
+| Free API key | 1,000 req/min |
+| Batch endpoints | 10 req/min per key |
+
+Rate limit headers (`X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`) included on every response. HTTP 429 with `Retry-After` on excess.
+
+## MCP Server (Coming Soon)
+
+> The MCP server is under development and not yet deployed. The tools below document the planned interface.
+
+**Endpoint:** TBD (Cloudflare Workers)
+**Transport:** Streamable HTTP
+
+### Planned Tools
+
+- `verify_credential` — Verify a credential by public ID. Input: `{ "public_id": "string" }`
+- `search_credentials` — Search credentials by natural language query. Input: `{ "query": "string", "max_results": number }`
+
+## Use Cases
+
+- **Universities:** Verify degrees, transcripts, and academic certificates
+- **Professional bodies:** Anchor and verify professional licenses and certifications
+- **Legal:** Timestamp contracts, patents, and compliance documents
+- **HR/ATS systems:** Programmatic credential verification via API
+- **AI agents:** Machine-verifiable record lookup via MCP or REST API
+
+## Privacy Model
+
+- Documents are fingerprinted entirely in the user's browser using SHA-256
+- Document bytes never leave the user's device — only the cryptographic fingerprint is transmitted
+- Recipient identifiers are always anonymized — raw PII is never stored or returned
+- The platform cannot access, read, or reconstruct original documents from fingerprints
+
+## Pricing
+
+Free tier available. Request early access at https://arkova.ai.
+
+## Structured Data
+
+Arkova provides Organization, SoftwareApplication, FAQPage, and Article schema markup at https://arkova.ai for search engine and AI system consumption.
+
+## Full Whitepaper: The Universal Verification Layer
+
+By Carson Seeger & Sarah Rushton, March 2026
+
+### The Attestation Challenge
+
+Audit costs and expectations keep rising while evidence remains hard to trust across systems and borders. Public-company audit fees increased 6.4% in 2023 to an average of about $3.01 million per enterprise. Regulations including Sarbanes-Oxley (SOX), ESIGN, UETA, and eIDAS are raising the bar for retention, tamper evidence, and cross-border compatibility.
+
+Verification gaps show up in multiple markets. In healthcare, Operation Nightingale uncovered over 7,600 fraudulent nursing diplomas used to obtain professional licenses across 47+ states. In hiring, surveys indicate a majority of American workers have misrepresented something on a resume. These failures share a common root: verification processes that rely on the issuer's cooperation rather than independent mathematical proof.
+
+### Technical Architecture
+
+Arkova adds a portable proof layer to existing systems. Record content remains in the customer's systems or on user devices. Arkova receives only cryptographic fingerprints and structured metadata required for verification.
+
+1. Hash and timestamp events: SHA-256 fingerprint computed in the user's browser via Web Crypto API.
+2. Anchor the proof to Bitcoin: OP_RETURN transaction with ARKV protocol prefix creates a public, tamper-evident reference.
+3. Keep documents in existing storage: Files remain in your DMS, e-signature tool, or student information system.
+4. Provide a public verification page: Shareable link and QR code for independent validation.
+
+### Verification API (Frozen Schema)
+
+Single verification: GET /api/v1/verify/:publicId
+Batch verification: POST /api/v1/verify/batch (up to 100 per request)
+Usage tracking: GET /api/v1/usage
+
+Response fields: verified (boolean), status (ACTIVE/REVOKED/SUPERSEDED/EXPIRED), issuer_name, credential_type, issued_date, expiry_date, anchor_timestamp, network_receipt_id, record_uri.
+
+### Agentic Verification Layer
+
+MCP server exposes verify_credential and search_credentials tools for AI agents. Agent-to-agent trust via shared Bitcoin anchor. Every verification call logged with timestamp, querying agent ID, and result.
+
+### Compliance Alignment
+
+SOX/PCAOB: Bitcoin-anchored audit trails, immutable event timelines.
+ESIGN/UETA: Lifecycle tracking for signed documents, cross-vendor evidence.
+eIDAS: Jurisdiction-aware metadata, timestamped proofs portable across borders.
+FERPA: Client-side processing — documents never leave the device.
+EU AI Act: Traceability for every AI-assisted verification decision.
+
+### Competitive Differentiation
+
+Arkova vs Workiva: Public, portable proofs that counterparties verify without Workiva.
+Arkova vs DocuSign: Cross-vendor signature evidence layer.
+Arkova vs Interfolio: Neutral proof layer so employers verify independently.
+
+### About the Team
+
+Carson Seeger — Founder & CEO. Over a decade in technical product management under regulatory pressure.
+Sarah Rushton — Founder & COO. 20 years launching products through compliance-heavy supply chains.
+Dr. Yaacov Petscher — Founder & Advisor. 20 years Research & Data Science. Senior Member of the National Academy of Inventors.
+Dr. Periwinkle Doerfler — Technical Advisor. Security architecture review.

@@ -35,26 +35,31 @@ const ROUTES = [
     path: '/research/anchoring-compliance-bitcoin',
     title: 'Anchoring Compliance to Bitcoin — Arkova Research',
     description: 'How proof-of-work networks can transform enterprise compliance from vendor promises to cryptographic proof. By Carson Seeger.',
+    article: { author: 'Carson Seeger', datePublished: '2025-11-21', dateModified: '2025-11-21' },
   },
   {
     path: '/research/agentic-recordkeeping',
     title: 'Agentic Recordkeeping: Why Autonomous AI Needs Verifiable Audit Trails — Arkova Research',
     description: 'Traditional audit logs were built for humans. AI agents need cryptographic proof. Exploring the verification infrastructure gap.',
+    article: { author: 'Carson Seeger', datePublished: '2026-01-15', dateModified: '2026-01-15' },
   },
   {
     path: '/research/convergence-stack',
     title: 'The Convergence Stack: Why Blockchain + AI Is Infrastructure, Not Hype — Arkova Research',
     description: 'AI generates content at superhuman speed. Blockchain proves it existed. The real intersection is simpler than the hype suggests.',
+    article: { author: 'Carson Seeger', datePublished: '2026-02-12', dateModified: '2026-02-12' },
   },
   {
     path: '/research/government-records',
     title: 'Modernizing Government Records: Cryptographic Verification for Public Trust — Arkova Research',
     description: 'Government verification runs on phone calls and faxes. Cryptographic anchoring offers instant, independent, cross-jurisdiction proof.',
+    article: { author: 'Carson Seeger', datePublished: '2026-03-10', dateModified: '2026-03-10' },
   },
   {
     path: '/research/real-cost-of-audit-verification',
     title: 'The Real Cost of Audit Verification — Arkova Research',
     description: 'Audit fees average $3M but internal costs are 2-3x that. How blockchain and AI reduce the 1,000+ hours per year spent on evidence collection.',
+    article: { author: 'Sarah Rushton', datePublished: '2026-03-16', dateModified: '2026-03-16' },
   },
   {
     path: '/whitepaper',
@@ -132,6 +137,48 @@ function injectMeta(html, route) {
   return html;
 }
 
+function buildArticleSchema(route) {
+  if (!route.article) return '';
+  const baseUrl = 'https://arkova.ai';
+  const url = baseUrl + route.path;
+  const headline = route.title.replace(' — Arkova Research', '');
+  const authorLinkedIn = route.article.author === 'Sarah Rushton'
+    ? 'https://www.linkedin.com/in/sljrushton/'
+    : 'https://www.linkedin.com/in/carson-s-8b41061a/';
+
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline,
+    description: route.description,
+    url,
+    datePublished: route.article.datePublished,
+    dateModified: route.article.dateModified,
+    author: {
+      '@type': 'Person',
+      name: route.article.author,
+      sameAs: [authorLinkedIn],
+    },
+    publisher: { '@id': 'https://arkova.ai/#org' },
+    mainEntityOfPage: url,
+    image: baseUrl + '/arkova-logo.png',
+    articleSection: 'Research',
+  };
+
+  const slug = route.path.split('/').pop();
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
+      { '@type': 'ListItem', position: 2, name: 'Research', item: baseUrl + '/research' },
+      { '@type': 'ListItem', position: 3, name: headline, item: url },
+    ],
+  };
+
+  return `\n    <script type="application/ld+json">\n    ${JSON.stringify(articleSchema, null, 2).replace(/\n/g, '\n    ')}\n    </script>\n    <script type="application/ld+json">\n    ${JSON.stringify(breadcrumbSchema, null, 2).replace(/\n/g, '\n    ')}\n    </script>`;
+}
+
 async function prerender() {
   const distPath = path.resolve(__dirname, 'dist');
   const templatePath = path.resolve(distPath, 'index.html');
@@ -171,6 +218,12 @@ async function prerender() {
 
     // Inject per-page meta tags (title, description, canonical, OG, Twitter)
     html = injectMeta(html, route);
+
+    // Inject Article + BreadcrumbList JSON-LD for research articles
+    const articleSchemas = buildArticleSchema(route);
+    if (articleSchemas) {
+      html = html.replace('</head>', articleSchemas + '\n  </head>');
+    }
 
     let outFile;
     if (route.path === '/') {
