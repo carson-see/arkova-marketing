@@ -71,6 +71,16 @@ const ROUTES = [
     title: 'Contact — Arkova',
     description: 'Get in touch with the Arkova team. Request early access, discuss enterprise deployments, or explore partnership opportunities.',
   },
+  {
+    path: '/privacy',
+    title: 'Privacy Policy — Arkova',
+    description: 'How Arkova protects your data. Documents never leave your device. Learn about our cryptographic fingerprinting privacy model.',
+  },
+  {
+    path: '/terms',
+    title: 'Terms of Service — Arkova',
+    description: 'Terms of service for the Arkova document verification platform. Governing usage, privacy guarantees, and verification API access.',
+  },
 ];
 
 function injectMeta(html, route) {

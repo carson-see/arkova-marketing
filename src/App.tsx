@@ -6,6 +6,8 @@ import ArticlePage from './pages/ArticlePage';
 import WhitepaperPage from './pages/WhitepaperPage';
 import RoadmapPage from './pages/RoadmapPage';
 import ContactPage from './pages/ContactPage';
+import PrivacyPage from './pages/PrivacyPage';
+import TermsPage from './pages/TermsPage';
 
 export default function App() {
   return (
@@ -17,6 +19,8 @@ export default function App() {
         <Route path="/whitepaper" element={<WhitepaperPage />} />
         <Route path="/roadmap" element={<RoadmapPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
+        <Route path="/terms" element={<TermsPage />} />
       </Routes>
     </Layout>
   );
