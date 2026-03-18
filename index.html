@@ -29,17 +29,28 @@
     <meta name="author" content="Arkova Technologies, Inc." />
     <meta name="keywords" content="document verification, credential verification, tamper-proof records, cryptographic fingerprinting, privacy-first, AI credential processing, agentic record keeping, verification API, proof certificates, bulk credential anchoring" />
 
-    <!-- JSON-LD: Organization -->
+    <!-- JSON-LD: Organization (enhanced with founders) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Organization",
+      "@id": "https://arkova.ai/#org",
       "name": "Arkova",
       "legalName": "Arkova Technologies, Inc.",
       "url": "https://arkova.ai",
-      "logo": "https://arkova.ai/arkova-logo.png",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://arkova.ai/arkova-logo.png",
+        "width": 512,
+        "height": 512
+      },
       "description": "Arkova creates tamper-proof, independently verifiable records of your documents using cryptographic fingerprinting. Your files never leave your device.",
       "foundingDate": "2025",
+      "founder": [
+        { "@type": "Person", "name": "Carson Seeger", "jobTitle": "Founder & CEO", "sameAs": ["https://www.linkedin.com/in/carson-s-8b41061a/"] },
+        { "@type": "Person", "name": "Sarah Rushton", "jobTitle": "Founder & COO", "sameAs": ["https://www.linkedin.com/in/sljrushton/"] },
+        { "@type": "Person", "name": "Dr. Yaacov Petscher", "jobTitle": "Founder & Advisor", "sameAs": ["https://scholar.google.com/citations?user=MUGWLDoAAAAJ&hl=en"] }
+      ],
       "sameAs": [
         "https://www.linkedin.com/company/arkovatech",
         "https://x.com/arkovatech",
@@ -49,25 +60,29 @@
       "contactPoint": {
         "@type": "ContactPoint",
         "email": "hello@arkova.ai",
-        "contactType": "sales"
-      }
+        "contactType": "customer support",
+        "availableLanguage": "English"
+      },
+      "knowsAbout": ["Document verification", "Credential verification", "Cryptographic fingerprinting", "Digital trust infrastructure", "Agentic recordkeeping"]
     }
     </script>
 
-    <!-- JSON-LD: SoftwareApplication -->
+    <!-- JSON-LD: SoftwareApplication (with AggregateOffer) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "Arkova",
+      "url": "https://arkova.ai",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
       "description": "Privacy-first document verification platform. Create tamper-proof records using cryptographic fingerprinting — documents never leave your device. AI-powered credential processing, public verification, and a Verification API for programmatic access.",
       "offers": {
-        "@type": "Offer",
-        "price": "0",
+        "@type": "AggregateOffer",
+        "lowPrice": "0",
+        "highPrice": "99",
         "priceCurrency": "USD",
-        "description": "Free tier available — Request Early Access"
+        "offerCount": 3
       },
       "featureList": [
         "Client-side cryptographic fingerprinting (SHA-256)",
@@ -80,11 +95,7 @@
         "Webhook notifications",
         "Agentic record keeping infrastructure"
       ],
-      "creator": {
-        "@type": "Organization",
-        "name": "Arkova Technologies, Inc.",
-        "url": "https://arkova.ai"
-      }
+      "creator": { "@id": "https://arkova.ai/#org" }
     }
     </script>
 
@@ -146,7 +157,7 @@
     }
     </script>
 
-    <!-- JSON-LD: WebSite -->
+    <!-- JSON-LD: WebSite (with SearchAction) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -155,11 +166,78 @@
       "alternateName": "Arkova Technologies",
       "url": "https://arkova.ai",
       "description": "Privacy-first document verification platform using cryptographic fingerprinting.",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Arkova Technologies, Inc.",
-        "url": "https://arkova.ai"
+      "publisher": { "@id": "https://arkova.ai/#org" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://app.arkova.ai/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
       }
+    }
+    </script>
+
+    <!-- JSON-LD: WebPage + speakable -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Arkova — Issue Once. Verify Forever.",
+      "url": "https://arkova.ai",
+      "description": "Arkova creates tamper-proof, independently verifiable records of your documents using cryptographic fingerprinting. Your files never leave your device.",
+      "isPartOf": { "@type": "WebSite", "url": "https://arkova.ai" },
+      "about": { "@type": "SoftwareApplication", "name": "Arkova" },
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "xpath": [
+          "/html/body//h1",
+          "/html/body//section[1]//p"
+        ]
+      },
+      "mainEntity": { "@id": "https://arkova.ai/#org" }
+    }
+    </script>
+
+    <!-- JSON-LD: Person — Carson Seeger -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Carson Seeger",
+      "jobTitle": "Founder & CEO",
+      "url": "https://arkova.ai/#team",
+      "worksFor": { "@id": "https://arkova.ai/#org" },
+      "sameAs": ["https://www.linkedin.com/in/carson-s-8b41061a/"],
+      "description": "A decade of rescuing distressed technical programs under regulatory pressure. Founder and CEO of Arkova.",
+      "knowsAbout": ["Document verification", "Compliance infrastructure", "Technical program management"]
+    }
+    </script>
+
+    <!-- JSON-LD: Person — Sarah Rushton -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Sarah Rushton",
+      "jobTitle": "Founder & COO",
+      "url": "https://arkova.ai/#team",
+      "worksFor": { "@id": "https://arkova.ai/#org" },
+      "sameAs": ["https://www.linkedin.com/in/sljrushton/"],
+      "description": "Over 20 years launching products through compliance-heavy supply chains. Co-founder and COO of Arkova.",
+      "knowsAbout": ["Product operations", "Supply chain compliance", "Documentation verification"]
+    }
+    </script>
+
+    <!-- JSON-LD: Person — Dr. Yaacov Petscher -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Dr. Yaacov Petscher",
+      "jobTitle": "Founder & Advisor",
+      "url": "https://arkova.ai/#team",
+      "worksFor": { "@id": "https://arkova.ai/#org" },
+      "sameAs": ["https://scholar.google.com/citations?user=MUGWLDoAAAAJ&hl=en"],
+      "description": "20 years Research & Data Science experience. Senior Member of the National Academy of Inventors.",
+      "knowsAbout": ["Research methodology", "Data science", "Academic credentialing", "Statistical analysis"]
     }
     </script>
 
