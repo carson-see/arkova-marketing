@@ -1,0 +1,22 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0f14"/>
+      <stop offset="50%" style="stop-color:#111820"/>
+      <stop offset="100%" style="stop-color:#0a0f14"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#82b8d0"/>
+      <stop offset="100%" style="stop-color:#5a9ab5"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="0" y="580" width="1200" height="4" fill="url(#accent)" opacity="0.6"/>
+  <circle cx="950" cy="200" r="180" fill="#82b8d0" opacity="0.04"/>
+  <circle cx="250" cy="450" r="120" fill="#82b8d0" opacity="0.03"/>
+  <text x="100" y="240" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="700" fill="#ffffff">Arkova</text>
+  <text x="100" y="330" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="400" fill="#82b8d0">Issue Once. Verify Forever.</text>
+  <text x="100" y="420" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="300" fill="#94a3b8">Privacy-first document verification using</text>
+  <text x="100" y="455" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="300" fill="#94a3b8">cryptographic fingerprinting. Documents never leave your device.</text>
+  <text x="100" y="540" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="500" fill="#82b8d0" opacity="0.7">arkova.ai</text>
+</svg>
