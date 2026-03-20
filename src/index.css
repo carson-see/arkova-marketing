@@ -10,41 +10,91 @@
   }
 
   body {
-    @apply bg-arkova-mist text-arkova-charcoal;
+    @apply bg-cyber-bg text-white;
     font-feature-settings: 'ss01' on, 'ss02' on;
   }
 
   ::selection {
-    @apply bg-arkova-steel/20 text-arkova-charcoal;
+    @apply bg-cyber-cyan/20 text-white;
   }
 }
 
 @layer components {
-  .bg-mesh-gradient {
-    background:
-      radial-gradient(ellipse 80% 50% at 20% 40%, rgba(130, 184, 208, 0.08) 0%, transparent 50%),
-      radial-gradient(ellipse 60% 80% at 80% 20%, rgba(219, 234, 241, 0.12) 0%, transparent 50%),
-      radial-gradient(ellipse 50% 60% at 50% 80%, rgba(130, 184, 208, 0.05) 0%, transparent 50%);
+  /* ─── Circuit board background pattern ─── */
+  .bg-circuit {
+    background-image:
+      linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+      radial-gradient(circle 1px at 50% 50%, rgba(0, 212, 255, 0.06) 0%, transparent 100%);
+    background-size: 40px 40px, 40px 40px, 80px 80px;
   }
 
-  .bg-mesh-dark {
-    background:
-      radial-gradient(ellipse 80% 50% at 20% 40%, rgba(130, 184, 208, 0.06) 0%, transparent 50%),
-      radial-gradient(ellipse 60% 80% at 80% 20%, rgba(47, 116, 149, 0.08) 0%, transparent 50%),
-      radial-gradient(ellipse 50% 60% at 50% 80%, rgba(130, 184, 208, 0.04) 0%, transparent 50%);
-  }
-
-  .bg-dot-pattern {
-    background-image: radial-gradient(circle, rgba(130, 184, 208, 0.15) 1px, transparent 1px);
+  .bg-circuit-dense {
+    background-image:
+      linear-gradient(rgba(0, 212, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 255, 0.05) 1px, transparent 1px);
     background-size: 24px 24px;
   }
 
+  /* ─── Mesh gradient for dark cyber backgrounds ─── */
+  .bg-mesh-gradient,
+  .bg-mesh-dark {
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 40%, rgba(0, 212, 255, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 80% at 80% 20%, rgba(0, 100, 180, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 60% at 50% 80%, rgba(0, 212, 255, 0.04) 0%, transparent 50%);
+  }
+
+  .bg-dot-pattern {
+    background-image: radial-gradient(circle, rgba(0, 212, 255, 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .bg-subtle-dots {
+    background-image: radial-gradient(circle, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  /* ─── Cyber glass card ─── */
   .glass-card {
-    @apply bg-white/70 backdrop-blur-xl border border-white/40;
+    @apply bg-cyber-bg-card/80 backdrop-blur-xl border border-cyber-cyan-border;
   }
 
   .glass-dark {
-    @apply bg-arkova-charcoal/80 backdrop-blur-xl border border-white/5;
+    @apply bg-cyber-bg-card/80 backdrop-blur-xl border border-cyber-cyan-border;
+  }
+
+  /* ─── Neon glow card ─── */
+  .cyber-card {
+    @apply relative rounded-2xl border border-cyber-cyan-border bg-cyber-bg-card/60 backdrop-blur-sm;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.05), inset 0 1px 0 rgba(0, 212, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+  .cyber-card:hover {
+    border-color: rgba(0, 212, 255, 0.4);
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.1), inset 0 1px 0 rgba(0, 212, 255, 0.15);
+    transform: translateY(-2px);
+  }
+
+  /* ─── Neon input ─── */
+  .cyber-input {
+    @apply w-full rounded-lg border border-cyber-cyan-border bg-cyber-bg/80 px-4 py-3 text-sm text-white placeholder:text-white/20;
+    transition: all 0.2s ease;
+  }
+  .cyber-input:focus {
+    @apply outline-none;
+    border-color: rgba(0, 212, 255, 0.6);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.15), inset 0 0 10px rgba(0, 212, 255, 0.05);
+  }
+
+  /* ─── Neon button ─── */
+  .cyber-btn {
+    @apply rounded-lg bg-gradient-to-r from-cyber-cyan to-cyber-cyan-dim px-8 py-3.5 text-sm font-semibold text-cyber-bg transition-all;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+  }
+  .cyber-btn:hover {
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.5), 0 0 80px rgba(0, 212, 255, 0.2);
+    transform: translateY(-1px);
   }
 
   .gradient-border {
@@ -56,7 +106,7 @@
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, rgba(130, 184, 208, 0.5), rgba(219, 234, 241, 0.2), rgba(130, 184, 208, 0.5));
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.5), rgba(0, 100, 180, 0.2), rgba(0, 212, 255, 0.5));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -64,25 +114,12 @@
     pointer-events: none;
   }
 
-  /* Subtle background texture — barely-visible dot grid for depth */
-  .bg-subtle-dots {
-    background-image: radial-gradient(circle, rgba(130, 184, 208, 0.06) 1px, transparent 1px);
-    background-size: 32px 32px;
-  }
-  .dark .bg-subtle-dots {
-    background-image: radial-gradient(circle, rgba(130, 184, 208, 0.03) 1px, transparent 1px);
-  }
-
-  /* Soft section dividers instead of hard borders */
   .section-divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(130, 184, 208, 0.25), transparent);
-  }
-  .dark .section-divider {
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.15), transparent);
   }
 
-  /* Scroll-triggered fade-in */
+  /* ─── Scroll-triggered fade-in ─── */
   .animate-in-view {
     opacity: 0;
     transform: translateY(24px);
@@ -93,7 +130,7 @@
     transform: translateY(0);
   }
 
-  /* Hero animated fingerprint visualization */
+  /* ─── Hero animated visualization ─── */
   .hero-viz {
     position: relative;
     width: 280px;
@@ -102,7 +139,7 @@
   .hero-viz-ring {
     position: absolute;
     border-radius: 50%;
-    border: 1px solid rgba(130, 184, 208, 0.2);
+    border: 1px solid rgba(0, 212, 255, 0.2);
     animation: hero-orbit 12s linear infinite;
   }
   .hero-viz-ring:nth-child(1) { inset: 0; animation-duration: 12s; }
@@ -113,10 +150,11 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #82b8d0;
+    background: #00d4ff;
     top: -3px;
     left: 50%;
     transform: translateX(-50%);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
   }
   .hero-viz-center {
     position: absolute;
@@ -125,27 +163,25 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: linear-gradient(135deg, rgba(130, 184, 208, 0.1), rgba(219, 234, 241, 0.15));
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 100, 180, 0.15));
     backdrop-filter: blur(8px);
-    border: 1px solid rgba(130, 184, 208, 0.2);
+    border: 1px solid rgba(0, 212, 255, 0.2);
   }
   @keyframes hero-orbit {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
   }
 
-  /* Step icon pulse animation */
   .step-icon-pulse {
     animation: step-pulse 3s ease-in-out infinite;
   }
   @keyframes step-pulse {
-    0%, 100% { transform: translateY(0); box-shadow: 0 0 0 0 rgba(130, 184, 208, 0.15); }
-    50% { transform: translateY(-4px); box-shadow: 0 8px 24px -4px rgba(130, 184, 208, 0.2); }
+    0%, 100% { transform: translateY(0); box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.15); }
+    50% { transform: translateY(-4px); box-shadow: 0 8px 24px -4px rgba(0, 212, 255, 0.2); }
   }
   .step-icon-pulse:nth-child(2) { animation-delay: 0.5s; }
   .step-icon-pulse:nth-child(3) { animation-delay: 1s; }
 
-  /* Connecting lines between steps */
   .step-connector {
     position: relative;
   }
@@ -156,10 +192,17 @@
     right: -24px;
     width: 48px;
     height: 2px;
-    background: linear-gradient(90deg, rgba(130, 184, 208, 0.3), rgba(130, 184, 208, 0.05));
+    background: linear-gradient(90deg, rgba(0, 212, 255, 0.3), rgba(0, 212, 255, 0.05));
   }
   @media (max-width: 768px) {
     .step-connector::after { display: none; }
+  }
+
+  /* ─── Glowing timeline bar ─── */
+  .timeline-glow-bar {
+    background: linear-gradient(180deg, rgba(0, 212, 255, 0.8), rgba(0, 212, 255, 0.3));
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4), 0 0 40px rgba(0, 212, 255, 0.2);
+    border-radius: 4px;
   }
 }
 

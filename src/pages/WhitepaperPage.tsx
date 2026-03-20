@@ -295,7 +295,7 @@ export default function WhitepaperPage() {
   "issued_date": "2025-05-15",
   "anchor_timestamp": "2025-05-16T09:12:44Z",
   "network_receipt_id": "b8e381df09ca404e...",
-  "record_uri": "https://app.arkova.io/verify/ARK-2025-00091"
+  "record_uri": "https://app.arkova.ai/verify/ARK-2025-00091"
 }`}</CodeBlock>
 
             <SubHeading>5.3 Rate limits</SubHeading>
@@ -326,13 +326,13 @@ export default function WhitepaperPage() {
             <SectionHeading id="ai-intelligence">7. AI-Powered Intelligence</SectionHeading>
             <P>Arkova's AI features enhance the user experience without blocking core verification. All AI features have manual fallback.</P>
 
-            <SubHeading>7.1 Smart extraction <InlineBadge color="amber">in progress</InlineBadge></SubHeading>
+            <SubHeading>7.1 Smart extraction <InlineBadge color="emerald">complete</InlineBadge></SubHeading>
             <P>AI-powered metadata extraction identifies credential types, issuers, dates, and key fields from PII-stripped metadata. Documents are processed entirely on the user's device — only PII-stripped structured metadata flows to the server. The provider abstraction layer supports hot-swappable AI backends.</P>
 
-            <SubHeading>7.2 Semantic search <InlineBadge color="amber">in progress</InlineBadge></SubHeading>
+            <SubHeading>7.2 Semantic search <InlineBadge color="emerald">complete</InlineBadge></SubHeading>
             <P>pgvector-powered semantic search enables natural language queries across the credential database. The embedding schema and infrastructure are deployed.</P>
 
-            <SubHeading>7.3 Anomaly detection <InlineBadge color="amber">in progress</InlineBadge></SubHeading>
+            <SubHeading>7.3 Anomaly detection <InlineBadge color="emerald">complete</InlineBadge></SubHeading>
             <P>AI-powered analysis flags inconsistencies — date logic violations, issuer mismatches, field inconsistencies — and generates integrity scores per credential. Never makes definitive fraud claims — scores and flags only.</P>
 
             {/* ═══ SECTION 8 ═══ */}

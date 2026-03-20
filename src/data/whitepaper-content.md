@@ -195,7 +195,7 @@ The API response schema is frozen once published. No field removals, type change
   "bitcoin_block": 204567,
   "network_receipt_id": "b8e381df09ca404e...",
   "merkle_proof_hash": "a1b2c3d4...",
-  "record_uri": "https://app.arkova.io/verify/ARK-2025-00091"
+  "record_uri": "https://app.arkova.ai/verify/ARK-2025-00091"
 }
 ```
 
@@ -476,10 +476,10 @@ Security architecture review.
 ## 16. Contact
 
 - **Website:** https://arkova.ai
-- **App:** https://app.arkova.io
+- **App:** https://app.arkova.ai
 - **Email:** hello@arkova.ai
 - **LinkedIn:** https://www.linkedin.com/company/arkovatech
-- **API Docs:** https://app.arkova.io/api/docs
+- **API Docs:** https://app.arkova.ai/api/docs
 - **MCP Server:** Available for Claude, GPT, and custom agents
 
 ---

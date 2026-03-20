@@ -1,6 +1,6 @@
 /**
- * Roadmap Page — sleek, high-level "at a glance" roadmap
- * with 3 phase cards connected by a timeline visual.
+ * Roadmap Page — Cyber-noir vertical timeline matching Stitch v1_4 design.
+ * Glowing phase indicators with neon bars.
  */
 
 import { ArrowRight, CheckCircle2, Clock, Circle } from 'lucide-react';
@@ -16,7 +16,7 @@ const PHASES = [
     description: 'Trustless credential verification for universities, HR, and compliance teams.',
     items: [
       'Client-side SHA-256 cryptographic fingerprinting',
-      'Bitcoin-anchored proof of existence and timing',
+      'Network-anchored proof of existence and timing',
       'Public verification pages with QR codes',
       'REST Verification API with batch processing',
       'AI-powered metadata extraction and classification',
@@ -25,7 +25,7 @@ const PHASES = [
       'Webhook notifications and event streaming',
     ],
     compliance: ['SOX', 'ESIGN', 'UETA', 'FERPA'],
-    color: 'steel' as const,
+    bars: 1,
   },
   {
     number: 'II',
@@ -43,7 +43,7 @@ const PHASES = [
       'AI-powered fraud detection and compliance reports',
     ],
     compliance: ['SOC 2 Type I', 'EU AI Act'],
-    color: 'ocean' as const,
+    bars: 2,
   },
   {
     number: 'III',
@@ -60,38 +60,14 @@ const PHASES = [
       'Platform licensing for agent providers',
     ],
     compliance: ['SOC 2 Type II', 'eIDAS', 'ETSI EN 319'],
-    color: 'deep' as const,
+    bars: 3,
   },
 ];
 
-const STATUS_STYLES = {
-  'In Progress': 'bg-arkova-steel/15 text-arkova-ocean dark:text-arkova-steel border border-arkova-steel/20',
-  Planned: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20',
-  Future: 'bg-arkova-slate/10 text-arkova-slate dark:text-arkova-steel-light/50 border border-arkova-slate/10',
-};
-
-const STATUS_ICONS = {
-  'In Progress': Clock,
-  Planned: Circle,
-  Future: Circle,
-};
-
-const COLOR_ACCENTS = {
-  steel: {
-    icon: 'from-arkova-steel/20 to-arkova-steel/5',
-    dot: 'bg-arkova-steel',
-    number: 'text-arkova-steel',
-  },
-  ocean: {
-    icon: 'from-arkova-ocean/20 to-arkova-steel/5',
-    dot: 'bg-arkova-ocean',
-    number: 'text-arkova-ocean dark:text-arkova-steel',
-  },
-  deep: {
-    icon: 'from-arkova-deep/20 to-arkova-ocean/5',
-    dot: 'bg-arkova-deep',
-    number: 'text-arkova-deep dark:text-arkova-steel-light/60',
-  },
+const STATUS_CONFIG = {
+  'In Progress': { color: 'text-cyber-cyan', bg: 'bg-cyber-cyan/15 border-cyber-cyan/30', icon: Clock },
+  Planned: { color: 'text-amber-400', bg: 'bg-amber-500/10 border-amber-500/20', icon: Circle },
+  Future: { color: 'text-white/40', bg: 'bg-white/5 border-white/10', icon: Circle },
 };
 
 export default function RoadmapPage() {
@@ -99,22 +75,19 @@ export default function RoadmapPage() {
     <>
       {/* ═══ HERO ═══ */}
       <section className="relative overflow-hidden px-6 pb-16 pt-28 md:pt-36">
-        <div className="absolute inset-0 bg-mesh-gradient dark:bg-mesh-dark" />
-        <div className="absolute inset-0 bg-subtle-dots" />
-        <div className="pointer-events-none absolute -top-20 -right-32 h-96 w-96 rounded-full bg-arkova-steel/5 dark:bg-arkova-steel/3 blur-3xl animate-float" />
+        <div className="absolute inset-0 bg-circuit" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_20%,rgba(0,212,255,0.06)_0%,transparent_60%)]" />
 
         <div className="relative mx-auto max-w-4xl text-center">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-arkova-steel opacity-0 animate-fade-up" style={{ animationDelay: '0.1s' }}>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan opacity-0 animate-fade-up" style={{ animationDelay: '0.1s' }}>
             Product Roadmap
           </p>
-          <h1 className="mb-6 text-3xl font-bold tracking-tight text-arkova-charcoal dark:text-white opacity-0 animate-fade-up md:text-5xl" style={{ animationDelay: '0.2s' }}>
-            Building the verification layer
-            <br />
-            <span className="bg-gradient-to-r from-arkova-steel to-arkova-ocean bg-clip-text text-transparent">
-              for the agentic economy
+          <h1 className="mb-6 text-3xl font-bold tracking-tight text-white opacity-0 animate-fade-up md:text-5xl" style={{ animationDelay: '0.2s' }}>
+            <span className="bg-gradient-to-r from-cyber-cyan to-cyber-teal bg-clip-text text-transparent">
+              Arkova Roadmap
             </span>
           </h1>
-          <p className="mx-auto max-w-2xl text-base text-arkova-slate dark:text-arkova-steel-light/60 opacity-0 animate-fade-up" style={{ animationDelay: '0.35s' }}>
+          <p className="mx-auto max-w-2xl text-base text-white/40 opacity-0 animate-fade-up" style={{ animationDelay: '0.35s' }}>
             From credential verification to institutional attestations to legally recognized e-signatures — a phased approach to trustless compliance infrastructure.
           </p>
         </div>
@@ -122,100 +95,100 @@ export default function RoadmapPage() {
 
       <div className="section-divider" />
 
-      {/* ═══ TIMELINE ═══ */}
+      {/* ═══ VERTICAL TIMELINE ═══ */}
       <section className="px-6 py-16 md:py-24">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-3xl">
+          {/* Timeline with glowing connector */}
+          <div className="relative">
+            {/* Vertical glowing line */}
+            <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-cyber-cyan/40 via-cyber-cyan/20 to-transparent md:left-1/2 md:-translate-x-px" />
 
-          {/* Desktop: horizontal timeline connector */}
-          <div className="hidden md:block relative mb-12">
-            <div className="absolute top-1/2 left-0 right-0 h-0.5 -translate-y-1/2">
-              <div className="h-full w-full bg-gradient-to-r from-arkova-steel/40 via-arkova-ocean/30 to-arkova-deep/20" />
-            </div>
-            <div className="relative flex justify-between px-[16%]">
-              {PHASES.map((phase) => (
-                <div key={phase.number} className="flex flex-col items-center">
-                  <div className={`h-4 w-4 rounded-full ${COLOR_ACCENTS[phase.color].dot} ring-4 ring-arkova-mist dark:ring-arkova-charcoal`} />
-                  <span className="mt-2 text-xs font-medium text-arkova-slate dark:text-arkova-steel-light/50">{phase.timeline}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+            <div className="space-y-16">
+              {PHASES.map((phase, i) => {
+                const config = STATUS_CONFIG[phase.status];
+                const StatusIcon = config.icon;
 
-          {/* Phase cards */}
-          <div className="grid gap-8 md:grid-cols-3">
-            {PHASES.map((phase, i) => {
-              const StatusIcon = STATUS_ICONS[phase.status];
-              return (
-                <div
-                  key={phase.number}
-                  className="group relative rounded-2xl border border-arkova-ice/60 dark:border-white/5 bg-white dark:bg-white/[0.03] p-8 shadow-card-rest dark:shadow-none transition-all hover:-translate-y-1 hover:shadow-card-hover dark:hover:bg-white/[0.05] opacity-0 animate-fade-up"
-                  style={{ animationDelay: `${0.1 + i * 0.15}s` }}
-                >
-                  {/* Mobile timeline dot */}
-                  <div className="md:hidden absolute -left-3 top-10">
-                    <div className={`h-3 w-3 rounded-full ${COLOR_ACCENTS[phase.color].dot}`} />
-                  </div>
-
-                  {/* Header */}
-                  <div className="mb-6 flex items-start justify-between">
-                    <div>
-                      <div className={`font-mono text-4xl font-bold ${COLOR_ACCENTS[phase.color].number}`}>{phase.number}</div>
-                      <div className="mt-1 text-xs font-medium text-arkova-slate dark:text-arkova-steel-light/50 md:hidden">{phase.timeline}</div>
+                return (
+                  <div
+                    key={phase.number}
+                    className="relative opacity-0 animate-fade-up"
+                    style={{ animationDelay: `${0.1 + i * 0.2}s` }}
+                  >
+                    {/* Timeline dot */}
+                    <div className="absolute left-8 -translate-x-1/2 top-0 md:left-1/2">
+                      <div className="h-4 w-4 rounded-full bg-cyber-cyan shadow-glow-md ring-4 ring-cyber-bg" />
                     </div>
-                    <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium ${STATUS_STYLES[phase.status]}`}>
-                      <StatusIcon className="h-3 w-3" />
-                      {phase.status}
-                    </span>
+
+                    {/* Card — alternates left/right on desktop */}
+                    <div className={`ml-16 md:ml-0 md:w-[calc(50%-2rem)] ${i % 2 === 0 ? 'md:mr-auto' : 'md:ml-auto'}`}>
+                      <div className="rounded-2xl border border-cyber-cyan-border bg-cyber-bg-card/60 p-8 transition-all hover:border-cyber-cyan/40 hover:shadow-neon">
+
+                        {/* Glowing phase bars (matching v1_4 design) */}
+                        <div className="mb-6 flex gap-2">
+                          {Array.from({ length: phase.bars }).map((_, j) => (
+                            <div key={j} className="h-16 w-5 timeline-glow-bar" />
+                          ))}
+                        </div>
+
+                        {/* Status badge */}
+                        <div className="mb-4 flex items-center justify-between">
+                          <span className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium ${config.bg} ${config.color}`}>
+                            <StatusIcon className="h-3 w-3" />
+                            {phase.status === 'In Progress' ? 'COMPLETED' : phase.status === 'Planned' ? 'IN PROGRESS' : 'UPCOMING'}
+                          </span>
+                          <span className="text-xs font-mono text-white/25">{phase.timeline}</span>
+                        </div>
+
+                        {/* Title */}
+                        <h2 className="mb-1 text-2xl font-bold text-white">{phase.title}</h2>
+                        <p className="mb-2 text-sm font-medium text-cyber-cyan">{phase.subtitle}</p>
+                        <p className="mb-6 text-sm leading-relaxed text-white/35">{phase.description}</p>
+
+                        {/* Items */}
+                        <ul className="mb-6 space-y-2">
+                          {phase.items.map((item) => (
+                            <li key={item} className="flex gap-2 text-sm text-white/40">
+                              <CheckCircle2 className={`mt-0.5 h-3.5 w-3.5 shrink-0 ${phase.status === 'In Progress' ? 'text-cyber-cyan' : 'text-white/15'}`} />
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+
+                        {/* Compliance badges */}
+                        <div className="flex flex-wrap gap-2">
+                          {phase.compliance.map((badge) => (
+                            <span key={badge} className="rounded-full bg-cyber-cyan/5 border border-cyber-cyan/15 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-cyber-cyan/60">
+                              {badge}
+                            </span>
+                          ))}
+                        </div>
+
+                        <p className="mt-4 text-xs text-white/20">Tag: {phase.status === 'In Progress' ? 'completed' : phase.status === 'Planned' ? 'in progress' : 'upcoming'}</p>
+                      </div>
+                    </div>
                   </div>
-
-                  {/* Title */}
-                  <h2 className="mb-1 text-xl font-bold text-arkova-charcoal dark:text-white">{phase.title}</h2>
-                  <p className="mb-4 text-sm font-medium text-arkova-steel">{phase.subtitle}</p>
-                  <p className="mb-6 text-sm leading-relaxed text-arkova-slate dark:text-arkova-steel-light/60">{phase.description}</p>
-
-                  {/* Items */}
-                  <ul className="mb-6 space-y-2.5">
-                    {phase.items.map((item) => (
-                      <li key={item} className="flex gap-2 text-sm text-arkova-slate dark:text-arkova-steel-light/60">
-                        <CheckCircle2 className={`mt-0.5 h-3.5 w-3.5 shrink-0 ${phase.status === 'In Progress' ? 'text-arkova-steel' : 'text-arkova-slate/30 dark:text-arkova-steel-light/20'}`} />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Compliance badges */}
-                  <div className="flex flex-wrap gap-2">
-                    {phase.compliance.map((badge) => (
-                      <span key={badge} className="rounded-full bg-arkova-frost dark:bg-white/5 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-arkova-ocean dark:text-arkova-steel">
-                        {badge}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-
-          {/* Mobile vertical connector line */}
-          <div className="md:hidden absolute left-[21px] top-0 bottom-0 w-0.5 bg-gradient-to-b from-arkova-steel/30 via-arkova-ocean/20 to-transparent pointer-events-none" style={{ display: 'none' }} />
         </div>
       </section>
 
       <div className="section-divider" />
 
       {/* ═══ CTA ═══ */}
-      <section className="relative overflow-hidden bg-arkova-charcoal dark:bg-black/40 px-6 py-20">
-        <div className="absolute inset-0 bg-mesh-dark" />
-        <div className="absolute inset-0 bg-dot-pattern opacity-20" />
+      <section className="relative overflow-hidden px-6 py-20">
+        <div className="absolute inset-0 bg-circuit" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(0,212,255,0.06)_0%,transparent_60%)]" />
         <div className="relative mx-auto max-w-2xl text-center">
           <h2 className="mb-4 text-2xl font-bold text-white md:text-3xl">Want to shape what we build next?</h2>
-          <p className="mb-8 text-base text-arkova-steel-light/70">We're actively partnering with universities, enterprises, and agent developers for our first deployments.</p>
+          <p className="mb-8 text-base text-white/35">We're actively partnering with universities, enterprises, and agent developers for our first deployments.</p>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <a href="mailto:hello@arkova.ai" className="group flex items-center gap-2 rounded-xl bg-arkova-steel px-8 py-3.5 text-sm font-semibold text-white shadow-glow-md transition-all hover:bg-arkova-deep hover:shadow-glow-lg">
+            <Link to="/contact" className="group flex items-center gap-2 cyber-btn">
               Get in Touch
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </a>
-            <Link to="/whitepaper" className="rounded-xl border border-white/10 px-8 py-3.5 text-sm font-semibold text-white transition-all hover:border-arkova-steel/30 hover:bg-white/5">
+            </Link>
+            <Link to="/whitepaper" className="rounded-xl border border-cyber-cyan-border px-8 py-3.5 text-sm font-semibold text-white transition-all hover:border-cyber-cyan/40 hover:bg-cyber-cyan/5 hover:shadow-glow-sm">
               Read the Whitepaper
             </Link>
           </div>
