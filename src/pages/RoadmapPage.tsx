@@ -23,7 +23,7 @@ const PHASES = [
       'Developer documentation and API playground',
       'Multi-jurisdiction regulatory document anchoring',
     ],
-    compliance: ['SOX', 'ESIGN', 'UETA', 'FERPA'],
+    compliance: ['SOX', 'ESIGN', 'UETA', 'FERPA', 'GDPR'],
     bars: 1,
   },
   {
@@ -40,7 +40,7 @@ const PHASES = [
       'Real-time regulatory change detection',
       'Enterprise compliance dashboards',
     ],
-    compliance: ['SOC 2 Type I', 'EU AI Act'],
+    compliance: ['SOC 2 Type I', 'EU AI Act', 'GDPR'],
     bars: 2,
   },
   {
@@ -57,7 +57,7 @@ const PHASES = [
       'Platform licensing for compliance product builders',
       'Continuous cryptographic audit trails',
     ],
-    compliance: ['SOC 2 Type II', 'eIDAS', 'ETSI EN 319'],
+    compliance: ['SOC 2 Type II', 'eIDAS', 'ETSI EN 319', 'GDPR'],
     bars: 3,
   },
 ];
