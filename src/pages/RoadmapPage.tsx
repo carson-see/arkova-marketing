@@ -121,7 +121,7 @@ export default function RoadmapPage() {
 
                     {/* Card — alternates left/right on desktop */}
                     <div className={`ml-16 md:ml-0 md:w-[calc(50%-2rem)] ${i % 2 === 0 ? 'md:mr-auto' : 'md:ml-auto'}`}>
-                      <div className="rounded-2xl border border-cyber-cyan-border bg-cyber-bg-card/60 p-8 transition-all hover:border-cyber-cyan/40 hover:shadow-neon">
+                      <div className="rounded-sm border border-cyber-cyan-border bg-cyber-bg-card/60 p-8 transition-all hover:border-cyber-cyan/40 hover:shadow-neon">
 
                         {/* Glowing phase bars (matching v1_4 design) */}
                         <div className="mb-6 flex gap-2">
@@ -188,7 +188,7 @@ export default function RoadmapPage() {
               Get in Touch
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
-            <Link to="/whitepaper" className="rounded-xl border border-cyber-cyan-border px-8 py-3.5 text-sm font-semibold text-white transition-all hover:border-cyber-cyan/40 hover:bg-cyber-cyan/5 hover:shadow-glow-sm">
+            <Link to="/whitepaper" className="rounded-sm border border-cyber-cyan-border px-8 py-3.5 text-sm font-semibold text-white transition-all hover:border-cyber-cyan/40 hover:bg-cyber-cyan/5 hover:shadow-glow-sm">
               Read the Whitepaper
             </Link>
           </div>

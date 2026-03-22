@@ -56,7 +56,7 @@ export default function ContactPage() {
 
             {/* Info cards below headline */}
             <div className="mt-10 space-y-4 opacity-0 animate-fade-up" style={{ animationDelay: '0.5s' }}>
-              <div className="rounded-xl border border-cyber-cyan-border bg-cyber-bg-card/60 p-5">
+              <div className="rounded-sm border border-cyber-cyan-border bg-cyber-bg-card/60 p-5">
                 <h3 className="mb-3 text-sm font-bold text-white">Other ways to reach us</h3>
                 <div className="space-y-3">
                   <a href="mailto:hello@arkova.ai" className="flex items-center gap-3 text-sm text-white/40 hover:text-cyber-cyan transition-colors">
@@ -77,10 +77,10 @@ export default function ContactPage() {
           </div>
 
           {/* Right — form */}
-          <div className="rounded-2xl border border-cyber-cyan-border bg-cyber-bg-card/60 backdrop-blur-sm p-8 md:p-10 opacity-0 animate-fade-up shadow-neon" style={{ animationDelay: '0.3s' }}>
+          <div className="rounded-sm border border-cyber-cyan-border bg-cyber-bg-card/60 backdrop-blur-sm p-8 md:p-10 opacity-0 animate-fade-up shadow-neon" style={{ animationDelay: '0.3s' }}>
             {status === 'success' ? (
               <div className="flex flex-col items-center justify-center py-12 text-center">
-                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-500/10 border border-emerald-500/20">
+                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-sm bg-emerald-500/10 border border-emerald-500/20">
                   <CheckCircle2 className="h-8 w-8 text-emerald-400" />
                 </div>
                 <h2 className="mb-2 text-xl font-bold text-white">Message sent!</h2>

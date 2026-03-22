@@ -89,7 +89,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </Link>
           </div>
 
-          <div className="hidden items-center gap-3 md:flex">
+          <div className="hidden items-center gap-4 md:flex">
+            <a
+              href="https://app.arkova.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-white/50 transition-colors hover:text-cyber-cyan"
+            >
+              App
+            </a>
             {isHome ? (
               <button
                 onClick={() => scrollTo('early-access')}
@@ -150,6 +158,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
             >
               Roadmap
             </Link>
+            <a
+              href="https://app.arkova.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block w-full py-3 text-left text-sm font-medium text-white/50"
+            >
+              App
+            </a>
             <Link
               to={isHome ? '#early-access' : '/#early-access'}
               onClick={() => { setMobileMenuOpen(false); if (isHome) scrollTo('early-access'); }}

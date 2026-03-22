@@ -66,7 +66,7 @@
 
   /* ─── Neon glow card ─── */
   .cyber-card {
-    @apply relative rounded-2xl border border-cyber-cyan-border bg-cyber-bg-card/60 backdrop-blur-sm;
+    @apply relative rounded-sm border border-cyber-cyan-border bg-cyber-bg-card/60 backdrop-blur-sm;
     box-shadow: 0 0 15px rgba(0, 212, 255, 0.05), inset 0 1px 0 rgba(0, 212, 255, 0.1);
     transition: all 0.3s ease;
   }
@@ -78,7 +78,7 @@
 
   /* ─── Neon input ─── */
   .cyber-input {
-    @apply w-full rounded-lg border border-cyber-cyan-border bg-cyber-bg/80 px-4 py-3 text-sm text-white placeholder:text-white/20;
+    @apply w-full rounded-sm border border-cyber-cyan-border bg-cyber-bg/80 px-4 py-3 text-sm text-white placeholder:text-white/20;
     transition: all 0.2s ease;
   }
   .cyber-input:focus {
@@ -89,7 +89,7 @@
 
   /* ─── Neon button ─── */
   .cyber-btn {
-    @apply rounded-lg bg-gradient-to-r from-cyber-cyan to-cyber-cyan-dim px-8 py-3.5 text-sm font-semibold text-cyber-bg transition-all;
+    @apply rounded-sm bg-gradient-to-r from-cyber-cyan to-cyber-cyan-dim px-8 py-3.5 text-sm font-semibold text-cyber-bg transition-all;
     box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
   }
   .cyber-btn:hover {

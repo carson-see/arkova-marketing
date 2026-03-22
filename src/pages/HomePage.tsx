@@ -91,7 +91,7 @@ function useScrollReveal() {
 /* ─── Cyber Card Component ─── */
 function CyberCard({ children, className = '', hover = true }: { children: React.ReactNode; className?: string; hover?: boolean }) {
   return (
-    <div className={`rounded-2xl border border-cyber-cyan-border bg-cyber-bg-card/60 backdrop-blur-sm ${hover ? 'transition-all duration-300 hover:border-cyber-cyan/40 hover:shadow-neon hover:-translate-y-0.5' : ''} ${className}`}>
+    <div className={`border border-cyber-cyan-border bg-cyber-bg-card/60 backdrop-blur-sm ${hover ? 'transition-all duration-300 hover:border-cyber-cyan/40 hover:shadow-neon hover:-translate-y-0.5' : ''} ${className}`}>
       {children}
     </div>
   );
@@ -140,7 +140,7 @@ export default function HomePage() {
                   Request Early Access
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </button>
-                <button onClick={() => scrollTo('how-it-works')} className="rounded-xl border border-cyber-cyan-border px-8 py-3.5 text-base font-semibold text-white transition-all hover:border-cyber-cyan/40 hover:bg-cyber-cyan/5 hover:shadow-glow-sm">
+                <button onClick={() => scrollTo('how-it-works')} className="rounded-sm border border-cyber-cyan-border px-8 py-3.5 text-base font-semibold text-white transition-all hover:border-cyber-cyan/40 hover:bg-cyber-cyan/5 hover:shadow-glow-sm">
                   See How It Works
                 </button>
               </div>
@@ -150,8 +150,8 @@ export default function HomePage() {
             <div className="hidden lg:flex items-center justify-center opacity-0 animate-fade-up" style={{ animationDelay: '0.6s' }}>
               <div className="relative">
                 <div className="absolute inset-0 rounded-full bg-cyber-cyan/10 blur-[80px]" />
-                <div className="relative h-80 w-80 rounded-3xl border border-cyber-cyan-border bg-gradient-to-br from-cyber-cyan/[0.06] to-transparent backdrop-blur-sm flex items-center justify-center animate-glow-pulse">
-                  <div className="h-48 w-48 rounded-2xl border border-cyber-cyan/20 bg-gradient-to-br from-cyber-cyan/10 to-transparent flex items-center justify-center rotate-12">
+                <div className="relative h-80 w-80 rounded-sm border border-cyber-cyan-border bg-gradient-to-br from-cyber-cyan/[0.06] to-transparent backdrop-blur-sm flex items-center justify-center animate-glow-pulse">
+                  <div className="h-48 w-48 rounded-sm border border-cyber-cyan/20 bg-gradient-to-br from-cyber-cyan/10 to-transparent flex items-center justify-center rotate-12">
                     <Shield className="h-20 w-20 text-cyber-cyan/40" />
                   </div>
                   {/* Floating dots with glow */}
@@ -199,7 +199,7 @@ export default function HomePage() {
               { icon: Layers, title: 'Credential Intelligence', description: 'Structured metadata, classification, and anomaly detection — giving machines the context they need to make trust decisions at scale.' },
             ].map((item) => (
               <CyberCard key={item.title} className="p-8">
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-cyber-cyan/10 border border-cyber-cyan/20">
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-sm bg-cyber-cyan/10 border border-cyber-cyan/20">
                   <item.icon className="h-6 w-6 text-cyber-cyan" />
                 </div>
                 <h3 className="mb-3 text-lg font-bold text-white">{item.title}</h3>
@@ -227,7 +227,7 @@ export default function HomePage() {
               { icon: Brain, title: 'Smart Classification', description: 'Categorize credentials by type — degrees, licenses, certifications, contracts — and organize records intelligently.' },
             ].map((item) => (
               <CyberCard key={item.title} className="p-8">
-                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-cyber-cyan/10 border border-cyber-cyan/20">
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-sm bg-cyber-cyan/10 border border-cyber-cyan/20">
                   <item.icon className="h-7 w-7 text-cyber-cyan" />
                 </div>
                 <h3 className="mb-3 text-xl font-bold text-white">{item.title}</h3>
@@ -258,7 +258,7 @@ export default function HomePage() {
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {API_FEATURES.map((feature) => (
               <CyberCard key={feature.title} className="p-6">
-                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-cyber-cyan/10 border border-cyber-cyan/20">
+                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-sm bg-cyber-cyan/10 border border-cyber-cyan/20">
                   <feature.icon className="h-5 w-5 text-cyber-cyan" />
                 </div>
                 <h3 className="mb-2 text-base font-bold text-white">{feature.title}</h3>
@@ -280,7 +280,7 @@ export default function HomePage() {
           <div className="grid gap-6 md:grid-cols-3 md:gap-8">
             {STEPS.map((item, i) => (
               <CyberCard key={item.step} className={`animate-in-view stagger-${i + 1} p-8`}>
-                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-cyber-cyan/10 border border-cyber-cyan/20">
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-sm bg-cyber-cyan/10 border border-cyber-cyan/20">
                   <item.icon className="h-7 w-7 text-cyber-cyan" />
                 </div>
                 <div className="mb-3 font-mono text-xs font-medium text-cyber-cyan/50">STEP {item.step}</div>
@@ -303,7 +303,7 @@ export default function HomePage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {USE_CASES.map((uc) => (
               <CyberCard key={uc.title} className="p-6 text-center">
-                <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-cyber-cyan/10 border border-cyber-cyan/20">
+                <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-sm bg-cyber-cyan/10 border border-cyber-cyan/20">
                   <uc.icon className="h-7 w-7 text-cyber-cyan" />
                 </div>
                 <h3 className="mb-2 text-lg font-bold text-white">{uc.title}</h3>
@@ -324,7 +324,7 @@ export default function HomePage() {
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {FEATURES.map((feature, i) => (
               <CyberCard key={feature.title} className={`animate-in-view stagger-${i + 1} p-6`}>
-                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-cyber-cyan/10 border border-cyber-cyan/20">
+                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-sm bg-cyber-cyan/10 border border-cyber-cyan/20">
                   <feature.icon className="h-5 w-5 text-cyber-cyan" />
                 </div>
                 <h3 className="mb-2 text-base font-bold text-white">{feature.title}</h3>
@@ -349,7 +349,7 @@ export default function HomePage() {
               { name: 'Yaacov', title: 'Founder & Advisor', bio: '20 years Research & Data Science experience. Senior Member of the National Academy of Inventors.', photo: '/team-yaacov.png', profileUrl: 'https://scholar.google.com/citations?user=MUGWLDoAAAAJ&hl=en', profileType: 'scholar' as const },
             ].map((member) => (
               <CyberCard key={member.name} className="p-6 text-center">
-                <div className="mx-auto mb-5 h-28 w-28 overflow-hidden rounded-2xl border border-cyber-cyan/20">
+                <div className="mx-auto mb-5 h-28 w-28 overflow-hidden rounded-full border border-cyber-cyan/20">
                   <img src={member.photo} alt={member.name} className="h-full w-full object-cover" />
                 </div>
                 <h3 className="text-lg font-bold text-white">{member.name}</h3>
@@ -384,7 +384,7 @@ export default function HomePage() {
                 { label: 'SHA-256 Web Crypto API', value: 'Security', icon: Shield },
                 { label: 'Append-only audit trail', value: 'Integrity', icon: FileCheck },
               ].map(({ label, value, icon: Icon }) => (
-                <div key={value} className="rounded-xl bg-cyber-cyan/[0.04] border border-cyber-cyan/[0.12] p-6">
+                <div key={value} className="rounded-sm bg-cyber-cyan/[0.04] border border-cyber-cyan/[0.12] p-6">
                   <Icon className="mx-auto mb-3 h-7 w-7 text-cyber-cyan" />
                   <div className="text-xl font-bold text-cyber-cyan">{value}</div>
                   <div className="mt-1 text-sm text-white/25">{label}</div>
@@ -404,7 +404,7 @@ export default function HomePage() {
           </div>
           <div className="space-y-3">
             {FAQ.map((item, i) => (
-              <div key={i} className="overflow-hidden rounded-xl border border-cyber-cyan-border bg-cyber-bg-card/40">
+              <div key={i} className="overflow-hidden rounded-sm border border-cyber-cyan-border bg-cyber-bg-card/40">
                 <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="flex w-full items-center justify-between px-6 py-5 text-left">
                   <span className="pr-4 font-semibold text-white">{item.q}</span>
                   <ChevronDown className={`h-5 w-5 shrink-0 text-cyber-cyan transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
