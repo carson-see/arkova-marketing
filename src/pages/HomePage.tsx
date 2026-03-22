@@ -53,10 +53,10 @@ const STEPS = [
 ];
 
 const API_FEATURES = [
-  { icon: Code2, title: 'Verification API', description: 'Single-call verification lookup by public ID. Returns status, issuer, timestamps, and network receipt. $0.002 per verification via x402 micropayments.' },
+  { icon: Code2, title: 'Verification API', description: 'Single-call verification lookup by public ID. Returns status, issuer, timestamps, and network receipt.' },
   { icon: Layers, title: 'Batch Verification', description: 'Verify up to 100 credentials in a single API call. Ideal for background checks and compliance audits.' },
-  { icon: Key, title: 'Nessie Intelligence', description: 'Query Arkova\'s verified intelligence engine — the only AI trained exclusively on cryptographically anchored regulatory data. Every answer cites its source.' },
-  { icon: BarChart3, title: 'Usage Analytics', description: 'Real-time dashboards for API consumption, rate limit status, and verification volume. Free tier: 10,000 verifications/month.' },
+  { icon: Key, title: 'API Key Management', description: 'Create, rotate, and revoke API keys with granular scopes. HMAC-SHA256 secured. Full audit trail.' },
+  { icon: BarChart3, title: 'Usage Analytics', description: 'Real-time dashboards for API consumption, rate limit status, and verification volume.' },
   { icon: Webhook, title: 'Webhooks & Events', description: 'Real-time notifications when credentials are anchored, verified, or revoked. HMAC-signed payloads.' },
 ];
 
@@ -194,9 +194,9 @@ export default function HomePage() {
           </div>
           <div className="grid gap-5 md:grid-cols-3">
             {[
-              { icon: Zap, title: 'x402 Micropayments', description: 'AI agents pay $0.002 per verification via the x402 protocol — machine-to-machine payments with zero human intervention. Autonomous compliance at scale.' },
-              { icon: Globe, title: 'Global Regulatory Coverage', description: 'SEC filings, USPTO patents, Federal Register regulations, and academic papers — anchored and searchable. Expanding to 30+ jurisdictions.' },
-              { icon: Layers, title: 'Nessie — Verified Intelligence', description: 'The only language model trained exclusively on cryptographically verified data. Every answer traces back to an anchored source document.' },
+              { icon: Zap, title: 'Agent Micropayments', description: 'AI agents autonomously pay per verification via the x402 protocol — machine-to-machine payments with zero human intervention. Compliance at machine speed.' },
+              { icon: Globe, title: 'Global Regulatory Coverage', description: 'SEC filings, patents, regulations, and academic papers — cryptographically anchored and searchable. Expanding across jurisdictions worldwide.' },
+              { icon: Layers, title: 'Compliance Intelligence', description: 'AI-powered regulatory analysis built on cryptographically verified data. Every insight traces back to an anchored, tamper-proof source.' },
             ].map((item) => (
               <CyberCard key={item.title} className="p-8">
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-sm bg-cyber-cyan/10 border border-cyber-cyan/20">
