@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import {
   Shield,
   FileCheck,
@@ -99,7 +99,6 @@ function CyberCard({ children, className = '', hover = true }: { children: React
 
 /* ─── Component ─── */
 export default function HomePage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const pageRef = useScrollReveal();
 
   const scrollTo = (id: string) => {
@@ -130,9 +129,13 @@ export default function HomePage() {
                 </span>
               </h1>
 
-              <p className="mb-10 max-w-lg text-lg text-white/40 opacity-0 animate-fade-up md:text-xl" style={{ animationDelay: '0.35s' }}>
+              <p className="mb-6 max-w-lg text-lg text-white/40 opacity-0 animate-fade-up md:text-xl" style={{ animationDelay: '0.35s' }}>
                 Every record an agent touches needs to be independently verifiable, tamper-proof, and portable.
                 Arkova is the verification layer — using AI and cryptographic anchoring to make that possible.
+              </p>
+
+              <p className="mb-10 max-w-lg text-sm text-white/25 opacity-0 animate-fade-up leading-relaxed" style={{ animationDelay: '0.45s' }}>
+                Arkova is a privacy-first document verification platform that creates tamper-proof cryptographic fingerprints of credentials entirely in the user's browser. Every record is permanently anchored to a public network, enabling anyone to independently verify authenticity without an account, a phone call, or trust in any single authority.
               </p>
 
               <div className="flex flex-col items-center gap-4 opacity-0 animate-fade-up sm:flex-row lg:justify-start" style={{ animationDelay: '0.5s' }}>
@@ -404,17 +407,15 @@ export default function HomePage() {
           </div>
           <div className="space-y-3">
             {FAQ.map((item, i) => (
-              <div key={i} className="overflow-hidden rounded-sm border border-cyber-cyan-border bg-cyber-bg-card/40">
-                <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="flex w-full items-center justify-between px-6 py-5 text-left">
+              <details key={i} className="group overflow-hidden rounded-sm border border-cyber-cyan-border bg-cyber-bg-card/40">
+                <summary className="flex w-full cursor-pointer items-center justify-between px-6 py-5 text-left list-none [&::-webkit-details-marker]:hidden">
                   <span className="pr-4 font-semibold text-white">{item.q}</span>
-                  <ChevronDown className={`h-5 w-5 shrink-0 text-cyber-cyan transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
-                </button>
-                {openFaq === i && (
-                  <div className="border-t border-cyber-cyan-border px-6 py-5">
-                    <p className="text-sm leading-relaxed text-white/35">{item.a}</p>
-                  </div>
-                )}
-              </div>
+                  <ChevronDown className="h-5 w-5 shrink-0 text-cyber-cyan transition-transform group-open:rotate-180" />
+                </summary>
+                <div className="border-t border-cyber-cyan-border px-6 py-5">
+                  <p className="text-sm leading-relaxed text-white/35">{item.a}</p>
+                </div>
+              </details>
             ))}
           </div>
         </div>

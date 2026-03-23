@@ -35,6 +35,15 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
 # LLMs.txt for AI discovery
 # See: https://arkova.ai/llms.txt
 
