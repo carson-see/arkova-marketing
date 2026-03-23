@@ -137,6 +137,19 @@ function injectMeta(html, route) {
   return html;
 }
 
+function buildWhitepaperSchema(route) {
+  if (route.path !== '/whitepaper') return '';
+  const breadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://arkova.ai' },
+      { '@type': 'ListItem', position: 2, name: 'Whitepaper', item: 'https://arkova.ai/whitepaper' },
+    ],
+  };
+  return `\n    <script type="application/ld+json">\n    ${JSON.stringify(breadcrumb, null, 2).replace(/\n/g, '\n    ')}\n    </script>`;
+}
+
 function buildArticleSchema(route) {
   if (!route.article) return '';
   const baseUrl = 'https://arkova.ai';
@@ -163,6 +176,10 @@ function buildArticleSchema(route) {
     mainEntityOfPage: url,
     image: baseUrl + '/arkova-logo.png',
     articleSection: 'Research',
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['article h1', 'article > p:first-of-type'],
+    },
   };
 
   const slug = route.path.split('/').pop();
@@ -223,6 +240,12 @@ async function prerender() {
     const articleSchemas = buildArticleSchema(route);
     if (articleSchemas) {
       html = html.replace('</head>', articleSchemas + '\n  </head>');
+    }
+
+    // Inject BreadcrumbList for whitepaper page
+    const whitepaperSchemas = buildWhitepaperSchema(route);
+    if (whitepaperSchemas) {
+      html = html.replace('</head>', whitepaperSchemas + '\n  </head>');
     }
 
     let outFile;

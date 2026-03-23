@@ -47,9 +47,9 @@
       "description": "Arkova creates tamper-proof, independently verifiable records of your documents using cryptographic fingerprinting. Your files never leave your device.",
       "foundingDate": "2025",
       "founder": [
-        { "@type": "Person", "name": "Carson Seeger", "jobTitle": "Founder & CEO", "sameAs": ["https://www.linkedin.com/in/carson-s-8b41061a/"] },
-        { "@type": "Person", "name": "Sarah Rushton", "jobTitle": "Founder & COO", "sameAs": ["https://www.linkedin.com/in/sljrushton/"] },
-        { "@type": "Person", "name": "Dr. Yaacov Petscher", "jobTitle": "Founder & Advisor", "sameAs": ["https://scholar.google.com/citations?user=MUGWLDoAAAAJ&hl=en"] }
+        { "@id": "https://arkova.ai/#carson-seeger" },
+        { "@id": "https://arkova.ai/#sarah-rushton" },
+        { "@id": "https://arkova.ai/#yaacov-petscher" }
       ],
       "sameAs": [
         "https://www.wikidata.org/wiki/Q138765025",
@@ -64,7 +64,11 @@
         "contactType": "customer support",
         "availableLanguage": "English"
       },
-      "knowsAbout": ["Document verification", "Credential verification", "Cryptographic fingerprinting", "Digital trust infrastructure", "Agentic recordkeeping"]
+      "knowsAbout": ["Document verification", "Credential verification", "Cryptographic fingerprinting", "Digital trust infrastructure", "Agentic recordkeeping"],
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "US"
+      }
     }
     </script>
 
@@ -202,13 +206,18 @@
     {
       "@context": "https://schema.org",
       "@type": "Person",
+      "@id": "https://arkova.ai/#carson-seeger",
       "name": "Carson Seeger",
       "jobTitle": "Founder & CEO",
       "url": "https://arkova.ai/#team",
+      "image": "https://arkova.ai/team-carson.png",
       "worksFor": { "@id": "https://arkova.ai/#org" },
-      "sameAs": ["https://www.linkedin.com/in/carson-s-8b41061a/"],
+      "sameAs": [
+        "https://www.linkedin.com/in/carson-s-8b41061a/",
+        "https://github.com/carson-see"
+      ],
       "description": "A decade of rescuing distressed technical programs under regulatory pressure. Founder and CEO of Arkova.",
-      "knowsAbout": ["Document verification", "Compliance infrastructure", "Technical program management"]
+      "knowsAbout": ["Document verification", "Compliance infrastructure", "Technical program management", "Regulatory technology"]
     }
     </script>
 
@@ -217,13 +226,17 @@
     {
       "@context": "https://schema.org",
       "@type": "Person",
+      "@id": "https://arkova.ai/#sarah-rushton",
       "name": "Sarah Rushton",
       "jobTitle": "Founder & COO",
       "url": "https://arkova.ai/#team",
+      "image": "https://arkova.ai/team-sarah.png",
       "worksFor": { "@id": "https://arkova.ai/#org" },
-      "sameAs": ["https://www.linkedin.com/in/sljrushton/"],
+      "sameAs": [
+        "https://www.linkedin.com/in/sljrushton/"
+      ],
       "description": "Over 20 years launching products through compliance-heavy supply chains. Co-founder and COO of Arkova.",
-      "knowsAbout": ["Product operations", "Supply chain compliance", "Documentation verification"]
+      "knowsAbout": ["Product operations", "Supply chain compliance", "Documentation verification", "Audit verification"]
     }
     </script>
 
@@ -232,13 +245,48 @@
     {
       "@context": "https://schema.org",
       "@type": "Person",
+      "@id": "https://arkova.ai/#yaacov-petscher",
       "name": "Dr. Yaacov Petscher",
+      "honorificPrefix": "Dr.",
       "jobTitle": "Founder & Advisor",
       "url": "https://arkova.ai/#team",
+      "image": "https://arkova.ai/team-yaacov.png",
       "worksFor": { "@id": "https://arkova.ai/#org" },
-      "sameAs": ["https://scholar.google.com/citations?user=MUGWLDoAAAAJ&hl=en"],
+      "sameAs": [
+        "https://scholar.google.com/citations?user=MUGWLDoAAAAJ&hl=en"
+      ],
       "description": "20 years Research & Data Science experience. Senior Member of the National Academy of Inventors.",
       "knowsAbout": ["Research methodology", "Data science", "Academic credentialing", "Statistical analysis"]
+    }
+    </script>
+
+    <!-- JSON-LD: HowTo — 3-step verification process -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to verify a document with Arkova",
+      "description": "Create a permanent, independently verifiable record of any document in three steps.",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Upload & Fingerprint",
+          "text": "Select your document. Arkova generates a unique SHA-256 cryptographic fingerprint in your browser. The file never leaves your device."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Anchor to Network",
+          "text": "Your fingerprint is permanently anchored to a public network with an immutable timestamp — verifiable by anyone, forever."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Verify Anytime",
+          "text": "Share a verification link or QR code. Anyone can independently confirm the document's authenticity — no account required."
+        }
+      ]
     }
     </script>
 

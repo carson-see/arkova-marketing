@@ -443,6 +443,11 @@ export default function HomePage() {
           <p className="mt-4 text-xs text-white/15">No spam. We'll only email you when we launch.</p>
         </div>
       </section>
+
+      {/* Last updated — visible for AI freshness signals */}
+      <div className="px-6 pb-6 text-center">
+        <p className="text-[10px] text-white/10 font-mono">Last updated: March 2026</p>
+      </div>
     </div>
   );
 }
