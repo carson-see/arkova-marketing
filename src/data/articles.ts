@@ -153,7 +153,7 @@ export const ARTICLES: Article[] = [
         blocks: [
           { type: 'text', value: 'Picture this: it\'s 2:47 AM. Your company\'s AI procurement agent has just autonomously approved a $50,000 vendor contract. It analyzed the proposal, compared pricing against historical benchmarks, verified the vendor\'s compliance certifications, and executed the agreement — all without a human in the loop.' },
           { type: 'text', value: 'This isn\'t science fiction. Gartner projects that by 2028, 33% of enterprise software will include agentic AI capabilities, up from less than 1% in 2024. The shift from "AI as assistant" to "AI as autonomous actor" is happening faster than most organizations are prepared for.' },
-          { type: 'stat', value: '33%', label: 'of enterprise software will include agentic AI by 2028, up from <1% in 2024', source: 'Gartner, 2025', variant: 'blue' },
+          { type: 'stat', value: '33%', label: 'of enterprise software will include agentic AI by 2028, up from <1% in 2024', source: 'Gartner, 2025', sourceUrl: 'https://www.gartner.com/en/newsroom/press-releases/2024-10-21-gartner-says-agentic-ai-will-be-embedded-in-33-percent-of-enterprise-software-by-2028', variant: 'blue' },
           { type: 'text', value: 'The question isn\'t whether agents will act autonomously. They already are. The question is whether we can prove what they did — independently, after the fact, without relying on the agent\'s own logs. Because an agent that logs its own actions is marking its own homework.' },
         ],
       },
@@ -338,7 +338,7 @@ export const ARTICLES: Article[] = [
           { type: 'text', value: 'You need a copy of your birth certificate. You fill out a form, pay $25, and wait 6 to 8 weeks. When it arrives, you hand it to whatever institution requested it. That institution — an employer, a bank, a licensing board — may then call the issuing county to verify it\'s real. If they can reach the right department. If that department has staff available. If their records system is online.' },
           { type: 'text', value: 'This is the verification infrastructure for the most fundamental government records in the world\'s largest economy. It hasn\'t fundamentally changed since the fax machine was considered cutting-edge technology.' },
           { type: 'text', value: 'Scale the problem: US government agencies process an estimated 12 billion records annually across federal, state, and local levels. Each record potentially needs to be verified multiple times throughout its lifecycle. The current system was designed for a world where verification was rare. In a digital economy, verification is continuous.' },
-          { type: 'stat', value: '$600B+', label: 'estimated annual cost of credential fraud globally across public and private sectors', source: 'World Economic Forum, 2024', variant: 'amber' },
+          { type: 'stat', value: '$600B+', label: 'estimated annual cost of credential fraud globally across public and private sectors', source: 'Crosschq 2025 Report', sourceUrl: 'https://www.crosschq.com/blog/resume-fraud-the-600-billion-crisis-transforming-how-organizations-verify-talent-in-2025', variant: 'amber' },
         ],
       },
       {
@@ -392,7 +392,7 @@ export const ARTICLES: Article[] = [
       {
         heading: 'The Public Trust Imperative',
         blocks: [
-          { type: 'stat', value: '22%', label: 'of Americans say they trust the federal government to do the right thing most of the time — the lowest sustained level in 60+ years', source: 'Pew Research Center, 2024', variant: 'amber' },
+          { type: 'stat', value: '22%', label: 'of Americans say they trust the federal government to do the right thing most of the time — the lowest sustained level in 60+ years', source: 'Pew Research Center, 2024', sourceUrl: 'https://www.pewresearch.org/politics/2024/09/09/public-trust-in-government-1958-2024/', variant: 'amber' },
           { type: 'text', value: 'Public trust in government institutions is at historic lows. The causes are complex and outside the scope of this article. But one contributor is the opacity of government record-keeping — citizens are asked to trust that records are accurate, that processes were followed, that the system is working as intended.' },
           { type: 'text', value: 'Cryptographic verification offers a concrete, measurable step toward transparency. When a professional license is anchored with a publicly verifiable proof, citizens don\'t need to trust that the licensing board\'s database is accurate. They can verify it themselves. When a court filing is timestamped with mathematical proof, there\'s no question about when it was submitted or whether it was altered.' },
           { type: 'text', value: 'This isn\'t about technology adoption for its own sake. It\'s about rebuilding public trust through mathematical proof. Governments that adopt verifiable, transparent record-keeping signal a commitment to accountability that goes beyond policy statements. The math is the proof.' },
@@ -431,7 +431,7 @@ export const ARTICLES: Article[] = [
       {
         heading: 'The Hidden Costs Nobody Budgets For',
         blocks: [
-          { type: 'stat', value: '$3.01M', label: 'Average public-company audit fee in 2023', source: 'PCAOB / Audit Analytics', variant: 'amber' },
+          { type: 'stat', value: '$3.01M', label: 'Average public-company audit fee in 2023', source: 'PCAOB / Audit Analytics', sourceUrl: 'https://www.auditanalytics.com/blog/2024-audit-fee-survey', variant: 'amber' },
           { type: 'text', value: 'That $3 million is just the auditor\'s invoice. It doesn\'t include the internal cost — the compliance team\'s time, the IT department pulling system exports, the legal review of evidence packages, the back-and-forth with counterparties trying to confirm what happened and when.' },
           { type: 'text', value: 'In my experience, the internal cost of supporting an audit is two to three times the external audit fee. A $3 million audit actually costs $9-12 million when you account for the organizational time diverted from productive work.' },
           { type: 'stat', value: '60-80%', label: 'of audit prep time spent on evidence collection, not analysis', source: 'Industry estimate based on operational experience', variant: 'amber' },
