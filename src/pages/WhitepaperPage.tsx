@@ -121,7 +121,7 @@ export default function WhitepaperPage() {
               { '@type': 'Person', name: 'Sarah Rushton', jobTitle: 'COO & Co-Founder', url: 'https://www.linkedin.com/in/sljrushton/' },
             ],
             publisher: { '@type': 'Organization', name: 'Arkova', url: 'https://arkova.ai' },
-            description: 'Technical whitepaper on how Arkova anchors compliance-aligned metadata to Bitcoin for independently verifiable records.',
+            description: 'Technical whitepaper on how Arkova anchors compliance-aligned metadata to a public ledger for independently verifiable records.',
             articleSection: 'Technology',
           }),
         }}
@@ -252,7 +252,7 @@ export default function WhitepaperPage() {
 
             <SubHeading>4.1 At a glance</SubHeading>
             <P><strong>Hash and timestamp events</strong> — When a record is created, signed, amended, revoked, or attested, Arkova generates a cryptographic fingerprint (SHA-256) of the payload and timestamps the event. Fingerprinting runs entirely in the user's browser using the Web Crypto API — the document never leaves the user's device.</P>
-            <P><strong>Anchor the proof to Bitcoin</strong> — A compact commitment containing the fingerprint and event data is written to Bitcoin via OP_RETURN transaction with the ARKV protocol prefix. This creates a public, tamper-evident reference that any counterparty can look up.</P>
+            <P><strong>Anchor the proof to the network</strong> — A compact commitment containing the fingerprint and event data is written to the anchoring network via OP_RETURN transaction with the ARKV protocol prefix. This creates a public, tamper-evident reference that any counterparty can look up.</P>
             <P><strong>Keep documents in existing storage</strong> — Files remain in your DMS, e-signature tool, student information system, or inventory platform. Arkova stores only minimal metadata needed for verification.</P>
             <P><strong>Provide a public verification page</strong> — Each record gets a shareable link and QR code. A counterparty can validate integrity and timing, view the lifecycle timeline, and see the current state — no account required.</P>
 
@@ -269,7 +269,7 @@ export default function WhitepaperPage() {
             <Ul>
               <Li>The verifier opens the shared link, scans the QR code, or calls the Verification API.</Li>
               <Li>Arkova recomputes the fingerprint or checks the declared identifier.</Li>
-              <Li>The fingerprint and event details are compared against the Bitcoin anchor via the chain index (O(1) lookup).</Li>
+              <Li>The fingerprint and event details are compared against the network anchor via the chain index (O(1) lookup).</Li>
               <Li>The page returns a clear result with the timeline and current status, along with the public transaction reference.</Li>
             </Ul>
 
@@ -342,7 +342,7 @@ export default function WhitepaperPage() {
             <TableWrapper>
               <thead><tr><Th>Framework</Th><Th>Requirement</Th><Th>What Arkova Provides</Th></tr></thead>
               <tbody>
-                <tr><Td><strong>SOX / PCAOB</strong></Td><Td>Tamper-resistant format retention</Td><Td>Bitcoin-anchored audit trails, immutable event timelines</Td></tr>
+                <tr><Td><strong>SOX / PCAOB</strong></Td><Td>Tamper-resistant format retention</Td><Td>Network-anchored audit trails, immutable event timelines</Td></tr>
                 <tr><Td><strong>ESIGN / UETA</strong></Td><Td>Electronic signature legal parity</Td><Td>Lifecycle tracking for signed documents, cross-vendor evidence</Td></tr>
                 <tr><Td><strong>eIDAS / eIDAS 2</strong></Td><Td>Qualified trust services</Td><Td>Jurisdiction-aware metadata, timestamped proofs portable across borders</Td></tr>
                 <tr><Td><strong>FERPA</strong></Td><Td>Student education records privacy</Td><Td>Client-side processing — documents never leave the device</Td></tr>
@@ -392,7 +392,7 @@ export default function WhitepaperPage() {
               <tbody>
                 <tr><Td><strong>Compliance interpretation</strong></Td><Td>Standards vary by jurisdiction</Td><Td>Shared-responsibility model; claims are "compliance-aligned," not determinative</Td></tr>
                 <tr><Td><strong>Privacy and metadata exposure</strong></Td><Td>Poorly chosen metadata can reveal sensitive information</Td><Td>Minimal metadata by default; configurable redaction; DPIA support</Td></tr>
-                <tr><Td><strong>Ledger fee/latency volatility</strong></Td><Td>Bitcoin fees and confirmation times vary</Td><Td>Batch scheduling, fee estimation, pending status UX</Td></tr>
+                <tr><Td><strong>Ledger fee/latency volatility</strong></Td><Td>Network fees and confirmation times vary</Td><Td>Batch scheduling, fee estimation, pending status UX</Td></tr>
                 <tr><Td><strong>Integration complexity</strong></Td><Td>Evidence scattered across tools</Td><Td>Scoped pilots, reference connectors, SSO, documentation</Td></tr>
                 <tr><Td><strong>Security and key management</strong></Td><Td>Treasury and API keys require protection</Td><Td>AWS KMS, HMAC-SHA256, least-privilege design, incident runbooks</Td></tr>
               </tbody>
@@ -413,7 +413,7 @@ export default function WhitepaperPage() {
             {/* ═══ SECTION 14 ═══ */}
             <SectionHeading id="conclusion">14. Conclusion</SectionHeading>
             <P>Organizations lack a portable, independently verifiable evidence layer. Proofs are trapped in vendor-controlled systems, revocation states are inconsistent, and cross-party checks are slow and costly. AI agents compound the problem — they need machine-speed verification without human intermediaries.</P>
-            <P>Arkova delivers a universal, jurisdiction-aware verification layer for documents, signatures, credentials, and real-world assets. By anchoring compliance-aligned metadata to Bitcoin, Arkova reduces audit costs, accelerates verification, and provides trust that survives system and vendor changes.</P>
+            <P>Arkova delivers a universal, jurisdiction-aware verification layer for documents, signatures, credentials, and real-world assets. By anchoring compliance-aligned metadata to a public ledger, Arkova reduces audit costs, accelerates verification, and provides trust that survives system and vendor changes.</P>
             <blockquote className="my-8 border-l-[3px] border-arkova-steel/40 pl-6 py-2">
               <p className="text-lg font-medium italic text-arkova-charcoal dark:text-white">"The question is no longer which system to trust — it's which proofs anyone can verify."</p>
             </blockquote>

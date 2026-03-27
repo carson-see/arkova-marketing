@@ -96,6 +96,41 @@ const ROUTES = [
     title: 'Technical & Security Wiki — Arkova',
     description: 'Architecture deep-dive for partners, investors, and integration teams. Security model, RLS policies, API reference, and shared responsibility matrix.',
   },
+  {
+    path: '/docs/quickstart',
+    title: 'Quickstart — Arkova Docs',
+    description: 'Verify your first credential in 5 minutes. Step-by-step guide from account creation to API integration.',
+  },
+  {
+    path: '/docs/api',
+    title: 'API Reference — Arkova Docs',
+    description: 'Verification API endpoints, authentication, rate limits, response schemas, batch operations, and error codes.',
+  },
+  {
+    path: '/docs/sdks',
+    title: 'SDKs — Arkova Docs',
+    description: 'Official TypeScript and Python SDKs for the Arkova Verification API. Typed interfaces, retry logic, and examples.',
+  },
+  {
+    path: '/docs/webhooks',
+    title: 'Webhooks — Arkova Docs',
+    description: 'Real-time webhook event delivery. Setup, event types, HMAC signature verification, retry policy, and best practices.',
+  },
+  {
+    path: '/docs/mcp',
+    title: 'MCP Server — Arkova Docs',
+    description: 'Connect AI agents to Arkova via Model Context Protocol. Configuration for Claude, GPT, and custom agents.',
+  },
+  {
+    path: '/docs/faq',
+    title: 'FAQ — Arkova Docs',
+    description: 'Technical FAQ covering security, API integration, network anchoring, AI features, and billing.',
+  },
+  {
+    path: '/docs/status',
+    title: 'Status — Arkova Docs',
+    description: 'System status, infrastructure overview, SLA targets, and incident response procedures.',
+  },
 ];
 
 function injectMeta(html, route) {

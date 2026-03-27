@@ -4,7 +4,7 @@
  */
 
 import { Link } from 'react-router-dom';
-import { FileText, Shield, Code, BookOpen, Map, ChevronRight, Cpu, Scale, Webhook } from 'lucide-react';
+import { FileText, Shield, Code, Map, ChevronRight, Cpu, Scale, Webhook, Zap, HelpCircle, Bot, Activity } from 'lucide-react';
 
 const PRIMARY_DOCS = [
   {
@@ -25,16 +25,40 @@ const PRIMARY_DOCS = [
 
 const REFERENCE_DOCS = [
   {
+    icon: Zap,
+    title: 'Quickstart',
+    description: 'Verify your first credential in 5 minutes. Step-by-step guide from account creation to API integration.',
+    href: '/docs/quickstart',
+  },
+  {
     icon: Code,
     title: 'API Reference',
-    description: 'Verification endpoints, authentication, rate limits, response schemas, and webhook events.',
-    href: '/wiki#api-reference',
+    description: 'Verification endpoints, authentication, rate limits, response schemas, and error codes.',
+    href: '/docs/api',
   },
   {
     icon: Cpu,
-    title: 'AI Intelligence Suite',
-    description: 'Metadata extraction, semantic search, fraud detection, RAG queries, and the provider abstraction layer.',
-    href: '/wiki#ai-intelligence',
+    title: 'SDKs',
+    description: 'Official TypeScript and Python SDKs with typed interfaces, retry logic, and full API coverage.',
+    href: '/docs/sdks',
+  },
+  {
+    icon: Webhook,
+    title: 'Webhooks',
+    description: 'Real-time event delivery. HMAC signatures, retry policy, circuit breakers, and integration guide.',
+    href: '/docs/webhooks',
+  },
+  {
+    icon: Bot,
+    title: 'MCP Server',
+    description: 'Connect AI agents (Claude, GPT, custom) to Arkova for native tool-based credential verification.',
+    href: '/docs/mcp',
+  },
+  {
+    icon: HelpCircle,
+    title: 'FAQ',
+    description: 'Technical FAQ covering security, API, anchoring, AI features, billing, and common integration questions.',
+    href: '/docs/faq',
   },
   {
     icon: Scale,
@@ -43,16 +67,10 @@ const REFERENCE_DOCS = [
     href: '/wiki#terminology-compliance',
   },
   {
-    icon: Webhook,
-    title: 'Webhooks & Integration',
-    description: 'Event delivery, HMAC signatures, retry policy, circuit breakers, and dead letter queues.',
-    href: '/wiki#developer-reference',
-  },
-  {
-    icon: BookOpen,
-    title: 'Research',
-    description: 'In-depth articles on credential verification, trust infrastructure, and the future of attestations.',
-    href: '/research',
+    icon: Activity,
+    title: 'Status',
+    description: 'System status, infrastructure overview, SLA targets, and incident response procedures.',
+    href: '/docs/status',
   },
   {
     icon: Map,

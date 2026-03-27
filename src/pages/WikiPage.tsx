@@ -68,14 +68,14 @@ export default function WikiPage() {
       <DocH3>What Arkova Is</DocH3>
       <DocP>
         Arkova is a <DocStrong>jurisdiction-aware verification layer</DocStrong> that enables
-        organizations to issue, anchor, and verify credentials against the Bitcoin blockchain. It
+        organizations to issue, anchor, and verify credentials against the anchoring network. It
         transforms documents such as diplomas, certificates, licenses, attestations, and compliance
         records into tamper-evident digital credentials — without ever taking custody of the
         underlying documents.
       </DocP>
       <DocP>
         Arkova is <DocStrong>not</DocStrong> a blockchain company. It is a{' '}
-        <DocStrong>verification infrastructure</DocStrong> company that uses Bitcoin as an immutable
+        <DocStrong>verification infrastructure</DocStrong> company that uses a public ledger as an immutable
         timestamping layer.
       </DocP>
 
@@ -90,7 +90,8 @@ export default function WikiPage() {
                               │
                               ▼
                      ┌─────────────────┐
-                     │    BITCOIN      │
+                     │   ANCHORING     │
+                     │   NETWORK       │
                      │  (Immutable     │
                      │   Timestamp)    │
                      └─────────────────┘`}</DocDiagram>
@@ -105,7 +106,7 @@ export default function WikiPage() {
           browser.
         </DocLi>
         <DocLi>
-          Arkova anchors the fingerprint to Bitcoin via an OP_RETURN output containing a 36-byte
+          Arkova anchors the fingerprint to the anchoring network via an OP_RETURN output containing a 36-byte
           payload (ARKV prefix + SHA-256 hash).
         </DocLi>
         <DocLi>
@@ -258,7 +259,7 @@ export default function WikiPage() {
 
       <DocH3>On-Chain Content Policy</DocH3>
       <DocP>
-        Only 36 bytes are ever written to Bitcoin: <DocCode>ARKV</DocCode> (4 bytes) + SHA-256 hash
+        Only 36 bytes are ever written to the anchoring network: <DocCode>ARKV</DocCode> (4 bytes) + SHA-256 hash
         (32 bytes). Forbidden from on-chain: filenames, file sizes, MIME types, user IDs, org IDs,
         email addresses, any PII.
       </DocP>
@@ -366,7 +367,7 @@ export default function WikiPage() {
           ['Visual Fraud Detection', 'Image-based fraud analysis for credential documents.'],
           ['Human Review Queue', 'Flagged credentials surface in admin review queue with disposition workflow.'],
           ['Extraction Feedback', 'Closed-loop learning: human corrections improve future accuracy.'],
-          ['RAG Query (Nessie)', 'Retrieval-augmented generation against 29,000+ public records. Returns cited sources.'],
+          ['Knowledge Query', 'Retrieval-augmented generation against 29,000+ public records. Returns cited sources.'],
         ]}
       />
 
@@ -419,9 +420,9 @@ export default function WikiPage() {
       <DocTable
         headers={['Phase', 'Name', 'Status', 'Description']}
         rows={[
-          ['Phase 1', 'Credentialing MVP', '<strong>Live (94% complete)</strong>', 'Issue, anchor, verify credentials. Bitcoin anchoring. AI extraction. Verification API. Payments.'],
-          ['Phase 1.5', 'Foundation', '<strong>In Progress</strong>', 'Public records pipeline, x402 micropayments, Nessie RAG, SDKs, multi-chain support.'],
-          ['Phase 2', 'Attestations', 'Planned', 'Third-party attestation claims, lifecycle management, Bitcoin anchoring.'],
+          ['Phase 1', 'Credentialing MVP', '<strong>Live (94% complete)</strong>', 'Issue, anchor, verify credentials. Network anchoring. AI extraction. Verification API. Payments.'],
+          ['Phase 1.5', 'Foundation', '<strong>In Progress</strong>', 'Public records pipeline, x402 micropayments, RAG intelligence, SDKs, multi-chain support.'],
+          ['Phase 2', 'Attestations', 'Planned', 'Third-party attestation claims, lifecycle management, network anchoring.'],
           ['Phase 3', 'E-Signatures', 'Planned', 'Legally recognized electronic signatures on anchoring infrastructure.'],
         ]}
       />
@@ -431,12 +432,12 @@ export default function WikiPage() {
         headers={['Milestone', 'Target', 'Key Deliverables']}
         rows={[
           ['Beta Launch (Signet)', '<strong>Complete</strong>', '1,572+ SECURED anchors, 13 beta stories, 2,236 tests'],
-          ['Bitcoin Mainnet', 'Q2 2026', 'Mainnet treasury funding, batch anchoring, production receipts'],
+          ['Production Network', 'Q2 2026', 'Production treasury funding, batch anchoring, production receipts'],
           ['Base L2 Anchoring', 'Q2 2026', 'Multi-chain support via Base'],
           ['Attestation API v1', 'Q2 2026', '5 attestation types, revocation, expiry, CRUD API'],
           ['x402 Micropayments', 'Q2 2026', 'USDC on Base L2, pay-per-call API'],
           ['Python & TypeScript SDKs', 'Q2 2026', 'Partner integration libraries'],
-          ['E-Signature Layer', 'Q4 2026', 'Legally binding signatures anchored to Bitcoin'],
+          ['E-Signature Layer', 'Q4 2026', 'Legally binding signatures anchored to the anchoring network'],
         ]}
       />
 
@@ -474,7 +475,7 @@ export default function WikiPage() {
           ['Validation', 'Zod', 'Runtime schema validation'],
           ['Payments', 'Stripe (SDK + webhooks)', 'Subscription billing (worker-only)'],
           ['Micropayments', 'x402 Protocol (USDC on Base L2)', 'Pay-per-call API access'],
-          ['Chain (Bitcoin)', 'bitcoinjs-lib + Cloud HSM', 'OP_RETURN anchoring'],
+          ['Chain (Anchoring)', 'bitcoinjs-lib + Cloud HSM', 'OP_RETURN anchoring'],
           ['Chain (Base L2)', 'viem', 'EVM-based anchoring'],
           ['AI (Primary)', 'Gemini 2.0 Flash', 'Extraction, fraud, RAG'],
           ['AI (Fallback)', 'Cloudflare Workers AI', 'Gated by ENABLE_AI_FALLBACK'],
@@ -506,7 +507,7 @@ export default function WikiPage() {
 │          │                                    │              │
 │          ▼                                    ▼              │
 │  ┌───────────────┐                   ┌───────────────┐      │
-│  │  Stripe       │                   │  Bitcoin /    │      │
+│  │  Stripe       │                   │  Anchoring  │      │
 │  │  (Payments)   │                   │  Base L2      │      │
 │  └───────────────┘                   └───────────────┘      │
 └──────────────────────────────────────────────────────────────┘`}</DocDiagram>
@@ -531,7 +532,7 @@ export default function WikiPage() {
         headers={['Event', 'Trigger']}
         rows={[
           ['anchor.created', 'New credential anchor created'],
-          ['anchor.secured', 'Anchor confirmed on Bitcoin network'],
+          ['anchor.secured', 'Anchor confirmed on the anchoring network'],
           ['anchor.revoked', 'Credential revoked'],
           ['anchor.verified', 'Verification lookup performed'],
           ['attestation.created', 'New attestation claim created'],
@@ -612,7 +613,7 @@ curl -H "X-API-Key: ak_live_your_key_here" \\
   "issued_date": "2026-01-15T00:00:00Z",
   "expiry_date": null,
   "anchor_timestamp": "2026-03-10T08:00:00Z",
-  "bitcoin_block": 204567,
+  "network_block": 204567,
   "network_receipt_id": "b8e381df09ca404e...",
   "merkle_proof_hash": null,
   "record_uri": "https://app.arkova.io/verify/ARK-2026-001",
@@ -632,7 +633,7 @@ curl -H "X-API-Key: ak_live_your_key_here" \\
       <DocTable
         headers={['Method', 'Endpoint', 'Auth', 'Description']}
         rows={[
-          ['POST', '/anchor', 'Required', 'Submit fingerprint for Bitcoin anchoring. Idempotent.'],
+          ['POST', '/anchor', 'Required', 'Submit fingerprint for network anchoring. Idempotent.'],
         ]}
       />
 
@@ -669,7 +670,7 @@ curl -H "X-API-Key: ak_live_your_key_here" \\
           ['POST', '/ai/fraud/visual', 'Visual fraud detection'],
           ['GET', '/ai/review', 'List flagged items in review queue'],
           ['POST', '/ai/feedback', 'Submit extraction corrections'],
-          ['POST', '/nessie/query', 'RAG query against knowledge base'],
+          ['POST', '/knowledge/query', 'RAG query against knowledge base'],
         ]}
       />
 
@@ -702,7 +703,7 @@ curl -H "X-API-Key: ak_live_your_key_here" \\
       <DocTable
         headers={['Responsibility', 'Arkova', 'Partner']}
         rows={[
-          ['Credential Anchoring', 'Manages Bitcoin/Base L2 transactions and chain confirmation', 'Submits fingerprints and metadata via API'],
+          ['Credential Anchoring', 'Manages network transactions and chain confirmation', 'Submits fingerprints and metadata via API'],
           ['Document Processing', 'Provides client-side SDKs for fingerprinting and OCR', 'Runs fingerprinting in their own client'],
           ['Document Storage', '<strong>Does not store documents</strong>', 'Stores and manages original documents'],
           ['PII Management', 'Strips PII client-side before server transmission', 'Ensures PII not embedded in metadata sent to API'],
@@ -725,7 +726,7 @@ curl -H "X-API-Key: ak_live_your_key_here" \\
           ['Reliability', 'Circuit breakers, dead letter queues, exponential backoff, idempotent webhooks'],
           ['AI Infrastructure', 'Provider-agnostic, credit-based cost controls, feature-flagged rollout, 2,050+ entry golden dataset'],
           ['Compliance', 'GDPR (non-custodial), SOC 2, immutable audit trail, configurable retention, legal hold'],
-          ['Chain Strategy', 'Bitcoin (immutability) + Base L2 (cost efficiency). Non-custodial. Technology-neutral UX.'],
+          ['Chain Strategy', 'Public ledger (immutability) + Base L2 (cost efficiency). Non-custodial. Technology-neutral UX.'],
         ]}
       />
 

@@ -10,6 +10,13 @@ import RoadmapPage from './pages/RoadmapPage';
 import ContactPage from './pages/ContactPage';
 import PrivacyPage from './pages/PrivacyPage';
 import TermsPage from './pages/TermsPage';
+import QuickstartPage from './pages/docs/QuickstartPage';
+import ApiReferencePage from './pages/docs/ApiReferencePage';
+import SdksPage from './pages/docs/SdksPage';
+import WebhooksPage from './pages/docs/WebhooksPage';
+import McpPage from './pages/docs/McpPage';
+import FaqPage from './pages/docs/FaqPage';
+import StatusPage from './pages/docs/StatusPage';
 
 export default function App() {
   return (
@@ -21,7 +28,13 @@ export default function App() {
         <Route path="/whitepaper" element={<WhitepaperPage />} />
         <Route path="/wiki" element={<WikiPage />} />
         <Route path="/docs" element={<DocsPage />} />
-        <Route path="/docs/api" element={<DocsPage />} />
+        <Route path="/docs/quickstart" element={<QuickstartPage />} />
+        <Route path="/docs/api" element={<ApiReferencePage />} />
+        <Route path="/docs/sdks" element={<SdksPage />} />
+        <Route path="/docs/webhooks" element={<WebhooksPage />} />
+        <Route path="/docs/mcp" element={<McpPage />} />
+        <Route path="/docs/faq" element={<FaqPage />} />
+        <Route path="/docs/status" element={<StatusPage />} />
         <Route path="/roadmap" element={<RoadmapPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
