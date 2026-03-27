@@ -43,6 +43,133 @@ export interface ArticleSection {
 }
 
 export const ARTICLES: Article[] = [
+  /* ═══════════════════════════════════════════════════════════════════
+   * ARTICLE — The Rise of the Agentic Economy
+   * ═══════════════════════════════════════════════════════════════════ */
+  {
+    slug: 'rise-of-agentic-economy',
+    title: 'The Rise of the Agentic Economy: How AI Agents Are Becoming Economic Participants',
+    subtitle: 'From autonomous procurement to machine-to-machine payments, the infrastructure for AI agents to transact independently is being built right now.',
+    date: '2026-03-27',
+    author: {
+      name: 'Carson Seeger',
+      title: 'CEO & Co-Founder',
+      avatar: '/team-carson.png',
+      linkedin: 'https://www.linkedin.com/in/carson-s-8b41061a/',
+    },
+    category: 'Technology',
+    readTime: '12 min read',
+    excerpt:
+      'AI agents are no longer just answering questions — they are buying, selling, verifying, and transacting. A $7.3 billion market is racing to build the payment rails, identity systems, and trust infrastructure that autonomous agents need to operate in the real economy.',
+    sections: [
+      {
+        blocks: [
+          { type: 'text', value: 'Something fundamental shifted in 2025. AI agents stopped being tools that humans direct and started becoming participants that act on their own. They negotiate contracts, execute payments, verify credentials, and make decisions — often without a human in the loop.' },
+          { type: 'text', value: 'The numbers are hard to ignore. The agentic AI market reached $7.3 billion in 2025 and is projected to hit $139 billion by 2034 — a 40% compound annual growth rate. Almost four in five enterprises have adopted AI agents in some form. Microsoft reports that over 160,000 organizations have created more than 400,000 custom agents through Copilot Studio alone.' },
+          { type: 'stat', value: '$7.3B', label: 'Agentic AI market size in 2025, projected to reach $139B by 2034 at 40% CAGR', source: 'Fortune Business Insights, 2025' },
+          { type: 'text', value: 'But here is the part that matters: when agents start acting independently — spending money, signing agreements, accessing services — the trust infrastructure that worked for human-driven software completely breaks down. How do you verify what an agent did, when it did it, and whether a real person authorized the action?' },
+          { type: 'text', value: 'This is the central challenge of the agentic economy. And the race to solve it is reshaping payments, identity, and verification infrastructure from the ground up.' },
+        ],
+      },
+      {
+        heading: 'Agents Are Already Here',
+        blocks: [
+          { type: 'text', value: 'The shift from chatbot to autonomous agent happened faster than most predicted. Gartner forecasts that 40% of enterprise applications will embed AI agents by the end of 2026, up from less than 5% in 2025.' },
+          { type: 'text', value: 'Salesforce rebuilt its entire platform identity around Agentforce — CRM-native agents that handle customer service, sales acceleration, and workflow automation. Thousands of brands deployed Agentforce agents in its first quarter alone.' },
+          { type: 'text', value: 'Google launched the Agent-to-Agent (A2A) protocol in April 2025, an open standard enabling AI agents to collaborate across enterprise systems regardless of vendor. Within months, over 150 organizations — including Atlassian, PayPal, SAP, and ServiceNow — joined the initiative. It was transferred to the Linux Foundation by mid-2025.' },
+          { type: 'stat', value: '150+', label: 'Organizations backing Google\'s A2A protocol, transferred to the Linux Foundation in 2025', source: 'Google/Linux Foundation', variant: 'green' },
+          { type: 'text', value: 'The use cases extend well beyond customer service chatbots. Tyson Foods and Gordon Food Service are deploying collaborative agent systems across their supply chains. Autonomous coding agents handle full development workflows — from natural language specification to tested, deployed code. Background check agents verify credentials in seconds rather than days.' },
+          { type: 'quote', quote: 'Companies that are not set up to quickly adopt AI workers will be at a huge disadvantage.', attribution: 'Sam Altman', role: 'CEO, OpenAI' },
+          { type: 'text', value: 'But as Microsoft CEO Satya Nadella warned at Davos 2026, there is a risk that the benefits concentrate in a handful of tech firms rather than diffusing broadly. The companies building the infrastructure layer — payments, identity, verification — will determine whether the agentic economy is accessible or extractive.' },
+        ],
+      },
+      {
+        heading: 'The Payment Problem: How Do Agents Pay for Things?',
+        blocks: [
+          { type: 'text', value: 'When a human buys something online, they enter a credit card number, authenticate with a password, and click a button. None of that works for an autonomous agent operating at machine speed.' },
+          { type: 'text', value: 'This gap has spawned an entirely new category of payment infrastructure. The approaches fall into three camps: traditional payment rails adapted for agents, crypto-native protocols built from scratch, and hybrid systems that bridge both worlds.' },
+
+          { type: 'text', value: '<strong>Stripe: Making Traditional Payments Agent-Friendly</strong>' },
+          { type: 'text', value: 'Stripe — which already powers 78% of the Forbes AI 50 — launched its Agentic Commerce Suite to make products discoverable to AI agents and simplify agent-driven checkout. The Stripe Agent Toolkit integrates with OpenAI\'s Agents SDK, LangChain, and CrewAI, enabling agents to create products, set up billing, and issue single-use virtual cards via Stripe Issuing. Over 700 AI agent startups launched on Stripe in 2024 alone.' },
+
+          { type: 'text', value: '<strong>x402: Reviving HTTP\'s Forgotten Payment Code</strong>' },
+          { type: 'text', value: 'The x402 protocol, developed by Coinbase, revives HTTP\'s 402 "Payment Required" status code for internet-native micropayments. When a request arrives without payment, the server responds with HTTP 402. The client — human or AI agent — pays and retries. It is elegant in its simplicity: no API keys, no subscription management, no human approval for each transaction.' },
+          { type: 'text', value: 'The traction has been significant. Over 35 million transactions and $10 million in volume have been processed over x402 on Solana since its summer launch. Coinbase\'s AgentKit — which gives every AI agent its own wallet and a suite of on-chain actions — has processed over 50 million transactions. The protocol is supported by Cloudflare, Google, and Vercel.' },
+          { type: 'stat', value: '50M+', label: 'Transactions processed through Coinbase AgentKit and x402 protocol', source: 'Coinbase, 2026', variant: 'blue' },
+
+          { type: 'text', value: '<strong>Tempo: Stripe Meets Blockchain for Agent Payments</strong>' },
+          { type: 'text', value: 'Perhaps the most ambitious entry is Tempo — a payments-focused blockchain incubated by Stripe and Paradigm that launched its mainnet on March 18, 2026. Designed for stablecoin payments at internet scale, Tempo offers sub-second finality and fees under $0.001.' },
+          { type: 'text', value: 'Tempo\'s Machine Payments Protocol (MPP) introduces a "sessions" primitive: an agent authorizes a spending limit upfront and streams micropayments continuously without per-interaction on-chain transactions. Partners include Anthropic, OpenAI, DoorDash, Mastercard, Revolut, and Shopify.' },
+
+          { type: 'text', value: '<strong>MoonPay and Trust Wallet: Consumer-Grade Agent Wallets</strong>' },
+          { type: 'text', value: 'MoonPay launched MoonPay Agents in February 2026 — non-custodial infrastructure giving AI agents access to 54 crypto tools across 17 skills, including recurring buys, cross-chain swaps, and x402 compatibility. Their Ledger integration made it the first agent wallet to support hardware device signing, keeping private keys away from the agent itself.' },
+          { type: 'text', value: 'MoonPay followed up with the Open Wallet Standard (OWS) in March 2026 — an open-source framework for universal agent wallet interfaces, backed by PayPal, OKX, Ripple, Circle, the Ethereum Foundation, and the Solana Foundation.' },
+          { type: 'text', value: 'Trust Wallet\'s Agent Kit (TWAK) takes a similar approach, enabling agents to execute swaps, DCA, and limit orders across 25+ chains within user-defined rules, integrated with their 220 million user base.' },
+        ],
+      },
+      {
+        heading: 'The Trust Gap: Agents Acting Without Proof',
+        blocks: [
+          { type: 'text', value: 'Payment infrastructure solves the mechanics of agent transactions. It does not solve the trust problem.' },
+          { type: 'text', value: 'When an AI agent autonomously approves a vendor contract, verifies a credential, or transfers funds, the only evidence is a log entry in whatever system the agent runs on. That log is mutable, controlled by the agent\'s operator, and provides no independent verification. An agent that logs its own actions is marking its own homework.' },
+          { type: 'text', value: 'This trust gap becomes critical as the stakes rise. Consider:' },
+          { type: 'table', title: 'The Agent Trust Gap', headers: ['Scenario', 'What Needs Proof', 'Current Reality'], rows: [
+            { cells: ['Agent verifies a credential', 'That the credential is authentic and unrevoked', 'Agent checks a database controlled by the agent\'s operator'], highlight: false },
+            { cells: ['Agent approves a payment', 'That a human authorized the spending limit', 'Agent logs the approval in its own system'], highlight: false },
+            { cells: ['Agent signs a contract', 'That the terms were agreed and unchanged', 'Agent stores a copy that it can modify'], highlight: true },
+            { cells: ['Agent-to-agent handoff', 'That both agents acted on authentic data', 'Each agent trusts the other\'s self-reported claims'], highlight: false },
+          ] },
+          { type: 'text', value: 'The emerging solutions converge on one principle: verification must be independent of the system being verified.' },
+        ],
+      },
+      {
+        heading: 'The Verification Layer: Where Blockchain Meets the Agentic Economy',
+        blocks: [
+          { type: 'text', value: 'The most interesting work in the agentic economy is not happening in the LLM labs. It is happening at the infrastructure layer — where blockchain, cryptography, and agent frameworks intersect to create verifiable trust.' },
+
+          { type: 'text', value: '<strong>ERC-8004: Identity and Reputation for Agents</strong>' },
+          { type: 'text', value: 'Published in August 2025 by contributors from MetaMask, the Ethereum Foundation, Google, and Coinbase, ERC-8004 establishes three on-chain registries: an Identity Registry (ERC-721 NFTs giving agents portable identifiers), a Reputation Registry (permanent audit trail of agent performance), and a Validation Registry (independent verification hooks). The standard fills a gap that Google\'s A2A protocol deliberately left open: A2A handles how agents communicate, but ERC-8004 addresses how they prove who they are and whether they can be trusted.' },
+
+          { type: 'text', value: '<strong>World + Coinbase: Proving a Human Is Behind the Agent</strong>' },
+          { type: 'text', value: 'Sam Altman\'s World project launched AgentKit in March 2026, enabling AI agents to carry cryptographic proof that they are backed by a verified human via World ID\'s biometric verification system. Combined with Coinbase\'s x402 and Cloudflare, this creates a circuit: a real human authorizes an agent, the agent transacts autonomously, and any counterparty can verify the human backing without revealing the human\'s identity. Over 18 million users have been verified through the World ID system.' },
+
+          { type: 'text', value: '<strong>Cryptographic Proof of Agent Actions</strong>' },
+          { type: 'text', value: 'Projects like Ungate on EigenLayer are pioneering cryptographic proof of agent autonomy. Agents run inside Trusted Execution Environments and produce proofs of autonomy, sovereignty, and integrity — verified by EigenLayer\'s network of restaked validators backed by over $5 billion in ETH. The proofs are stored on-chain and independently verifiable.' },
+
+          { type: 'text', value: 'The pattern emerging across all of these approaches is consistent:' },
+          { type: 'text', value: '1. An agent performs an action and produces an output.' },
+          { type: 'text', value: '2. The output is cryptographically fingerprinted and anchored to a public ledger.' },
+          { type: 'text', value: '3. Anyone can verify integrity by comparing the original output to the on-chain record.' },
+          { type: 'text', value: '4. Smart contracts or policy layers enforce constraints automatically.' },
+          { type: 'text', value: '5. Decentralized identity standards establish who authorized the agent and what it was permitted to do.' },
+          { type: 'text', value: 'This is not theoretical infrastructure. It is being built and deployed today.' },
+        ],
+      },
+      {
+        heading: 'What This Means for Verification Infrastructure',
+        blocks: [
+          { type: 'text', value: 'The agentic economy creates demand for verification at a scale and speed that manual processes cannot match. When an AI agent presents a credential to another agent, both need an independent record that the credential is authentic, when it was issued, and whether it has been revoked — in milliseconds, not days.' },
+          { type: 'text', value: 'This is where purpose-built verification layers become essential. A universal verification infrastructure must provide:' },
+          { type: 'text', value: '<strong>Tamper-evident timestamps.</strong> Every credential, contract, or attestation gets an independently verifiable proof of when it existed and in what form.' },
+          { type: 'text', value: '<strong>Machine-readable verification.</strong> APIs and protocols (MCP, A2A) that agents can call at machine speed — no browser, no login, no human in the loop.' },
+          { type: 'text', value: '<strong>Status semantics that survive system changes.</strong> Active, revoked, superseded, expired — status must be explicit, portable, and independently checkable.' },
+          { type: 'text', value: '<strong>Audit trails for agent decisions.</strong> When a regulator asks "why did your AI agent accept this credential?" the answer must be a cryptographic proof, not a log file.' },
+          { type: 'text', value: 'The organizations that build this infrastructure now — the trust layer for autonomous agents — will define how the agentic economy operates for the next decade.' },
+        ],
+      },
+      {
+        heading: 'The Road Ahead',
+        blocks: [
+          { type: 'text', value: 'The agentic economy is not a future prediction. It is current infrastructure being deployed by the largest technology companies in the world. Stripe, Coinbase, Google, Microsoft, Anthropic, and OpenAI are all building pieces of this stack.' },
+          { type: 'text', value: 'The payment rails are being laid (x402, Tempo MPP, Stripe Agent Toolkit). The identity systems are emerging (ERC-8004, World ID). The communication protocols exist (A2A, MCP). The missing piece — and the highest-leverage opportunity — is the verification layer that ties it all together.' },
+          { type: 'text', value: 'Because in an economy where agents act autonomously, the question is no longer "which system should I trust?" It is "which proofs can anyone verify?"' },
+          { type: 'stat', value: '$3-5T', label: 'Projected size of the agentic economy by 2030', source: 'World/Pantera Capital', variant: 'amber' },
+          { type: 'text', value: 'The infrastructure decisions being made today will determine whether the agentic economy is built on trust — or on faith.' },
+        ],
+      },
+    ],
+  },
+
   {
     slug: 'anchoring-compliance-bitcoin',
     title: 'Anchoring Compliance to Bitcoin: Why Critical Records Need a Stronger Foundation',

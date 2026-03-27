@@ -56,6 +56,12 @@ const ROUTES = [
     article: { author: 'Carson Seeger', datePublished: '2026-03-10', dateModified: '2026-03-10' },
   },
   {
+    path: '/research/rise-of-agentic-economy',
+    title: 'The Rise of the Agentic Economy: How AI Agents Are Becoming Economic Participants — Arkova Research',
+    description: 'AI agents are buying, selling, verifying, and transacting. A $7.3B market is building the payment rails, identity systems, and trust infrastructure autonomous agents need.',
+    article: { author: 'Carson Seeger', datePublished: '2026-03-27', dateModified: '2026-03-27' },
+  },
+  {
     path: '/research/real-cost-of-audit-verification',
     title: 'The Real Cost of Audit Verification — Arkova Research',
     description: 'Audit fees average $3M but internal costs are 2-3x that. How blockchain and AI reduce the 1,000+ hours per year spent on evidence collection.',
