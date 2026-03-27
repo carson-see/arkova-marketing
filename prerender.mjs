@@ -86,6 +86,16 @@ const ROUTES = [
     title: 'Terms of Service — Arkova',
     description: 'Terms of service for the Arkova document verification platform. Governing usage, privacy guarantees, and verification API access.',
   },
+  {
+    path: '/docs',
+    title: 'Documentation — Arkova',
+    description: 'Arkova documentation hub. Whitepaper, technical wiki, API reference, compliance guides, and integration resources.',
+  },
+  {
+    path: '/wiki',
+    title: 'Technical & Security Wiki — Arkova',
+    description: 'Architecture deep-dive for partners, investors, and integration teams. Security model, RLS policies, API reference, and shared responsibility matrix.',
+  },
 ];
 
 function injectMeta(html, route) {
