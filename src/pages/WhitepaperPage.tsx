@@ -420,7 +420,7 @@ export default function WhitepaperPage() {
 
             {/* ═══ SECTION 15 ═══ */}
             <SectionHeading id="team">15. About the Team</SectionHeading>
-            <P><strong>Carson Seeger</strong> — Founder & CEO. Over a decade in technical product and project management, working with distressed teams under tight regulatory deadlines.</P>
+            <P><strong>Carson Seeger</strong> — Founder & CEO. 10+ years in technical product and program management across regulated industries.</P>
             <P><strong>Sarah Rushton</strong> — Founder & COO. 20 years experience as a Product / Program Manager in FMCG. Launched over 1,000 SKUs to market.</P>
             <P><strong>Dr. Yaacov Petscher</strong> — Founder & Advisor. 20 years Research & Data Science experience. Senior Member of the National Academy of Inventors.</P>
             <P><strong>Dr. Periwinkle Doerfler</strong> — Technical Advisor. Security architecture review.</P>

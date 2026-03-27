@@ -347,7 +347,7 @@ export default function HomePage() {
           </div>
           <div className="grid gap-6 md:grid-cols-3">
             {[
-              { name: 'Carson', title: 'Founder & CEO', bio: 'A decade of rescuing distressed technical programs under regulatory pressure showed Carson that organizations need proof infrastructure that doesn\'t depend on any single vendor.', photo: '/team-carson.png', profileUrl: 'https://www.linkedin.com/in/carson-s-8b41061a/', profileType: 'linkedin' as const },
+              { name: 'Carson', title: 'Founder & CEO', bio: '10+ years in technical product and program management across regulated industries. Built Arkova to give organizations verification infrastructure that outlasts any single vendor.', photo: '/team-carson.png', profileUrl: 'https://www.linkedin.com/in/carson-s-8b41061a/', profileType: 'linkedin' as const },
               { name: 'Sarah', title: 'Founder & COO', bio: 'Over 20 years launching products through compliance-heavy supply chains taught Sarah one thing: documentation verification is broken at every level.', photo: '/team-sarah.png', profileUrl: 'https://www.linkedin.com/in/sljrushton/', profileType: 'linkedin' as const },
               { name: 'Yaacov', title: 'Founder & Advisor', bio: '20 years Research & Data Science experience. Senior Member of the National Academy of Inventors.', photo: '/team-yaacov.png', profileUrl: 'https://scholar.google.com/citations?user=MUGWLDoAAAAJ&hl=en', profileType: 'scholar' as const },
             ].map((member) => (
