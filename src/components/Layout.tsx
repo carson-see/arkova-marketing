@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   Linkedin,
   Twitter,
@@ -13,146 +13,10 @@ import {
   Code,
   BookOpen,
   Map,
-  ArrowRight,
 } from 'lucide-react';
 import arkovaLogo from '/arkova-logo.png';
 
 const HOME_SECTIONS = ['How It Works', 'Features', 'API', 'Use Cases', 'FAQ'];
-
-/* ═══════════════════════════════════════════
-   Search overlay
-   ═══════════════════════════════════════════ */
-
-const SEARCH_ITEMS = [
-  { title: 'Whitepaper', description: 'Universal Verification Layer', href: '/whitepaper', category: 'Documents' },
-  { title: 'Technical & Security Wiki', description: 'Architecture, security model, API reference', href: '/wiki', category: 'Documents' },
-  { title: 'Documentation Hub', description: 'All documentation in one place', href: '/docs', category: 'Documents' },
-  { title: 'Verification API', description: 'REST endpoints for credential verification', href: '/wiki#api-reference', category: 'API' },
-  { title: 'Verification Response Schema', description: 'Frozen JSON response format', href: '/wiki#api-reference', category: 'API' },
-  { title: 'Authentication', description: 'API keys, JWT, x402 payment auth', href: '/wiki#api-reference', category: 'API' },
-  { title: 'Rate Limits', description: '100/min anonymous, 1,000/min API key', href: '/wiki#developer-reference', category: 'API' },
-  { title: 'Security & Privacy', description: 'RLS, tenant isolation, audit trail', href: '/wiki#security-privacy', category: 'Architecture' },
-  { title: 'Client-Side Processing', description: 'Documents never leave the device', href: '/wiki#security-privacy', category: 'Architecture' },
-  { title: 'Non-Custodial Architecture', description: 'Document, financial, and key non-custody', href: '/wiki#system-overview', category: 'Architecture' },
-  { title: 'AI Intelligence Suite', description: 'Extraction, search, fraud detection', href: '/wiki#ai-intelligence', category: 'Features' },
-  { title: 'Compliance', description: 'SOX, ESIGN, eIDAS, FERPA, GDPR', href: '/wiki#terminology-compliance', category: 'Compliance' },
-  { title: 'Webhooks', description: 'Event delivery, signatures, retry policy', href: '/wiki#developer-reference', category: 'API' },
-  { title: 'Shared Responsibility', description: 'Partner integration responsibilities', href: '/wiki#shared-responsibility', category: 'Integration' },
-  { title: 'Technology Stack', description: 'React, Supabase, Vite, Stripe, bitcoinjs-lib', href: '/wiki#developer-reference', category: 'Architecture' },
-  { title: 'Roadmap', description: 'Three-phase product evolution', href: '/roadmap', category: 'Company' },
-  { title: 'Research Articles', description: 'In-depth analysis and thought leadership', href: '/research', category: 'Company' },
-  { title: 'Contact', description: 'Get in touch with the Arkova team', href: '/contact', category: 'Company' },
-];
-
-function SearchOverlay({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const [query, setQuery] = useState('');
-  const inputRef = useRef<HTMLInputElement>(null);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (open) {
-      setQuery('');
-      setTimeout(() => inputRef.current?.focus(), 50);
-    }
-  }, [open]);
-
-  // Close on Escape
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-    };
-    if (open) document.addEventListener('keydown', handler);
-    return () => document.removeEventListener('keydown', handler);
-  }, [open, onClose]);
-
-  // Cmd+K to open
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault();
-        if (!open) onClose(); // toggle handled by parent
-      }
-    };
-    document.addEventListener('keydown', handler);
-    return () => document.removeEventListener('keydown', handler);
-  }, [open, onClose]);
-
-  if (!open) return null;
-
-  const filtered = query.length > 0
-    ? SEARCH_ITEMS.filter(
-        (item) =>
-          item.title.toLowerCase().includes(query.toLowerCase()) ||
-          item.description.toLowerCase().includes(query.toLowerCase()) ||
-          item.category.toLowerCase().includes(query.toLowerCase())
-      )
-    : SEARCH_ITEMS.slice(0, 8);
-
-  const grouped = filtered.reduce<Record<string, typeof SEARCH_ITEMS>>((acc, item) => {
-    if (!acc[item.category]) acc[item.category] = [];
-    acc[item.category].push(item);
-    return acc;
-  }, {});
-
-  const handleSelect = (href: string) => {
-    onClose();
-    navigate(href);
-  };
-
-  return (
-    <div className="fixed inset-0 z-[60]" onClick={onClose}>
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
-      <div className="relative mx-auto mt-20 max-w-2xl px-4" onClick={(e) => e.stopPropagation()}>
-        <div className="overflow-hidden rounded-sm border border-white/[0.1] bg-cyber-bg shadow-2xl shadow-black/40">
-          {/* Search input */}
-          <div className="flex items-center gap-3 border-b border-white/[0.06] px-5 py-4">
-            <Search className="h-5 w-5 text-white/30" />
-            <input
-              ref={inputRef}
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search documentation..."
-              className="flex-1 bg-transparent text-[15px] text-white placeholder:text-white/30 outline-none"
-            />
-            <kbd className="rounded border border-white/10 bg-white/[0.03] px-2 py-0.5 text-[11px] text-white/25">
-              ESC
-            </kbd>
-          </div>
-
-          {/* Results */}
-          <div className="max-h-[400px] overflow-y-auto py-2">
-            {Object.entries(grouped).map(([category, items]) => (
-              <div key={category}>
-                <p className="px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/25">
-                  {category}
-                </p>
-                {items.map((item) => (
-                  <button
-                    key={item.href + item.title}
-                    onClick={() => handleSelect(item.href)}
-                    className="flex w-full items-center gap-3 px-5 py-2.5 text-left transition-colors hover:bg-cyber-cyan/[0.06]"
-                  >
-                    <div className="flex-1 min-w-0">
-                      <p className="text-[14px] font-medium text-white/70 truncate">{item.title}</p>
-                      <p className="text-[12px] text-white/30 truncate">{item.description}</p>
-                    </div>
-                    <ArrowRight className="h-3.5 w-3.5 shrink-0 text-white/15" />
-                  </button>
-                ))}
-              </div>
-            ))}
-            {filtered.length === 0 && (
-              <p className="px-5 py-8 text-center text-[14px] text-white/30">
-                No results for "{query}"
-              </p>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 /* ═══════════════════════════════════════════
    Docs dropdown
@@ -222,7 +86,6 @@ function DocsDropdown() {
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === '/';
 
@@ -233,18 +96,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, [location.pathname]);
-
-  // Cmd+K opens search
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault();
-        setSearchOpen((prev) => !prev);
-      }
-    };
-    document.addEventListener('keydown', handler);
-    return () => document.removeEventListener('keydown', handler);
-  }, []);
 
   const scrollTo = (id: string) => {
     setMobileMenuOpen(false);
@@ -288,20 +139,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
               Research
             </Link>
             <DocsDropdown />
+            <a
+              href="https://search.arkova.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-white/50 transition-colors hover:text-cyber-cyan"
+            >
+              Search
+            </a>
           </div>
 
           <div className="hidden items-center gap-3 md:flex">
-            {/* Search button */}
-            <button
-              onClick={() => setSearchOpen(true)}
-              className="flex items-center gap-2 rounded-sm border border-white/[0.08] bg-white/[0.02] px-3 py-1.5 text-[13px] text-white/30 transition-colors hover:border-white/[0.15] hover:text-white/50"
-            >
-              <Search className="h-3.5 w-3.5" />
-              <span>Search</span>
-              <kbd className="ml-2 rounded border border-white/10 bg-white/[0.03] px-1.5 py-0.5 text-[10px] text-white/20">
-                ⌘K
-              </kbd>
-            </button>
             <a
               href="https://app.arkova.ai"
               target="_blank"
@@ -322,13 +170,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </div>
 
           <div className="flex items-center gap-2 md:hidden">
-            <button
-              onClick={() => setSearchOpen(true)}
+            <a
+              href="https://search.arkova.ai"
+              target="_blank"
+              rel="noopener noreferrer"
               className="p-2 text-white/40"
               aria-label="Search"
             >
               <Search size={20} />
-            </button>
+            </a>
             <button
               className="text-white"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -415,9 +265,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </div>
         )}
       </nav>
-
-      {/* ═══ SEARCH OVERLAY ═══ */}
-      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
 
       {/* ═══ CONTENT ═══ */}
       {children}
