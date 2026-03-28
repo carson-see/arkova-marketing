@@ -8,18 +8,18 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Arkova — Issue Once. Verify Forever.</title>
-    <meta name="description" content="Arkova creates tamper-proof, verifiable records of your documents using cryptographic fingerprinting. Files never leave your device. Free tier available." />
+    <meta name="description" content="Arkova creates tamper-proof, independently verifiable records of credentials and documents. Verify any record instantly via API. Files never leave your device." />
 
     <!-- Open Graph -->
     <meta property="og:title" content="Arkova — Issue Once. Verify Forever." />
-    <meta property="og:description" content="Tamper-proof document verification. Privacy-first. Independently verifiable." />
+    <meta property="og:description" content="Tamper-proof credential and document verification. Verify any record instantly via API. Files never leave your device." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://arkova.ai" />
     <meta property="og:image" content="https://arkova.ai/og-image.png" />
     <meta property="og:site_name" content="Arkova" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Arkova — Issue Once. Verify Forever." />
-    <meta name="twitter:description" content="Tamper-proof document verification. Privacy-first. Independently verifiable." />
+    <meta name="twitter:description" content="Tamper-proof credential and document verification. Verify any record instantly via API. Files never leave your device." />
     <meta name="twitter:site" content="@arkovatech" />
     <meta name="twitter:image" content="https://arkova.ai/og-image.png" />
 
@@ -81,7 +81,7 @@
       "url": "https://arkova.ai",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
-      "description": "Privacy-first document verification platform. Create tamper-proof records using cryptographic fingerprinting — documents never leave your device. AI-powered credential processing, public verification, and a Verification API for programmatic access.",
+      "description": "Privacy-first document verification platform. Create tamper-proof records using cryptographic fingerprinting. Documents never leave your device. AI-powered credential processing, public verification, and a Verification API for programmatic access.",
       "offers": {
         "@type": "AggregateOffer",
         "lowPrice": "0",
@@ -115,7 +115,7 @@
           "name": "How does Arkova verify documents without seeing them?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Arkova uses cryptographic fingerprinting (SHA-256) that runs entirely in your browser. We only store the fingerprint — a one-way mathematical proof — never the document itself. This fingerprint is then anchored to a permanent public record."
+            "text": "Arkova uses cryptographic fingerprinting (SHA-256) that runs entirely in your browser. We only store the fingerprint, a one-way mathematical proof, never the document itself. This fingerprint is then anchored to a permanent public record."
           }
         },
         {
@@ -131,7 +131,7 @@
           "name": "What types of documents can I anchor?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Any digital file — PDFs, images, spreadsheets, presentations, contracts, certificates, transcripts. If it has a file, it can be fingerprinted and anchored."
+            "text": "Any digital file: PDFs, images, spreadsheets, presentations, contracts, certificates, transcripts. If it has a file, it can be fingerprinted and anchored."
           }
         },
         {
@@ -139,7 +139,7 @@
           "name": "How is this different from DocuSign or other e-signature tools?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "E-signature tools prove who signed a document. Arkova proves that a specific document existed at a specific time and has not been altered since. These are complementary — you can anchor a signed document to prove it hasn't changed after signing."
+            "text": "E-signature tools prove who signed a document. Arkova proves that a specific document existed at a specific time and has not been altered since. These are complementary. You can anchor a signed document to prove it hasn't changed after signing."
           }
         },
         {
@@ -155,7 +155,15 @@
           "name": "Is my data safe?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Your documents never leave your device — that's our foundational privacy guarantee, not just a feature. Fingerprints are anchored to a public, independently verifiable network. Even if our servers were compromised, your documents remain private because we never had them."
+            "text": "Your documents never leave your device. That's our foundational privacy guarantee, not just a feature. Fingerprints are anchored to a public, independently verifiable network. Even if our servers were compromised, your documents remain private because we never had them."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Arkova work with our existing ATS or background check workflow?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Arkova's Verification API integrates with any system that can make an HTTP call. Your ATS, HRIS, or background screening platform calls our endpoint and receives a structured, verified response. We also support webhooks for real-time status updates and batch endpoints for bulk verification."
           }
         }
       ]
@@ -278,13 +286,13 @@
           "@type": "HowToStep",
           "position": 2,
           "name": "Anchor to Network",
-          "text": "Your fingerprint is permanently anchored to a public network with an immutable timestamp — verifiable by anyone, forever."
+          "text": "Your fingerprint is permanently anchored to a public network with an immutable timestamp, verifiable by anyone, forever."
         },
         {
           "@type": "HowToStep",
           "position": 3,
           "name": "Verify Anytime",
-          "text": "Share a verification link or QR code. Anyone can independently confirm the document's authenticity — no account required."
+          "text": "Share a verification link or QR code. Anyone can independently confirm the document's authenticity. No account required."
         }
       ]
     }

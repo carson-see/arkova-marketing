@@ -3,14 +3,11 @@ import {
   Shield,
   FileCheck,
   Lock,
-  Globe,
   ArrowRight,
   CheckCircle2,
   Fingerprint,
-  Building2,
   GraduationCap,
   FileText,
-  Award,
   Zap,
   Eye,
   Download,
@@ -26,13 +23,15 @@ import {
   Brain,
   ScanSearch,
   Linkedin,
+  UserCheck,
+  ShieldCheck,
 } from 'lucide-react';
 import { Section } from '../components/Section';
 
 /* ─── Data ─── */
 const FEATURES = [
-  { icon: Shield, title: 'Privacy-First', description: 'Your files never leave your device. We fingerprint locally and anchor the proof — not the document.' },
-  { icon: Eye, title: 'Public Verification', description: 'Anyone can verify a credential via a shareable link or QR code — no account needed.' },
+  { icon: Shield, title: 'Privacy-First', description: 'Your files never leave your device. We fingerprint locally and anchor the proof, not the document.' },
+  { icon: Eye, title: 'Public Verification', description: 'Anyone can verify a credential via a shareable link or QR code. No account needed.' },
   { icon: Download, title: 'Proof Certificates', description: 'Download PDF proof packages with complete audit trails for compliance and legal use.' },
   { icon: Zap, title: 'Bulk Processing', description: 'Upload CSV files to anchor hundreds of credentials in a single batch operation.' },
   { icon: Users, title: 'Organization Tools', description: 'Manage team members, credential templates, and organization-wide records from one dashboard.' },
@@ -40,16 +39,16 @@ const FEATURES = [
 ];
 
 const USE_CASES = [
-  { icon: GraduationCap, title: 'Education', description: 'Degrees, transcripts, and academic certifications that anyone can verify instantly.' },
-  { icon: Building2, title: 'Organizations', description: 'Professional licenses, compliance certificates, and institutional credentials.' },
-  { icon: FileText, title: 'Legal & IP', description: 'Contracts, patents, and intellectual property records with provable timestamps.' },
-  { icon: Award, title: 'Professionals', description: 'Certifications, training records, and portfolio verification for career advancement.' },
+  { icon: UserCheck, title: 'Talent Verification', description: 'Recruiting agencies and background screening firms verify credentials at scale through our API. One call. Instant results. No phone tag with registrar offices.' },
+  { icon: ShieldCheck, title: 'Compliance & Risk', description: 'Regulated organizations prove the authenticity of records their teams and AI systems rely on. Audit-ready evidence that doesn\'t depend on any single vendor.' },
+  { icon: GraduationCap, title: 'Education', description: 'Universities issue tamper-proof credentials that employers and agents can verify independently. No manual processes, no clearinghouse middlemen.' },
+  { icon: FileText, title: 'Legal & IP', description: 'Law firms, patent holders, and contract parties timestamp and verify documents with cryptographic proof that holds up to scrutiny.' },
 ];
 
 const STEPS = [
   { step: '01', icon: Fingerprint, title: 'Upload & Fingerprint', description: 'Select your document. Arkova generates a unique cryptographic fingerprint in your browser. The file never leaves your device.' },
-  { step: '02', icon: Lock, title: 'Anchor to Network', description: 'Your fingerprint is permanently anchored to a public network. This creates an immutable timestamp — verifiable by anyone, forever.' },
-  { step: '03', icon: CheckCircle2, title: 'Verify Anytime', description: 'Share a verification link or QR code. Anyone can independently confirm the authenticity — no account required.' },
+  { step: '02', icon: Lock, title: 'Anchor to Network', description: 'Your fingerprint is permanently anchored to a public network. This creates an immutable timestamp, verifiable by anyone, forever.' },
+  { step: '03', icon: CheckCircle2, title: 'Verify Anytime', description: 'Share a verification link or QR code. Anyone can independently confirm the authenticity. No account required.' },
 ];
 
 const API_FEATURES = [
@@ -61,12 +60,13 @@ const API_FEATURES = [
 ];
 
 const FAQ = [
-  { q: 'How does Arkova verify documents without seeing them?', a: 'Arkova uses cryptographic fingerprinting (SHA-256) that runs entirely in your browser. We only store the fingerprint — a one-way mathematical proof — never the document itself. This fingerprint is then anchored to a public network, creating a permanent, independently verifiable record.' },
+  { q: 'How does Arkova verify documents without seeing them?', a: 'Arkova uses cryptographic fingerprinting (SHA-256) that runs entirely in your browser. We only store the fingerprint, a one-way mathematical proof, never the document itself. This fingerprint is then anchored to a public network, creating a permanent, independently verifiable record.' },
   { q: 'Can anyone verify a credential?', a: "Yes. Verification is completely open. Anyone with a verification link or QR code can confirm a document's authenticity and timestamp independently. No account or software required." },
-  { q: 'What types of documents can I anchor?', a: 'Any digital file — PDFs, images, spreadsheets, presentations, contracts, certificates, transcripts. If it has a file, it can be fingerprinted and anchored.' },
-  { q: 'How is this different from DocuSign or other e-signature tools?', a: "E-signature tools prove who signed a document. Arkova proves that a specific document existed at a specific time and has not been altered since. These are complementary — you can anchor a signed document to prove it hasn't changed after signing." },
+  { q: 'What types of documents can I anchor?', a: 'Any digital file: PDFs, images, spreadsheets, presentations, contracts, certificates, transcripts. If it has a file, it can be fingerprinted and anchored.' },
+  { q: 'How is this different from DocuSign or other e-signature tools?', a: "E-signature tools prove who signed a document. Arkova proves that a specific document existed at a specific time and has not been altered since. These are complementary. You can anchor a signed document to prove it hasn't changed after signing." },
   { q: 'Can I integrate Arkova into my existing systems?', a: 'Absolutely. Our Verification API lets you verify credentials programmatically with a single API call. Batch endpoints support up to 100 verifications per request. Webhook notifications provide real-time events.' },
-  { q: 'Is my data safe?', a: "Your documents never leave your device — that's our foundational privacy guarantee, not just a feature. Fingerprints are anchored to a public, independently verifiable network. Even if our servers were compromised, your documents remain private because we never had them." },
+  { q: 'Is my data safe?', a: "Your documents never leave your device. That's our foundational privacy guarantee, not just a feature. Fingerprints are anchored to a public, independently verifiable network. Even if our servers were compromised, your documents remain private because we never had them." },
+  { q: 'How does Arkova work with our existing ATS or background check workflow?', a: "Arkova's Verification API integrates with any system that can make an HTTP call. Your ATS, HRIS, or background screening platform calls our endpoint and receives a structured, verified response. We also support webhooks for real-time status updates and batch endpoints for bulk verification." },
 ];
 
 /* ─── Scroll Observer ─── */
@@ -130,8 +130,8 @@ export default function HomePage() {
               </h1>
 
               <p className="mb-6 max-w-lg text-lg text-white/40 opacity-0 animate-fade-up md:text-xl" style={{ animationDelay: '0.35s' }}>
-                Every record an agent touches needs to be independently verifiable, tamper-proof, and portable.
-                Arkova is the verification layer — using AI and cryptographic anchoring to make that possible.
+                Credentials get forged. Records get lost. Verification takes days.
+                Arkova creates tamper-proof, cryptographic proof of any record, verifiable by anyone, instantly, with a single API call.
               </p>
 
               <p className="mb-10 max-w-lg text-sm text-white/25 opacity-0 animate-fade-up leading-relaxed" style={{ animationDelay: '0.45s' }}>
@@ -189,17 +189,17 @@ export default function HomePage() {
       <Section className="px-6 py-24 md:py-32">
         <div className="mx-auto max-w-5xl">
           <div className="mb-12 text-center">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">The Future of Records</p>
-            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Infrastructure for Agentic Verification</h2>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Infrastructure</p>
+            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Built for the next generation of verification</h2>
             <p className="mx-auto max-w-2xl text-white/35">
-              As AI agents become participants in credentialing, hiring, and compliance workflows, the records they rely on need to be machine-verifiable, tamper-proof, and independently auditable.
+              Whether your team verifies credentials manually or your systems do it programmatically, the records need to be machine-verifiable, tamper-proof, and independently auditable.
             </p>
           </div>
           <div className="grid gap-5 md:grid-cols-3">
             {[
-              { icon: Zap, title: 'Agent Micropayments', description: 'AI agents autonomously pay per verification via the x402 protocol — machine-to-machine payments with zero human intervention. Compliance at machine speed.' },
-              { icon: Globe, title: 'Global Regulatory Coverage', description: 'SEC filings, patents, regulations, and academic papers — cryptographically anchored and searchable. Expanding across jurisdictions worldwide.' },
-              { icon: Layers, title: 'Compliance Intelligence', description: 'AI-powered regulatory analysis built on cryptographically verified data. Every insight traces back to an anchored, tamper-proof source.' },
+              { icon: Zap, title: 'Programmatic Verification', description: 'Your ATS, compliance system, or AI agent calls our API and gets a verified result in milliseconds. No browser, no login, no human in the loop.' },
+              { icon: FileCheck, title: 'Audit-Ready Evidence', description: 'Every verification is logged with timestamp, querying entity, and result. SOX, FERPA, and eIDAS-aligned evidence out of the box.' },
+              { icon: Layers, title: 'Compliance Intelligence', description: 'AI-powered anomaly detection flags inconsistencies, expired credentials, and potential issues before they become audit findings.' },
             ].map((item) => (
               <CyberCard key={item.title} className="p-8">
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-sm bg-cyber-cyan/10 border border-cyber-cyan/20">
@@ -220,14 +220,14 @@ export default function HomePage() {
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">AI-Powered</p>
             <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Intelligent credential processing</h2>
             <p className="mx-auto max-w-2xl text-white/35">
-              AI extracts metadata, classifies credential types, and detects anomalies — all while keeping your documents private on your device.
+              AI extracts metadata, classifies credential types, and detects anomalies, all while keeping your documents private on your device.
             </p>
           </div>
           <div className="grid gap-5 md:grid-cols-3">
             {[
               { icon: Sparkles, title: 'Metadata Extraction', description: "Automatically identify credential types, issuers, dates, and key fields. AI reads the document so you don't have to." },
               { icon: ScanSearch, title: 'Anomaly Detection', description: 'Flags inconsistencies, expired credentials, and potential issues before they become problems.' },
-              { icon: Brain, title: 'Smart Classification', description: 'Categorize credentials by type — degrees, licenses, certifications, contracts — and organize records intelligently.' },
+              { icon: Brain, title: 'Smart Classification', description: 'Categorize credentials by type: degrees, licenses, certifications, contracts. Organize records intelligently.' },
             ].map((item) => (
               <CyberCard key={item.title} className="p-8">
                 <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-sm bg-cyber-cyan/10 border border-cyber-cyan/20">
@@ -255,9 +255,15 @@ export default function HomePage() {
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Verification API</p>
             <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Integrate verification into anything</h2>
             <p className="mx-auto max-w-2xl text-white/35">
-              Verify credentials programmatically. Background checks, compliance audits, hiring workflows — verify at scale with a single API call.
+              Verify credentials programmatically. Background checks, compliance audits, hiring workflows, verify at scale with a single API call.
             </p>
           </div>
+          <CyberCard hover={false} className="mb-8 p-6 border-cyber-cyan/15">
+            <p className="text-sm leading-relaxed text-white/40">
+              <span className="font-semibold text-white">Background checks that take days now take seconds.</span>{' '}
+              A staffing agency calls <code className="rounded bg-cyber-cyan/10 px-1.5 py-0.5 font-mono text-xs text-cyber-cyan">GET /verify/:publicId</code> and gets issuer, status, and timestamp, verified against the public ledger.
+            </p>
+          </CyberCard>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {API_FEATURES.map((feature) => (
               <CyberCard key={feature.title} className="p-6">
@@ -301,7 +307,7 @@ export default function HomePage() {
           <div className="mb-16 text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Who It's For</p>
             <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Built for every industry that needs proof</h2>
-            <p className="mx-auto max-w-2xl text-white/35">From universities issuing degrees to law firms timestamping contracts.</p>
+            <p className="mx-auto max-w-2xl text-white/35">From staffing agencies verifying candidates to universities issuing tamper-proof degrees.</p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {USE_CASES.map((uc) => (
@@ -379,7 +385,7 @@ export default function HomePage() {
           <CyberCard hover={false} className="p-10 text-center md:p-16 border-cyber-cyan/15 animate-glow-pulse">
             <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Your privacy is our architecture</h2>
             <p className="mx-auto mb-10 max-w-2xl text-white/35">
-              Built from the ground up so documents never leave your device. Fingerprinting happens in your browser. We anchor the fingerprint — never the file.
+              Built from the ground up so documents never leave your device. Fingerprinting happens in your browser. We anchor the fingerprint, never the file.
             </p>
             <div className="grid gap-5 sm:grid-cols-3">
               {[
