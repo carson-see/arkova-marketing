@@ -94,7 +94,7 @@ export const ARTICLES: Article[] = [
 
           { type: 'text', value: '<strong>x402: Reviving HTTP\'s Forgotten Payment Code</strong>' },
           { type: 'text', value: 'The x402 protocol, developed by Coinbase, revives HTTP\'s 402 "Payment Required" status code for internet-native micropayments. When a request arrives without payment, the server responds with HTTP 402. The client — human or AI agent — pays and retries. It is elegant in its simplicity: no API keys, no subscription management, no human approval for each transaction.' },
-          { type: 'text', value: 'The traction has been significant. Over 35 million transactions and $10 million in volume have been processed over x402 on Solana since its summer launch. Coinbase\'s AgentKit — which gives every AI agent its own wallet and a suite of on-chain actions — has processed over 50 million transactions. The protocol is supported by Cloudflare, Google, and Vercel.' },
+          { type: 'text', value: 'The traction has been significant. Coinbase\'s AgentKit — which gives every AI agent its own wallet and a suite of on-chain actions — has processed over 50 million transactions across supported networks. The x402 protocol is backed by Cloudflare, Google, and Vercel, with support for ERC-20 payments on Base and other EVM-compatible chains.' },
           { type: 'stat', value: '50M+', label: 'Transactions processed through Coinbase AgentKit and x402 protocol', source: 'Coinbase, 2026', variant: 'blue' },
 
           { type: 'text', value: '<strong>Tempo: Stripe Meets Blockchain for Agent Payments</strong>' },
@@ -103,7 +103,7 @@ export const ARTICLES: Article[] = [
 
           { type: 'text', value: '<strong>MoonPay and Trust Wallet: Consumer-Grade Agent Wallets</strong>' },
           { type: 'text', value: 'MoonPay launched MoonPay Agents in February 2026 — non-custodial infrastructure giving AI agents access to 54 crypto tools across 17 skills, including recurring buys, cross-chain swaps, and x402 compatibility. Their Ledger integration made it the first agent wallet to support hardware device signing, keeping private keys away from the agent itself.' },
-          { type: 'text', value: 'MoonPay followed up with the Open Wallet Standard (OWS) in March 2026 — an open-source framework for universal agent wallet interfaces, backed by PayPal, OKX, Ripple, Circle, the Ethereum Foundation, and the Solana Foundation.' },
+          { type: 'text', value: 'MoonPay followed up with the Open Wallet Standard (OWS) in March 2026 — an open-source framework for universal agent wallet interfaces, backed by over 15 organizations including PayPal, OKX, Ripple, and Circle.' },
           { type: 'text', value: 'Trust Wallet\'s Agent Kit (TWAK) takes a similar approach, enabling agents to execute swaps, DCA, and limit orders across 25+ chains within user-defined rules, integrated with their 220 million user base.' },
         ],
       },

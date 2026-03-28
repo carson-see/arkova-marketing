@@ -137,9 +137,10 @@ function RichBlock({ block }: { block: ContentBlock }) {
   switch (block.type) {
     case 'text':
       return (
-        <p className="mb-4 text-base leading-[1.8] text-arkova-slate dark:text-arkova-steel-light/70">
-          {block.value}
-        </p>
+        <p
+          className="mb-4 text-base leading-[1.8] text-arkova-slate dark:text-arkova-steel-light/70 [&_strong]:font-semibold [&_strong]:text-arkova-charcoal dark:[&_strong]:text-white/80"
+          dangerouslySetInnerHTML={{ __html: block.value }}
+        />
       );
 
     case 'stat':
