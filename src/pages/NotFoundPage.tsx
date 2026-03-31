@@ -1,32 +1,48 @@
+/**
+ * 404 Not Found Page — GEO-14: Proper HTTP 404 for unknown routes.
+ *
+ * Prerendered to dist/404.html. Vercel serves this file with a 404 status
+ * for any URL that doesn't match a prerendered static file.
+ */
+
 import { Link } from 'react-router-dom';
-import { ShieldOff, ArrowLeft } from 'lucide-react';
+import { Shield, ArrowLeft } from 'lucide-react';
 
 export default function NotFoundPage() {
   return (
-    <section className="relative overflow-hidden px-6 pb-20 pt-28 md:pt-36 lg:pt-44">
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden pt-20">
       <div className="absolute inset-0 bg-circuit" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(0,212,255,0.06)_0%,transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_40%,rgba(0,212,255,0.06)_0%,transparent_60%)]" />
 
-      <div className="relative mx-auto max-w-2xl text-center">
-        <div className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-sm border border-cyber-cyan/20 bg-cyber-cyan/5">
-          <ShieldOff className="h-12 w-12 text-cyber-cyan/50" />
+      <div className="relative mx-auto max-w-2xl px-6 py-24 text-center">
+        {/* Icon */}
+        <div className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-sm border border-cyber-cyan-border bg-cyber-bg-card/60">
+          <Shield className="h-10 w-10 text-cyber-cyan" />
         </div>
 
-        <h1 className="mb-4 text-6xl font-bold tracking-tight text-white md:text-8xl">
-          <span className="bg-gradient-to-r from-cyber-cyan to-cyber-teal bg-clip-text text-transparent">404</span>
-        </h1>
-
-        <p className="mb-2 text-xl font-semibold text-white">Page not found</p>
-        <p className="mb-10 text-white/35">
-          The page you are looking for does not exist or has been moved. Head back to the homepage to explore Arkova's document verification platform.
+        {/* Status */}
+        <p className="mb-4 font-mono text-sm font-bold uppercase tracking-widest text-cyber-cyan">
+          404 — Not Found
         </p>
 
+        {/* Headline */}
+        <h1 className="mb-6 text-4xl font-bold italic tracking-tight text-white md:text-6xl">
+          Record not found.
+        </h1>
+
+        {/* Subtext */}
+        <p className="mb-10 text-lg text-white/40">
+          The page you're looking for doesn't exist or has been moved.
+          Unlike credentials on Arkova, this URL has no immutable record.
+        </p>
+
+        {/* CTA */}
         <Link
           to="/"
-          className="group inline-flex items-center gap-2 cyber-btn"
+          className="inline-flex items-center gap-2 rounded-sm border border-cyber-cyan-border bg-cyber-bg-card/60 px-6 py-3 text-sm font-bold text-white transition-colors hover:border-cyber-cyan hover:text-cyber-cyan"
         >
-          <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-          Back to Home
+          <ArrowLeft className="h-4 w-4" />
+          Back to Arkova
         </Link>
       </div>
     </section>
