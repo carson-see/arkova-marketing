@@ -1,9 +1,12 @@
 import { useEffect } from 'react';
+import { BreadcrumbJsonLd } from '../components/BreadcrumbJsonLd';
 
 export default function TermsPage() {
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
   return (
+    <>
+    <BreadcrumbJsonLd items={[{ name: 'Terms of Service', url: 'https://arkova.ai/terms' }]} />
     <div className="min-h-screen bg-[#0a0f14] pt-32 pb-20">
       <div className="mx-auto max-w-3xl px-6">
         <h1 className="text-4xl font-bold text-white mb-8">Terms of Service</h1>
@@ -49,5 +52,6 @@ export default function TermsPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

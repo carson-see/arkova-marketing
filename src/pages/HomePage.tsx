@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Shield,
   FileCheck,
@@ -122,10 +123,10 @@ export default function HomePage() {
               </div>
 
               <h1 className="mb-6 text-5xl font-bold tracking-tight text-white opacity-0 animate-fade-up md:text-7xl" style={{ animationDelay: '0.2s' }}>
-                Issue Once.
+                Document Verification
                 <br />
                 <span className="bg-gradient-to-r from-cyber-cyan to-cyber-teal bg-clip-text text-transparent">
-                  Verify Forever.
+                  You Can Trust.
                 </span>
               </h1>
 
@@ -192,7 +193,7 @@ export default function HomePage() {
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Infrastructure</p>
             <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Built for the next generation of verification</h2>
             <p className="mx-auto max-w-2xl text-white/35">
-              Whether your team verifies credentials manually or your systems do it programmatically, the records need to be machine-verifiable, tamper-proof, and independently auditable.
+              Whether your team verifies credentials manually or your systems do it programmatically, the records need to be machine-verifiable, tamper-proof, and independently auditable. Read our <Link to="/research" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">research</Link> on agentic recordkeeping.
             </p>
           </div>
           <div className="grid gap-5 md:grid-cols-3">
@@ -207,6 +208,32 @@ export default function HomePage() {
                 </div>
                 <h3 className="mb-3 text-lg font-bold text-white">{item.title}</h3>
                 <p className="text-sm leading-relaxed text-white/35">{item.description}</p>
+              </CyberCard>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* ═══ TRACTION / SOCIAL PROOF ═══ */}
+      <Section className="px-6 py-20 md:py-28">
+        <div className="mx-auto max-w-5xl">
+          <div className="mb-12 text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Platform Traction</p>
+            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Trusted at scale</h2>
+            <p className="mx-auto max-w-2xl text-white/35">
+              Real numbers from a production document verification platform processing credentials across industries worldwide.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-5 md:grid-cols-4">
+            {[
+              { value: '166,000+', label: 'Secured Credentials' },
+              { value: '320,000+', label: 'Public Records Indexed' },
+              { value: '1.4M+', label: 'Anchored Documents' },
+              { value: '99.9%', label: 'Uptime' },
+            ].map((stat) => (
+              <CyberCard key={stat.label} hover={false} className="p-6 text-center md:p-8">
+                <div className="font-mono text-2xl font-bold text-cyber-cyan md:text-3xl lg:text-4xl">{stat.value}</div>
+                <div className="mt-2 text-xs font-medium uppercase tracking-wider text-white/30 md:text-sm">{stat.label}</div>
               </CyberCard>
             ))}
           </div>
@@ -255,7 +282,7 @@ export default function HomePage() {
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Verification API</p>
             <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Integrate verification into anything</h2>
             <p className="mx-auto max-w-2xl text-white/35">
-              Verify credentials programmatically. Background checks, compliance audits, hiring workflows, verify at scale with a single API call.
+              Verify credentials programmatically. Background checks, compliance audits, hiring workflows — verify at scale with a single API call. See our <Link to="/roadmap" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">product roadmap</Link> for what's coming next.
             </p>
           </div>
           <CyberCard hover={false} className="mb-8 p-6 border-cyber-cyan/15">
@@ -359,7 +386,7 @@ export default function HomePage() {
             ].map((member) => (
               <CyberCard key={member.name} className="p-6 text-center">
                 <div className="mx-auto mb-5 h-28 w-28 overflow-hidden rounded-full border border-cyber-cyan/20">
-                  <img src={member.photo} alt={member.name} className="h-full w-full object-cover" />
+                  <img src={member.photo} alt={`${member.name}, ${member.title} at Arkova`} width={112} height={112} className="h-full w-full object-cover" />
                 </div>
                 <h3 className="text-lg font-bold text-white">{member.name}</h3>
                 <p className="mb-3 text-sm font-medium text-cyber-cyan">{member.title}</p>
@@ -385,7 +412,7 @@ export default function HomePage() {
           <CyberCard hover={false} className="p-10 text-center md:p-16 border-cyber-cyan/15 animate-glow-pulse">
             <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Your privacy is our architecture</h2>
             <p className="mx-auto mb-10 max-w-2xl text-white/35">
-              Built from the ground up so documents never leave your device. Fingerprinting happens in your browser. We anchor the fingerprint, never the file.
+              Built from the ground up so documents never leave your device. Fingerprinting happens in your browser. We anchor the fingerprint — never the file. Learn more in our <Link to="/whitepaper" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">technical whitepaper</Link>.
             </p>
             <div className="grid gap-5 sm:grid-cols-3">
               {[
@@ -433,7 +460,7 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(0,212,255,0.08)_0%,transparent_70%)]" />
         <div className="relative mx-auto max-w-2xl text-center">
           <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Be first to verify what matters</h2>
-          <p className="mb-10 text-lg text-white/35">Join the waitlist for early access. We'll notify you when Arkova is ready.</p>
+          <p className="mb-10 text-lg text-white/35">Join the waitlist for early access. We'll notify you when Arkova is ready. Have questions? <Link to="/contact" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">Contact us</Link>.</p>
           <form action="https://formspree.io/f/mpqynjnp" method="POST" className="mx-auto flex max-w-md flex-col gap-3 sm:flex-row">
             <input
               type="email"

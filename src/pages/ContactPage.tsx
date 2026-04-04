@@ -3,7 +3,9 @@
  */
 
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Send, CheckCircle2, AlertCircle, Mail, Linkedin } from 'lucide-react';
+import { BreadcrumbJsonLd } from '../components/BreadcrumbJsonLd';
 
 export default function ContactPage() {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -35,6 +37,7 @@ export default function ContactPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: 'Contact', url: 'https://arkova.ai/contact' }]} />
       {/* ═══ SPLIT HERO + FORM ═══ */}
       <section className="relative min-h-screen overflow-hidden pt-20">
         <div className="absolute inset-0 bg-circuit" />
@@ -51,7 +54,7 @@ export default function ContactPage() {
               next?
             </h1>
             <p className="max-w-md text-lg text-white/40 opacity-0 animate-fade-up" style={{ animationDelay: '0.35s' }}>
-              Get in touch with our team to learn more about the Arkova platform and partnership opportunities.
+              Get in touch with our team to learn more about the Arkova <Link to="/" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">document verification platform</Link> and partnership opportunities. Read our <Link to="/whitepaper" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">whitepaper</Link> or explore the <Link to="/research" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">latest research</Link>.
             </p>
 
             {/* Info cards below headline */}

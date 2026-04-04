@@ -117,7 +117,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-cyber-cyan-border bg-cyber-bg/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
           <Link to="/" className="flex items-center gap-2.5">
-            <img src={arkovaLogo} alt="Arkova" className="h-10 w-auto brightness-150 contrast-90" />
+            <img src={arkovaLogo} alt="Arkova document verification platform logo" width={120} height={40} className="h-10 w-auto brightness-150 contrast-90" />
           </Link>
 
           <div className="hidden items-center gap-7 md:flex">
@@ -275,7 +275,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <div className="grid gap-12 md:grid-cols-4">
             <div className="md:col-span-1">
               <Link to="/" className="mb-4 flex items-center gap-2.5">
-                <img src={arkovaLogo} alt="Arkova" className="h-10 w-auto brightness-150 contrast-90" />
+                <img src={arkovaLogo} alt="Arkova document verification platform logo" width={120} height={40} className="h-10 w-auto brightness-150 contrast-90" />
               </Link>
               <p className="text-sm text-white/40">
                 Tamper-proof document verification. Privacy-first. Independently verifiable.
@@ -318,12 +318,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <ul className="space-y-2.5">
                 {['How It Works', 'Features', 'API', 'Use Cases'].map((label) => (
                   <li key={label}>
-                    <button
-                      onClick={() => handleNavClick(label)}
+                    <a
+                      href={`/#${label.toLowerCase().replace(/\s+/g, '-')}`}
+                      onClick={(e) => { if (isHome) { e.preventDefault(); handleNavClick(label); } }}
                       className="text-sm text-white/40 transition-colors hover:text-white"
                     >
                       {label}
-                    </button>
+                    </a>
                   </li>
                 ))}
               </ul>

@@ -1,9 +1,12 @@
 import { useEffect } from 'react';
+import { BreadcrumbJsonLd } from '../components/BreadcrumbJsonLd';
 
 export default function PrivacyPage() {
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
   return (
+    <>
+    <BreadcrumbJsonLd items={[{ name: 'Privacy Policy', url: 'https://arkova.ai/privacy' }]} />
     <div className="min-h-screen bg-[#0a0f14] pt-32 pb-20">
       <div className="mx-auto max-w-3xl px-6">
         <h1 className="text-4xl font-bold text-white mb-8">Privacy Policy</h1>
@@ -45,5 +48,6 @@ export default function PrivacyPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

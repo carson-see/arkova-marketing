@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Clock, Tag } from 'lucide-react';
 import { ARTICLES } from '../data/articles';
 import { Section } from '../components/Section';
+import { BreadcrumbJsonLd } from '../components/BreadcrumbJsonLd';
 
 const CATEGORY_COLORS: Record<string, string> = {
   Compliance: 'bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400',
@@ -21,6 +22,7 @@ function formatDate(iso: string): string {
 export default function ResearchPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: 'Research', url: 'https://arkova.ai/research' }]} />
       {/* ═══ HERO ═══ */}
       <section className="relative overflow-hidden px-6 pb-16 pt-28 md:pt-36">
         <div className="absolute inset-0 bg-mesh-gradient dark:bg-mesh-dark" />

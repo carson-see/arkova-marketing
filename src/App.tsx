@@ -17,6 +17,7 @@ import WebhooksPage from './pages/docs/WebhooksPage';
 import McpPage from './pages/docs/McpPage';
 import FaqPage from './pages/docs/FaqPage';
 import StatusPage from './pages/docs/StatusPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
   return (
@@ -39,6 +40,7 @@ export default function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/terms" element={<TermsPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Layout>
   );

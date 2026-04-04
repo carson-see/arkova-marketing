@@ -5,6 +5,7 @@
 
 import { ArrowRight, CheckCircle2, Clock, Circle } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { BreadcrumbJsonLd } from '../components/BreadcrumbJsonLd';
 
 const PHASES = [
   {
@@ -71,6 +72,7 @@ const STATUS_CONFIG = {
 export default function RoadmapPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: 'Roadmap', url: 'https://arkova.ai/roadmap' }]} />
       {/* ═══ HERO ═══ */}
       <section className="relative overflow-hidden px-6 pb-16 pt-28 md:pt-36">
         <div className="absolute inset-0 bg-circuit" />

@@ -5,6 +5,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { ArrowRight, ChevronDown } from 'lucide-react';
+import { BreadcrumbJsonLd } from '../components/BreadcrumbJsonLd';
 
 const TOC = [
   { id: 'attestation-challenge', label: '1. The Attestation Challenge' },
@@ -106,6 +107,7 @@ export default function WhitepaperPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: 'Whitepaper', url: 'https://arkova.ai/whitepaper' }]} />
       {/* JSON-LD */}
       <script
         type="application/ld+json"
@@ -117,12 +119,18 @@ export default function WhitepaperPage() {
             datePublished: '2026-03-15',
             dateModified: '2026-03-15',
             author: [
-              { '@type': 'Person', name: 'Carson Seeger', jobTitle: 'CEO & Co-Founder', url: 'https://www.linkedin.com/in/carson-s-8b41061a/' },
-              { '@type': 'Person', name: 'Sarah Rushton', jobTitle: 'COO & Co-Founder', url: 'https://www.linkedin.com/in/sljrushton/' },
+              { '@id': 'https://arkova.ai/#carson-seeger' },
+              { '@id': 'https://arkova.ai/#sarah-rushton' },
             ],
-            publisher: { '@type': 'Organization', name: 'Arkova', url: 'https://arkova.ai' },
+            publisher: { '@id': 'https://arkova.ai/#org' },
             description: 'Technical whitepaper on how Arkova anchors compliance-aligned metadata to a public ledger for independently verifiable records.',
             articleSection: 'Technology',
+            mainEntityOfPage: {
+              '@type': 'WebPage',
+              '@id': 'https://arkova.ai/whitepaper',
+            },
+            wordCount: 5200,
+            image: 'https://arkova.ai/og-image.png',
           }),
         }}
       />

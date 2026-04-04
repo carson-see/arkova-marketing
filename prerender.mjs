@@ -23,8 +23,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROUTES = [
   {
     path: '/',
-    title: 'Arkova — Issue Once. Verify Forever.',
-    description: 'Arkova uses AI and blockchain to create tamper-proof, independently verifiable records of your documents. Files never leave your device. Free tier available.',
+    title: 'Arkova — Document Verification Platform | Issue Once. Verify Forever.',
+    description: 'Arkova is a privacy-first document verification platform that creates tamper-proof, independently verifiable credential records using AI and cryptographic fingerprinting. Files never leave your device.',
   },
   {
     path: '/research',
@@ -136,6 +136,11 @@ const ROUTES = [
     path: '/docs/status',
     title: 'Status — Arkova Docs',
     description: 'System status, infrastructure overview, SLA targets, and incident response procedures.',
+  },
+  {
+    path: '/404',
+    title: '404 — Page Not Found — Arkova',
+    description: 'The page you are looking for does not exist. Return to Arkova to explore our document verification platform.',
   },
 ];
 
@@ -309,6 +314,13 @@ async function prerender() {
     }
 
     fs.writeFileSync(outFile, html);
+
+    // Copy /404 page to dist/404.html so Vercel serves it for unknown routes
+    if (route.path === '/404') {
+      const notFoundFile = path.resolve(distPath, '404.html');
+      fs.writeFileSync(notFoundFile, html);
+      console.log(`  ${route.path} → 404.html (copy for Vercel)`);
+    }
 
     const h1Count = (html.match(/<h1[\s>]/g) || []).length;
     const h2Count = (html.match(/<h2[\s>]/g) || []).length;

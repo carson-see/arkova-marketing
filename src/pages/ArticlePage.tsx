@@ -11,6 +11,7 @@ import { ArrowLeft, Clock, Tag, Linkedin, Twitter, LinkIcon, CheckCircle2 } from
 import { useState, useEffect } from 'react';
 import { getArticleBySlug, ARTICLES, type Article, type ContentBlock } from '../data/articles';
 import { DIAGRAM_COMPONENTS } from '../components/diagrams';
+import { BreadcrumbJsonLd } from '../components/BreadcrumbJsonLd';
 
 const CATEGORY_COLORS: Record<string, string> = {
   Compliance: 'bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400',
@@ -51,15 +52,7 @@ function ArticleJsonLd({ article }: { article: Article }) {
       jobTitle: article.author.title,
       ...(article.author.linkedin && { url: article.author.linkedin }),
     },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Arkova',
-      url: 'https://arkova.ai',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://arkova.ai/arkova-logo.png',
-      },
-    },
+    publisher: { '@id': 'https://arkova.ai/#org' },
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': `https://arkova.ai/research/${article.slug}`,
@@ -266,6 +259,10 @@ export default function ArticlePage() {
 
   return (
     <>
+      <BreadcrumbJsonLd items={[
+        { name: 'Research', url: 'https://arkova.ai/research' },
+        { name: article.title, url: `https://arkova.ai/research/${article.slug}` },
+      ]} />
       <ArticleJsonLd article={article} />
 
       {/* ═══ ARTICLE HEADER ═══ */}
@@ -313,6 +310,8 @@ export default function ArticlePage() {
                 <img
                   src={article.author.avatar}
                   alt={article.author.name}
+                  width={48}
+                  height={48}
                   className="h-12 w-12 rounded-full border-2 border-arkova-ice/60 dark:border-white/10 object-cover"
                 />
               )}
@@ -366,6 +365,8 @@ export default function ArticlePage() {
                   <img
                     src={article.author.avatar}
                     alt={article.author.name}
+                    width={48}
+                    height={48}
                     className="h-12 w-12 rounded-full border-2 border-arkova-ice/60 dark:border-white/10 object-cover"
                   />
                 )}
