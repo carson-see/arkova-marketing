@@ -11,7 +11,7 @@
 
 A comprehensive security audit was conducted across the Arkova marketing site (arkova.ai), search portal (search.arkova.ai), and the main application platform (app.arkova.ai). The audit covered source code review, CI/CD pipeline analysis, external reconnaissance, and dependency scanning.
 
-**Overall Assessment: GOOD — No critical vulnerabilities found.**
+**Overall Assessment: 1 CRITICAL finding (hardcoded API tokens in CI/CD), remainder GOOD.**
 
 The codebase demonstrates mature security practices:
 - SHA-pinned GitHub Actions with secret scanning
@@ -41,6 +41,13 @@ However, several medium and low severity findings were identified that should be
 | ARK-SEC-008 | Info | Best Practice | No honeypot/CAPTCHA on contact form | Formspree handles |
 | ARK-SEC-009 | Info | Headers | Missing X-DNS-Prefetch-Control header | Optional |
 | ARK-SEC-010 | Info | SSRF | Crawler endpoint lacks DNS resolution validation | Behind auth |
+| ARK-SEC-011 | **CRITICAL** | Secrets | Hardcoded API tokens in deploy-worker.yml | **Rotate Immediately** |
+| ARK-SEC-012 | High | CI/CD | Expression injection in CI workflow run blocks | Requires Code Change |
+| ARK-SEC-013 | High | Supply Chain | Unpinned Docker base image (node:lts-alpine) | Requires Code Change |
+| ARK-SEC-014 | Medium | Container | Dockerfile runs as root (no USER directive) | Requires Code Change |
+| ARK-SEC-015 | Medium | Secrets | Gitleaks blanket-excludes all test files | Config Change |
+| ARK-SEC-016 | Medium | CI/CD | Worker tests use continue-on-error: true | Config Change |
+| ARK-SEC-017 | Medium | Supply Chain | Unpinned cloudflared image in docker-compose | Config Change |
 
 ---
 
@@ -196,6 +203,86 @@ The `X-DNS-Prefetch-Control: off` header is not set. While minor, DNS prefetchin
 **Location:** `services/edge/src/cloudflare-crawler.ts:65-72`
 
 The crawler fetches user-supplied domains (`https://{domain}`). While domain validation blocks IP addresses, internal hostnames, and reserved TLDs, DNS rebinding could theoretically bypass these checks. However, this endpoint is protected by `X-Cron-Secret` authentication, limiting the attack surface to compromised internal credentials.
+
+---
+
+### ARK-SEC-011: CRITICAL — Hardcoded API Tokens in deploy-worker.yml
+
+**Location:** `.github/workflows/deploy-worker.yml` (~line 78)
+**CVSS:** 8.2 (High)
+
+Two API tokens are hardcoded as plaintext `--set-env-vars` in the Cloud Run deploy command:
+- `COURTLISTENER_API_TOKEN` (CourtListener legal records API)
+- `OPENSTATES_API_KEY` (OpenStates legislative data API)
+
+These are committed to version control and visible to anyone with repo read access. They may have been cached in CI logs.
+
+**Immediate Action Required:**
+1. Rotate both tokens immediately
+2. Move to GCP Secret Manager (like other secrets using `--set-secrets`)
+3. Scrub from git history if repo is public
+
+---
+
+### ARK-SEC-012: Expression Injection in CI Workflow (High)
+
+**Location:** `.github/workflows/ci.yml` — ai-eval-gate, tla-verify, migration-check jobs
+**CVSS:** 6.5 (Medium-High)
+
+`${{ github.event.pull_request.base.sha || 'HEAD~1' }}` is interpolated directly into `run:` blocks. While `base.sha` is a hex SHA (limited injection surface), this is a known anti-pattern per GitHub Security Advisory guidance.
+
+**Fix:** Assign to env var: `env: BASE_SHA: ${{ ... }}` then use `"$BASE_SHA"` in the run block.
+
+---
+
+### ARK-SEC-013: Unpinned Docker Base Image (High)
+
+**Location:** `services/worker/Dockerfile` lines 4, 10
+**CVSS:** 6.0
+
+`FROM node:lts-alpine` is a mutable tag. A compromised upstream image would silently affect builds.
+
+**Fix:** Pin to digest: `FROM node:20-alpine@sha256:<specific-digest>`
+
+---
+
+### ARK-SEC-014: Container Runs as Root (Medium)
+
+**Location:** `services/worker/Dockerfile`
+
+No `USER` directive. Container processes run as root, increasing blast radius of any container escape.
+
+**Fix:** Add `RUN addgroup -S appgroup && adduser -S appuser -G appgroup` then `USER appuser`.
+
+---
+
+### ARK-SEC-015: Gitleaks Test File Exclusion Too Broad (Medium)
+
+**Location:** `.gitleaks.toml`
+
+All `*.test.ts`, `*.test.tsx`, `*.spec.ts` files are blanket-excluded from secret scanning. Real secrets in test fixtures would be missed.
+
+**Fix:** Replace path exclusions with specific regex allowlists for known safe patterns.
+
+---
+
+### ARK-SEC-016: Tests Use continue-on-error: true (Medium)
+
+**Location:** `.github/workflows/ci.yml`
+
+Worker tests, RLS tests, and E2E tests all have `continue-on-error: true`. Failing tests do not block merges.
+
+**Fix:** Remove `continue-on-error` or make test jobs required status checks in branch protection.
+
+---
+
+### ARK-SEC-017: Unpinned cloudflared Image (Medium)
+
+**Location:** `services/worker/docker-compose.yml`
+
+`cloudflare/cloudflared:latest` is a mutable tag.
+
+**Fix:** Pin to specific version and digest.
 
 ---
 
