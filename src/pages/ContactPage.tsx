@@ -125,12 +125,11 @@ export default function ContactPage() {
                 </div>
 
                 <input type="hidden" name="_subject" value="Arkova Contact Form — New Inquiry" />
-                <input type="hidden" name="_cc" value="sarah@arkova.ai" />
 
                 {status === 'error' && (
                   <div className="flex items-center gap-2 rounded-lg bg-red-500/10 border border-red-500/20 px-4 py-3 text-sm text-red-400">
                     <AlertCircle className="h-4 w-4 shrink-0" />
-                    Something went wrong. Please email us directly at carson@arkova.ai
+                    Something went wrong. Please email us directly at hello@arkova.ai
                   </div>
                 )}
 
