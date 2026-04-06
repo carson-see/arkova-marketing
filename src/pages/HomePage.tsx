@@ -131,8 +131,8 @@ export default function HomePage() {
               </h1>
 
               <p className="mb-6 max-w-lg text-lg text-white/40 opacity-0 animate-fade-up md:text-xl" style={{ animationDelay: '0.35s' }}>
-                Credentials get forged. Records get lost. Verification takes days.
-                Arkova creates tamper-proof, cryptographic proof of any record, verifiable by anyone, instantly, with a single API call.
+                Document verification is broken. Credentials get forged. Records get lost. Verification takes days.
+                Arkova creates tamper-proof, cryptographic proof of any credential, verifiable by anyone, instantly, with a single API call.
               </p>
 
               <p className="mb-10 max-w-lg text-sm text-white/25 opacity-0 animate-fade-up leading-relaxed" style={{ animationDelay: '0.45s' }}>
