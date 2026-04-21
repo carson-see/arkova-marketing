@@ -23,8 +23,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROUTES = [
   {
     path: '/',
-    title: 'Arkova — Compliance Audit Automation | Audits in Hours, Not Weeks.',
-    description: "Arkova is a compliance audit automation platform in early access. We're building per-jurisdiction scoring, gap detection, prioritized remediation, and audit-ready PDF export on top of a privacy-first, cryptographically-anchored evidence chain. Request early access.",
+    // Title: ≤60 chars (SCRUM-940). Description: ≤160 chars (SCRUM-936).
+    title: 'Arkova — Compliance Audit Automation in Hours, Not Weeks',
+    description: 'Compliance audit automation in early access. Per-jurisdiction scoring, gap detection, remediation, and audit-ready export. Privacy-first. Join the pilot.',
   },
   {
     path: '/research',

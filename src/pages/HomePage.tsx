@@ -198,7 +198,7 @@ export default function HomePage() {
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">What We're Building</p>
             <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Your compliance posture, end-to-end, in one place</h2>
             <p className="mx-auto max-w-2xl text-white/35">
-              Stop chasing evidence across ten tools. We're building a platform that maps what you already have to the regulations you actually operate under, flags the gaps that would fail an audit, and tells you what to fix first. Read our <Link to="/research" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">research</Link> on audit automation.
+              Stop chasing evidence across ten tools. We're building a platform that maps what you already have to the regulations you actually operate under, flags the gaps that would fail an audit, and tells you what to fix first. Read more on <Link to="/research/real-cost-of-audit-verification" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">why audits cost what they do</Link>, or browse all <Link to="/research" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">research</Link> on audit automation.
             </p>
           </div>
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
@@ -224,9 +224,9 @@ export default function HomePage() {
       <Section className="px-6 py-20">
         <div className="mx-auto max-w-5xl">
           <div className="mb-10 text-center">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Coverage Map</p>
-            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">One platform for the regimes you operate under</h2>
-            <p className="mx-auto max-w-2xl text-white/35">Operate in one jurisdiction or eighteen. Our roadmap covers the frameworks below, with new regimes added as our customer footprint expands.</p>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Multi-Jurisdiction Coverage</p>
+            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Multi-jurisdiction compliance, one platform</h2>
+            <p className="mx-auto max-w-2xl text-white/35">Multi-jurisdiction operators — US + EU, EU + LATAM, APAC + Africa — get a single posture view instead of one tool per regime. Our roadmap covers the frameworks below, with new regimes added as our customer footprint expands.</p>
           </div>
           <CyberCard hover={false} className="p-6 md:p-8">
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
@@ -275,7 +275,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-5xl">
           <div className="mb-16 text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">AI-Powered</p>
-            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Evidence mapping, not evidence manual-labor</h2>
+            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Compliance audit automation, powered by AI</h2>
             <p className="mx-auto max-w-2xl text-white/35">
               Our models read your records, identify what they are, and map them to the controls that matter — while documents stay private on your device.
             </p>
@@ -509,7 +509,7 @@ export default function HomePage() {
 
       {/* Last updated — visible for AI freshness signals */}
       <div className="px-6 pb-6 text-center">
-        <p className="text-[10px] text-white/10 font-mono">Last updated: March 2026</p>
+        <p className="text-[10px] text-white/10 font-mono">Last updated: April 2026</p>
       </div>
     </div>
   );
