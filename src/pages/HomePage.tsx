@@ -29,11 +29,11 @@ import { Section } from '../components/Section';
 
 /* ─── Data ─── */
 const FEATURES = [
-  { icon: Gauge, title: 'Compliance Scorecard', description: 'A per-jurisdiction score, a gauge, and a prioritized gap list. Your posture across every regime you operate in, on one page.' },
-  { icon: ListChecks, title: 'Gap Detection', description: 'Four categories, severity-ranked: MISSING, EXPIRED, EXPIRING_SOON, INSUFFICIENT. Know exactly what would fail an audit today.' },
-  { icon: Sparkles, title: 'Prioritized Remediation', description: 'Recommendations scored by severity × penalty-risk ÷ effort. Quick wins, critical fixes, and upcoming deadlines — never "here are 200 findings, good luck."' },
-  { icon: Bell, title: 'Regulatory Change Alerts', description: 'Rules move. We watch. Get in-app and email alerts the moment a regulation changes in a jurisdiction where you operate.' },
-  { icon: Download, title: 'Audit-Ready PDF Export', description: 'Export a US-Letter compliance report — gauge, per-jurisdiction bars, gaps, recommendations, evidence — for your auditor, board, or regulator.' },
+  { icon: Gauge, title: 'Compliance Scorecard', description: 'A per-jurisdiction score and a prioritized gap list — your posture across every regime you operate in, on one page.' },
+  { icon: ListChecks, title: 'Gap Detection', description: 'Severity-ranked gaps across four categories: missing, expired, expiring-soon, and insufficient. Know what would fail an audit.' },
+  { icon: Sparkles, title: 'Prioritized Remediation', description: 'Recommendations scored by severity, penalty risk, and effort. Quick wins, critical fixes, and upcoming deadlines — never "here are 200 findings, good luck."' },
+  { icon: Bell, title: 'Regulatory Change Alerts', description: 'Rules move. We watch. Get in-app and email alerts when a regulation changes in a jurisdiction you operate in.' },
+  { icon: Download, title: 'Audit-Ready PDF Export', description: 'Export a compliance report — scorecard, per-jurisdiction breakdown, gaps, recommendations, evidence — for your auditor, board, or regulator.' },
   { icon: Lock, title: 'Privacy-First Architecture', description: 'Documents never leave your device. We fingerprint locally and anchor the proof, not the file. Evidence auditors can independently verify.' },
 ];
 
@@ -58,21 +58,22 @@ const JURISDICTIONS = [
 ];
 
 const API_FEATURES = [
-  { icon: Code2, title: 'Audit API', description: 'Kick off an organization audit or fetch the latest scorecard with a single call. Per-jurisdiction scores, gaps, and recommendations — structured JSON.' },
-  { icon: Layers, title: 'Batch Verification', description: 'Verify up to 100 records in a single call. Ideal for background checks, evidence runs, and discovery.' },
+  { icon: Code2, title: 'Verification API', description: 'Single-call verification lookup by public ID — returns status, issuer, timestamps, and network receipt. Live today.' },
+  { icon: Layers, title: 'Batch Verification', description: 'Verify records in bulk for background checks, evidence runs, and discovery — designed for high-volume workflows.' },
   { icon: Key, title: 'API Key Management', description: 'Create, rotate, and revoke API keys with granular scopes. HMAC-SHA256 secured. Full audit trail of every key action.' },
-  { icon: BarChart3, title: 'Usage Analytics', description: 'Real-time dashboards for API consumption, rate-limit status, and audit volume.' },
-  { icon: Webhook, title: 'Regulatory-Change Webhooks', description: 'Subscribe to rule changes in the jurisdictions you operate in. HMAC-signed payloads the moment a regulation shifts.' },
+  { icon: BarChart3, title: 'Usage Analytics', description: 'Real-time dashboards for API consumption, rate-limit status, and verification volume.' },
+  { icon: Webhook, title: 'Webhooks & Events', description: 'Subscribe to anchoring, verification, and (coming) regulatory-change events. HMAC-signed payloads, retry on failure.' },
 ];
 
 const FAQ = [
-  { q: 'How much faster is an audit with Arkova vs. the manual process?', a: 'Typical compliance audits take weeks: compiling evidence across 10+ tools, mapping it to controls, and producing a report. Arkova maps your evidence to 100+ rules across 14 frameworks automatically, scores your posture per jurisdiction, ranks gaps by severity and penalty risk, and exports an audit-ready PDF. Weeks become hours. You still review; you just stop doing the compilation yourself.' },
-  { q: 'Which regulations does Arkova cover today?', a: 'US federal (FERPA, HIPAA, SOX, FCRA, GLBA, ADA, FLSA, GINA), EU/UK GDPR, Kenya DPA, Australia APP, Canada PIPEDA, Singapore PDPA, Japan APPI, India DPDP, South Africa POPIA, Nigeria NDPR, Colombia Law 1581, Thailand PDPA, and Malaysia PDPA. 100+ jurisdiction rules across 14 regulatory frameworks, with new regimes added continuously. If you operate in a jurisdiction we do not yet cover, tell us — we prioritize by customer operating footprint.' },
-  { q: 'What does the scorecard actually show me?', a: 'A per-jurisdiction score (0–100) with a gauge, a gap list categorized as MISSING / EXPIRED / EXPIRING_SOON / INSUFFICIENT, a prioritized remediation plan scored by severity × penalty risk ÷ effort, a regulatory-change timeline, and an audit-ready PDF export. Built for your GRC lead, CISO, internal audit, or outside counsel.' },
-  { q: 'How does regulatory-change monitoring work?', a: 'Our cron pipeline watches the jurisdictions you subscribe to. When a rule changes, we compute the impact on your posture (NONE / INFO / IN_APP / EMAIL severity) and send you an in-app notification or email. You never find out about a rule change from your auditor again.' },
-  { q: 'Is this proof auditor-grade? Will it hold up to SOC 2 / ISO / regulator review?', a: 'The evidence chain is cryptographic and independently verifiable: every anchor is a SHA-256 fingerprint committed to a public network, lifecycle events are in an append-only audit log, and every PDF export carries the cryptographic receipts auditors need. Our own SOC 2 Type II and ISO work is in progress — we document what is asserted and what is not, so auditors can make their own determination.' },
-  { q: 'Is my data safe? Do you see our documents?', a: 'No. Your documents never leave your device. That is our foundational privacy guarantee, not a feature. Fingerprints are anchored to a public, independently verifiable network; only PII-stripped metadata flows to our servers. Even if our systems were breached, your documents remain private because we never had them.' },
-  { q: 'Can I integrate Arkova into my GRC / ticketing / SIEM stack?', a: "Yes. The Audit API, batch verification endpoints, and regulatory-change webhooks are designed to plug into existing GRC platforms, ticketing (Jira, ServiceNow), ATS/HRIS, and background-screening workflows. HMAC-signed payloads, rate-limited, with a full audit trail of every call." },
+  { q: 'What is Arkova?', a: "Arkova is a compliance audit automation platform in early access. We're building on top of a production-grade, cryptographically-anchored evidence layer that already runs at scale. The audit-automation product on top — scorecard, gap detection, remediation, regulatory-change alerts, PDF export — is being built and refined with pilot customers right now." },
+  { q: 'How much faster is an audit with Arkova going to be vs. the manual process?', a: 'Typical compliance audits take weeks: compiling evidence across many tools, mapping it to controls, and producing a report. Arkova is designed to map evidence to the rules in your operating regimes automatically, rank gaps by severity and penalty risk, and produce an audit-ready export — so the work shifts from compilation to review. Our pilot target is collapsing weeks of audit prep into hours.' },
+  { q: 'Which regulations are on the roadmap?', a: 'Our roadmap covers US federal (FERPA, HIPAA, SOX, FCRA, GLBA, ADA, FLSA, GINA), EU/UK GDPR, Kenya DPA, Australia APP, Canada PIPEDA, Singapore PDPA, Japan APPI, India DPDP, South Africa POPIA, Nigeria NDPR, Colombia Law 1581, Thailand PDPA, and Malaysia PDPA. We prioritize by pilot-customer footprint — if you operate somewhere we have not covered yet, tell us.' },
+  { q: 'What will the scorecard show?', a: 'A per-jurisdiction posture score and breakdown, a severity-ranked gap list, a prioritized remediation plan, a regulatory-change feed, and an audit-ready export. Designed for GRC leads, CISOs, internal audit, and outside counsel.' },
+  { q: 'Is the evidence chain auditor-grade?', a: 'The evidence layer underneath the product is cryptographic and independently verifiable: every anchor is a SHA-256 fingerprint committed to a public network, and lifecycle events are in an append-only audit log. Our own SOC 2 Type II and ISO work is in progress — we document what is asserted and what is not, so auditors can make their own determination.' },
+  { q: 'Is my data safe? Do you see our documents?', a: 'No. Your documents never leave your device. That is our foundational privacy guarantee, not a feature. Fingerprinting is client-side. Only PII-stripped metadata flows to our systems. Even if we were breached, your documents remain private because we never had them.' },
+  { q: 'Can I integrate Arkova into my GRC / ticketing / SIEM stack?', a: "Yes — the platform is being designed with those integrations as first-class. HMAC-signed payloads, rate-limited endpoints, full audit trail of every call. We're actively shaping the surface with early-access partners." },
+  { q: 'How do I get access?', a: "Join the waitlist on this page. We'll reach out to scope a pilot — the best fits right now are compliance teams operating across multiple jurisdictions who are tired of the quarterly audit fire drill." },
 ];
 
 /* ─── Scroll Observer ─── */
@@ -136,11 +137,11 @@ export default function HomePage() {
               </h1>
 
               <p className="mb-6 max-w-lg text-lg text-white/40 opacity-0 animate-fade-up md:text-xl" style={{ animationDelay: '0.35s' }}>
-                Arkova maps your evidence to 100+ rules across 14 regulatory frameworks, scores your posture per jurisdiction, and ranks gaps by severity and penalty risk — so your next audit takes hours, not weeks.
+                We're building compliance audit automation that maps your evidence to the regulations you operate under, surfaces the gaps that would fail an audit, and ranks remediation by severity and penalty risk — so your next audit takes hours, not weeks.
               </p>
 
               <p className="mb-10 max-w-lg text-sm text-white/25 opacity-0 animate-fade-up leading-relaxed" style={{ animationDelay: '0.45s' }}>
-                A compliance audit platform built on privacy-first, cryptographically-anchored evidence. Fingerprinting happens in your browser — documents never leave your device. Every control check is independently verifiable. Export an audit-ready PDF, subscribe to regulatory-change alerts, and retire the quarterly fire drill.
+                Arkova is a privacy-first compliance audit platform in early access. Fingerprinting happens in your browser — documents never leave your device. Every control check is cryptographically anchored and independently verifiable. Join the waitlist to pilot with us.
               </p>
 
               <div className="flex flex-col items-center gap-4 opacity-0 animate-fade-up sm:flex-row lg:justify-start" style={{ animationDelay: '0.5s' }}>
@@ -148,14 +149,9 @@ export default function HomePage() {
                   Request Early Access
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </button>
-                <a
-                  href="https://app.arkova.ai/compliance/scorecard"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-sm border border-cyber-cyan-border px-8 py-3.5 text-base font-semibold text-white transition-all hover:border-cyber-cyan/40 hover:bg-cyber-cyan/5 hover:shadow-glow-sm"
-                >
-                  See Your Compliance Score
-                </a>
+                <button onClick={() => scrollTo('how-it-works')} className="rounded-sm border border-cyber-cyan-border px-8 py-3.5 text-base font-semibold text-white transition-all hover:border-cyber-cyan/40 hover:bg-cyber-cyan/5 hover:shadow-glow-sm">
+                  See How It Works
+                </button>
               </div>
             </div>
 
@@ -181,10 +177,10 @@ export default function HomePage() {
         <div className="relative mx-auto mt-20 max-w-4xl opacity-0 animate-fade-up" style={{ animationDelay: '0.7s' }}>
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             {[
-              { value: '14', label: 'Regulatory Frameworks' },
-              { value: '100+', label: 'Jurisdiction Rules' },
               { value: 'Hours', label: 'Audit Cycle, Not Weeks' },
               { value: 'Zero', label: 'Document Exposure' },
+              { value: 'SHA-256', label: 'Client-Side Fingerprinting' },
+              { value: 'Cryptographic', label: 'Evidence Layer' },
             ].map((stat) => (
               <CyberCard key={stat.label} hover={false} className="px-6 py-5 text-center">
                 <div className="font-mono text-xl font-bold text-cyber-cyan md:text-2xl">{stat.value}</div>
@@ -199,18 +195,18 @@ export default function HomePage() {
       <Section className="px-6 py-24 md:py-32">
         <div className="mx-auto max-w-5xl">
           <div className="mb-12 text-center">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Audit My Organization</p>
-            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Your compliance posture, end-to-end, in one click</h2>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">What We're Building</p>
+            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Your compliance posture, end-to-end, in one place</h2>
             <p className="mx-auto max-w-2xl text-white/35">
-              Stop chasing evidence across 10 tools. Arkova maps what you already have to the regulations you actually operate under, flags the gaps that would fail an audit today, and tells you what to fix first. Read our <Link to="/research" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">research</Link> on audit automation.
+              Stop chasing evidence across ten tools. We're building a platform that maps what you already have to the regulations you actually operate under, flags the gaps that would fail an audit, and tells you what to fix first. Read our <Link to="/research" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">research</Link> on audit automation.
             </p>
           </div>
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {[
-              { icon: Gauge, title: 'Per-Jurisdiction Scoring', description: '0–100 posture score per regime. A gauge, per-jurisdiction bars, and the exact controls behind every number.' },
-              { icon: ListChecks, title: 'Gap Detection', description: 'MISSING · EXPIRED · EXPIRING_SOON · INSUFFICIENT. Severity-ranked so the things that would fail today are at the top.' },
-              { icon: Sparkles, title: 'Prioritized Remediation', description: 'Recommendations scored by severity × penalty risk ÷ effort. Quick wins, critical fixes, and upcoming deadlines.' },
-              { icon: Bell, title: 'Regulatory-Change Alerts', description: 'We watch the jurisdictions you operate in. In-app and email alerts the moment a rule changes.' },
+              { icon: Gauge, title: 'Per-Jurisdiction Scoring', description: 'A posture score per regime, with per-jurisdiction bars and the exact controls behind every number.' },
+              { icon: ListChecks, title: 'Gap Detection', description: 'Missing, expired, expiring-soon, and insufficient evidence — severity-ranked so the things that would fail are at the top.' },
+              { icon: Sparkles, title: 'Prioritized Remediation', description: 'Recommendations scored by severity, penalty risk, and effort. Quick wins, critical fixes, and upcoming deadlines.' },
+              { icon: Bell, title: 'Regulatory-Change Alerts', description: 'We watch the jurisdictions you operate in and surface changes the moment they happen — before your auditor does.' },
             ].map((item) => (
               <CyberCard key={item.title} className="p-6">
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-sm bg-cyber-cyan/10 border border-cyber-cyan/20">
@@ -228,9 +224,9 @@ export default function HomePage() {
       <Section className="px-6 py-20">
         <div className="mx-auto max-w-5xl">
           <div className="mb-10 text-center">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Coverage</p>
-            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">14 regulatory frameworks. 100+ rules. One platform.</h2>
-            <p className="mx-auto max-w-2xl text-white/35">Operate in one jurisdiction or eighteen — the scorecard, gap list, and evidence chain look the same. No separate vendor per regime.</p>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Coverage Map</p>
+            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">One platform for the regimes you operate under</h2>
+            <p className="mx-auto max-w-2xl text-white/35">Operate in one jurisdiction or eighteen. Our roadmap covers the frameworks below, with new regimes added as our customer footprint expands.</p>
           </div>
           <CyberCard hover={false} className="p-6 md:p-8">
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
@@ -243,7 +239,7 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
-            <p className="mt-5 text-center text-xs text-white/30">Plus: FLSA · GINA · Cyber Essentials (UK) · SOC 2 evidence mapping · more added continuously.</p>
+            <p className="mt-5 text-center text-xs text-white/30">Plus: FLSA · GINA · UK Cyber Essentials · SOC 2 evidence mapping.</p>
           </CyberCard>
         </div>
       </Section>
@@ -252,17 +248,17 @@ export default function HomePage() {
       <Section className="px-6 py-20 md:py-28">
         <div className="mx-auto max-w-5xl">
           <div className="mb-12 text-center">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Platform Traction</p>
-            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Built on production-grade evidence</h2>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Underlying Infrastructure</p>
+            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Built on an evidence chain that already runs at scale</h2>
             <p className="mx-auto max-w-2xl text-white/35">
-              A compliance audit platform is only as good as the evidence chain underneath it. Ours is already in production, at scale.
+              A compliance audit platform is only as good as the evidence layer beneath it. Ours has been running in production, anchoring records and indexing public data, while we build the audit automation above it.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-5 md:grid-cols-4">
             {[
               { value: '1.4M+', label: 'Cryptographically Anchored Records' },
-              { value: '100+', label: 'Jurisdiction Rules Encoded' },
-              { value: '14', label: 'Regulatory Frameworks' },
+              { value: '320K+', label: 'Public Records Indexed' },
+              { value: 'SHA-256', label: 'Client-Side Fingerprinting' },
               { value: '99.9%', label: 'Uptime' },
             ].map((stat) => (
               <CyberCard key={stat.label} hover={false} className="p-6 text-center md:p-8">
@@ -281,14 +277,14 @@ export default function HomePage() {
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">AI-Powered</p>
             <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Evidence mapping, not evidence manual-labor</h2>
             <p className="mx-auto max-w-2xl text-white/35">
-              Our extraction and intelligence models read your records, map them to the right controls, flag what is missing or stale, and draft remediation — while documents stay private on your device.
+              Our models read your records, identify what they are, and map them to the controls that matter — while documents stay private on your device.
             </p>
           </div>
           <div className="grid gap-5 md:grid-cols-3">
             {[
-              { icon: Sparkles, title: 'Evidence Extraction', description: "Identify record types, issuers, dates, and key fields automatically — across 20+ credential categories. Your evidence inventory builds itself." },
-              { icon: ScanSearch, title: 'Gap & Anomaly Detection', description: 'Flag expired, inconsistent, and insufficient evidence before your auditor finds it. Four-category severity so you know what to fix first.' },
-              { icon: Brain, title: 'Compliance Intelligence', description: 'Retrieval-augmented reasoning over FCRA, HIPAA, FERPA, and expanding regimes. Answers that cite the statute or case behind every claim.' },
+              { icon: Sparkles, title: 'Evidence Extraction', description: 'Identify record types, issuers, dates, and key fields automatically — so your evidence inventory builds itself instead of living in spreadsheets.' },
+              { icon: ScanSearch, title: 'Gap & Anomaly Detection', description: 'Flag expired, inconsistent, and insufficient evidence before your auditor does. Severity-ranked so you know what to fix first.' },
+              { icon: Brain, title: 'Privacy-Preserving By Design', description: 'Fingerprinting and PII stripping happen in your browser. Only anonymized metadata flows to our systems. Your records never leave your device.' },
             ].map((item) => (
               <CyberCard key={item.title} className="p-8">
                 <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-sm bg-cyber-cyan/10 border border-cyber-cyan/20">
@@ -313,16 +309,16 @@ export default function HomePage() {
       <Section id="api" className="px-6 py-24 md:py-32">
         <div className="mx-auto max-w-5xl">
           <div className="mb-16 text-center">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Audit API</p>
-            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Plug compliance into your existing stack</h2>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Developer Platform</p>
+            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Built to plug into your existing stack</h2>
             <p className="mx-auto max-w-2xl text-white/35">
-              Trigger an organization audit, pull the latest scorecard, subscribe to regulatory-change events, and verify individual records — all from the same API. GRC, ticketing, SIEM, HRIS. See the <Link to="/roadmap" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">product roadmap</Link> for what's coming.
+              Verification, batch lookups, webhook events — a developer platform designed for GRC, ticketing, SIEM, and HRIS integrations. We're iterating on the API surface with early-access partners. See the <Link to="/roadmap" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">roadmap</Link> for what's next.
             </p>
           </div>
           <CyberCard hover={false} className="mb-8 p-6 border-cyber-cyan/15">
             <p className="text-sm leading-relaxed text-white/40">
-              <span className="font-semibold text-white">Weeks of audit prep, one endpoint.</span>{' '}
-              A compliance team calls <code className="rounded bg-cyber-cyan/10 px-1.5 py-0.5 font-mono text-xs text-cyber-cyan">POST /api/v1/compliance/audit</code> and gets a per-jurisdiction scorecard, severity-ranked gaps, prioritized recommendations, and a signed audit-ready PDF.
+              <span className="font-semibold text-white">The goal: weeks of audit prep collapsed to one call.</span>{' '}
+              We're working with pilot customers to nail the API surface so a single request returns a per-jurisdiction view, severity-ranked gaps, prioritized recommendations, and an audit-ready export.
             </p>
           </CyberCard>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -344,8 +340,8 @@ export default function HomePage() {
         <div className="mx-auto max-w-5xl">
           <div className="mb-16 text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">How It Works</p>
-            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Three steps to a shippable audit</h2>
-            <p className="mx-auto max-w-xl text-white/35">Get to a per-jurisdiction scorecard and audit-ready PDF in minutes — not a quarter-long reporting cycle.</p>
+            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Three steps, one audit</h2>
+            <p className="mx-auto max-w-xl text-white/35">The shape of the product we're building with pilot customers — from evidence intake to an audit-ready export, without the quarter-long reporting cycle.</p>
           </div>
           <div className="grid gap-6 md:grid-cols-3 md:gap-8">
             {STEPS.map((item, i) => (
