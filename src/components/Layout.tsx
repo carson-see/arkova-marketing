@@ -107,7 +107,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
     if (isHome) {
       scrollTo(label.toLowerCase().replace(/\s+/g, '-'));
     } else {
-      window.location.href = '/#' + label.toLowerCase().replace(/\s+/g, '-');
+      window.location.assign('/#' + label.toLowerCase().replace(/\s+/g, '-'));
     }
   };
 
@@ -278,7 +278,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <img src={arkovaLogo} alt="Arkova document verification platform logo" width={120} height={40} className="h-10 w-auto brightness-150 contrast-90" />
               </Link>
               <p className="text-sm text-white/40">
-                Tamper-proof document verification. Privacy-first. Independently verifiable.
+                Compliance audit automation. 14 regulatory frameworks. Privacy-first. Cryptographically anchored.
               </p>
               <div className="mt-6 flex gap-3">
                 <a

@@ -11,54 +11,56 @@ const PHASES = [
   {
     number: 'I',
     title: 'Foundation',
-    subtitle: 'API + Data Pipeline + Global Coverage',
+    subtitle: 'Audit My Organization — shipped',
     timeline: '2025–2026',
     status: 'In Progress' as const,
-    description: 'Production-ready verification API with x402 micropayments and a global data ingestion pipeline anchoring regulatory documents from multiple jurisdictions.',
+    description: 'The compliance scorecard is live: 100+ jurisdiction rules across 14 regulatory frameworks, per-jurisdiction scoring, gap detection, prioritized remediation, regulatory-change monitoring, and audit-ready PDF export — on a privacy-first, cryptographically-anchored evidence chain.',
     items: [
-      'Public REST API with x402 agent micropayment integration',
-      'Global regulatory data ingestion pipeline',
+      'Per-jurisdiction compliance scorecard with gauge and gap list',
+      'Four-category gap detection (MISSING · EXPIRED · EXPIRING_SOON · INSUFFICIENT)',
+      'Prioritized recommendation engine (severity × penalty risk ÷ effort)',
+      'Regulatory-change monitoring with in-app + email alerts',
+      'Audit-ready US-Letter PDF export',
+      'Audit API, batch verification, regulatory-change webhooks',
       'Client-side SHA-256 fingerprinting — documents never leave your device',
-      'MCP server for AI agent integration',
-      'Organization management, credential templates, and bulk upload',
-      'Developer documentation and API playground',
-      'Multi-jurisdiction regulatory document anchoring',
+      'Coverage: FERPA · HIPAA · FCRA · SOX · GLBA · ADA · GDPR · UK GDPR · Kenya DPA · APP · PIPEDA · PDPA · APPI · DPDP · POPIA · NDPR · Law 1581 · Thailand PDPA · Malaysia PDPA',
     ],
-    compliance: ['SOX', 'ESIGN', 'UETA', 'FERPA', 'GDPR'],
+    compliance: ['FERPA', 'HIPAA', 'FCRA', 'SOX', 'GDPR', 'Kenya DPA'],
     bars: 1,
   },
   {
     number: 'II',
     title: 'Scale',
-    subtitle: 'Compliance Intelligence',
+    subtitle: 'Attorney-verified intelligence + SOC 2 Type II',
     timeline: '2026–2027',
     status: 'Planned' as const,
-    description: 'Scale verification infrastructure across jurisdictions and introduce compliance intelligence capabilities.',
+    description: 'Deepen regulatory intelligence with attorney-reviewed benchmarks, ship SOC 2 Type II and ISO 27001, expand to 30+ jurisdictions, and release agent identity + compliance certificates for the next wave of autonomous systems.',
     items: [
-      'Multi-jurisdiction regulatory intelligence',
-      'Compliance-as-a-service for automated checks',
+      'Attorney-verified Nessie benchmarks (Nessie Verification Infrastructure — NVI)',
+      'SOC 2 Type II + ISO 27001 + UK Cyber Essentials Plus',
+      'Expand to 30+ jurisdictions (SOX deep dive, state-specific US, EU AI Act)',
       'Agent identity verification and compliance certificates',
-      'Real-time regulatory change detection',
-      'Enterprise compliance dashboards',
+      'Enterprise GRC integrations (ServiceNow, Jira, Archer, OneTrust)',
+      'Continuous control monitoring',
     ],
-    compliance: ['SOC 2 Type I', 'EU AI Act', 'GDPR'],
+    compliance: ['SOC 2 Type II', 'ISO 27001', 'EU AI Act', 'UK CE+'],
     bars: 2,
   },
   {
     number: 'III',
     title: 'Dominance',
-    subtitle: 'Enterprise Compliance Platform',
+    subtitle: 'Autonomous compliance + e-signatures',
     timeline: '2027–2028',
     status: 'Future' as const,
-    description: 'Enterprise-grade compliance infrastructure with autonomous monitoring, e-signatures, and global jurisdiction coverage.',
+    description: 'Autonomous compliance monitoring and remediation across the global regulatory surface, jurisdiction-aware e-signatures, and platform licensing for compliance product builders.',
     items: [
       'Autonomous compliance monitoring and remediation',
       'E-signatures with jurisdiction-specific legal recognition',
-      'Global coverage across 30+ jurisdictions',
+      'Global coverage across 50+ jurisdictions',
       'Platform licensing for compliance product builders',
-      'Continuous cryptographic audit trails',
+      'Continuous cryptographic audit trails auditors can subscribe to',
     ],
-    compliance: ['SOC 2 Type II', 'eIDAS', 'ETSI EN 319', 'GDPR'],
+    compliance: ['eIDAS', 'ETSI EN 319', 'Global'],
     bars: 3,
   },
 ];
@@ -88,7 +90,7 @@ export default function RoadmapPage() {
             </span>
           </h1>
           <p className="mx-auto max-w-2xl text-base text-white/40 opacity-0 animate-fade-up" style={{ animationDelay: '0.35s' }}>
-            From credential verification to institutional attestations to legally recognized e-signatures — a phased approach to trustless compliance infrastructure.
+            From today's shipped compliance audit platform to attorney-verified intelligence, SOC 2 Type II, and autonomous remediation — a phased approach to retiring the manual audit cycle.
           </p>
         </div>
       </section>
