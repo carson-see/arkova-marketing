@@ -5,15 +5,9 @@ import {
   FileCheck,
   Lock,
   ArrowRight,
-  CheckCircle2,
-  Fingerprint,
   GraduationCap,
   FileText,
-  Zap,
-  Eye,
   Download,
-  Users,
-  Clock,
   ChevronDown,
   Code2,
   Layers,
@@ -26,48 +20,60 @@ import {
   Linkedin,
   UserCheck,
   ShieldCheck,
+  Gauge,
+  Bell,
+  ListChecks,
+  Globe,
 } from 'lucide-react';
 import { Section } from '../components/Section';
 
 /* ─── Data ─── */
 const FEATURES = [
-  { icon: Shield, title: 'Privacy-First', description: 'Your files never leave your device. We fingerprint locally and anchor the proof, not the document.' },
-  { icon: Eye, title: 'Public Verification', description: 'Anyone can verify a credential via a shareable link or QR code. No account needed.' },
-  { icon: Download, title: 'Proof Certificates', description: 'Download PDF proof packages with complete audit trails for compliance and legal use.' },
-  { icon: Zap, title: 'Bulk Processing', description: 'Upload CSV files to anchor hundreds of credentials in a single batch operation.' },
-  { icon: Users, title: 'Organization Tools', description: 'Manage team members, credential templates, and organization-wide records from one dashboard.' },
-  { icon: Clock, title: 'Network-Anchored Timestamps', description: 'Every record is anchored to a public network with a cryptographic timestamp that cannot be altered.' },
+  { icon: Gauge, title: 'Compliance Scorecard', description: 'A per-jurisdiction score and a prioritized gap list — your posture across every regime you operate in, on one page.' },
+  { icon: ListChecks, title: 'Gap Detection', description: 'Severity-ranked gaps across four categories: missing, expired, expiring-soon, and insufficient. Know what would fail an audit.' },
+  { icon: Sparkles, title: 'Prioritized Remediation', description: 'Recommendations scored by severity, penalty risk, and effort. Quick wins, critical fixes, and upcoming deadlines — never "here are 200 findings, good luck."' },
+  { icon: Bell, title: 'Regulatory Change Alerts', description: 'Rules move. We watch. Get in-app and email alerts when a regulation changes in a jurisdiction you operate in.' },
+  { icon: Download, title: 'Audit-Ready PDF Export', description: 'Export a compliance report — scorecard, per-jurisdiction breakdown, gaps, recommendations, evidence — for your auditor, board, or regulator.' },
+  { icon: Lock, title: 'Privacy-First Architecture', description: 'Documents never leave your device. We fingerprint locally and anchor the proof, not the file. Evidence auditors can independently verify.' },
 ];
 
 const USE_CASES = [
-  { icon: UserCheck, title: 'Talent Verification', description: 'Recruiting agencies and background screening firms verify credentials at scale through our API. One call. Instant results. No phone tag with registrar offices.' },
-  { icon: ShieldCheck, title: 'Compliance & Risk', description: 'Regulated organizations prove the authenticity of records their teams and AI systems rely on. Audit-ready evidence that doesn\'t depend on any single vendor.' },
-  { icon: GraduationCap, title: 'Education', description: 'Universities issue tamper-proof credentials that employers and agents can verify independently. No manual processes, no clearinghouse middlemen.' },
-  { icon: FileText, title: 'Legal & IP', description: 'Law firms, patent holders, and contract parties timestamp and verify documents with cryptographic proof that holds up to scrutiny.' },
+  { icon: ShieldCheck, title: 'Compliance & Internal Audit', description: 'GRC, CISO, and internal audit teams collapse 3-week audit cycles into hours. Evidence compiles itself, gaps are pre-prioritized, and the PDF is ready for the auditor.' },
+  { icon: Globe, title: 'Multi-Jurisdiction Operators', description: 'Operate across the US, EU, UK, LATAM, APAC, or Africa? One platform covers FERPA, HIPAA, FCRA, SOX, GDPR, Kenya DPA, APP, PIPEDA, PDPA, APPI, DPDP, POPIA, NDPR, and more.' },
+  { icon: FileText, title: 'Legal, Discovery & Proof of Record', description: 'Law firms, patent holders, and contract parties timestamp and verify documents with cryptographic proof that survives vendor churn and system migrations.' },
+  { icon: UserCheck, title: 'Background Checks & Talent', description: 'Staffing and HR teams verify credentials programmatically. One API call, instant result — no phone tag with registrar offices.' },
 ];
 
 const STEPS = [
-  { step: '01', icon: Fingerprint, title: 'Upload & Fingerprint', description: 'Select your document. Arkova generates a unique cryptographic fingerprint in your browser. The file never leaves your device.' },
-  { step: '02', icon: Lock, title: 'Anchor to Network', description: 'Your fingerprint is permanently anchored to a public network. This creates an immutable timestamp, verifiable by anyone, forever.' },
-  { step: '03', icon: CheckCircle2, title: 'Verify Anytime', description: 'Share a verification link or QR code. Anyone can independently confirm the authenticity. No account required.' },
+  { step: '01', icon: ScanSearch, title: 'Connect Your Records', description: 'Upload evidence or connect your existing systems. Fingerprints are generated locally — your documents never leave your device.' },
+  { step: '02', icon: Gauge, title: 'Get Your Scorecard', description: 'Arkova maps your evidence to 100+ jurisdiction rules across 14 regulatory frameworks. A score, a gauge, and a prioritized gap list in minutes.' },
+  { step: '03', icon: Download, title: 'Export & Remediate', description: 'Download an audit-ready PDF. Work the prioritized recommendations. Subscribe to regulatory-change alerts so you never find out about a rule shift from your auditor.' },
+];
+
+const JURISDICTIONS = [
+  'FERPA', 'HIPAA', 'FCRA', 'SOX', 'GLBA', 'ADA',
+  'GDPR', 'UK GDPR', 'Kenya DPA', 'Australia APP',
+  'PIPEDA (Canada)', 'PDPA (Singapore)', 'APPI (Japan)', 'DPDP (India)',
+  'POPIA (South Africa)', 'NDPR (Nigeria)', 'Law 1581 (Colombia)', 'PDPA (Thailand)',
 ];
 
 const API_FEATURES = [
-  { icon: Code2, title: 'Verification API', description: 'Single-call verification lookup by public ID. Returns status, issuer, timestamps, and network receipt.' },
-  { icon: Layers, title: 'Batch Verification', description: 'Verify up to 100 credentials in a single API call. Ideal for background checks and compliance audits.' },
-  { icon: Key, title: 'API Key Management', description: 'Create, rotate, and revoke API keys with granular scopes. HMAC-SHA256 secured. Full audit trail.' },
-  { icon: BarChart3, title: 'Usage Analytics', description: 'Real-time dashboards for API consumption, rate limit status, and verification volume.' },
-  { icon: Webhook, title: 'Webhooks & Events', description: 'Real-time notifications when credentials are anchored, verified, or revoked. HMAC-signed payloads.' },
+  { icon: Code2, title: 'Verification API', description: 'Single-call verification lookup by public ID — returns status, issuer, timestamps, and network receipt. Live today.' },
+  { icon: Layers, title: 'Batch Verification', description: 'Verify records in bulk for background checks, evidence runs, and discovery — designed for high-volume workflows.' },
+  { icon: Key, title: 'API Key Management', description: 'Create, rotate, and revoke API keys with granular scopes. HMAC-SHA256 secured. Full audit trail of every key action.' },
+  { icon: BarChart3, title: 'Usage Analytics', description: 'Real-time dashboards for API consumption, rate-limit status, and verification volume.' },
+  { icon: Webhook, title: 'Webhooks & Events', description: 'Subscribe to anchoring, verification, and (coming) regulatory-change events. HMAC-signed payloads, retry on failure.' },
 ];
 
 const FAQ = [
-  { q: 'How does Arkova verify documents without seeing them?', a: 'Arkova uses cryptographic fingerprinting (SHA-256) that runs entirely in your browser. We only store the fingerprint, a one-way mathematical proof, never the document itself. This fingerprint is then anchored to a public network, creating a permanent, independently verifiable record.' },
-  { q: 'Can anyone verify a credential?', a: "Yes. Verification is completely open. Anyone with a verification link or QR code can confirm a document's authenticity and timestamp independently. No account or software required." },
-  { q: 'What types of documents can I anchor?', a: 'Any digital file: PDFs, images, spreadsheets, presentations, contracts, certificates, transcripts. If it has a file, it can be fingerprinted and anchored.' },
-  { q: 'How is this different from DocuSign or other e-signature tools?', a: "E-signature tools prove who signed a document. Arkova proves that a specific document existed at a specific time and has not been altered since. These are complementary. You can anchor a signed document to prove it hasn't changed after signing." },
-  { q: 'Can I integrate Arkova into my existing systems?', a: 'Absolutely. Our Verification API lets you verify credentials programmatically with a single API call. Batch endpoints support up to 100 verifications per request. Webhook notifications provide real-time events.' },
-  { q: 'Is my data safe?', a: "Your documents never leave your device. That's our foundational privacy guarantee, not just a feature. Fingerprints are anchored to a public, independently verifiable network. Even if our servers were compromised, your documents remain private because we never had them." },
-  { q: 'How does Arkova work with our existing ATS or background check workflow?', a: "Arkova's Verification API integrates with any system that can make an HTTP call. Your ATS, HRIS, or background screening platform calls our endpoint and receives a structured, verified response. We also support webhooks for real-time status updates and batch endpoints for bulk verification." },
+  { q: 'What is Arkova?', a: "Arkova is a compliance audit automation platform in early access. We're building on top of a production-grade, cryptographically-anchored evidence layer that already runs at scale. The audit-automation product on top — scorecard, gap detection, remediation, regulatory-change alerts, PDF export — is being built and refined with pilot customers right now." },
+  { q: 'How much faster is an audit with Arkova going to be vs. the manual process?', a: 'Typical compliance audits take weeks: compiling evidence across many tools, mapping it to controls, and producing a report. Arkova is designed to map evidence to the rules in your operating regimes automatically, rank gaps by severity and penalty risk, and produce an audit-ready export — so the work shifts from compilation to review. Our pilot target is collapsing weeks of audit prep into hours.' },
+  { q: 'Which regulations are on the roadmap?', a: 'Our roadmap covers US federal (FERPA, HIPAA, SOX, FCRA, GLBA, ADA, FLSA, GINA), EU/UK GDPR, Kenya DPA, Australia APP, Canada PIPEDA, Singapore PDPA, Japan APPI, India DPDP, South Africa POPIA, Nigeria NDPR, Colombia Law 1581, Thailand PDPA, and Malaysia PDPA. We prioritize by pilot-customer footprint — if you operate somewhere we have not covered yet, tell us.' },
+  { q: 'What will the scorecard show?', a: 'A per-jurisdiction posture score and breakdown, a severity-ranked gap list, a prioritized remediation plan, a regulatory-change feed, and an audit-ready export. Designed for GRC leads, CISOs, internal audit, and outside counsel.' },
+  { q: 'Is the evidence chain auditor-grade?', a: 'The evidence layer underneath the product is cryptographic and independently verifiable: every anchor is a SHA-256 fingerprint committed to a public network, and lifecycle events are in an append-only audit log. Our own SOC 2 Type II and ISO work is in progress — we document what is asserted and what is not, so auditors can make their own determination.' },
+  { q: 'Is my data safe? Do you see our documents?', a: 'No. Your documents never leave your device. That is our foundational privacy guarantee, not a feature. Fingerprinting is client-side. Only PII-stripped metadata flows to our systems. Even if we were breached, your documents remain private because we never had them.' },
+  { q: 'Can I integrate Arkova into my GRC / ticketing / SIEM stack?', a: "Yes — the platform is being designed with those integrations as first-class. HMAC-signed payloads, rate-limited endpoints, full audit trail of every call. We're actively shaping the surface with early-access partners." },
+  { q: 'How do I get access?', a: "Join the waitlist on this page. We'll reach out to scope a pilot — the best fits right now are compliance teams operating across multiple jurisdictions who are tired of the quarterly audit fire drill." },
 ];
 
 /* ─── Scroll Observer ─── */
@@ -118,25 +124,24 @@ export default function HomePage() {
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div className="text-center lg:text-left">
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyber-cyan/20 bg-cyber-cyan/5 px-4 py-1.5 text-sm font-medium text-cyber-cyan opacity-0 animate-fade-up" style={{ animationDelay: '0.1s' }}>
-                <Lock className="h-3.5 w-3.5" />
-                Provable Verification
+                <Gauge className="h-3.5 w-3.5" />
+                Compliance Audit Automation
               </div>
 
               <h1 className="mb-6 text-5xl font-bold tracking-tight text-white opacity-0 animate-fade-up md:text-7xl" style={{ animationDelay: '0.2s' }}>
-                Document Verification
+                Audits in hours,
                 <br />
                 <span className="bg-gradient-to-r from-cyber-cyan to-cyber-teal bg-clip-text text-transparent">
-                  You Can Trust.
+                  not weeks.
                 </span>
               </h1>
 
               <p className="mb-6 max-w-lg text-lg text-white/40 opacity-0 animate-fade-up md:text-xl" style={{ animationDelay: '0.35s' }}>
-                Document verification is broken. Credentials get forged. Records get lost. Verification takes days.
-                Arkova creates tamper-proof, cryptographic proof of any credential, verifiable by anyone, instantly, with a single API call.
+                We're building compliance audit automation that maps your evidence to the regulations you operate under, surfaces the gaps that would fail an audit, and ranks remediation by severity and penalty risk — so your next audit takes hours, not weeks.
               </p>
 
               <p className="mb-10 max-w-lg text-sm text-white/25 opacity-0 animate-fade-up leading-relaxed" style={{ animationDelay: '0.45s' }}>
-                Arkova is a privacy-first document verification platform that creates tamper-proof cryptographic fingerprints of credentials entirely in the user's browser. Every record is permanently anchored to a public network, enabling anyone to independently verify authenticity without an account, a phone call, or trust in any single authority.
+                Arkova is a privacy-first compliance audit platform in early access. Fingerprinting happens in your browser — documents never leave your device. Every control check is cryptographically anchored and independently verifiable. Join the waitlist to pilot with us.
               </p>
 
               <div className="flex flex-col items-center gap-4 opacity-0 animate-fade-up sm:flex-row lg:justify-start" style={{ animationDelay: '0.5s' }}>
@@ -172,10 +177,10 @@ export default function HomePage() {
         <div className="relative mx-auto mt-20 max-w-4xl opacity-0 animate-fade-up" style={{ animationDelay: '0.7s' }}>
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             {[
+              { value: 'Hours', label: 'Audit Cycle, Not Weeks' },
               { value: 'Zero', label: 'Document Exposure' },
-              { value: '100%', label: 'Independently Verifiable' },
               { value: 'SHA-256', label: 'Client-Side Fingerprinting' },
-              { value: 'No', label: 'Account Required to Verify' },
+              { value: 'Cryptographic', label: 'Evidence Layer' },
             ].map((stat) => (
               <CyberCard key={stat.label} hover={false} className="px-6 py-5 text-center">
                 <div className="font-mono text-xl font-bold text-cyber-cyan md:text-2xl">{stat.value}</div>
@@ -186,23 +191,24 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ AGENTIC VERIFICATION ═══ */}
+      {/* ═══ AUDIT MY ORGANIZATION (Primary Pillar) ═══ */}
       <Section className="px-6 py-24 md:py-32">
         <div className="mx-auto max-w-5xl">
           <div className="mb-12 text-center">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Infrastructure</p>
-            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Built for the next generation of verification</h2>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">What We're Building</p>
+            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Your compliance posture, end-to-end, in one place</h2>
             <p className="mx-auto max-w-2xl text-white/35">
-              Whether your team verifies credentials manually or your systems do it programmatically, the records need to be machine-verifiable, tamper-proof, and independently auditable. Read our <Link to="/research" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">research</Link> on agentic recordkeeping.
+              Stop chasing evidence across ten tools. We're building a platform that maps what you already have to the regulations you actually operate under, flags the gaps that would fail an audit, and tells you what to fix first. Read more on <Link to="/research/real-cost-of-audit-verification" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">why audits cost what they do</Link>, or browse all <Link to="/research" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">research</Link> on audit automation.
             </p>
           </div>
-          <div className="grid gap-5 md:grid-cols-3">
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {[
-              { icon: Zap, title: 'Programmatic Verification', description: 'Your ATS, compliance system, or AI agent calls our API and gets a verified result in milliseconds. No browser, no login, no human in the loop.' },
-              { icon: FileCheck, title: 'Audit-Ready Evidence', description: 'Every verification is logged with timestamp, querying entity, and result. SOX, FERPA, and eIDAS-aligned evidence out of the box.' },
-              { icon: Layers, title: 'Compliance Intelligence', description: 'AI-powered anomaly detection flags inconsistencies, expired credentials, and potential issues before they become audit findings.' },
+              { icon: Gauge, title: 'Per-Jurisdiction Scoring', description: 'A posture score per regime, with per-jurisdiction bars and the exact controls behind every number.' },
+              { icon: ListChecks, title: 'Gap Detection', description: 'Missing, expired, expiring-soon, and insufficient evidence — severity-ranked so the things that would fail are at the top.' },
+              { icon: Sparkles, title: 'Prioritized Remediation', description: 'Recommendations scored by severity, penalty risk, and effort. Quick wins, critical fixes, and upcoming deadlines.' },
+              { icon: Bell, title: 'Regulatory-Change Alerts', description: 'We watch the jurisdictions you operate in and surface changes the moment they happen — before your auditor does.' },
             ].map((item) => (
-              <CyberCard key={item.title} className="p-8">
+              <CyberCard key={item.title} className="p-6">
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-sm bg-cyber-cyan/10 border border-cyber-cyan/20">
                   <item.icon className="h-6 w-6 text-cyber-cyan" />
                 </div>
@@ -214,21 +220,45 @@ export default function HomePage() {
         </div>
       </Section>
 
+      {/* ═══ JURISDICTIONS STRIP ═══ */}
+      <Section className="px-6 py-20">
+        <div className="mx-auto max-w-5xl">
+          <div className="mb-10 text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Multi-Jurisdiction Coverage</p>
+            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Multi-jurisdiction compliance, one platform</h2>
+            <p className="mx-auto max-w-2xl text-white/35">Multi-jurisdiction operators — US + EU, EU + LATAM, APAC + Africa — get a single posture view instead of one tool per regime. Our roadmap covers the frameworks below, with new regimes added as our customer footprint expands.</p>
+          </div>
+          <CyberCard hover={false} className="p-6 md:p-8">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+              {JURISDICTIONS.map((j) => (
+                <div
+                  key={j}
+                  className="rounded-sm border border-cyber-cyan/15 bg-cyber-cyan/[0.03] px-3 py-2.5 text-center text-[11px] font-semibold uppercase tracking-wider text-cyber-cyan/70"
+                >
+                  {j}
+                </div>
+              ))}
+            </div>
+            <p className="mt-5 text-center text-xs text-white/30">Plus: FLSA · GINA · UK Cyber Essentials · SOC 2 evidence mapping.</p>
+          </CyberCard>
+        </div>
+      </Section>
+
       {/* ═══ TRACTION / SOCIAL PROOF ═══ */}
       <Section className="px-6 py-20 md:py-28">
         <div className="mx-auto max-w-5xl">
           <div className="mb-12 text-center">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Platform Traction</p>
-            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Trusted at scale</h2>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Underlying Infrastructure</p>
+            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Built on an evidence chain that already runs at scale</h2>
             <p className="mx-auto max-w-2xl text-white/35">
-              Real numbers from a production document verification platform processing credentials across industries worldwide.
+              A compliance audit platform is only as good as the evidence layer beneath it. Ours has been running in production, anchoring records and indexing public data, while we build the audit automation above it.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-5 md:grid-cols-4">
             {[
-              { value: '166,000+', label: 'Secured Credentials' },
-              { value: '320,000+', label: 'Public Records Indexed' },
-              { value: '1.4M+', label: 'Anchored Documents' },
+              { value: '1.4M+', label: 'Cryptographically Anchored Records' },
+              { value: '320K+', label: 'Public Records Indexed' },
+              { value: 'SHA-256', label: 'Client-Side Fingerprinting' },
               { value: '99.9%', label: 'Uptime' },
             ].map((stat) => (
               <CyberCard key={stat.label} hover={false} className="p-6 text-center md:p-8">
@@ -245,16 +275,16 @@ export default function HomePage() {
         <div className="mx-auto max-w-5xl">
           <div className="mb-16 text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">AI-Powered</p>
-            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Intelligent credential processing</h2>
+            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Compliance audit automation, powered by AI</h2>
             <p className="mx-auto max-w-2xl text-white/35">
-              AI extracts metadata, classifies credential types, and detects anomalies, all while keeping your documents private on your device.
+              Our models read your records, identify what they are, and map them to the controls that matter — while documents stay private on your device.
             </p>
           </div>
           <div className="grid gap-5 md:grid-cols-3">
             {[
-              { icon: Sparkles, title: 'Metadata Extraction', description: "Automatically identify credential types, issuers, dates, and key fields. AI reads the document so you don't have to." },
-              { icon: ScanSearch, title: 'Anomaly Detection', description: 'Flags inconsistencies, expired credentials, and potential issues before they become problems.' },
-              { icon: Brain, title: 'Smart Classification', description: 'Categorize credentials by type: degrees, licenses, certifications, contracts. Organize records intelligently.' },
+              { icon: Sparkles, title: 'Evidence Extraction', description: 'Identify record types, issuers, dates, and key fields automatically — so your evidence inventory builds itself instead of living in spreadsheets.' },
+              { icon: ScanSearch, title: 'Gap & Anomaly Detection', description: 'Flag expired, inconsistent, and insufficient evidence before your auditor does. Severity-ranked so you know what to fix first.' },
+              { icon: Brain, title: 'Privacy-Preserving By Design', description: 'Fingerprinting and PII stripping happen in your browser. Only anonymized metadata flows to our systems. Your records never leave your device.' },
             ].map((item) => (
               <CyberCard key={item.title} className="p-8">
                 <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-sm bg-cyber-cyan/10 border border-cyber-cyan/20">
@@ -275,20 +305,20 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* ═══ VERIFICATION API ═══ */}
+      {/* ═══ AUDIT API ═══ */}
       <Section id="api" className="px-6 py-24 md:py-32">
         <div className="mx-auto max-w-5xl">
           <div className="mb-16 text-center">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Verification API</p>
-            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Integrate verification into anything</h2>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Developer Platform</p>
+            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Built to plug into your existing stack</h2>
             <p className="mx-auto max-w-2xl text-white/35">
-              Verify credentials programmatically. Background checks, compliance audits, hiring workflows — verify at scale with a single API call. See our <Link to="/roadmap" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">product roadmap</Link> for what's coming next.
+              Verification, batch lookups, webhook events — a developer platform designed for GRC, ticketing, SIEM, and HRIS integrations. We're iterating on the API surface with early-access partners. See the <Link to="/roadmap" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">roadmap</Link> for what's next.
             </p>
           </div>
           <CyberCard hover={false} className="mb-8 p-6 border-cyber-cyan/15">
             <p className="text-sm leading-relaxed text-white/40">
-              <span className="font-semibold text-white">Background checks that take days now take seconds.</span>{' '}
-              A staffing agency calls <code className="rounded bg-cyber-cyan/10 px-1.5 py-0.5 font-mono text-xs text-cyber-cyan">GET /verify/:publicId</code> and gets issuer, status, and timestamp, verified against the public ledger.
+              <span className="font-semibold text-white">The goal: weeks of audit prep collapsed to one call.</span>{' '}
+              We're working with pilot customers to nail the API surface so a single request returns a per-jurisdiction view, severity-ranked gaps, prioritized recommendations, and an audit-ready export.
             </p>
           </CyberCard>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -310,8 +340,8 @@ export default function HomePage() {
         <div className="mx-auto max-w-5xl">
           <div className="mb-16 text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">How It Works</p>
-            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Three steps to permanent proof</h2>
-            <p className="mx-auto max-w-xl text-white/35">Create a permanent, independently verifiable record of any document in seconds.</p>
+            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Three steps, one audit</h2>
+            <p className="mx-auto max-w-xl text-white/35">The shape of the product we're building with pilot customers — from evidence intake to an audit-ready export, without the quarter-long reporting cycle.</p>
           </div>
           <div className="grid gap-6 md:grid-cols-3 md:gap-8">
             {STEPS.map((item, i) => (
@@ -333,8 +363,8 @@ export default function HomePage() {
         <div className="mx-auto max-w-5xl">
           <div className="mb-16 text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Who It's For</p>
-            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Built for every industry that needs proof</h2>
-            <p className="mx-auto max-w-2xl text-white/35">From staffing agencies verifying candidates to universities issuing tamper-proof degrees.</p>
+            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Built for the teams that own compliance</h2>
+            <p className="mx-auto max-w-2xl text-white/35">From GRC leads closing the quarter to multi-jurisdiction operators managing 14 regimes at once.</p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {USE_CASES.map((uc) => (
@@ -355,7 +385,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-5xl">
           <div className="mb-16 text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Features</p>
-            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Everything you need to prove authenticity</h2>
+            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Everything you need to close an audit</h2>
           </div>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {FEATURES.map((feature, i) => (
@@ -459,8 +489,8 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-circuit" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(0,212,255,0.08)_0%,transparent_70%)]" />
         <div className="relative mx-auto max-w-2xl text-center">
-          <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Be first to verify what matters</h2>
-          <p className="mb-10 text-lg text-white/35">Join the waitlist for early access. We'll notify you when Arkova is ready. Have questions? <Link to="/contact" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">Contact us</Link>.</p>
+          <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Retire the quarterly audit fire drill</h2>
+          <p className="mb-10 text-lg text-white/35">Join the waitlist. We'll notify you when it's your turn for a pilot. Have questions? <Link to="/contact" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">Contact us</Link>.</p>
           <form action="https://formspree.io/f/mpqynjnp" method="POST" className="mx-auto flex max-w-md flex-col gap-3 sm:flex-row">
             <input
               type="email"
@@ -479,7 +509,7 @@ export default function HomePage() {
 
       {/* Last updated — visible for AI freshness signals */}
       <div className="px-6 pb-6 text-center">
-        <p className="text-[10px] text-white/10 font-mono">Last updated: March 2026</p>
+        <p className="text-[10px] text-white/10 font-mono">Last updated: April 2026</p>
       </div>
     </div>
   );

@@ -23,14 +23,14 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROUTES = [
   {
     path: '/',
-    // GEO-13: title + description updated to include "document verification" keyword
-    title: 'Arkova — Document Verification & Credential Anchoring | Issue Once. Verify Forever.',
-    description: 'Arkova is a privacy-first document verification platform. Anchor credentials to an immutable record and verify them instantly via API. Files never leave your device. Request early access.',
+    // Title: ≤60 chars (SCRUM-940). Description: ≤160 chars (SCRUM-936).
+    title: 'Arkova — Compliance Audit Automation in Hours, Not Weeks',
+    description: 'Compliance audit automation in early access. Per-jurisdiction scoring, gap detection, remediation, and audit-ready export. Privacy-first. Join the pilot.',
   },
   {
     path: '/research',
     title: 'Research & Insights — Arkova',
-    description: 'Analysis on document verification, compliance infrastructure, agentic recordkeeping, and digital trust from the Arkova team.',
+    description: 'Analysis on compliance audit automation, multi-jurisdiction regulatory posture, agentic recordkeeping, and digital trust from the Arkova team.',
   },
   {
     path: '/research/anchoring-compliance-bitcoin',
@@ -75,23 +75,23 @@ const ROUTES = [
   },
   {
     path: '/roadmap',
-    title: 'Product Roadmap — Arkova',
-    description: 'From credential verification to institutional attestations to legally recognized e-signatures. Arkova\'s phased approach to trustless compliance infrastructure.',
+    title: 'Roadmap — Arkova Compliance Audit Automation',
+    description: "A short, honest two-phase roadmap: the cryptographic evidence layer Arkova runs in production today, and the compliance audit automation product we're building on top of it with pilot customers.",
   },
   {
     path: '/contact',
     title: 'Contact — Arkova',
-    description: 'Get in touch with the Arkova team. Request early access, discuss enterprise deployments, or explore partnership opportunities.',
+    description: 'Get in touch with the Arkova team. Request early access to the compliance audit automation platform, discuss pilot deployments, or explore partnership opportunities.',
   },
   {
     path: '/privacy',
     title: 'Privacy Policy — Arkova',
-    description: 'How Arkova protects your data. Documents never leave your device. Learn about our cryptographic fingerprinting privacy model.',
+    description: 'How Arkova protects your data. Documents never leave your device — fingerprinting is client-side, only PII-stripped metadata flows to our systems.',
   },
   {
     path: '/terms',
     title: 'Terms of Service — Arkova',
-    description: 'Terms of service for the Arkova document verification platform. Governing usage, privacy guarantees, and verification API access.',
+    description: 'Terms of service for the Arkova compliance audit automation platform. Governing usage, privacy guarantees, and API access.',
   },
   {
     path: '/docs',
