@@ -44,6 +44,130 @@ export interface ArticleSection {
 
 export const ARTICLES: Article[] = [
   /* ═══════════════════════════════════════════════════════════════════
+   * ARTICLE — The State of Compliance in 2026
+   * ═══════════════════════════════════════════════════════════════════ */
+  {
+    slug: 'state-of-compliance-2026',
+    title: 'The State of Compliance in 2026: Why More Frameworks Won\'t Fix the Evidence Problem',
+    subtitle: 'Regulators have multiplied the surface area of corporate compliance in the past five years. The substrate underneath, vendor-controlled logs, manual cross-references, fragile system migrations, hasn\'t changed in twenty.',
+    date: '2026-04-26',
+    author: {
+      name: 'Sarah Rushton',
+      title: 'COO & Co-Founder',
+      avatar: '/team-sarah.png',
+      linkedin: 'https://www.linkedin.com/in/sljrushton/',
+    },
+    category: 'Compliance',
+    readTime: '11 min read',
+    excerpt:
+      'Average audit fees for US large accelerated filers reached $6.06M in FY2024, and SOX preparation routinely runs six to twelve months at scale. Meanwhile NIST AI RMF, the EU AI Act, DORA, the SEC cybersecurity disclosure rule, and a wave of state privacy statutes have landed on top of the existing framework stack. The substrate underneath these obligations should be rebuilt to match.',
+    sections: [
+      {
+        blocks: [
+          { type: 'text', value: 'I started my career as a Project Manager at Procter & Gamble in R&D, working on cosmetics and personal-care launches out of Europe. Twenty years on, after roles that took me through New York, Hong Kong, Singapore, and now Sydney, the pattern I watched at P&G has repeated in every market I\'ve touched.' },
+          { type: 'text', value: 'Behind every launch was a paper trail, and behind every paper trail were auditors: state health departments, internal SOX teams, Big Four reviewers, EU regulators when a product crossed a border, and GxP inspectors any time a formula carried a health claim. The lesson I learned then is the lesson compliance teams everywhere are now learning. The rule set has roughly tripled in scope. The evidence layer beneath it, the actual proof you produce when an auditor asks "show me what happened on March 15th", has not improved in two decades.' },
+          { type: 'text', value: 'In 2026 that gap has become the bottleneck. There are more compliance frameworks than at any point in modern business history, more granular audit demands, and more regulators looking. What is missing is a verification layer that scales with the compliance burden. At most large organizations the basic act of producing audit evidence still relies on the same tools and workflows that worked twenty years ago, even though the obligations on top of them are not the same.' },
+        ],
+      },
+      {
+        heading: 'The Compliance Surface Has Multiplied',
+        blocks: [
+          { type: 'text', value: 'Five years ago a typical regulated enterprise was operating against SOX, HIPAA or FERPA depending on industry, GDPR if it had EU exposure, ESIGN and UETA for signed records, and a handful of state-level statutes. That set was already burdensome, and it was more or less stable.' },
+          { type: 'text', value: 'Since 2020 the surface has multiplied:' },
+          { type: 'text', value: '<strong>NIST AI Risk Management Framework</strong>, released in early 2023, is now a baseline expectation for any organization deploying AI in regulated workflows.' },
+          { type: 'text', value: '<strong>EU AI Act</strong> <a href="https://artificialintelligenceact.eu/implementation-timeline/" target="_blank" rel="noopener noreferrer" class="text-arkova-steel hover:text-arkova-ocean underline underline-offset-2">entered into force on 1 August 2024</a> and phases in through 2 August 2027, with prohibitions on unacceptable-risk systems already applicable since February 2025 and General-Purpose AI obligations since August 2025.' },
+          { type: 'text', value: '<strong>DORA</strong>, the EU Digital Operational Resilience Act, <a href="https://www.mayerbrown.com/en/insights/publications/2025/01/cybersecurity-in-the-financial-sector-eus-digital-operational-resilience-act-takes-effect" target="_blank" rel="noopener noreferrer" class="text-arkova-steel hover:text-arkova-ocean underline underline-offset-2">became applicable on 17 January 2025</a> for around 20 categories of financial entities, with penalties up to 2% of annual worldwide turnover for non-compliance.' },
+          { type: 'text', value: '<strong>SEC cybersecurity disclosure rule</strong>, <a href="https://www.sec.gov/newsroom/press-releases/2023-139" target="_blank" rel="noopener noreferrer" class="text-arkova-steel hover:text-arkova-ocean underline underline-offset-2">adopted on 26 July 2023</a>, requires public companies to disclose material cyber incidents within four business days and report annually on board-level oversight of cyber risk.' },
+          { type: 'text', value: 'As of January 2026, <a href="https://www.multistate.us/insider/2026/2/4/all-of-the-comprehensive-privacy-laws-that-take-effect-in-2026" target="_blank" rel="noopener noreferrer" class="text-arkova-steel hover:text-arkova-ocean underline underline-offset-2">19 US states have comprehensive consumer privacy laws on the books</a>, with Indiana, Kentucky, and Rhode Island the most recent to take effect. Most large multinationals also map against LGPD (Brazil), DPDP (India), PDPA (Singapore), POPIA (South Africa), and APP (Australia).' },
+          { type: 'text', value: 'For a multinational with US, EU, and APAC operations, the practical compliance footprint has gone from five or six core frameworks in 2018 to closer to twenty today. Each one carries its own evidence requirements, scorecard, and audit cadence.' },
+          { type: 'diagram', id: 'compliance-framework-explosion', alt: 'Side-by-side stacks comparing compliance frameworks in 2018 (5 frameworks) and 2026 (14+, with 10 added since 2020 highlighted in amber). The same vendor-controlled audit substrate runs underneath both years, unchanged.', caption: 'The compliance surface roughly tripled between 2018 and 2026. The vendor-controlled substrate underneath did not change.' },
+        ],
+      },
+      {
+        heading: 'Each New Framework Reuses the Same Broken Substrate',
+        blocks: [
+          { type: 'text', value: 'Every new regulation gets layered on the same primitives. System audit logs, manual exports, e-signature certificates, screenshots emailed between compliance and legal. The substrate has not been redesigned. It has just been asked to do more.' },
+          { type: 'text', value: 'That substrate has a real weakness. It does not actually prove anything. When an auditor asks for evidence that a control was operating on a specific date, what they receive is some combination of vendor-system exports, PDFs, screenshots, and email threads. Every one of those artifacts was produced by the same party being audited. The vendor\'s audit log can be edited from inside the vendor\'s system, the PDF is whatever the compliance team chose to render, and the email thread is selectable evidence.' },
+          { type: 'text', value: 'The cleanest illustration is contract evidence. ESIGN and UETA make electronic signatures legally equivalent to wet ink, but only if you can authenticate them. When an e-signed contract is challenged, courts <a href="https://ironcladapp.com/journal/contract-management/electronic-signature-law" target="_blank" rel="noopener noreferrer" class="text-arkova-steel hover:text-arkova-ocean underline underline-offset-2">look for a clear audit trail</a> showing who signed, when, that the signer had notice of the terms, and that they intended to sign. That trail typically lives inside whichever signature platform was used. If the platform changes, gets acquired, sunsets a feature, or becomes too expensive to keep on a legacy contract, the proof you relied on becomes harder to produce in the form a court will accept. The contract is still valid. The evidence behind it is harder to assemble.' },
+          { type: 'text', value: 'This is also why mid-deal due diligence so often turns into archaeology. Acquirers want to confirm that a target\'s executed agreements were signed by the people the documents claim, on the dates the documents claim, with terms that have not been edited since. They are routinely told the export format from the previous signature platform no longer reconstructs the original audit trail.' },
+        ],
+      },
+      {
+        heading: 'GxP Is Stricter. The Substrate Underneath Is Not.',
+        blocks: [
+          { type: 'text', value: 'GxP regulation in pharma and FMCG R&D, Good Laboratory Practice, Good Manufacturing Practice, Good Clinical Practice, is genuinely strict. Every result, every batch test, every formula change carries chain-of-custody requirements. The 21 CFR Part 11 rules on electronic records and signatures are detailed enough to occupy entire teams of validation specialists.' },
+          { type: 'text', value: 'Even there, even inside a regime designed to be the gold standard for auditable evidence, the technology was vendor-dependent. We trusted the LIMS, the eQMS, the document management system, because there was no alternative. The audit trail lived inside a database that the vendor controlled.' },
+          { type: 'text', value: 'Then we did a system migration from one platform to another. Historical batch records were preserved in archive form, exports, PDF dumps, CSV, but they were no longer trivially auditable. We could find a record if we needed to. The searchable, hyperlinked, audit-trail-rich format that satisfied a real-time auditor request was gone. The compliance burden did not go away. The access to evidence did.' },
+          { type: 'quote', quote: 'The compliance burden never goes away. The evidence access does. Every time you change a system, every time a vendor sunsets a feature, every time an export reformat breaks an old timestamp.', attribution: 'Sarah Rushton', role: 'COO, Arkova' },
+          { type: 'text', value: 'That experience shaped my view of every audit since. The hardest part of compliance is rarely the rules themselves. It is producing evidence an outsider can verify, at a moment when the systems you originally produced it in may no longer exist in the same form.' },
+        ],
+      },
+      {
+        heading: 'Three Failure Modes of Vendor-Centric Evidence',
+        blocks: [
+          { type: 'text', value: 'The pattern repeats across industries and frameworks.' },
+          { type: 'text', value: '<strong>1. Lock-in.</strong> When evidence lives inside a vendor\'s system, leaving the vendor breaks the audit chain. Old timestamps may not survive the round-trip. Cross-references between records get rewritten. The audit history becomes harder to verify, even if the underlying records still exist.' },
+          { type: 'text', value: '<strong>2. Migration.</strong> Internal system migrations create the same problem without changing vendors. A new HRIS, a new e-signature platform, a new GRC tool. Every transition is a moment where chain-of-custody can quietly degrade.' },
+          { type: 'text', value: '<strong>3. Self-attestation.</strong> The vendor is attesting to itself. The party producing the evidence also controls the storage system, the audit log, and the export format. Auditors are not naive about this. They accept it because there is no commonly available alternative.' },
+          { type: 'text', value: 'GRC platforms like Vanta, Drata, Secureframe, and Workiva solve real problems around evidence aggregation and control mapping. They do not solve this one. They aggregate evidence. They do not produce evidence that can be verified independently of the system that stored it.' },
+        ],
+      },
+      {
+        heading: 'What the Evidence Layer Should Actually Look Like',
+        blocks: [
+          { type: 'text', value: 'The evidence layer should have three properties.' },
+          { type: 'text', value: '<strong>Vendor-independent.</strong> It should not depend on any single company, including the company that produced the document and the company providing the verification service.' },
+          { type: 'text', value: '<strong>Mathematically verifiable.</strong> Anyone, anywhere, should be able to verify a record\'s existence and integrity using nothing more than the document, a public ledger, and a checksum tool.' },
+          { type: 'text', value: '<strong>Jurisdiction-aware.</strong> The same record should be mappable to the specific controls of any framework that applies, ESIGN, UETA, FCRA, GDPR, DORA, EU AI Act, and whatever lands next.' },
+          { type: 'text', value: 'This layer is not a replacement for existing systems. Your DocuSign tenant, SharePoint instance, HRIS, and document management platform keep doing what they already do. The evidence layer sits next to them. Documents stay where they are. Only a cryptographic fingerprint, a 64-character SHA-256 hash that cannot be reversed to recover the original document, goes anywhere external.' },
+        ],
+      },
+      {
+        heading: 'How Arkova Is Building It',
+        blocks: [
+          { type: 'text', value: 'Arkova is in beta. We are working with pilot customers today and we are deliberately publishing what is shipping rather than what is on a slide. The layer breaks into three pieces.' },
+          { type: 'text', value: '<strong>1. Client-side fingerprinting.</strong> When you anchor a document, the cryptographic hash is generated entirely inside your browser. The file itself never leaves your device. This is not a privacy nicety. It is the architectural property that lets HIPAA, FERPA, and GDPR scopes shrink dramatically. Our servers cannot leak documents they never receive.' },
+          { type: 'text', value: '<strong>2. Anchoring to an immutable public ledger.</strong> The hash is written to a public, append-only ledger. Once written it cannot be edited, deleted, or forged. Anyone with the original document can recompute the hash and verify it matches what was anchored. The proof does not depend on Arkova staying in business. Verification is doable with <code class="rounded bg-arkova-frost dark:bg-white/5 px-1.5 py-0.5 text-xs">shasum</code> and a public ledger lookup.' },
+          { type: 'text', value: '<strong>3. AI tooling around the anchor.</strong> Around the cryptographic core we are building a layer of internal tooling on Google\'s Gemini models. The metadata-extraction service, which classifies anchored records into credential type, issuer, dates, jurisdiction, and the field labels an auditor needs to find a record, is running with our beta customers today. We are extending the same architecture in four directions:' },
+          { type: 'text', value: '&bull; Fraud-pattern detection across anchored documents (issuer mismatches, anomalous date sequences, suspicious template reuse).' },
+          { type: 'text', value: '&bull; Automated template creation for repeated document types so an issuer can anchor a hundred records as easily as one.' },
+          { type: 'text', value: '&bull; Organizational layouts that group related anchors into reviewable bundles, mapped to the framework controls they evidence.' },
+          { type: 'text', value: '&bull; Agent-accessible workflows through our MCP server, so an enterprise\'s own AI agents can query the verification surface directly rather than scraping a UI.' },
+          { type: 'text', value: 'Nessie, our regulation-specific compliance engine, is being trained right now. The plan is for it to score anchored documents against specific framework controls and cite the exact statute subsection, running on the same PII-stripped metadata so the model never touches raw documents. It is not yet in front of customers. The beta product today is the verification API, the anchoring surface, and the metadata-extraction layer.' },
+          { type: 'text', value: 'Together these layers will produce something the traditional evidence stack cannot: a record whose existence and integrity can be proven independently, whose lifecycle can be queried, and whose compliance posture can be scored against the specific frameworks an auditor cares about, without requiring trust in any single vendor.' },
+        ],
+      },
+      {
+        heading: 'What This Means for Audit Cost',
+        blocks: [
+          { type: 'text', value: 'Look at the published numbers.' },
+          { type: 'stat', value: '$6.06M', label: 'Average audit fee for US large accelerated filers, FY2024 (up 5% year over year)', source: 'Ideagen, S&P 500 Audit Fees Analysis', sourceUrl: 'https://www.ideagen.com/thought-leadership/blog/audit-fees-of-the-sp-500', variant: 'amber' },
+          { type: 'text', value: 'Those are external invoices. Internal preparation cost sits on top of them, <a href="https://www.complianceandrisks.com/blog/24-stats-every-chief-compliance-officer-should-know-in-2024/" target="_blank" rel="noopener noreferrer" class="text-arkova-steel hover:text-arkova-ocean underline underline-offset-2">benchmarked by Thomson Reuters at thousands of dollars per employee per year</a> inside large financial institutions.' },
+          { type: 'text', value: 'Behind the invoice is duration. Large enterprises typically need <a href="https://auditboard.com/blog/sox-spac-timeline" target="_blank" rel="noopener noreferrer" class="text-arkova-steel hover:text-arkova-ocean underline underline-offset-2">six to twelve months to prepare and test for SOX compliance</a>. For Fortune 500 companies, the audit cycle dominates a meaningful share of the compliance team\'s calendar every year.' },
+          { type: 'text', value: 'The four phases that consume the most internal time, discovery, verification, chain-of-custody documentation, and report assembly, all collapse when the underlying records are independently verifiable. Discovery becomes an API call. Verification becomes a checksum. Chain-of-custody is the public ledger itself. Report assembly becomes a list of links and timestamps the auditor can verify themselves. Whether that translates to a meaningful percentage off the audit budget or a transformative one will vary by organization, and we want to learn the answer from real customer baselines, not from our marketing slide.' },
+        ],
+      },
+      {
+        heading: 'The Strategic Picture',
+        blocks: [
+          { type: 'text', value: 'None of this is stabilizing. Frameworks I have not named in this piece, DORA revisions, the next round of SEC disclosure rules, post-quantum cryptography mandates, and a wave of sectoral AI rules, are already in committee drafts I have read parts of. The compliance footprint a global enterprise carries in 2028 will be wider than the one it carries today, and most of the new obligations will plug into the same vendor-controlled audit logs that already creak under the existing stack.' },
+          { type: 'text', value: 'You cannot solve a verification problem by adding more frameworks. You solve it by fixing what evidence actually means.' },
+          { type: 'quote', quote: 'You cannot solve a verification problem by adding more frameworks. You solve it by fixing what evidence actually means.', attribution: 'Sarah Rushton', role: 'COO, Arkova' },
+          { type: 'text', value: 'That is the work we are doing at Arkova. Two decades watching audit chains break taught me that the only durable answer is an evidence layer that does not need to be rebuilt every time the compliance landscape changes. Documents stay in the systems where they live today. Cryptographic proof lives somewhere that no vendor, including us, controls. And the same record can be scored against whichever framework lands next.' },
+        ],
+      },
+      {
+        heading: 'The Bottom Line',
+        blocks: [
+          { type: 'text', value: 'After twenty years inside compliance-heavy organizations, the pattern I see in every enterprise team I talk to is the same one. People are exhausted from rebuilding evidence packages every quarter on top of fragile vendor logs. The compliance burden is not what is breaking them. The substrate is.' },
+          { type: 'text', value: 'Fix the substrate and the rest of the system gets simpler. Audit prep stops being a quarterly archaeology project. Vendor transitions stop quietly degrading the audit history. Counterparty verification requests turn into one click. The compliance posture stops being a snapshot and starts being a continuous, queryable property of the records themselves.' },
+          { type: 'text', value: 'That is not a technology pitch. It is the only response I have found, after a long career inside the problem, that does not break the next time the framework list grows.' },
+        ],
+      },
+    ],
+  },
+
+  /* ═══════════════════════════════════════════════════════════════════
    * ARTICLE — The Rise of the Agentic Economy
    * ═══════════════════════════════════════════════════════════════════ */
   {

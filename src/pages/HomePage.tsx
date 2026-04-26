@@ -277,7 +277,7 @@ export default function HomePage() {
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">AI-Powered</p>
             <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Compliance audit automation, powered by AI</h2>
             <p className="mx-auto max-w-2xl text-white/35">
-              Our models read your records, identify what they are, and map them to the controls that matter — while documents stay private on your device.
+              Our models read your records, identify what they are, and map them to the controls that matter — while documents stay private on your device. Learn why <Link to="/research/agentic-recordkeeping" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">autonomous AI needs verifiable audit trails</Link>.
             </p>
           </div>
           <div className="grid gap-5 md:grid-cols-3">
@@ -312,7 +312,7 @@ export default function HomePage() {
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Developer Platform</p>
             <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Built to plug into your existing stack</h2>
             <p className="mx-auto max-w-2xl text-white/35">
-              Verification, batch lookups, webhook events — a developer platform designed for GRC, ticketing, SIEM, and HRIS integrations. We're iterating on the API surface with early-access partners. See the <Link to="/roadmap" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">roadmap</Link> for what's next.
+              Verification, batch lookups, webhook events — a developer platform designed for GRC, ticketing, SIEM, and HRIS integrations. We're iterating on the API surface with early-access partners. Read the <Link to="/docs/api" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">API reference</Link> or see the <Link to="/roadmap" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">roadmap</Link> for what's next.
             </p>
           </div>
           <CyberCard hover={false} className="mb-8 p-6 border-cyber-cyan/15">
@@ -341,7 +341,7 @@ export default function HomePage() {
           <div className="mb-16 text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">How It Works</p>
             <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Three steps, one audit</h2>
-            <p className="mx-auto max-w-xl text-white/35">The shape of the product we're building with pilot customers — from evidence intake to an audit-ready export, without the quarter-long reporting cycle.</p>
+            <p className="mx-auto max-w-xl text-white/35">The shape of the product we're building with pilot customers — from evidence intake to an audit-ready export, without the quarter-long reporting cycle. Or jump to the <Link to="/docs/quickstart" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">quickstart guide</Link>.</p>
           </div>
           <div className="grid gap-6 md:grid-cols-3 md:gap-8">
             {STEPS.map((item, i) => (
@@ -364,7 +364,7 @@ export default function HomePage() {
           <div className="mb-16 text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Who It's For</p>
             <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Built for the teams that own compliance</h2>
-            <p className="mx-auto max-w-2xl text-white/35">From GRC leads closing the quarter to multi-jurisdiction operators managing 14 regimes at once.</p>
+            <p className="mx-auto max-w-2xl text-white/35">From GRC leads closing the quarter to multi-jurisdiction operators managing 14 regimes at once. See how <Link to="/research/real-cost-of-audit-verification" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">audit verification costs are changing</Link>.</p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {USE_CASES.map((uc) => (
@@ -410,9 +410,9 @@ export default function HomePage() {
           </div>
           <div className="grid gap-6 md:grid-cols-3">
             {[
-              { name: 'Carson', title: 'Founder & CEO', bio: '10+ years in technical product and program management across regulated industries. Built Arkova to give organizations verification infrastructure that outlasts any single vendor.', photo: '/team-carson.png', profileUrl: 'https://www.linkedin.com/in/carson-s-8b41061a/', profileType: 'linkedin' as const },
-              { name: 'Sarah', title: 'Founder & COO', bio: 'Over 20 years launching products through compliance-heavy supply chains taught Sarah one thing: documentation verification is broken at every level.', photo: '/team-sarah.png', profileUrl: 'https://www.linkedin.com/in/sljrushton/', profileType: 'linkedin' as const },
-              { name: 'Yaacov', title: 'Founder & Advisor', bio: '20 years Research & Data Science experience. Senior Member of the National Academy of Inventors.', photo: '/team-yaacov.png', profileUrl: 'https://scholar.google.com/citations?user=MUGWLDoAAAAJ&hl=en', profileType: 'scholar' as const },
+              { name: 'Carson Seeger', title: 'Founder & CEO', bio: '10+ years in technical product and program management across regulated industries. Built Arkova to give organizations verification infrastructure that outlasts any single vendor.', photo: '/team-carson.png', profileUrl: 'https://www.linkedin.com/in/carson-s-8b41061a/', profileType: 'linkedin' as const },
+              { name: 'Sarah Rushton', title: 'Founder & COO', bio: 'Over 20 years launching products through compliance-heavy supply chains taught Sarah one thing: documentation verification is broken at every level.', photo: '/team-sarah.png', profileUrl: 'https://www.linkedin.com/in/sljrushton/', profileType: 'linkedin' as const },
+              { name: 'Dr. Yaacov Petscher', title: 'Founder & Advisor', bio: '20 years Research & Data Science experience. Senior Member of the National Academy of Inventors.', photo: '/team-yaacov.png', profileUrl: 'https://scholar.google.com/citations?user=MUGWLDoAAAAJ&hl=en', profileType: 'scholar' as const },
             ].map((member) => (
               <CyberCard key={member.name} className="p-6 text-center">
                 <div className="mx-auto mb-5 h-28 w-28 overflow-hidden rounded-full border border-cyber-cyan/20">
