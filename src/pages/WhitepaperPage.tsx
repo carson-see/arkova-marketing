@@ -6,6 +6,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { BreadcrumbJsonLd } from '../components/BreadcrumbJsonLd';
+import { safeJsonLd } from '../lib/safeJsonLd';
 
 const TOC = [
   { id: 'attestation-challenge', label: '1. The Attestation Challenge' },
@@ -112,7 +113,7 @@ export default function WhitepaperPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: safeJsonLd({
             '@context': 'https://schema.org',
             '@type': 'TechArticle',
             headline: 'Arkova: The Universal Verification Layer for Records, Credentials, and Asset Attestations',

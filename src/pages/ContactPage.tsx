@@ -97,6 +97,16 @@ export default function ContactPage() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
+                {/* Honeypot — bots fill this, Formspree silently drops the submission. Hidden from real users. */}
+                <input
+                  type="text"
+                  name="_gotcha"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', opacity: 0 }}
+                />
+
                 <div>
                   <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-white/40">
                     Name
