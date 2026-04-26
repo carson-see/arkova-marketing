@@ -577,11 +577,11 @@ export default function WikiPage() {
       <DocH3>Authentication</DocH3>
       <DocCodeBlock language="bash">{`# Bearer token
 curl -H "Authorization: Bearer ak_live_your_key_here" \\
-  https://api.arkova.io/api/v1/verify/ARK-2026-001
+  https://api.arkova.ai/api/v1/verify/ARK-2026-001
 
 # Header
 curl -H "X-API-Key: ak_live_your_key_here" \\
-  https://api.arkova.io/api/v1/verify/ARK-2026-001`}</DocCodeBlock>
+  https://api.arkova.ai/api/v1/verify/ARK-2026-001`}</DocCodeBlock>
 
       <DocH3>Verification Endpoints</DocH3>
       <DocTable
@@ -616,7 +616,7 @@ curl -H "X-API-Key: ak_live_your_key_here" \\
   "network_block": 204567,
   "network_receipt_id": "b8e381df09ca404e...",
   "merkle_proof_hash": null,
-  "record_uri": "https://app.arkova.io/verify/ARK-2026-001",
+  "record_uri": "https://app.arkova.ai/verify/ARK-2026-001",
   "jurisdiction": "US-MI"
 }`}</DocCodeBlock>
 

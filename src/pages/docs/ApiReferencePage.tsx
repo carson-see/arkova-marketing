@@ -135,7 +135,7 @@ curl https://app.arkova.ai/api/v1/verify/ARK-2026-001 \\
   "bitcoin_block": 204567,
   "network_receipt_id": "b8e381df09ca404e...",
   "merkle_proof_hash": null,
-  "record_uri": "https://app.arkova.io/verify/ARK-2026-001",
+  "record_uri": "https://app.arkova.ai/verify/ARK-2026-001",
   "jurisdiction": "US-MI"
 }`}</DocCodeBlock>
       <DocCallout type="note">

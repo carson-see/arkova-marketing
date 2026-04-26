@@ -247,7 +247,7 @@ export default function HomePage() {
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">AI-Powered</p>
             <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Intelligent credential processing</h2>
             <p className="mx-auto max-w-2xl text-white/35">
-              AI extracts metadata, classifies credential types, and detects anomalies, all while keeping your documents private on your device.
+              AI extracts metadata, classifies credential types, and detects anomalies, all while keeping your documents private on your device. Learn why <Link to="/research/agentic-recordkeeping" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">autonomous AI needs verifiable audit trails</Link>.
             </p>
           </div>
           <div className="grid gap-5 md:grid-cols-3">
@@ -282,7 +282,7 @@ export default function HomePage() {
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Verification API</p>
             <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Integrate verification into anything</h2>
             <p className="mx-auto max-w-2xl text-white/35">
-              Verify credentials programmatically. Background checks, compliance audits, hiring workflows — verify at scale with a single API call. See our <Link to="/roadmap" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">product roadmap</Link> for what's coming next.
+              Verify credentials programmatically. Background checks, compliance audits, hiring workflows — verify at scale with a single API call. Read the <Link to="/docs/api" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">API reference</Link> or see our <Link to="/roadmap" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">product roadmap</Link> for what's coming next.
             </p>
           </div>
           <CyberCard hover={false} className="mb-8 p-6 border-cyber-cyan/15">
@@ -311,7 +311,7 @@ export default function HomePage() {
           <div className="mb-16 text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">How It Works</p>
             <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Three steps to permanent proof</h2>
-            <p className="mx-auto max-w-xl text-white/35">Create a permanent, independently verifiable record of any document in seconds.</p>
+            <p className="mx-auto max-w-xl text-white/35">Create a permanent, independently verifiable record of any document in seconds. Ready to start? Follow the <Link to="/docs/quickstart" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">quickstart guide</Link>.</p>
           </div>
           <div className="grid gap-6 md:grid-cols-3 md:gap-8">
             {STEPS.map((item, i) => (
@@ -334,7 +334,7 @@ export default function HomePage() {
           <div className="mb-16 text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">Who It's For</p>
             <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Built for every industry that needs proof</h2>
-            <p className="mx-auto max-w-2xl text-white/35">From staffing agencies verifying candidates to universities issuing tamper-proof degrees.</p>
+            <p className="mx-auto max-w-2xl text-white/35">From staffing agencies verifying candidates to universities issuing tamper-proof degrees. See how <Link to="/research/real-cost-of-audit-verification" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">audit verification costs are changing</Link>.</p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {USE_CASES.map((uc) => (
@@ -380,9 +380,9 @@ export default function HomePage() {
           </div>
           <div className="grid gap-6 md:grid-cols-3">
             {[
-              { name: 'Carson', title: 'Founder & CEO', bio: '10+ years in technical product and program management across regulated industries. Built Arkova to give organizations verification infrastructure that outlasts any single vendor.', photo: '/team-carson.png', profileUrl: 'https://www.linkedin.com/in/carson-s-8b41061a/', profileType: 'linkedin' as const },
-              { name: 'Sarah', title: 'Founder & COO', bio: 'Over 20 years launching products through compliance-heavy supply chains taught Sarah one thing: documentation verification is broken at every level.', photo: '/team-sarah.png', profileUrl: 'https://www.linkedin.com/in/sljrushton/', profileType: 'linkedin' as const },
-              { name: 'Yaacov', title: 'Founder & Advisor', bio: '20 years Research & Data Science experience. Senior Member of the National Academy of Inventors.', photo: '/team-yaacov.png', profileUrl: 'https://scholar.google.com/citations?user=MUGWLDoAAAAJ&hl=en', profileType: 'scholar' as const },
+              { name: 'Carson Seeger', title: 'Founder & CEO', bio: '10+ years in technical product and program management across regulated industries. Built Arkova to give organizations verification infrastructure that outlasts any single vendor.', photo: '/team-carson.png', profileUrl: 'https://www.linkedin.com/in/carson-s-8b41061a/', profileType: 'linkedin' as const },
+              { name: 'Sarah Rushton', title: 'Founder & COO', bio: 'Over 20 years launching products through compliance-heavy supply chains taught Sarah one thing: documentation verification is broken at every level.', photo: '/team-sarah.png', profileUrl: 'https://www.linkedin.com/in/sljrushton/', profileType: 'linkedin' as const },
+              { name: 'Dr. Yaacov Petscher', title: 'Founder & Advisor', bio: '20 years Research & Data Science experience. Senior Member of the National Academy of Inventors.', photo: '/team-yaacov.png', profileUrl: 'https://scholar.google.com/citations?user=MUGWLDoAAAAJ&hl=en', profileType: 'scholar' as const },
             ].map((member) => (
               <CyberCard key={member.name} className="p-6 text-center">
                 <div className="mx-auto mb-5 h-28 w-28 overflow-hidden rounded-full border border-cyber-cyan/20">
