@@ -29,7 +29,7 @@ const ROUTES = [
   },
   {
     path: '/research',
-    title: 'Research & Insights — Arkova',
+    title: 'Compliance & Audit Automation Research — Arkova',
     description: 'Analysis on compliance audit automation, multi-jurisdiction regulatory posture, agentic recordkeeping, and digital trust from the Arkova team.',
   },
   {
@@ -40,26 +40,26 @@ const ROUTES = [
   },
   {
     path: '/research/agentic-recordkeeping',
-    title: 'Agentic Recordkeeping: Why Autonomous AI Needs Verifiable Audit Trails — Arkova Research',
+    title: 'Agentic Recordkeeping for AI Audit Trails — Arkova',
     description: 'Traditional audit logs were built for humans. AI agents need cryptographic proof. Exploring the verification infrastructure gap.',
     article: { author: 'Carson Seeger', datePublished: '2026-01-15', dateModified: '2026-01-15' },
   },
   {
     path: '/research/convergence-stack',
-    title: 'The Convergence Stack: Why Blockchain + AI Is Infrastructure, Not Hype — Arkova Research',
+    title: 'The Convergence Stack: Blockchain + AI — Arkova',
     description: 'AI generates content at superhuman speed. Blockchain proves it existed. The real intersection is simpler than the hype suggests.',
     article: { author: 'Carson Seeger', datePublished: '2026-02-12', dateModified: '2026-02-12' },
   },
   {
     path: '/research/government-records',
-    title: 'Modernizing Government Records: Cryptographic Verification for Public Trust — Arkova Research',
+    title: 'Modernizing Government Records — Arkova Research',
     description: 'Government verification runs on phone calls and faxes. Cryptographic anchoring offers instant, independent, cross-jurisdiction proof.',
     article: { author: 'Carson Seeger', datePublished: '2026-03-10', dateModified: '2026-03-10' },
   },
   {
     path: '/research/rise-of-agentic-economy',
-    title: 'The Rise of the Agentic Economy: How AI Agents Are Becoming Economic Participants — Arkova Research',
-    description: 'AI agents are buying, selling, verifying, and transacting. A $7.3B market is building the payment rails, identity systems, and trust infrastructure autonomous agents need.',
+    title: 'The Rise of the Agentic Economy — Arkova Research',
+    description: 'AI agents are buying, selling, and verifying. A $7.3B market is building the payment rails, identity, and trust infrastructure autonomous agents need.',
     article: { author: 'Carson Seeger', datePublished: '2026-03-27', dateModified: '2026-03-27' },
   },
   {
