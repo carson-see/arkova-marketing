@@ -12,6 +12,7 @@ import { useState, useEffect } from 'react';
 import { getArticleBySlug, ARTICLES, type Article, type ContentBlock } from '../data/articles';
 import { DIAGRAM_COMPONENTS } from '../components/diagrams';
 import { BreadcrumbJsonLd } from '../components/BreadcrumbJsonLd';
+import { safeJsonLd } from '../lib/safeJsonLd';
 
 const CATEGORY_COLORS: Record<string, string> = {
   Compliance: 'bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400',
@@ -64,7 +65,7 @@ function ArticleJsonLd({ article }: { article: Article }) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: safeJsonLd(schema) }}
     />
   );
 }

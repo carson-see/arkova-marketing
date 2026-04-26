@@ -164,6 +164,20 @@ function escapeHtml(str) {
     .replace(/'/g, '&#39;');
 }
 
+/**
+ * Serialize a value for embedding inside a <script type="application/ld+json">
+ * tag. JSON.stringify alone leaves "</script>" literal in the output, which
+ * the HTML parser would treat as an end-of-script delimiter regardless of
+ * script type. Mirrors src/lib/safeJsonLd.ts (kept duplicated here so the
+ * build script has no module dependency).
+ */
+function safeJsonLd(value) {
+  return JSON.stringify(value, null, 2)
+    .replace(/</g, '\\u003c')
+    .replace(/ /g, '\\u2028')
+    .replace(/ /g, '\\u2029');
+}
+
 function injectMeta(html, route) {
   const baseUrl = 'https://arkova.ai';
   const canonical = route.path === '/' ? baseUrl + '/' : baseUrl + route.path;
@@ -240,7 +254,7 @@ function buildWhitepaperSchema(route) {
       { '@type': 'ListItem', position: 2, name: 'Whitepaper', item: 'https://arkova.ai/whitepaper' },
     ],
   };
-  return `\n    <script type="application/ld+json">\n    ${JSON.stringify(breadcrumb, null, 2).replace(/\n/g, '\n    ')}\n    </script>`;
+  return `\n    <script type="application/ld+json">\n    ${safeJsonLd(breadcrumb).replace(/\n/g, '\n    ')}\n    </script>`;
 }
 
 function buildArticleSchema(route) {
@@ -286,7 +300,7 @@ function buildArticleSchema(route) {
     ],
   };
 
-  return `\n    <script type="application/ld+json">\n    ${JSON.stringify(articleSchema, null, 2).replace(/\n/g, '\n    ')}\n    </script>\n    <script type="application/ld+json">\n    ${JSON.stringify(breadcrumbSchema, null, 2).replace(/\n/g, '\n    ')}\n    </script>`;
+  return `\n    <script type="application/ld+json">\n    ${safeJsonLd(articleSchema).replace(/\n/g, '\n    ')}\n    </script>\n    <script type="application/ld+json">\n    ${safeJsonLd(breadcrumbSchema).replace(/\n/g, '\n    ')}\n    </script>`;
 }
 
 async function prerender() {

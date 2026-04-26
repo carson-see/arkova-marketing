@@ -3,6 +3,8 @@
  * Renders a BreadcrumbList structured data block for any subpage.
  */
 
+import { safeJsonLd } from '../lib/safeJsonLd';
+
 interface BreadcrumbItem {
   name: string;
   url: string;
@@ -30,7 +32,7 @@ export function BreadcrumbJsonLd({ items }: BreadcrumbJsonLdProps) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: safeJsonLd(schema) }}
     />
   );
 }
