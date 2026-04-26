@@ -171,11 +171,11 @@ function escapeHtml(str) {
  * script type. Mirrors src/lib/safeJsonLd.ts (kept duplicated here so the
  * build script has no module dependency).
  */
+const LS_PS_REGEX = new RegExp('[  ]', 'g');
 function safeJsonLd(value) {
   return JSON.stringify(value, null, 2)
     .replace(/</g, '\\u003c')
-    .replace(/ /g, '\\u2028')
-    .replace(/ /g, '\\u2029');
+    .replace(LS_PS_REGEX, (c) => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0'));
 }
 
 function injectMeta(html, route) {
