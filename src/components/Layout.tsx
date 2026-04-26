@@ -107,7 +107,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
     if (isHome) {
       scrollTo(label.toLowerCase().replace(/\s+/g, '-'));
     } else {
-      window.location.href = '/#' + label.toLowerCase().replace(/\s+/g, '-');
+      window.location.assign('/#' + label.toLowerCase().replace(/\s+/g, '-'));
     }
   };
 
@@ -117,7 +117,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-cyber-cyan-border bg-cyber-bg/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
           <Link to="/" className="flex items-center gap-2.5">
-            <img src={arkovaLogo} alt="Arkova document verification platform logo" width={120} height={40} className="h-10 w-auto brightness-150 contrast-90" />
+            <img src={arkovaLogo} alt="Arkova compliance audit automation platform logo" width={120} height={40} className="h-10 w-auto brightness-150 contrast-90" />
           </Link>
 
           <div className="hidden items-center gap-7 md:flex">
@@ -275,10 +275,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <div className="grid gap-12 md:grid-cols-4">
             <div className="md:col-span-1">
               <Link to="/" className="mb-4 flex items-center gap-2.5">
-                <img src={arkovaLogo} alt="Arkova document verification platform logo" width={120} height={40} className="h-10 w-auto brightness-150 contrast-90" />
+                <img src={arkovaLogo} alt="Arkova compliance audit automation platform logo" width={120} height={40} className="h-10 w-auto brightness-150 contrast-90" />
               </Link>
               <p className="text-sm text-white/40">
-                Tamper-proof document verification. Privacy-first. Independently verifiable.
+                Compliance audit automation. 14 regulatory frameworks. Privacy-first. Cryptographically anchored.
               </p>
               <div className="mt-6 flex gap-3">
                 <a

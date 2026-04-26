@@ -11,55 +11,39 @@ const PHASES = [
   {
     number: 'I',
     title: 'Foundation',
-    subtitle: 'API + Data Pipeline + Global Coverage',
+    subtitle: 'Evidence layer — in production',
     timeline: '2025–2026',
     status: 'In Progress' as const,
-    description: 'Production-ready verification API with x402 micropayments and a global data ingestion pipeline anchoring regulatory documents from multiple jurisdictions.',
+    description: 'The cryptographic evidence layer is running: client-side SHA-256 fingerprinting, public-network anchoring, append-only audit events, verification API, and bulk processing. This is the foundation the audit-automation product sits on top of.',
     items: [
-      'Public REST API with x402 agent micropayment integration',
-      'Global regulatory data ingestion pipeline',
       'Client-side SHA-256 fingerprinting — documents never leave your device',
-      'MCP server for AI agent integration',
-      'Organization management, credential templates, and bulk upload',
-      'Developer documentation and API playground',
-      'Multi-jurisdiction regulatory document anchoring',
+      'Public-network anchoring with independently verifiable receipts',
+      'Append-only audit events and lifecycle tracking',
+      'Verification API (single-call + batch)',
+      'API key management with HMAC-signed access',
+      'Webhooks for anchoring and verification events',
     ],
-    compliance: ['SOX', 'ESIGN', 'UETA', 'FERPA', 'GDPR'],
+    compliance: ['Privacy-First', 'Evidence Chain', 'Public Anchoring'],
     bars: 1,
   },
   {
     number: 'II',
-    title: 'Scale',
-    subtitle: 'Compliance Intelligence',
+    title: 'Audit Automation',
+    subtitle: 'Building with early-access partners',
     timeline: '2026–2027',
     status: 'Planned' as const,
-    description: 'Scale verification infrastructure across jurisdictions and introduce compliance intelligence capabilities.',
+    description: 'The audit-automation layer we are building with pilot customers: per-jurisdiction scoring, gap detection, prioritized remediation, regulatory-change alerts, and audit-ready exports — so compliance teams can collapse weeks of audit prep into hours.',
     items: [
-      'Multi-jurisdiction regulatory intelligence',
-      'Compliance-as-a-service for automated checks',
-      'Agent identity verification and compliance certificates',
-      'Real-time regulatory change detection',
-      'Enterprise compliance dashboards',
+      'Per-jurisdiction compliance scorecard and breakdown',
+      'Gap detection (missing, expired, expiring-soon, insufficient)',
+      'Prioritized remediation ranked by severity, penalty risk, and effort',
+      'Regulatory-change monitoring with in-app and email alerts',
+      'Audit-ready PDF export for your auditor, board, or regulator',
+      'GRC integrations (ticketing, SIEM, HRIS) with HMAC-signed payloads',
+      'SOC 2 Type II and ISO 27001 program in progress',
     ],
-    compliance: ['SOC 2 Type I', 'EU AI Act', 'GDPR'],
+    compliance: ['SOC 2 Type II', 'ISO 27001', 'UK Cyber Essentials'],
     bars: 2,
-  },
-  {
-    number: 'III',
-    title: 'Dominance',
-    subtitle: 'Enterprise Compliance Platform',
-    timeline: '2027–2028',
-    status: 'Future' as const,
-    description: 'Enterprise-grade compliance infrastructure with autonomous monitoring, e-signatures, and global jurisdiction coverage.',
-    items: [
-      'Autonomous compliance monitoring and remediation',
-      'E-signatures with jurisdiction-specific legal recognition',
-      'Global coverage across 30+ jurisdictions',
-      'Platform licensing for compliance product builders',
-      'Continuous cryptographic audit trails',
-    ],
-    compliance: ['SOC 2 Type II', 'eIDAS', 'ETSI EN 319', 'GDPR'],
-    bars: 3,
   },
 ];
 
@@ -88,7 +72,7 @@ export default function RoadmapPage() {
             </span>
           </h1>
           <p className="mx-auto max-w-2xl text-base text-white/40 opacity-0 animate-fade-up" style={{ animationDelay: '0.35s' }}>
-            From credential verification to institutional attestations to legally recognized e-signatures — a phased approach to trustless compliance infrastructure.
+            A short, honest roadmap: the evidence layer we already run in production, and the audit-automation product we're building on top of it with pilot customers.
           </p>
         </div>
       </section>
@@ -134,7 +118,7 @@ export default function RoadmapPage() {
                         <div className="mb-4 flex items-center justify-between">
                           <span className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium ${config.bg} ${config.color}`}>
                             <StatusIcon className="h-3 w-3" />
-                            {phase.status === 'In Progress' ? 'COMPLETED' : phase.status === 'Planned' ? 'IN PROGRESS' : 'UPCOMING'}
+                            {phase.status === 'In Progress' ? 'IN PRODUCTION' : phase.status === 'Planned' ? 'IN DEVELOPMENT' : 'UPCOMING'}
                           </span>
                           <span className="text-xs font-mono text-white/25">{phase.timeline}</span>
                         </div>
@@ -163,7 +147,7 @@ export default function RoadmapPage() {
                           ))}
                         </div>
 
-                        <p className="mt-4 text-xs text-white/20">Tag: {phase.status === 'In Progress' ? 'completed' : phase.status === 'Planned' ? 'in progress' : 'upcoming'}</p>
+                        <p className="mt-4 text-xs text-white/20">Tag: {phase.status === 'In Progress' ? 'in production' : phase.status === 'Planned' ? 'in development' : 'upcoming'}</p>
                       </div>
                     </div>
                   </div>

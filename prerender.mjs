@@ -23,13 +23,14 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROUTES = [
   {
     path: '/',
-    title: 'Arkova — Document Verification Platform | Issue Once. Verify Forever.',
-    description: 'Arkova is a privacy-first document verification platform that creates tamper-proof, independently verifiable credential records using AI and cryptographic fingerprinting. Files never leave your device.',
+    // Title: ≤60 chars (SCRUM-940). Description: ≤160 chars (SCRUM-936).
+    title: 'Arkova — Compliance Audit Automation in Hours, Not Weeks',
+    description: 'Compliance audit automation in early access. Per-jurisdiction scoring, gap detection, remediation, and audit-ready export. Privacy-first. Join the pilot.',
   },
   {
     path: '/research',
     title: 'Research & Insights — Arkova',
-    description: 'Analysis on document verification, compliance infrastructure, agentic recordkeeping, and digital trust from the Arkova team.',
+    description: 'Analysis on compliance audit automation, multi-jurisdiction regulatory posture, agentic recordkeeping, and digital trust from the Arkova team.',
   },
   {
     path: '/research/anchoring-compliance-bitcoin',
@@ -74,23 +75,23 @@ const ROUTES = [
   },
   {
     path: '/roadmap',
-    title: 'Product Roadmap — Arkova',
-    description: 'From credential verification to institutional attestations to legally recognized e-signatures. Arkova\'s phased approach to trustless compliance infrastructure.',
+    title: 'Roadmap — Arkova Compliance Audit Automation',
+    description: "A short, honest two-phase roadmap: the cryptographic evidence layer Arkova runs in production today, and the compliance audit automation product we're building on top of it with pilot customers.",
   },
   {
     path: '/contact',
     title: 'Contact — Arkova',
-    description: 'Get in touch with the Arkova team. Request early access, discuss enterprise deployments, or explore partnership opportunities.',
+    description: 'Get in touch with the Arkova team. Request early access to the compliance audit automation platform, discuss pilot deployments, or explore partnership opportunities.',
   },
   {
     path: '/privacy',
     title: 'Privacy Policy — Arkova',
-    description: 'How Arkova protects your data. Documents never leave your device. Learn about our cryptographic fingerprinting privacy model.',
+    description: 'How Arkova protects your data. Documents never leave your device — fingerprinting is client-side, only PII-stripped metadata flows to our systems.',
   },
   {
     path: '/terms',
     title: 'Terms of Service — Arkova',
-    description: 'Terms of service for the Arkova document verification platform. Governing usage, privacy guarantees, and verification API access.',
+    description: 'Terms of service for the Arkova compliance audit automation platform. Governing usage, privacy guarantees, and API access.',
   },
   {
     path: '/docs',
@@ -137,27 +138,41 @@ const ROUTES = [
     title: 'Status — Arkova Docs',
     description: 'System status, infrastructure overview, SLA targets, and incident response procedures.',
   },
+  // GEO-14: 404 page prerendered to dist/404.html — Vercel serves with 404 status
   {
     path: '/404',
-    title: '404 — Page Not Found — Arkova',
-    description: 'The page you are looking for does not exist. Return to Arkova to explore our document verification platform.',
+    title: '404 — Page Not Found | Arkova',
+    description: 'The page you are looking for does not exist. Return to the Arkova document verification platform.',
+    is404: true,
   },
 ];
+
+/** Escape HTML special characters for safe injection into tags and attributes. */
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
 
 function injectMeta(html, route) {
   const baseUrl = 'https://arkova.ai';
   const canonical = route.path === '/' ? baseUrl + '/' : baseUrl + route.path;
+  const safeTitle = escapeHtml(route.title);
+  const safeDescription = escapeHtml(route.description);
 
   // Replace title
   html = html.replace(
     /<title>[^<]*<\/title>/,
-    `<title>${route.title}</title>`
+    `<title>${safeTitle}</title>`
   );
 
   // Replace meta description
   html = html.replace(
     /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/,
-    `<meta name="description" content="${route.description}" />`
+    `<meta name="description" content="${safeDescription}" />`
   );
 
   // Replace canonical
@@ -169,11 +184,11 @@ function injectMeta(html, route) {
   // Replace OG tags
   html = html.replace(
     /<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/,
-    `<meta property="og:title" content="${route.title}" />`
+    `<meta property="og:title" content="${safeTitle}" />`
   );
   html = html.replace(
     /<meta\s+property="og:description"\s+content="[^"]*"\s*\/?>/,
-    `<meta property="og:description" content="${route.description}" />`
+    `<meta property="og:description" content="${safeDescription}" />`
   );
   html = html.replace(
     /<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/,
@@ -183,11 +198,11 @@ function injectMeta(html, route) {
   // Replace Twitter tags
   html = html.replace(
     /<meta\s+name="twitter:title"\s+content="[^"]*"\s*\/?>/,
-    `<meta name="twitter:title" content="${route.title}" />`
+    `<meta name="twitter:title" content="${safeTitle}" />`
   );
   html = html.replace(
     /<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/?>/,
-    `<meta name="twitter:description" content="${route.description}" />`
+    `<meta name="twitter:description" content="${safeDescription}" />`
   );
 
   return html;
@@ -304,9 +319,20 @@ async function prerender() {
       html = html.replace('</head>', whitepaperSchemas + '\n  </head>');
     }
 
+    // Inject noindex for 404 page
+    if (route.is404) {
+      html = html.replace(
+        /<meta\s+name="robots"[^>]*>/,
+        '<meta name="robots" content="noindex, nofollow" />'
+      );
+    }
+
     let outFile;
     if (route.path === '/') {
       outFile = path.resolve(distPath, 'index.html');
+    } else if (route.is404) {
+      // GEO-14: write to dist/404.html — Vercel serves this with a 404 HTTP status
+      outFile = path.resolve(distPath, '404.html');
     } else {
       const dir = path.resolve(distPath, route.path.slice(1));
       fs.mkdirSync(dir, { recursive: true });
