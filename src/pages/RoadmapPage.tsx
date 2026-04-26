@@ -50,7 +50,7 @@ const PHASES = [
 const STATUS_CONFIG = {
   'In Progress': { color: 'text-cyber-cyan', bg: 'bg-cyber-cyan/15 border-cyber-cyan/30', icon: Clock },
   Planned: { color: 'text-amber-400', bg: 'bg-amber-500/10 border-amber-500/20', icon: Circle },
-  Future: { color: 'text-white/40', bg: 'bg-white/5 border-white/10', icon: Circle },
+  Future: { color: 'text-white/70', bg: 'bg-white/5 border-white/10', icon: Circle },
 };
 
 export default function RoadmapPage() {
@@ -71,7 +71,7 @@ export default function RoadmapPage() {
               Arkova Roadmap
             </span>
           </h1>
-          <p className="mx-auto max-w-2xl text-base text-white/40 opacity-0 animate-fade-up" style={{ animationDelay: '0.35s' }}>
+          <p className="mx-auto max-w-2xl text-base text-white/70 opacity-0 animate-fade-up" style={{ animationDelay: '0.35s' }}>
             A short, honest roadmap: the evidence layer we already run in production, and the audit-automation product we're building on top of it with pilot customers.
           </p>
         </div>
@@ -126,12 +126,12 @@ export default function RoadmapPage() {
                         {/* Title */}
                         <h2 className="mb-1 text-2xl font-bold text-white">{phase.title}</h2>
                         <p className="mb-2 text-sm font-medium text-cyber-cyan">{phase.subtitle}</p>
-                        <p className="mb-6 text-sm leading-relaxed text-white/35">{phase.description}</p>
+                        <p className="mb-6 text-sm leading-relaxed text-white/70">{phase.description}</p>
 
                         {/* Items */}
                         <ul className="mb-6 space-y-2">
                           {phase.items.map((item) => (
-                            <li key={item} className="flex gap-2 text-sm text-white/40">
+                            <li key={item} className="flex gap-2 text-sm text-white/70">
                               <CheckCircle2 className={`mt-0.5 h-3.5 w-3.5 shrink-0 ${phase.status === 'In Progress' ? 'text-cyber-cyan' : 'text-white/15'}`} />
                               {item}
                             </li>
@@ -166,7 +166,7 @@ export default function RoadmapPage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(0,212,255,0.06)_0%,transparent_60%)]" />
         <div className="relative mx-auto max-w-2xl text-center">
           <h2 className="mb-4 text-2xl font-bold text-white md:text-3xl">Want to shape what we build next?</h2>
-          <p className="mb-8 text-base text-white/35">We're actively partnering with universities, enterprises, and agent developers for our first deployments.</p>
+          <p className="mb-8 text-base text-white/70">We're actively partnering with universities, enterprises, and agent developers for our first deployments.</p>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link to="/contact" className="group flex items-center gap-2 cyber-btn">
               Get in Touch

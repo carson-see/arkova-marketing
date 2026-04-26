@@ -54,7 +54,7 @@ export const ARTICLES: Article[] = [
     author: {
       name: 'Sarah Rushton',
       title: 'COO & Co-Founder',
-      avatar: '/team-sarah.png',
+      avatar: '/team-sarah.webp',
       linkedin: 'https://www.linkedin.com/in/sljrushton/',
     },
     category: 'Compliance',
@@ -179,7 +179,7 @@ export const ARTICLES: Article[] = [
     author: {
       name: 'Carson Seeger',
       title: 'CEO & Co-Founder',
-      avatar: '/team-carson.png',
+      avatar: '/team-carson.webp',
       linkedin: 'https://www.linkedin.com/in/carson-s-8b41061a/',
     },
     category: 'Technology',
@@ -303,7 +303,7 @@ export const ARTICLES: Article[] = [
     author: {
       name: 'Carson Seeger',
       title: 'CEO & Co-Founder',
-      avatar: '/team-carson.png',
+      avatar: '/team-carson.webp',
       linkedin: 'https://www.linkedin.com/in/carson-s-8b41061a/',
     },
     category: 'Compliance',
@@ -392,7 +392,7 @@ export const ARTICLES: Article[] = [
     author: {
       name: 'Carson Seeger',
       title: 'CEO & Co-Founder',
-      avatar: '/team-carson.png',
+      avatar: '/team-carson.webp',
       linkedin: 'https://www.linkedin.com/in/carson-s-8b41061a/',
     },
     category: 'Technology',
@@ -484,7 +484,7 @@ export const ARTICLES: Article[] = [
     author: {
       name: 'Carson Seeger',
       title: 'CEO & Co-Founder',
-      avatar: '/team-carson.png',
+      avatar: '/team-carson.webp',
       linkedin: 'https://www.linkedin.com/in/carson-s-8b41061a/',
     },
     category: 'Technology',
@@ -576,7 +576,7 @@ export const ARTICLES: Article[] = [
     author: {
       name: 'Carson Seeger',
       title: 'CEO & Co-Founder',
-      avatar: '/team-carson.png',
+      avatar: '/team-carson.webp',
       linkedin: 'https://www.linkedin.com/in/carson-s-8b41061a/',
     },
     category: 'Industry',
@@ -667,7 +667,7 @@ export const ARTICLES: Article[] = [
     author: {
       name: 'Sarah Rushton',
       title: 'COO & Co-Founder',
-      avatar: '/team-sarah.png',
+      avatar: '/team-sarah.webp',
       linkedin: 'https://www.linkedin.com/in/sljrushton/',
     },
     category: 'Compliance',

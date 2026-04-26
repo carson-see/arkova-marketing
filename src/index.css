@@ -130,6 +130,34 @@
     transform: translateY(0);
   }
 
+  /*
+   * Reduced-motion fallback: render all animated content immediately at its
+   * final state. Required for WCAG 2.1 AA conformance with users who have
+   * `prefers-reduced-motion: reduce` set, and a defense against any case
+   * where the JS-driven scroll observer fails to fire (slow networks, JS
+   * errors, headless crawlers without scroll simulation).
+   */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-in-view,
+    .animate-in-view.visible {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    .animate-fade-up,
+    .animate-fade-in,
+    .opacity-0 {
+      opacity: 1 !important;
+      animation: none !important;
+      transform: none !important;
+    }
+    .animate-glow-pulse,
+    .animate-float,
+    .animate-float-delayed {
+      animation: none !important;
+    }
+  }
+
   /* ─── Hero animated visualization ─── */
   .hero-viz {
     position: relative;

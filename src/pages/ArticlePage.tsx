@@ -313,6 +313,8 @@ export default function ArticlePage() {
                   alt={article.author.name}
                   width={48}
                   height={48}
+                  loading="lazy"
+                  decoding="async"
                   className="h-12 w-12 rounded-full border-2 border-arkova-ice/60 dark:border-white/10 object-cover"
                 />
               )}
@@ -368,6 +370,8 @@ export default function ArticlePage() {
                     alt={article.author.name}
                     width={48}
                     height={48}
+                    loading="lazy"
+                    decoding="async"
                     className="h-12 w-12 rounded-full border-2 border-arkova-ice/60 dark:border-white/10 object-cover"
                   />
                 )}

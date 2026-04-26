@@ -91,6 +91,10 @@ export default function ResearchPage() {
                       <img
                         src={article.author.avatar}
                         alt={article.author.name}
+                        width={36}
+                        height={36}
+                        loading="lazy"
+                        decoding="async"
                         className="h-9 w-9 rounded-full border border-arkova-ice/60 dark:border-white/10 object-cover"
                       />
                     )}

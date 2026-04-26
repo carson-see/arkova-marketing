@@ -4,7 +4,7 @@
  */
 
 import { Link } from 'react-router-dom';
-import { FileText, Shield, Code, Map, ChevronRight, Cpu, Scale, Webhook, Zap, HelpCircle, Bot, Activity } from 'lucide-react';
+import { FileText, Shield, Code, ChevronRight, Cpu, Scale, Webhook, Zap, HelpCircle, Bot } from 'lucide-react';
 
 const PRIMARY_DOCS = [
   {
@@ -66,18 +66,6 @@ const REFERENCE_DOCS = [
     description: 'GDPR, SOC 2, FERPA, eIDAS alignment. Enterprise terminology policy and credential type taxonomy.',
     href: '/wiki#terminology-compliance',
   },
-  {
-    icon: Activity,
-    title: 'Status',
-    description: 'System status, infrastructure overview, SLA targets, and incident response procedures.',
-    href: '/docs/status',
-  },
-  {
-    icon: Map,
-    title: 'Roadmap',
-    description: 'Three-phase product evolution from credentialing through attestations to legally recognized e-signatures.',
-    href: '/roadmap',
-  },
 ];
 
 export default function DocsPage() {
@@ -92,7 +80,7 @@ export default function DocsPage() {
           <h1 className="mb-4 text-[36px] font-bold text-white tracking-tight">
             Arkova Documentation
           </h1>
-          <p className="max-w-2xl text-[16px] leading-relaxed text-white/50">
+          <p className="max-w-2xl text-[16px] leading-relaxed text-white/75">
             Everything you need to understand Arkova's verification infrastructure — from architecture
             and security to API integration and compliance alignment.
           </p>
@@ -123,7 +111,7 @@ export default function DocsPage() {
                 <h3 className="mb-2 text-[18px] font-semibold text-white group-hover:text-cyber-cyan transition-colors">
                   {doc.title}
                 </h3>
-                <p className="mb-5 text-[14px] leading-relaxed text-white/40">
+                <p className="mb-5 text-[14px] leading-relaxed text-white/70">
                   {doc.description}
                 </p>
                 <span className="flex items-center gap-1 text-[13px] font-medium text-cyber-cyan/60 group-hover:text-cyber-cyan transition-colors">
@@ -153,7 +141,7 @@ export default function DocsPage() {
                   <h3 className="mb-1.5 text-[15px] font-semibold text-white group-hover:text-cyber-cyan transition-colors">
                     {doc.title}
                   </h3>
-                  <p className="text-[13px] leading-relaxed text-white/35">
+                  <p className="text-[13px] leading-relaxed text-white/70">
                     {doc.description}
                   </p>
                 </Link>
@@ -174,12 +162,14 @@ export default function DocsPage() {
               { label: 'AI Intelligence Suite', href: '/wiki#ai-intelligence' },
               { label: 'Developer Reference', href: '/wiki#developer-reference' },
               { label: 'Shared Responsibility', href: '/wiki#shared-responsibility' },
+              { label: 'System Status', href: '/docs/status' },
+              { label: 'Product Roadmap', href: '/roadmap' },
               { label: 'Contact Sales', href: '/contact' },
             ].map((link) => (
               <Link
                 key={link.label}
                 to={link.href}
-                className="flex items-center gap-2 rounded-sm px-3 py-2.5 text-[13.5px] text-white/50 transition-colors hover:bg-white/[0.03] hover:text-cyber-cyan"
+                className="flex items-center gap-2 rounded-sm px-3 py-2.5 text-[13.5px] text-white/75 transition-colors hover:bg-white/[0.03] hover:text-cyber-cyan"
               >
                 <ChevronRight className="h-3.5 w-3.5 text-white/20" />
                 {link.label}

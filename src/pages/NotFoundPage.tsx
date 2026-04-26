@@ -31,7 +31,7 @@ export default function NotFoundPage() {
         </h1>
 
         {/* Subtext */}
-        <p className="mb-10 text-lg text-white/40">
+        <p className="mb-10 text-lg text-white/70">
           The page you're looking for doesn't exist or has been moved.
           Unlike credentials on Arkova, this URL has no immutable record.
         </p>
