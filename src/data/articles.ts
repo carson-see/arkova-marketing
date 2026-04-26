@@ -59,6 +59,7 @@ export const ARTICLES: Article[] = [
     },
     category: 'Compliance',
     readTime: '11 min read',
+    ogImage: 'https://arkova.ai/research/state-of-compliance-2026-og.png',
     excerpt:
       'Average audit fees for US large accelerated filers reached $6.06M in FY2024, and SOX preparation routinely runs six to twelve months at scale. Meanwhile NIST AI RMF, the EU AI Act, DORA, the SEC cybersecurity disclosure rule, and a wave of state privacy statutes have landed on top of the existing framework stack. The substrate underneath these obligations should be rebuilt to match.',
     sections: [

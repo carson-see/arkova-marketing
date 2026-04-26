@@ -69,6 +69,13 @@ const ROUTES = [
     article: { author: 'Sarah Rushton', datePublished: '2026-03-16', dateModified: '2026-03-16' },
   },
   {
+    path: '/research/state-of-compliance-2026',
+    title: "The State of Compliance in 2026: Why More Frameworks Won't Fix the Evidence Problem — Arkova Research",
+    description: 'Average audit fees for US large accelerated filers reached $6.06M in FY2024. Meanwhile NIST AI RMF, EU AI Act, DORA, SEC cybersecurity disclosure, and 19 US state privacy statutes have landed on top of the existing framework stack. By Sarah Rushton.',
+    article: { author: 'Sarah Rushton', datePublished: '2026-04-26', dateModified: '2026-04-26' },
+    ogImage: '/research/state-of-compliance-2026-og.png',
+  },
+  {
     path: '/whitepaper',
     title: 'Whitepaper: The Universal Verification Layer — Arkova',
     description: 'Technical whitepaper on how Arkova anchors compliance-aligned metadata to blockchain for independently verifiable records. Architecture, API, compliance.',
@@ -204,6 +211,21 @@ function injectMeta(html, route) {
     /<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/?>/,
     `<meta name="twitter:description" content="${safeDescription}" />`
   );
+
+  // Per-route OG image (falls back to global og-image.png if route has no ogImage)
+  if (route.ogImage) {
+    const absoluteOgImage = route.ogImage.startsWith('http')
+      ? route.ogImage
+      : baseUrl + route.ogImage;
+    html = html.replace(
+      /<meta\s+property="og:image"\s+content="[^"]*"\s*\/?>/,
+      `<meta property="og:image" content="${absoluteOgImage}" />`
+    );
+    html = html.replace(
+      /<meta\s+name="twitter:image"\s+content="[^"]*"\s*\/?>/,
+      `<meta name="twitter:image" content="${absoluteOgImage}" />`
+    );
+  }
 
   return html;
 }
