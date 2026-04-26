@@ -53,8 +53,8 @@ export default function ContactPage() {
               <br />
               next?
             </h1>
-            <p className="max-w-md text-lg text-white/40 opacity-0 animate-fade-up" style={{ animationDelay: '0.35s' }}>
-              Get in touch with our team to learn more about the Arkova <Link to="/" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">document verification platform</Link> and partnership opportunities. Read our <Link to="/whitepaper" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">whitepaper</Link> or explore the <Link to="/research" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">latest research</Link>.
+            <p className="max-w-md text-lg text-white/70 opacity-0 animate-fade-up" style={{ animationDelay: '0.35s' }}>
+              Get in touch to discuss pilot deployments, partnerships, or anything else. Or skim the <Link to="/research" className="text-cyber-cyan hover:text-white transition-colors underline underline-offset-2">latest research</Link> first.
             </p>
 
             {/* Info cards below headline */}
@@ -62,13 +62,13 @@ export default function ContactPage() {
               <div className="rounded-sm border border-cyber-cyan-border bg-cyber-bg-card/60 p-5">
                 <h3 className="mb-3 text-sm font-bold text-white">Other ways to reach us</h3>
                 <div className="space-y-3">
-                  <a href="mailto:hello@arkova.ai" className="flex items-center gap-3 text-sm text-white/40 hover:text-cyber-cyan transition-colors">
+                  <a href="mailto:hello@arkova.ai" className="flex items-center gap-3 text-sm text-white/70 hover:text-cyber-cyan transition-colors">
                     <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-cyber-cyan/10 border border-cyber-cyan/20">
                       <Mail className="h-4 w-4 text-cyber-cyan" />
                     </div>
                     hello@arkova.ai
                   </a>
-                  <a href="https://www.linkedin.com/company/arkovatech" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-white/40 hover:text-cyber-cyan transition-colors">
+                  <a href="https://www.linkedin.com/company/arkovatech" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-white/70 hover:text-cyber-cyan transition-colors">
                     <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-cyber-cyan/10 border border-cyber-cyan/20">
                       <Linkedin className="h-4 w-4 text-cyber-cyan" />
                     </div>
@@ -87,7 +87,7 @@ export default function ContactPage() {
                   <CheckCircle2 className="h-8 w-8 text-emerald-400" />
                 </div>
                 <h2 className="mb-2 text-xl font-bold text-white">Message sent!</h2>
-                <p className="text-sm text-white/40">We'll be in touch within 24 hours.</p>
+                <p className="text-sm text-white/70">We'll be in touch within 24 hours.</p>
                 <button
                   onClick={() => setStatus('idle')}
                   className="mt-8 text-sm font-medium text-cyber-cyan hover:text-white transition-colors"
@@ -108,21 +108,21 @@ export default function ContactPage() {
                 />
 
                 <div>
-                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-white/40">
+                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-white/70">
                     Name
                   </label>
                   <input type="text" name="name" required placeholder="Your name" className="cyber-input" />
                 </div>
 
                 <div>
-                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-white/40">
+                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-white/70">
                     Email
                   </label>
                   <input type="email" name="email" required placeholder="you@company.com" className="cyber-input" />
                 </div>
 
                 <div>
-                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-white/40">
+                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-white/70">
                     What can we help with?
                   </label>
                   <textarea

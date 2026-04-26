@@ -47,7 +47,7 @@ function DocsDropdown() {
       <button
         onClick={() => setOpen(!open)}
         className={`flex items-center gap-1 text-sm font-medium transition-colors hover:text-cyber-cyan ${
-          open ? 'text-cyber-cyan' : 'text-white/50'
+          open ? 'text-cyber-cyan' : 'text-white/75'
         }`}
       >
         Docs
@@ -125,7 +125,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <button
                 key={label}
                 onClick={() => handleNavClick(label)}
-                className="text-sm font-medium text-white/50 transition-colors hover:text-cyber-cyan"
+                className="text-sm font-medium text-white/75 transition-colors hover:text-cyber-cyan"
               >
                 {label}
               </button>
@@ -133,7 +133,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <Link
               to="/research"
               className={`text-sm font-medium transition-colors hover:text-cyber-cyan ${
-                location.pathname.startsWith('/research') ? 'text-cyber-cyan' : 'text-white/50'
+                location.pathname.startsWith('/research') ? 'text-cyber-cyan' : 'text-white/75'
               }`}
             >
               Research
@@ -143,7 +143,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               href="https://search.arkova.ai"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-medium text-white/50 transition-colors hover:text-cyber-cyan"
+              className="text-sm font-medium text-white/75 transition-colors hover:text-cyber-cyan"
             >
               Search
             </a>
@@ -154,7 +154,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               href="https://app.arkova.ai"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-medium text-white/50 transition-colors hover:text-cyber-cyan"
+              className="text-sm font-medium text-white/75 transition-colors hover:text-cyber-cyan"
             >
               App
             </a>
@@ -174,7 +174,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               href="https://search.arkova.ai"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-white/40"
+              className="p-2 text-white/70"
               aria-label="Search"
             >
               <Search size={20} />
@@ -195,7 +195,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <button
                 key={label}
                 onClick={() => handleNavClick(label)}
-                className="block w-full py-3 text-left text-sm font-medium text-white/50"
+                className="block w-full py-3 text-left text-sm font-medium text-white/75"
               >
                 {label}
               </button>
@@ -203,7 +203,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <Link
               to="/research"
               onClick={() => setMobileMenuOpen(false)}
-              className="block w-full py-3 text-left text-sm font-medium text-white/50"
+              className="block w-full py-3 text-left text-sm font-medium text-white/75"
             >
               Research
             </Link>
@@ -216,28 +216,28 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <Link
                 to="/docs"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block w-full py-2.5 text-left text-sm font-medium text-white/50"
+                className="block w-full py-2.5 text-left text-sm font-medium text-white/75"
               >
                 Docs Hub
               </Link>
               <Link
                 to="/whitepaper"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block w-full py-2.5 text-left text-sm font-medium text-white/50"
+                className="block w-full py-2.5 text-left text-sm font-medium text-white/75"
               >
                 Whitepaper
               </Link>
               <Link
                 to="/wiki"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block w-full py-2.5 text-left text-sm font-medium text-white/50"
+                className="block w-full py-2.5 text-left text-sm font-medium text-white/75"
               >
                 Technical Wiki
               </Link>
               <Link
                 to="/roadmap"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block w-full py-2.5 text-left text-sm font-medium text-white/50"
+                className="block w-full py-2.5 text-left text-sm font-medium text-white/75"
               >
                 Roadmap
               </Link>
@@ -248,7 +248,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}
-              className="block w-full py-3 text-left text-sm font-medium text-white/50"
+              className="block w-full py-3 text-left text-sm font-medium text-white/75"
             >
               App
             </a>
@@ -277,7 +277,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <Link to="/" className="mb-4 flex items-center gap-2.5">
                 <img src={arkovaLogo} alt="Arkova compliance audit automation platform logo" width={120} height={40} className="h-10 w-auto brightness-150 contrast-90" />
               </Link>
-              <p className="text-sm text-white/40">
+              <p className="text-sm text-white/70">
                 Compliance audit automation. 14 regulatory frameworks. Privacy-first. Cryptographically anchored.
               </p>
               <div className="mt-6 flex gap-3">
@@ -285,7 +285,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   href="https://www.linkedin.com/company/arkovatech"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-white/40 transition-colors hover:bg-cyber-cyan/10 hover:text-cyber-cyan"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-white/70 transition-colors hover:bg-cyber-cyan/10 hover:text-cyber-cyan"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="h-4 w-4" />
@@ -294,7 +294,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   href="https://x.com/arkovatech"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-white/40 transition-colors hover:bg-cyber-cyan/10 hover:text-cyber-cyan"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-white/70 transition-colors hover:bg-cyber-cyan/10 hover:text-cyber-cyan"
                   aria-label="X / Twitter"
                 >
                   <Twitter className="h-4 w-4" />
@@ -303,7 +303,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   href="https://www.youtube.com/channel/UCTTDFFSLxl85omCeJ9DBvrg"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-white/40 transition-colors hover:bg-cyber-cyan/10 hover:text-cyber-cyan"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-white/70 transition-colors hover:bg-cyber-cyan/10 hover:text-cyber-cyan"
                   aria-label="YouTube"
                 >
                   <Youtube className="h-4 w-4" />
@@ -321,7 +321,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     <a
                       href={`/#${label.toLowerCase().replace(/\s+/g, '-')}`}
                       onClick={(e) => { if (isHome) { e.preventDefault(); handleNavClick(label); } }}
-                      className="text-sm text-white/40 transition-colors hover:text-white"
+                      className="text-sm text-white/70 transition-colors hover:text-white"
                     >
                       {label}
                     </a>
@@ -336,27 +336,27 @@ export function Layout({ children }: { children: React.ReactNode }) {
               </h4>
               <ul className="space-y-2.5">
                 <li>
-                  <Link to="/docs" className="text-sm text-white/40 transition-colors hover:text-white">
+                  <Link to="/docs" className="text-sm text-white/70 transition-colors hover:text-white">
                     Docs Hub
                   </Link>
                 </li>
                 <li>
-                  <Link to="/whitepaper" className="text-sm text-white/40 transition-colors hover:text-white">
+                  <Link to="/whitepaper" className="text-sm text-white/70 transition-colors hover:text-white">
                     Whitepaper
                   </Link>
                 </li>
                 <li>
-                  <Link to="/wiki" className="text-sm text-white/40 transition-colors hover:text-white">
+                  <Link to="/wiki" className="text-sm text-white/70 transition-colors hover:text-white">
                     Technical Wiki
                   </Link>
                 </li>
                 <li>
-                  <Link to="/research" className="text-sm text-white/40 transition-colors hover:text-white">
+                  <Link to="/research" className="text-sm text-white/70 transition-colors hover:text-white">
                     Research
                   </Link>
                 </li>
                 <li>
-                  <Link to="/roadmap" className="text-sm text-white/40 transition-colors hover:text-white">
+                  <Link to="/roadmap" className="text-sm text-white/70 transition-colors hover:text-white">
                     Roadmap
                   </Link>
                 </li>
@@ -369,25 +369,25 @@ export function Layout({ children }: { children: React.ReactNode }) {
               </h4>
               <ul className="space-y-2.5">
                 <li>
-                  <Link to="/contact" className="text-sm text-white/40 transition-colors hover:text-white">
+                  <Link to="/contact" className="text-sm text-white/70 transition-colors hover:text-white">
                     Contact
                   </Link>
                 </li>
                 <li>
                   <a
                     href="mailto:careers@arkova.ai"
-                    className="text-sm text-white/40 transition-colors hover:text-white"
+                    className="text-sm text-white/70 transition-colors hover:text-white"
                   >
                     Careers
                   </a>
                 </li>
                 <li>
-                  <Link to="/privacy" className="text-sm text-white/40 transition-colors hover:text-white">
+                  <Link to="/privacy" className="text-sm text-white/70 transition-colors hover:text-white">
                     Privacy Policy
                   </Link>
                 </li>
                 <li>
-                  <Link to="/terms" className="text-sm text-white/40 transition-colors hover:text-white">
+                  <Link to="/terms" className="text-sm text-white/70 transition-colors hover:text-white">
                     Terms of Service
                   </Link>
                 </li>

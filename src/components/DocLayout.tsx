@@ -102,7 +102,7 @@ export function DocCodeBlock({ children, language }: { children: string; languag
       )}
       <button
         onClick={copy}
-        className="absolute right-3 top-2.5 rounded p-1.5 text-white/20 transition-colors hover:bg-white/[0.06] hover:text-white/50"
+        className="absolute right-3 top-2.5 rounded p-1.5 text-white/20 transition-colors hover:bg-white/[0.06] hover:text-white/75"
         aria-label="Copy code"
       >
         {copied ? <Check className="h-3.5 w-3.5 text-cyber-teal" /> : <Copy className="h-3.5 w-3.5" />}
@@ -129,7 +129,7 @@ export function DocTable({ headers, rows }: { headers: string[]; rows: string[][
           {rows.map((row, i) => (
             <tr key={i} className="border-b border-white/[0.03] last:border-0">
               {row.map((cell, j) => (
-                <td key={j} className="px-4 py-3 text-white/50" dangerouslySetInnerHTML={{ __html: cell }} />
+                <td key={j} className="px-4 py-3 text-white/75" dangerouslySetInnerHTML={{ __html: cell }} />
               ))}
             </tr>
           ))}
@@ -157,7 +157,7 @@ export function DocCallout({ type = 'note', title, children }: { type?: CalloutT
         <Icon className="h-4 w-4" />
         {title || config.title}
       </div>
-      <div className="text-[14px] leading-[1.7] text-white/50">{children}</div>
+      <div className="text-[14px] leading-[1.7] text-white/75">{children}</div>
     </div>
   );
 }
@@ -208,7 +208,7 @@ export default function DocLayout({ title, breadcrumbs, toc, sidebar, lastUpdate
               {crumb.href ? (
                 <Link to={crumb.href} className="text-cyber-cyan/70 hover:text-cyber-cyan transition-colors">{crumb.label}</Link>
               ) : (
-                <span className="text-white/40">{crumb.label}</span>
+                <span className="text-white/70">{crumb.label}</span>
               )}
             </span>
           ))}
@@ -232,7 +232,7 @@ export default function DocLayout({ title, breadcrumbs, toc, sidebar, lastUpdate
                     className={`block rounded-sm px-3 py-2 text-[13.5px] font-medium transition-colors ${
                       section.active
                         ? 'bg-cyber-cyan/[0.08] text-cyber-cyan border-l-2 border-cyber-cyan'
-                        : 'text-white/50 hover:text-white/80 hover:bg-white/[0.03]'
+                        : 'text-white/75 hover:text-white/80 hover:bg-white/[0.03]'
                     }`}
                   >
                     {section.label}
@@ -246,7 +246,7 @@ export default function DocLayout({ title, breadcrumbs, toc, sidebar, lastUpdate
                           className={`block rounded-sm px-2 py-1.5 text-[12.5px] transition-colors ${
                             child.active
                               ? 'text-cyber-cyan font-medium'
-                              : 'text-white/40 hover:text-white/70'
+                              : 'text-white/70 hover:text-white/70'
                           }`}
                         >
                           {child.label}
@@ -279,7 +279,7 @@ export default function DocLayout({ title, breadcrumbs, toc, sidebar, lastUpdate
                     to={section.href}
                     onClick={() => setMobileSidebarOpen(false)}
                     className={`block rounded-sm px-3 py-2 text-[13px] ${
-                      section.active ? 'text-cyber-cyan font-medium' : 'text-white/50'
+                      section.active ? 'text-cyber-cyan font-medium' : 'text-white/75'
                     }`}
                   >
                     {section.label}
@@ -312,7 +312,7 @@ export default function DocLayout({ title, breadcrumbs, toc, sidebar, lastUpdate
                       key={id}
                       href={`#${id}`}
                       onClick={() => setMobileTocOpen(false)}
-                      className={`block rounded px-3 py-1.5 text-[12.5px] text-white/40 hover:text-white/70 ${(level ?? 0) > 0 ? 'ml-3' : ''}`}
+                      className={`block rounded px-3 py-1.5 text-[12.5px] text-white/70 hover:text-white/70 ${(level ?? 0) > 0 ? 'ml-3' : ''}`}
                     >
                       {label}
                     </a>

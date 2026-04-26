@@ -2,3 +2,7 @@ node_modules
 dist
 .DS_Store
 .vercel
+.claude/scheduled_tasks.lock
+.playwright-mcp/
+arkova-prod-*.png
+review-*.png
