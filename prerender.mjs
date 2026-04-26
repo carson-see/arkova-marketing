@@ -399,8 +399,88 @@ async function prerender() {
     process.exit(1);
   }
 
+  // ── Generate sitemap.xml from ROUTES + article metadata ──────────────────
+  // Auto-emits dist/sitemap.xml so new articles + freshly edited routes always
+  // ship with current <lastmod> dates. Replaces a stale hand-maintained
+  // public/sitemap.xml that drifted (missed 2 articles, all docs/wiki URLs).
+  generateSitemap(distPath);
+
   fs.rmSync(path.resolve(distPath, 'server'), { recursive: true, force: true });
   console.log('Cleaned up dist/server/');
+}
+
+/**
+ * Build dist/sitemap.xml from the ROUTES array + article metadata.
+ *
+ * Article dates come from `route.article.dateModified` for entries that
+ * declare one; everything else uses today's date (the build date) since
+ * non-article pages typically receive minor edits between deploys and we
+ * want crawlers to revisit on each rev rather than treat them as stale.
+ */
+function generateSitemap(distPath) {
+  const baseUrl = 'https://arkova.ai';
+  const today = new Date().toISOString().slice(0, 10);
+
+  // Per-path priority + changefreq — calibrated to content type
+  const META_BY_PATH = new Map([
+    ['/',                   { priority: '1.0', changefreq: 'weekly'  }],
+    ['/research',           { priority: '0.9', changefreq: 'weekly'  }],
+    ['/whitepaper',         { priority: '0.8', changefreq: 'monthly' }],
+    ['/roadmap',            { priority: '0.7', changefreq: 'monthly' }],
+    ['/contact',            { priority: '0.6', changefreq: 'monthly' }],
+    ['/docs',               { priority: '0.7', changefreq: 'monthly' }],
+    ['/wiki',               { priority: '0.6', changefreq: 'monthly' }],
+    ['/privacy',            { priority: '0.3', changefreq: 'yearly'  }],
+    ['/terms',              { priority: '0.3', changefreq: 'yearly'  }],
+  ]);
+  const articleMeta   = { priority: '0.7', changefreq: 'yearly'  };
+  const docsPageMeta  = { priority: '0.6', changefreq: 'monthly' };
+  const fallbackMeta  = { priority: '0.5', changefreq: 'monthly' };
+
+  function metaFor(p) {
+    if (META_BY_PATH.has(p)) return META_BY_PATH.get(p);
+    if (p.startsWith('/research/')) return articleMeta;
+    if (p.startsWith('/docs/')) return docsPageMeta;
+    return fallbackMeta;
+  }
+
+  const entries = ROUTES
+    .filter((r) => !r.is404 && r.path !== '/404')
+    .map((r) => {
+      const meta = metaFor(r.path);
+      const lastmod = r.article?.dateModified || r.article?.datePublished || today;
+      return {
+        loc: r.path === '/' ? `${baseUrl}/` : baseUrl + r.path,
+        lastmod,
+        changefreq: meta.changefreq,
+        priority: meta.priority,
+      };
+    });
+
+  // Sort by priority desc, then by path for deterministic builds
+  entries.sort((a, b) => {
+    if (a.priority !== b.priority) return parseFloat(b.priority) - parseFloat(a.priority);
+    return a.loc.localeCompare(b.loc);
+  });
+
+  const xml = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ...entries.map((e) => [
+      '  <url>',
+      `    <loc>${e.loc}</loc>`,
+      `    <lastmod>${e.lastmod}</lastmod>`,
+      `    <changefreq>${e.changefreq}</changefreq>`,
+      `    <priority>${e.priority}</priority>`,
+      '  </url>',
+    ].join('\n')),
+    '</urlset>',
+    '',
+  ].join('\n');
+
+  const sitemapPath = path.resolve(distPath, 'sitemap.xml');
+  fs.writeFileSync(sitemapPath, xml);
+  console.log(`Sitemap written — ${entries.length} URLs at ${path.relative(distPath, sitemapPath)}`);
 }
 
 prerender().catch((err) => {

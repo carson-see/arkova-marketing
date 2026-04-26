@@ -285,7 +285,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   href="https://www.linkedin.com/company/arkovatech"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-white/70 transition-colors hover:bg-cyber-cyan/10 hover:text-cyber-cyan"
+                  className="flex h-11 w-11 items-center justify-center rounded-lg bg-white/5 text-white/70 transition-colors hover:bg-cyber-cyan/10 hover:text-cyber-cyan"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="h-4 w-4" />
@@ -294,7 +294,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   href="https://x.com/arkovatech"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-white/70 transition-colors hover:bg-cyber-cyan/10 hover:text-cyber-cyan"
+                  className="flex h-11 w-11 items-center justify-center rounded-lg bg-white/5 text-white/70 transition-colors hover:bg-cyber-cyan/10 hover:text-cyber-cyan"
                   aria-label="X / Twitter"
                 >
                   <Twitter className="h-4 w-4" />
@@ -303,7 +303,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   href="https://www.youtube.com/channel/UCTTDFFSLxl85omCeJ9DBvrg"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-white/70 transition-colors hover:bg-cyber-cyan/10 hover:text-cyber-cyan"
+                  className="flex h-11 w-11 items-center justify-center rounded-lg bg-white/5 text-white/70 transition-colors hover:bg-cyber-cyan/10 hover:text-cyber-cyan"
                   aria-label="YouTube"
                 >
                   <Youtube className="h-4 w-4" />
@@ -315,13 +315,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-cyber-cyan">
                 Product
               </h4>
-              <ul className="space-y-2.5">
+              <ul className="space-y-0.5">
                 {['How It Works', 'Features', 'API', 'Use Cases'].map((label) => (
                   <li key={label}>
                     <a
                       href={`/#${label.toLowerCase().replace(/\s+/g, '-')}`}
                       onClick={(e) => { if (isHome) { e.preventDefault(); handleNavClick(label); } }}
-                      className="text-sm text-white/70 transition-colors hover:text-white"
+                      className="block py-2.5 text-sm text-white/70 transition-colors hover:text-white"
                     >
                       {label}
                     </a>
@@ -334,29 +334,29 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-cyber-cyan">
                 Documentation
               </h4>
-              <ul className="space-y-2.5">
+              <ul className="space-y-0.5">
                 <li>
-                  <Link to="/docs" className="text-sm text-white/70 transition-colors hover:text-white">
+                  <Link to="/docs" className="block py-2.5 text-sm text-white/70 transition-colors hover:text-white">
                     Docs Hub
                   </Link>
                 </li>
                 <li>
-                  <Link to="/whitepaper" className="text-sm text-white/70 transition-colors hover:text-white">
+                  <Link to="/whitepaper" className="block py-2.5 text-sm text-white/70 transition-colors hover:text-white">
                     Whitepaper
                   </Link>
                 </li>
                 <li>
-                  <Link to="/wiki" className="text-sm text-white/70 transition-colors hover:text-white">
+                  <Link to="/wiki" className="block py-2.5 text-sm text-white/70 transition-colors hover:text-white">
                     Technical Wiki
                   </Link>
                 </li>
                 <li>
-                  <Link to="/research" className="text-sm text-white/70 transition-colors hover:text-white">
+                  <Link to="/research" className="block py-2.5 text-sm text-white/70 transition-colors hover:text-white">
                     Research
                   </Link>
                 </li>
                 <li>
-                  <Link to="/roadmap" className="text-sm text-white/70 transition-colors hover:text-white">
+                  <Link to="/roadmap" className="block py-2.5 text-sm text-white/70 transition-colors hover:text-white">
                     Roadmap
                   </Link>
                 </li>
@@ -367,27 +367,27 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-cyber-cyan">
                 Company
               </h4>
-              <ul className="space-y-2.5">
+              <ul className="space-y-0.5">
                 <li>
-                  <Link to="/contact" className="text-sm text-white/70 transition-colors hover:text-white">
+                  <Link to="/contact" className="block py-2.5 text-sm text-white/70 transition-colors hover:text-white">
                     Contact
                   </Link>
                 </li>
                 <li>
                   <a
                     href="mailto:careers@arkova.ai"
-                    className="text-sm text-white/70 transition-colors hover:text-white"
+                    className="block py-2.5 text-sm text-white/70 transition-colors hover:text-white"
                   >
                     Careers
                   </a>
                 </li>
                 <li>
-                  <Link to="/privacy" className="text-sm text-white/70 transition-colors hover:text-white">
+                  <Link to="/privacy" className="block py-2.5 text-sm text-white/70 transition-colors hover:text-white">
                     Privacy Policy
                   </Link>
                 </li>
                 <li>
-                  <Link to="/terms" className="text-sm text-white/70 transition-colors hover:text-white">
+                  <Link to="/terms" className="block py-2.5 text-sm text-white/70 transition-colors hover:text-white">
                     Terms of Service
                   </Link>
                 </li>
