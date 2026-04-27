@@ -30,7 +30,25 @@ const DOCS_LINKS = [
   { icon: Map, label: 'Roadmap', description: 'Product evolution', href: '/roadmap' },
 ];
 
-function DocsDropdown() {
+/** Compliance frameworks + competitor comparisons. */
+const COMPLIANCE_FRAMEWORKS = [
+  { label: 'EU AI Act', description: 'Aug 2024 → Aug 2027 phased', href: '/compliance/eu-ai-act' },
+  { label: 'SOX', description: 'ICFR + Section 404 evidence', href: '/compliance/sox' },
+  { label: 'DORA', description: 'EU operational resilience', href: '/compliance/dora' },
+  { label: 'FERPA', description: 'US student records', href: '/compliance/ferpa' },
+];
+const COMPLIANCE_COMPARES = [
+  { label: 'Arkova vs Vanta', description: 'When each is the better fit', href: '/compare/vanta' },
+  { label: 'Arkova vs Drata', description: 'Honest comparison + table', href: '/compare/drata' },
+];
+
+function GenericDropdown({
+  label,
+  groups,
+}: {
+  label: string;
+  groups: { heading?: string; items: { icon?: React.ComponentType<{ className?: string }>; label: string; description: string; href: string }[] }[];
+}) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -50,33 +68,63 @@ function DocsDropdown() {
           open ? 'text-cyber-cyan' : 'text-white/75'
         }`}
       >
-        Docs
+        {label}
         <ChevronDown className={`h-3.5 w-3.5 transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
       {open && (
-        <div className="absolute left-1/2 top-full z-50 mt-3 w-72 -translate-x-1/2 rounded-sm border border-white/[0.08] bg-cyber-bg shadow-xl shadow-black/30">
+        <div className="absolute left-1/2 top-full z-50 mt-3 w-80 -translate-x-1/2 rounded-sm border border-white/[0.08] bg-cyber-bg shadow-xl shadow-black/30">
           <div className="p-2">
-            {DOCS_LINKS.map((link) => {
-              const Icon = link.icon;
-              return (
-                <Link
-                  key={link.href}
-                  to={link.href}
-                  onClick={() => setOpen(false)}
-                  className="flex items-center gap-3 rounded-sm px-3 py-2.5 transition-colors hover:bg-cyber-cyan/[0.06]"
-                >
-                  <Icon className="h-4 w-4 shrink-0 text-cyber-cyan/50" />
-                  <div>
-                    <p className="text-[13px] font-medium text-white/70">{link.label}</p>
-                    <p className="text-[11.5px] text-white/30">{link.description}</p>
-                  </div>
-                </Link>
-              );
-            })}
+            {groups.map((group, gi) => (
+              <div key={gi} className={gi > 0 ? 'mt-2 border-t border-white/[0.06] pt-2' : ''}>
+                {group.heading && (
+                  <p className="px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-white/30">
+                    {group.heading}
+                  </p>
+                )}
+                {group.items.map((link) => {
+                  const Icon = link.icon;
+                  return (
+                    <Link
+                      key={link.href}
+                      to={link.href}
+                      onClick={() => setOpen(false)}
+                      className="flex items-center gap-3 rounded-sm px-3 py-2.5 transition-colors hover:bg-cyber-cyan/[0.06]"
+                    >
+                      {Icon && <Icon className="h-4 w-4 shrink-0 text-cyber-cyan/50" />}
+                      <div>
+                        <p className="text-[13px] font-medium text-white/70">{link.label}</p>
+                        <p className="text-[11.5px] text-white/30">{link.description}</p>
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+            ))}
           </div>
         </div>
       )}
     </div>
+  );
+}
+
+function DocsDropdown() {
+  return (
+    <GenericDropdown
+      label="Docs"
+      groups={[{ items: DOCS_LINKS }]}
+    />
+  );
+}
+
+function ComplianceDropdown() {
+  return (
+    <GenericDropdown
+      label="Compliance"
+      groups={[
+        { heading: 'Frameworks', items: COMPLIANCE_FRAMEWORKS },
+        { heading: 'Compare', items: COMPLIANCE_COMPARES },
+      ]}
+    />
   );
 }
 
@@ -138,6 +186,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             >
               Research
             </Link>
+            <ComplianceDropdown />
             <DocsDropdown />
             <a
               href="https://search.arkova.ai"
@@ -208,6 +257,36 @@ export function Layout({ children }: { children: React.ReactNode }) {
               Research
             </Link>
 
+            {/* Mobile compliance section */}
+            <div className="border-t border-white/[0.06] mt-2 pt-2">
+              <p className="py-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-cyber-cyan/50">
+                Compliance
+              </p>
+              {COMPLIANCE_FRAMEWORKS.map((link) => (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block w-full py-2.5 text-left text-sm font-medium text-white/75"
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <p className="py-2 mt-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-cyber-cyan/50">
+                Compare
+              </p>
+              {COMPLIANCE_COMPARES.map((link) => (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block w-full py-2.5 text-left text-sm font-medium text-white/75"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+
             {/* Mobile docs section */}
             <div className="border-t border-white/[0.06] mt-2 pt-2">
               <p className="py-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-cyber-cyan/50">
@@ -272,7 +351,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       {/* ═══ FOOTER ═══ */}
       <footer className="border-t border-cyber-cyan-border bg-cyber-bg-light px-6 py-16">
         <div className="mx-auto max-w-5xl">
-          <div className="grid gap-12 md:grid-cols-4">
+          <div className="grid gap-12 md:grid-cols-5">
             <div className="md:col-span-1">
               <Link to="/" className="mb-4 flex items-center gap-2.5">
                 <img src={arkovaLogo} alt="Arkova compliance audit automation platform logo" width={120} height={40} className="h-10 w-auto brightness-150 contrast-90" />
@@ -360,6 +439,34 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     Roadmap
                   </Link>
                 </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-cyber-cyan">
+                Compliance
+              </h4>
+              <ul className="space-y-0.5">
+                {COMPLIANCE_FRAMEWORKS.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      to={link.href}
+                      className="block py-2.5 text-sm text-white/70 transition-colors hover:text-white"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+                {COMPLIANCE_COMPARES.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      to={link.href}
+                      className="block py-2.5 text-sm text-white/70 transition-colors hover:text-white"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
