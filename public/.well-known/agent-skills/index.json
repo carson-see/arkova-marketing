@@ -1,0 +1,25 @@
+{
+  "$schema": "https://agentskills.io/schemas/index-v0.2.0.json",
+  "version": "0.2.0",
+  "publisher": {
+    "name": "Arkova Technologies, Inc.",
+    "url": "https://arkova.ai",
+    "contact": "hello@arkova.ai"
+  },
+  "skills": [
+    {
+      "name": "verify-credential",
+      "type": "skill",
+      "description": "Verify an Arkova-anchored credential by public ID or by SHA-256 fingerprint. Returns verification status, issuer, timestamps, and the network receipt anchoring the credential to the public network.",
+      "url": "https://arkova.ai/.well-known/agent-skills/verify-credential/SKILL.md",
+      "sha256": "acccb2a4c51071babea70672838a09ce87522ee5fdfb02001fd87e058a4ff712"
+    },
+    {
+      "name": "search-credentials",
+      "type": "skill",
+      "description": "Search Arkova-anchored credentials using natural language. Returns ranked matches with public IDs, titles, and verification metadata. Requires an API key.",
+      "url": "https://arkova.ai/.well-known/agent-skills/search-credentials/SKILL.md",
+      "sha256": "f86603ce5ca31ef23e2a5b00776ac942a5cab123f2c396922803dfce768e340d"
+    }
+  ]
+}

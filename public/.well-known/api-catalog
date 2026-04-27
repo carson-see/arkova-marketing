@@ -1,0 +1,64 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://app.arkova.ai/api/v1",
+      "service-desc": [
+        {
+          "href": "https://arkova.ai/docs/api",
+          "type": "text/html",
+          "title": "Arkova Verification API — reference (HTML)"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://arkova.ai/docs/api",
+          "type": "text/html",
+          "title": "Arkova Verification API — documentation"
+        },
+        {
+          "href": "https://arkova.ai/llms-full.txt",
+          "type": "text/plain",
+          "title": "Arkova Verification API — LLM-friendly summary"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://app.arkova.ai/api/health",
+          "type": "application/json",
+          "title": "Arkova Verification API — health endpoint"
+        }
+      ],
+      "license": [
+        {
+          "href": "https://arkova.ai/terms",
+          "type": "text/html",
+          "title": "Terms of Service"
+        }
+      ],
+      "describedby": [
+        {
+          "href": "https://arkova.ai/llms.txt",
+          "type": "text/plain",
+          "title": "Arkova llms.txt — overview for AI agents"
+        }
+      ]
+    },
+    {
+      "anchor": "https://edge.arkova.ai/mcp",
+      "service-desc": [
+        {
+          "href": "https://arkova.ai/.well-known/mcp/server-card.json",
+          "type": "application/json",
+          "title": "Arkova MCP Server Card"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://arkova.ai/docs/mcp",
+          "type": "text/html",
+          "title": "Arkova MCP Server — documentation"
+        }
+      ]
+    }
+  ]
+}
