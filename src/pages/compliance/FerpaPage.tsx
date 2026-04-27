@@ -341,9 +341,8 @@ export default function FerpaPage() {
             Build a FERPA evidence trail that survives the next SIS migration.
           </h2>
           <p className="mb-6 text-lg text-white/70">
-            We're working with universities and K-12 districts on cryptographically anchored
-            student-records evidence. If your last SIS or LMS change broke parts of your
-            disclosure log, talk to us.
+            If you're a university or K-12 district that wants student-records evidence to survive
+            the next SIS or LMS migration, we'd like to discuss an early-access pilot.
           </p>
           <BuildingNote className="mx-auto mb-10 max-w-2xl" />
           <Link to="/contact" className="cyber-btn inline-flex items-center gap-2">

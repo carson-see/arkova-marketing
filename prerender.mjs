@@ -81,6 +81,46 @@ const ROUTES = [
     description: 'Technical whitepaper on how Arkova anchors compliance-aligned metadata to blockchain for independently verifiable records. Architecture, API, compliance.',
   },
   {
+    path: '/compliance',
+    title: 'Compliance Encyclopedia — Frameworks Arkova Anchors Evidence For',
+    description: 'Encyclopedia of compliance frameworks Arkova anchors evidence for. EU AI Act, HIPAA, SOX, GDPR, DORA, FERPA, eIDAS, ESIGN, UETA, Australian Privacy Principles, Kenya DPA, and more.',
+  },
+  {
+    path: '/compliance/hipaa',
+    title: 'HIPAA Compliance Audit Automation — Arkova',
+    description: 'HIPAA Privacy, Security, Breach Notification, and Enforcement Rule evidence cryptographically anchored. Privacy-first architecture maps onto PHI requirements.',
+  },
+  {
+    path: '/compliance/gdpr',
+    title: 'GDPR Compliance Evidence — Arkova',
+    description: 'GDPR records of processing, lawful-basis evidence, DSAR fulfilment, 72-hour breach notifications, DPIAs, and cross-border transfer safeguards anchored to a public ledger.',
+  },
+  {
+    path: '/compliance/eidas',
+    title: 'eIDAS Compliance — Qualified Trust Services + Anchored Evidence — Arkova',
+    description: 'eIDAS-grade signature evidence anchored on a public ledger. SES, AES, QES, qualified trust service providers, and EUDI Wallet under eIDAS 2.0.',
+  },
+  {
+    path: '/compliance/esign',
+    title: 'ESIGN Act Compliance — E-Signature Integrity Evidence — Arkova',
+    description: 'ESIGN Act electronic-signature integrity evidence that survives your e-signature platform. Intent, consent, association, retention all anchored to a public ledger.',
+  },
+  {
+    path: '/compliance/ueta',
+    title: 'UETA Compliance — State E-Signature Integrity Evidence — Arkova',
+    description: 'UETA §12 retention evidence that does not depend on your e-signature vendor. State-level e-signature law adopted by 49 US states. Pairs with federal ESIGN.',
+  },
+  {
+    path: '/compliance/australia-app',
+    title: 'Australian Privacy Principles Compliance — Arkova',
+    description: 'APP compliance evidence the OAIC can verify independently. 13 principles in Schedule 1 of the Privacy Act 1988. Notifiable Data Breaches scheme timestamps.',
+  },
+  {
+    path: '/compliance/kenya-dpa',
+    title: 'Kenya Data Protection Act Compliance — Arkova',
+    description: 'Kenya DPA 2019 compliance evidence the ODPC can verify independently. Lawful basis records, cross-border transfer safeguards, breach notifications anchored.',
+  },
+  {
     path: '/compliance/eu-ai-act',
     title: 'EU AI Act Compliance — Audit-Ready Evidence — Arkova',
     description: 'EU AI Act compliance evidence layer. Risk management, data governance, technical documentation, and audit logs cryptographically anchored for independent verification.',
