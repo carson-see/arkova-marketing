@@ -19,7 +19,11 @@ import McpPage from './pages/docs/McpPage';
 import FaqPage from './pages/docs/FaqPage';
 import StatusPage from './pages/docs/StatusPage';
 import EuAiActPage from './pages/compliance/EuAiActPage';
+import SoxPage from './pages/compliance/SoxPage';
+import DoraPage from './pages/compliance/DoraPage';
+import FerpaPage from './pages/compliance/FerpaPage';
 import VantaComparePage from './pages/compare/VantaPage';
+import DrataPage from './pages/compare/DrataPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
@@ -40,7 +44,11 @@ export default function App() {
         <Route path="/docs/faq" element={<FaqPage />} />
         <Route path="/docs/status" element={<StatusPage />} />
         <Route path="/compliance/eu-ai-act" element={<EuAiActPage />} />
+        <Route path="/compliance/sox" element={<SoxPage />} />
+        <Route path="/compliance/dora" element={<DoraPage />} />
+        <Route path="/compliance/ferpa" element={<FerpaPage />} />
         <Route path="/compare/vanta" element={<VantaComparePage />} />
+        <Route path="/compare/drata" element={<DrataPage />} />
         <Route path="/roadmap" element={<RoadmapPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />

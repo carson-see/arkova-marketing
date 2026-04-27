@@ -20,6 +20,7 @@ import {
   Scale,
 } from 'lucide-react';
 import { BreadcrumbJsonLd } from '../../components/BreadcrumbJsonLd';
+import { PrivateBetaBadge, BuildingNote } from '../../components/PrivateBetaBadge';
 import { safeJsonLd } from '../../lib/safeJsonLd';
 
 const TIMELINE = [
@@ -158,9 +159,12 @@ export default function EuAiActPage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_20%,rgba(0,212,255,0.08)_0%,transparent_60%)]" />
 
         <div className="relative mx-auto max-w-4xl">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">
-            Compliance · EU AI Act
-          </p>
+          <div className="mb-4 flex flex-wrap items-center gap-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">
+              Compliance · EU AI Act
+            </p>
+            <PrivateBetaBadge />
+          </div>
           <h1 className="mb-6 text-4xl font-bold tracking-tight text-white md:text-6xl">
             EU AI Act compliance, on a substrate auditors can verify.
           </h1>
@@ -441,10 +445,11 @@ export default function EuAiActPage() {
           <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">
             Get ready for 2 August 2026.
           </h2>
-          <p className="mb-10 text-lg text-white/70">
+          <p className="mb-6 text-lg text-white/70">
             We are working with early-access partners on EU AI Act readiness right now. If you are deploying
             high-risk AI in the EU, we want to hear about your evidence stack.
           </p>
+          <BuildingNote className="mx-auto mb-10 max-w-2xl" />
           <Link to="/contact" className="cyber-btn inline-flex items-center gap-2">
             Request Early Access
             <ArrowRight className="h-4 w-4" />
