@@ -1,11 +1,11 @@
 /**
- * Arkova vs Vanta — comparison page.
+ * Arkova alongside Vanta — comparison page.
  *
- * Targets the keyword "Vanta alternatives" / "Vanta vs Arkova". Honest framing:
- * Vanta is genuinely the better fit for some buyers, Arkova for others. The
- * landing-page convention in this category is the "When X wins / When Y wins"
- * structure — it's what Vanta itself uses for its own comparison pages and
- * what builds trust with B2B compliance buyers comparing options.
+ * Targets the keyword "Vanta alternatives" / "Vanta vs Arkova" but reframes
+ * the page as complement, not competitor. Vanta excels at evidence aggregation
+ * across SaaS integrations + framework control mapping. Arkova adds an
+ * independent verification layer on top — cryptographically anchored receipts
+ * that survive vendor migrations. Most pilot customers run them together.
  */
 
 import { Link } from 'react-router-dom';
@@ -94,18 +94,18 @@ export default function VantaPage() {
         <div className="relative mx-auto max-w-4xl">
           <div className="mb-4 flex flex-wrap items-center gap-3">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">
-              Compare · Arkova vs Vanta
+              Compare · Arkova + Vanta
             </p>
             <PrivateBetaBadge />
           </div>
           <h1 className="mb-6 text-4xl font-bold tracking-tight text-white md:text-6xl">
-            Vanta or Arkova: which fits your compliance program?
+            How Arkova fits alongside Vanta.
           </h1>
           <p className="mb-8 max-w-3xl text-lg text-white/70 md:text-xl">
-            Honest comparison. Vanta is the gold standard for SOC 2 onboarding. Arkova is built for
-            multi-jurisdiction operators who need cryptographically verifiable evidence. Most enterprises
-            should pick the one that maps to their actual evidence problem, not the one with the bigger
-            brand budget.
+            Vanta is the strongest tool in its category for SOC 2 evidence aggregation. Arkova adds an
+            independent verification layer on top — cryptographically anchored receipts that survive
+            vendor migrations and don't require trusting any single GRC system. Most pilot customers
+            run them together, not instead of each other.
           </p>
 
           <div className="flex flex-col items-start gap-4 sm:flex-row">
@@ -129,9 +129,9 @@ export default function VantaPage() {
           <div className="grid gap-10 md:grid-cols-2">
             <div className="rounded-sm border border-white/[0.08] bg-white/[0.015] p-8">
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-400">
-                When Vanta is the better fit
+                Where Vanta is strongest
               </p>
-              <h2 className="mb-6 text-2xl font-bold text-white">Pick Vanta if</h2>
+              <h2 className="mb-6 text-2xl font-bold text-white">What Vanta does best</h2>
               <ul className="space-y-4 text-sm leading-relaxed text-white/70">
                 <li className="flex gap-3">
                   <Check className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" />
@@ -176,9 +176,9 @@ export default function VantaPage() {
 
             <div className="rounded-sm border border-cyber-cyan/20 bg-cyber-cyan/[0.03] p-8">
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">
-                When Arkova is the better fit
+                Where Arkova adds value on top
               </p>
-              <h2 className="mb-6 text-2xl font-bold text-white">Pick Arkova if</h2>
+              <h2 className="mb-6 text-2xl font-bold text-white">What Arkova adds</h2>
               <ul className="space-y-4 text-sm leading-relaxed text-white/70">
                 <li className="flex gap-3">
                   <Check className="mt-0.5 h-5 w-5 shrink-0 text-cyber-cyan" />
@@ -242,11 +242,12 @@ export default function VantaPage() {
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">
             Feature comparison
           </p>
-          <h2 className="mb-3 text-3xl font-bold text-white md:text-4xl">Side by side.</h2>
+          <h2 className="mb-3 text-3xl font-bold text-white md:text-4xl">Coverage map.</h2>
           <p className="mb-10 max-w-3xl text-white/70">
-            Last verified against Vanta's public documentation in April 2026. Vanta updates rapidly; if you
-            spot an inaccuracy <Link to="/contact" className="text-cyber-cyan hover:text-white">tell us</Link>{' '}
-            and we will correct it. Honest comparisons help everyone.
+            Where each tool is strongest. Vanta excels at the items in its column. Arkova excels at the
+            items in its column. The combination covers more than either alone. Last verified against
+            Vanta's public documentation in April 2026; if you spot an inaccuracy{' '}
+            <Link to="/contact" className="text-cyber-cyan hover:text-white">tell us</Link>.
           </p>
 
           <div className="overflow-x-auto rounded-sm border border-white/[0.08]">
@@ -314,7 +315,7 @@ export default function VantaPage() {
             Architectural difference
           </p>
           <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">
-            Why our coverage differs from Vanta's.
+            How Arkova and Vanta complement each other.
           </h2>
           <div className="space-y-5 text-white/70">
             <p>
@@ -400,11 +401,12 @@ export default function VantaPage() {
       <section className="border-t border-cyber-cyan-border bg-cyber-bg px-6 py-20 md:py-28">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">
-            Ready to compare on your specific workload?
+            Ready to layer Arkova into your Vanta stack?
           </h2>
           <p className="mb-6 text-lg text-white/70">
-            Tell us your jurisdiction footprint and the frameworks you operate under. We will tell you
-            honestly whether Arkova, Vanta, or some combination is the right fit. No pressure.
+            Tell us about your jurisdiction footprint, your Vanta coverage, and where you're feeling
+            evidence pain. We'll show you which Arkova capabilities slot in alongside what Vanta
+            already handles.
           </p>
           <BuildingNote className="mx-auto mb-10 max-w-2xl" />
           <Link to="/contact" className="cyber-btn inline-flex items-center gap-2">
@@ -419,7 +421,7 @@ export default function VantaPage() {
             >
               The State of Compliance in 2026
             </Link>{' '}
-            for the broader regulatory picture this comparison sits inside.
+            for the broader picture of why an independent verification layer matters.
           </p>
         </div>
       </section>

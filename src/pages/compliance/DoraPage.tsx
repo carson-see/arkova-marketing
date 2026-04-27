@@ -398,9 +398,8 @@ export default function DoraPage() {
             Build a DORA evidence layer that survives every vendor exit.
           </h2>
           <p className="mb-6 text-lg text-white/70">
-            We're working with EU financial entities on cryptographically anchored ICT-resilience
-            evidence. If your last competent-authority interaction left you reconstructing timelines
-            from screenshots and email threads, talk to us.
+            If you're a financial entity preparing for a DORA examination and want ICT-resilience
+            evidence with verifiable timestamps, we'd like to discuss an early-access pilot.
           </p>
           <BuildingNote className="mx-auto mb-10 max-w-2xl" />
           <Link to="/contact" className="cyber-btn inline-flex items-center gap-2">

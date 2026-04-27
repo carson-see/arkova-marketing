@@ -30,16 +30,17 @@ const DOCS_LINKS = [
   { icon: Map, label: 'Roadmap', description: 'Product evolution', href: '/roadmap' },
 ];
 
-/** Compliance frameworks + competitor comparisons. */
-const COMPLIANCE_FRAMEWORKS = [
+/** Compliance frameworks + competitor complement pages. */
+const COMPLIANCE_FEATURED = [
+  { label: 'All frameworks', description: 'The full encyclopedia', href: '/compliance' },
   { label: 'EU AI Act', description: 'Aug 2024 → Aug 2027 phased', href: '/compliance/eu-ai-act' },
-  { label: 'SOX', description: 'ICFR + Section 404 evidence', href: '/compliance/sox' },
-  { label: 'DORA', description: 'EU operational resilience', href: '/compliance/dora' },
-  { label: 'FERPA', description: 'US student records', href: '/compliance/ferpa' },
+  { label: 'HIPAA', description: 'US healthcare PHI', href: '/compliance/hipaa' },
+  { label: 'SOX', description: 'ICFR + Section 404', href: '/compliance/sox' },
+  { label: 'GDPR', description: 'EU data protection', href: '/compliance/gdpr' },
 ];
 const COMPLIANCE_COMPARES = [
-  { label: 'Arkova vs Vanta', description: 'When each is the better fit', href: '/compare/vanta' },
-  { label: 'Arkova vs Drata', description: 'Honest comparison + table', href: '/compare/drata' },
+  { label: 'Arkova alongside Vanta', description: 'How they complement', href: '/compare/vanta' },
+  { label: 'Arkova alongside Drata', description: 'How they complement', href: '/compare/drata' },
 ];
 
 function GenericDropdown({
@@ -121,7 +122,7 @@ function ComplianceDropdown() {
     <GenericDropdown
       label="Compliance"
       groups={[
-        { heading: 'Frameworks', items: COMPLIANCE_FRAMEWORKS },
+        { heading: 'Frameworks', items: COMPLIANCE_FEATURED },
         { heading: 'Compare', items: COMPLIANCE_COMPARES },
       ]}
     />
@@ -262,7 +263,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <p className="py-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-cyber-cyan/50">
                 Compliance
               </p>
-              {COMPLIANCE_FRAMEWORKS.map((link) => (
+              {COMPLIANCE_FEATURED.map((link) => (
                 <Link
                   key={link.href}
                   to={link.href}
@@ -447,7 +448,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 Compliance
               </h4>
               <ul className="space-y-0.5">
-                {COMPLIANCE_FRAMEWORKS.map((link) => (
+                {COMPLIANCE_FEATURED.map((link) => (
                   <li key={link.href}>
                     <Link
                       to={link.href}

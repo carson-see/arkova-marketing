@@ -18,10 +18,18 @@ import WebhooksPage from './pages/docs/WebhooksPage';
 import McpPage from './pages/docs/McpPage';
 import FaqPage from './pages/docs/FaqPage';
 import StatusPage from './pages/docs/StatusPage';
+import ComplianceIndexPage from './pages/compliance/IndexPage';
 import EuAiActPage from './pages/compliance/EuAiActPage';
 import SoxPage from './pages/compliance/SoxPage';
 import DoraPage from './pages/compliance/DoraPage';
 import FerpaPage from './pages/compliance/FerpaPage';
+import HipaaPage from './pages/compliance/HipaaPage';
+import GdprPage from './pages/compliance/GdprPage';
+import EidasPage from './pages/compliance/EidasPage';
+import EsignPage from './pages/compliance/EsignPage';
+import UetaPage from './pages/compliance/UetaPage';
+import AustraliaAppPage from './pages/compliance/AustraliaAppPage';
+import KenyaDpaPage from './pages/compliance/KenyaDpaPage';
 import VantaComparePage from './pages/compare/VantaPage';
 import DrataPage from './pages/compare/DrataPage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -43,10 +51,18 @@ export default function App() {
         <Route path="/docs/mcp" element={<McpPage />} />
         <Route path="/docs/faq" element={<FaqPage />} />
         <Route path="/docs/status" element={<StatusPage />} />
+        <Route path="/compliance" element={<ComplianceIndexPage />} />
         <Route path="/compliance/eu-ai-act" element={<EuAiActPage />} />
         <Route path="/compliance/sox" element={<SoxPage />} />
         <Route path="/compliance/dora" element={<DoraPage />} />
         <Route path="/compliance/ferpa" element={<FerpaPage />} />
+        <Route path="/compliance/hipaa" element={<HipaaPage />} />
+        <Route path="/compliance/gdpr" element={<GdprPage />} />
+        <Route path="/compliance/eidas" element={<EidasPage />} />
+        <Route path="/compliance/esign" element={<EsignPage />} />
+        <Route path="/compliance/ueta" element={<UetaPage />} />
+        <Route path="/compliance/australia-app" element={<AustraliaAppPage />} />
+        <Route path="/compliance/kenya-dpa" element={<KenyaDpaPage />} />
         <Route path="/compare/vanta" element={<VantaComparePage />} />
         <Route path="/compare/drata" element={<DrataPage />} />
         <Route path="/roadmap" element={<RoadmapPage />} />

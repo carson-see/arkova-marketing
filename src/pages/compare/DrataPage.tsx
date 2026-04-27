@@ -1,11 +1,11 @@
 /**
- * Arkova vs Drata — comparison page.
+ * Arkova alongside Drata — comparison page.
  *
- * Targets the keyword "Drata alternatives" / "Drata vs Arkova". Drata's
- * positioning skews enterprise GRC ("trust management platform"). Arkova's
- * differentiation vs Drata is similar to vs Vanta but with somewhat different
- * relative weighting — Drata has stronger enterprise scale, Arkova still
- * wins on multi-jurisdiction breadth and cryptographic verifiability.
+ * Reframes the Drata comparison as complement, not competitor. Drata is
+ * the strongest enterprise GRC platform on the market for evidence automation
+ * and framework coverage. Arkova adds an independent verification layer on
+ * top — cryptographically anchored receipts that survive vendor migrations.
+ * Most pilot customers run them together.
  */
 
 import { Link } from 'react-router-dom';
@@ -97,18 +97,18 @@ export default function DrataPage() {
         <div className="relative mx-auto max-w-4xl">
           <div className="mb-4 flex flex-wrap items-center gap-3">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">
-              Compare · Arkova vs Drata
+              Compare · Arkova + Drata
             </p>
             <PrivateBetaBadge />
           </div>
           <h1 className="mb-6 text-4xl font-bold tracking-tight text-white md:text-6xl">
-            Drata or Arkova: which fits your compliance program?
+            How Arkova fits alongside Drata.
           </h1>
           <p className="mb-8 max-w-3xl text-lg text-white/70 md:text-xl">
-            Honest comparison. Drata is the strongest enterprise GRC platform on the market —
-            deep automation, broad framework coverage, mature trust center. Arkova is built for
-            multi-jurisdiction operators who need cryptographically verifiable evidence as
-            independent of vendor systems as the proof itself.
+            Drata is the strongest enterprise GRC platform on the market for evidence automation,
+            framework coverage, and trust center. Arkova adds an independent verification layer
+            on top — cryptographically anchored receipts that survive vendor migrations. Most
+            pilot customers run them together, not instead of each other.
           </p>
 
           <div className="flex flex-col items-start gap-4 sm:flex-row">
@@ -132,9 +132,9 @@ export default function DrataPage() {
           <div className="grid gap-10 md:grid-cols-2">
             <div className="rounded-sm border border-white/[0.08] bg-white/[0.015] p-8">
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-400">
-                When Drata is the better fit
+                Where Drata is strongest
               </p>
-              <h2 className="mb-6 text-2xl font-bold text-white">Pick Drata if</h2>
+              <h2 className="mb-6 text-2xl font-bold text-white">What Drata does best</h2>
               <ul className="space-y-4 text-sm leading-relaxed text-white/70">
                 <li className="flex gap-3">
                   <Check className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" />
@@ -181,9 +181,9 @@ export default function DrataPage() {
 
             <div className="rounded-sm border border-cyber-cyan/20 bg-cyber-cyan/[0.03] p-8">
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">
-                When Arkova is the better fit
+                Where Arkova adds value on top
               </p>
-              <h2 className="mb-6 text-2xl font-bold text-white">Pick Arkova if</h2>
+              <h2 className="mb-6 text-2xl font-bold text-white">What Arkova adds</h2>
               <ul className="space-y-4 text-sm leading-relaxed text-white/70">
                 <li className="flex gap-3">
                   <Check className="mt-0.5 h-5 w-5 shrink-0 text-cyber-cyan" />
@@ -252,14 +252,14 @@ export default function DrataPage() {
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">
             Feature comparison
           </p>
-          <h2 className="mb-3 text-3xl font-bold text-white md:text-4xl">Side by side.</h2>
+          <h2 className="mb-3 text-3xl font-bold text-white md:text-4xl">Coverage map.</h2>
           <p className="mb-10 max-w-3xl text-white/70">
-            Last verified against Drata's public documentation in April 2026. Drata ships fast; if you
-            spot an inaccuracy{' '}
+            Where each tool is strongest. Drata excels at the items in its column. Arkova excels at the
+            items in its column. The combination covers more than either alone. Last verified against
+            Drata's public documentation in April 2026; if you spot an inaccuracy{' '}
             <Link to="/contact" className="text-cyber-cyan hover:text-white">
               tell us
-            </Link>{' '}
-            and we'll correct it.
+            </Link>.
           </p>
 
           <div className="overflow-x-auto rounded-sm border border-white/[0.08]">
@@ -327,7 +327,7 @@ export default function DrataPage() {
             Architectural difference
           </p>
           <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">
-            Why our coverage diverges from Drata's.
+            How Arkova and Drata complement each other.
           </h2>
           <div className="space-y-5 text-white/70">
             <p>
@@ -422,11 +422,12 @@ export default function DrataPage() {
       <section className="border-t border-cyber-cyan-border bg-cyber-bg px-6 py-20 md:py-28">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">
-            Ready to compare on your specific workload?
+            Ready to layer Arkova into your Drata stack?
           </h2>
           <p className="mb-6 text-lg text-white/70">
-            Tell us your jurisdiction footprint and the frameworks you operate under. We'll tell
-            you honestly whether Arkova, Drata, or some combination is the right fit.
+            Tell us about your jurisdiction footprint, your Drata coverage, and where you're feeling
+            evidence pain. We'll show you which Arkova capabilities slot in alongside what Drata
+            already handles.
           </p>
           <BuildingNote className="mx-auto mb-10 max-w-2xl" />
           <Link to="/contact" className="cyber-btn inline-flex items-center gap-2">

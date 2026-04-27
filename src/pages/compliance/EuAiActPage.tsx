@@ -446,8 +446,9 @@ export default function EuAiActPage() {
             Get ready for 2 August 2026.
           </h2>
           <p className="mb-6 text-lg text-white/70">
-            We are working with early-access partners on EU AI Act readiness right now. If you are deploying
-            high-risk AI in the EU, we want to hear about your evidence stack.
+            If you're deploying high-risk AI in the EU and want evidence that anchors each
+            risk-management cycle independently of your file system, we'd like to discuss an
+            early-access pilot.
           </p>
           <BuildingNote className="mx-auto mb-10 max-w-2xl" />
           <Link to="/contact" className="cyber-btn inline-flex items-center gap-2">

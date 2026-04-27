@@ -386,8 +386,8 @@ export default function SoxPage() {
             Stop rebuilding SOX evidence from scratch every year.
           </h2>
           <p className="mb-6 text-lg text-white/70">
-            We're working with public-company finance + internal-audit teams on cryptographically
-            anchored ICFR evidence. If your last SOX cycle was a fire drill, talk to us.
+            If you're a public company looking for ICFR evidence that doesn't live
+            inside your GRC vendor's database, we'd like to discuss an early-access pilot.
           </p>
           <BuildingNote className="mx-auto mb-10 max-w-2xl" />
           <Link to="/contact" className="cyber-btn inline-flex items-center gap-2">
