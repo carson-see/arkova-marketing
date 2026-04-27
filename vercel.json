@@ -20,10 +20,7 @@
   "rewrites": [
     {
       "source": "/",
-      "has": [
-        { "type": "header", "key": "accept", "value": "(?:.*[, ])?text/markdown(?:[;, ].*)?" }
-      ],
-      "destination": "/index.md"
+      "destination": "/api/home"
     },
     {
       "source": "/markdown",
@@ -92,7 +89,6 @@
       "source": "/",
       "headers": [
         { "key": "Vary", "value": "Accept" },
-        { "key": "Cache-Control", "value": "private, no-store, max-age=0, must-revalidate" },
         {
           "key": "Link",
           "value": "</.well-known/api-catalog>; rel=\"api-catalog\"; type=\"application/linkset+json\", </docs/api>; rel=\"service-doc\"; type=\"text/html\", </llms.txt>; rel=\"alternate\"; type=\"text/plain\"; title=\"LLM-friendly site summary\", </llms-full.txt>; rel=\"alternate\"; type=\"text/plain\"; title=\"LLM-friendly comprehensive summary\", </index.md>; rel=\"alternate\"; type=\"text/markdown\"; title=\"Markdown version of homepage\", </sitemap.xml>; rel=\"sitemap\"; type=\"application/xml\", </.well-known/agent-skills/index.json>; rel=\"https://agentskills.io/rels/skills-index\"; type=\"application/json\", </.well-known/mcp/server-card.json>; rel=\"https://modelcontextprotocol.io/rels/server-card\"; type=\"application/json\", </.well-known/oauth-protected-resource>; rel=\"https://datatracker.ietf.org/doc/html/rfc9728\"; type=\"application/json\""
