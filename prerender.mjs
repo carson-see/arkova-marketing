@@ -81,6 +81,16 @@ const ROUTES = [
     description: 'Technical whitepaper on how Arkova anchors compliance-aligned metadata to blockchain for independently verifiable records. Architecture, API, compliance.',
   },
   {
+    path: '/compliance/eu-ai-act',
+    title: 'EU AI Act Compliance — Audit-Ready Evidence — Arkova',
+    description: 'EU AI Act compliance evidence layer. Risk management, data governance, technical documentation, and audit logs cryptographically anchored for independent verification.',
+  },
+  {
+    path: '/compare/vanta',
+    title: 'Arkova vs Vanta — Compliance Audit Automation Compared',
+    description: 'Honest Arkova vs Vanta comparison. Vanta wins on SOC 2 maturity and integrations. Arkova wins on multi-jurisdiction breadth, cryptographic verification, and privacy-first architecture.',
+  },
+  {
     path: '/roadmap',
     title: 'Roadmap — Arkova Compliance Audit Automation',
     description: "A short, honest two-phase roadmap: the cryptographic evidence layer Arkova runs in production today, and the compliance audit automation product we're building on top of it with pilot customers.",

@@ -18,6 +18,8 @@ import WebhooksPage from './pages/docs/WebhooksPage';
 import McpPage from './pages/docs/McpPage';
 import FaqPage from './pages/docs/FaqPage';
 import StatusPage from './pages/docs/StatusPage';
+import EuAiActPage from './pages/compliance/EuAiActPage';
+import VantaComparePage from './pages/compare/VantaPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
@@ -37,6 +39,8 @@ export default function App() {
         <Route path="/docs/mcp" element={<McpPage />} />
         <Route path="/docs/faq" element={<FaqPage />} />
         <Route path="/docs/status" element={<StatusPage />} />
+        <Route path="/compliance/eu-ai-act" element={<EuAiActPage />} />
+        <Route path="/compare/vanta" element={<VantaComparePage />} />
         <Route path="/roadmap" element={<RoadmapPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
