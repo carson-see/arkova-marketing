@@ -11,6 +11,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, X, Minus } from 'lucide-react';
 import { BreadcrumbJsonLd } from '../../components/BreadcrumbJsonLd';
+import { PrivateBetaBadge, BuildingNote } from '../../components/PrivateBetaBadge';
 import { safeJsonLd } from '../../lib/safeJsonLd';
 
 type Cell = 'yes' | 'no' | 'partial' | string;
@@ -91,9 +92,12 @@ export default function VantaPage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_20%,rgba(0,212,255,0.08)_0%,transparent_60%)]" />
 
         <div className="relative mx-auto max-w-4xl">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">
-            Compare · Arkova vs Vanta
-          </p>
+          <div className="mb-4 flex flex-wrap items-center gap-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyber-cyan">
+              Compare · Arkova vs Vanta
+            </p>
+            <PrivateBetaBadge />
+          </div>
           <h1 className="mb-6 text-4xl font-bold tracking-tight text-white md:text-6xl">
             Vanta or Arkova: which fits your compliance program?
           </h1>
@@ -398,10 +402,11 @@ export default function VantaPage() {
           <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">
             Ready to compare on your specific workload?
           </h2>
-          <p className="mb-10 text-lg text-white/70">
+          <p className="mb-6 text-lg text-white/70">
             Tell us your jurisdiction footprint and the frameworks you operate under. We will tell you
             honestly whether Arkova, Vanta, or some combination is the right fit. No pressure.
           </p>
+          <BuildingNote className="mx-auto mb-10 max-w-2xl" />
           <Link to="/contact" className="cyber-btn inline-flex items-center gap-2">
             Talk to Arkova
             <ArrowRight className="h-4 w-4" />
