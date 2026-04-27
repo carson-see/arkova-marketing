@@ -23,7 +23,7 @@
       ],
       "status": [
         {
-          "href": "https://app.arkova.ai/api/health",
+          "href": "https://app.arkova.ai/api/v1/health",
           "type": "application/json",
           "title": "Arkova Verification API — health endpoint"
         }
