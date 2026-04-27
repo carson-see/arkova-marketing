@@ -1,0 +1,100 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/server-card-v1.json",
+  "schemaVersion": "2026-04-01",
+  "serverInfo": {
+    "name": "arkova-mcp",
+    "title": "Arkova Verification MCP Server",
+    "version": "1.0.0",
+    "description": "Connect AI agents to Arkova's privacy-first document verification platform. Verify credentials, search anchored documents, and read network receipts via the Model Context Protocol.",
+    "vendor": "Arkova Technologies, Inc.",
+    "homepage": "https://arkova.ai",
+    "documentation": "https://arkova.ai/docs/mcp",
+    "license": "https://arkova.ai/terms",
+    "privacy": "https://arkova.ai/privacy",
+    "contact": "hello@arkova.ai"
+  },
+  "transport": {
+    "type": "streamable-http",
+    "url": "https://edge.arkova.ai/mcp"
+  },
+  "transports": [
+    {
+      "type": "streamable-http",
+      "url": "https://edge.arkova.ai/mcp"
+    }
+  ],
+  "auth": {
+    "schemes": ["api_key", "oauth2_bearer"],
+    "apiKey": {
+      "header": "X-API-Key",
+      "documentation": "https://arkova.ai/docs/api"
+    },
+    "oauth2": {
+      "protectedResourceMetadata": "https://arkova.ai/.well-known/oauth-protected-resource",
+      "authorizationServers": ["https://app.arkova.ai"]
+    }
+  },
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    },
+    "resources": {
+      "listChanged": false,
+      "subscribe": false
+    },
+    "prompts": {
+      "listChanged": false
+    },
+    "logging": {}
+  },
+  "tools": [
+    {
+      "name": "verify_credential",
+      "description": "Verify a credential by its public ID. Returns verification status, issuer, timestamps, and the network receipt that anchors the credential to the public network.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "public_id": {
+            "type": "string",
+            "description": "The public ID of the credential to verify (URL-safe identifier returned at issuance)."
+          }
+        },
+        "required": ["public_id"],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "search_credentials",
+      "description": "Search anchored credentials using natural language. Returns ranked matches with public IDs, titles, and verification metadata. Respects API key scope.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Natural-language search query, e.g. 'invoices issued in Q1 2026'."
+          },
+          "max_results": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 10,
+            "description": "Maximum number of results to return."
+          }
+        },
+        "required": ["query"],
+        "additionalProperties": false
+      }
+    }
+  ],
+  "rateLimits": {
+    "anonymous": "100 requests/min/IP",
+    "apiKey": "1000 requests/min",
+    "batch": "10 requests/min"
+  },
+  "links": [
+    { "rel": "homepage", "href": "https://arkova.ai" },
+    { "rel": "documentation", "href": "https://arkova.ai/docs/mcp" },
+    { "rel": "api-catalog", "href": "https://arkova.ai/.well-known/api-catalog" },
+    { "rel": "describedby", "href": "https://arkova.ai/llms-full.txt", "type": "text/plain" }
+  ]
+}

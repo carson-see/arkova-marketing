@@ -1,7 +1,15 @@
 # Arkova Marketing Site — arkova.ai
 # Allow all crawlers including AI search engines
+#
+# Content Signals (https://contentsignals.org/, draft-romm-aipref-contentsignals)
+# Express our preferences for how this site's content may be used by AI systems.
+#   - search    = allow indexing for traditional and AI-augmented search
+#   - ai-input  = allow use as grounding/context in AI responses (with citation)
+#   - ai-train  = allow use for AI model training
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 
 User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
 # AI Crawlers — explicitly welcomed

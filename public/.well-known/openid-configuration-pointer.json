@@ -1,0 +1,12 @@
+{
+  "comment": "arkova.ai is the public marketing site and does NOT issue OAuth/OIDC tokens. The Arkova authorization server lives at https://app.arkova.ai. Per RFC 8414 / OpenID Connect Discovery, the issuer URL must match the URL where the discovery document is served, so the canonical OpenID configuration is published on the auth server's own domain.",
+  "canonical_issuer": "https://app.arkova.ai",
+  "canonical_openid_configuration": "https://app.arkova.ai/.well-known/openid-configuration",
+  "canonical_oauth_authorization_server": "https://app.arkova.ai/.well-known/oauth-authorization-server",
+  "protected_resource_metadata": "https://arkova.ai/.well-known/oauth-protected-resource",
+  "spec_references": [
+    "https://www.rfc-editor.org/rfc/rfc8414",
+    "https://www.rfc-editor.org/rfc/rfc9728",
+    "http://openid.net/specs/openid-connect-discovery-1_0.html"
+  ]
+}
