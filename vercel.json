@@ -21,8 +21,12 @@
     {
       "source": "/",
       "has": [
-        { "type": "header", "key": "accept", "value": ".*text/markdown.*" }
+        { "type": "header", "key": "accept", "value": "(?:.*[, ])?text/markdown(?:[;, ].*)?" }
       ],
+      "destination": "/index.md"
+    },
+    {
+      "source": "/markdown",
       "destination": "/index.md"
     }
   ],
