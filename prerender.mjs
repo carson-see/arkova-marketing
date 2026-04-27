@@ -81,6 +81,26 @@ const ROUTES = [
     description: 'Technical whitepaper on how Arkova anchors compliance-aligned metadata to blockchain for independently verifiable records. Architecture, API, compliance.',
   },
   {
+    path: '/compliance/sox',
+    title: 'SOX Compliance Audit Automation — ICFR Evidence — Arkova',
+    description: 'SOX Section 302, 404, 409, and 802 evidence cryptographically anchored. Reduce ICFR audit prep from quarterly fire drill to continuous, queryable property of your records.',
+  },
+  {
+    path: '/compliance/dora',
+    title: 'DORA Compliance — Audit-Ready ICT Resilience Evidence — Arkova',
+    description: 'EU Digital Operational Resilience Act (DORA) compliance evidence layer. ICT risk management, incident reporting, resilience testing, and third-party risk anchored.',
+  },
+  {
+    path: '/compliance/ferpa',
+    title: 'FERPA Compliance — Audit-Ready Student-Records Evidence — Arkova',
+    description: 'FERPA compliance evidence layer for universities and K-12. Disclosure logs, consent records, third-party agreements, and amendment trails cryptographically anchored.',
+  },
+  {
+    path: '/compare/drata',
+    title: 'Arkova vs Drata — Compliance Audit Automation Compared',
+    description: 'Honest Arkova vs Drata comparison. Drata wins on enterprise GRC depth and integrations. Arkova wins on multi-jurisdiction breadth, cryptographic verification, privacy-first.',
+  },
+  {
     path: '/roadmap',
     title: 'Roadmap — Arkova Compliance Audit Automation',
     description: "A short, honest two-phase roadmap: the cryptographic evidence layer Arkova runs in production today, and the compliance audit automation product we're building on top of it with pilot customers.",
